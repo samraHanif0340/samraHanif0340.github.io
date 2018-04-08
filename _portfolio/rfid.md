@@ -3,11 +3,7 @@ title: "RFID Simulation"
 excerpt: "How to simulate end-to-end RFID system"
 header:
   teaser: assets/images/rfid_01_adaptive_IIR_filter.jpg
-<!-- 
-feature_row:
-  - image_path: assets/images/deep_learning_c4w3_p01_01_yolo.jpg 
-  - image_path: assets/images/deep_learning_c4w4_p02_01_nst.jpg
--->
+  
 ---
 
 {% include feature_row %}
