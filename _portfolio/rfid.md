@@ -16,7 +16,7 @@ feature_row:
 
 
 ### Info
-We will describe how to simulate step-by-step the wireless communication chain of an amplitude-shift keyed (ASK) and phase-shift keyed (PSK) modulated radio freqeuncy identification (RFID) system in Matlab. We will endeaour to provide the mathematical equations and corresponding Matlab code to model the transmitter, wireless channel (including transmitter and receiver antenna), and receiver of a RFID system. 
+We will describe how to simulate step-by-step the wireless communication chain of a phase-shift keyed (PSK) modulated radio freqeuncy identification (RFID) system in Matlab. We will endeaour to provide the mathematical equations and corresponding Matlab code to model the transmitter, wireless channel (including transmitter and receiver antenna), and a digital baseband receiver of a RFID system. 
 
 ### Repository
 
@@ -27,3 +27,5 @@ The [repository](https://github.com/Adaickalavan/RFID) consists of the following
 The content of this page is now being added in stages. Visit at a later time for further updates.
 
 ## Antenna model
+
+...
