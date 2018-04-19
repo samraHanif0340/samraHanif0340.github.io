@@ -26,7 +26,6 @@ Linear/logistic regression, gradient descent, neural network, support vector mac
 
 ### Repository
 The [repository](https://github.com/Adaickalavan/Machine-Learning-Andrew-Ang-Stanford-University-Coursera) consists of the following: 
-* Stanford CS229 - Notes
 * Projects - Instructions and Matlab Codes
 
 ### Verified Certificate

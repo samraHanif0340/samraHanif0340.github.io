@@ -104,10 +104,12 @@ res2: String = (2+x)*y
 
 ### Week 6: Putting the pieces together
 
-In lecture 5, week 6, we are given a programming exercise on obtaining all phrases of words that can serve as mnemonics for a phone number. The URL to download the vocabulary is not clear from the instructional video. Hence, we provide the complete line of code to download the vocabulary: 
+In lecture 5, week 6, we are given a programming exercise on obtaining all phrases of words that can serve as mnemonics for a phone number. The URL to download the vocabulary is not clear from the instructional video. 
+
+![scala](/assets/images/scala_c1_w6_l05_01.jpg){:height="60%" width="60%" .align-center}
+
+Hence, we provide the complete line of code to download the vocabulary: 
 
 ```scala
 val in = Source.fromURL("https://lamp.epfl.ch/files/content/sites/lamp/files/teaching/progfun/linuxwords.txt")
 ```
-
-![scala](/assets/images/scala_c1_w6_l05_01.jpg){:height="60%" width="60%" .align-center}
