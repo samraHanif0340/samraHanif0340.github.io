@@ -39,14 +39,11 @@ This is a 5 course specialisation.
 5. Sequence Models
 	* RNN, GRU, LSTM
 
-<!--
 ### Repository
 
 The [repository](https://github.com/Adaickalavan/Deep-Learning-Specialization-Andrew-Ng-DeepLearning.ai-Coursera) consists of the following:  
-* Lectures - Notes
-* Quizes - Answers
 * Projects - Jupyter notebook and Python codes
--->
+
 ### Verified Certificate
 
 * Neural Networks and Deep Learning 
