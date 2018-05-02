@@ -5,6 +5,8 @@ title: "Posts by Tags"
 author_profile: true
 ---
 
+<a href="/year-archive/" class="btn btn--info">sort by year</a> <a href="/categories/" class="btn btn--info">sort by categories</a>
+
 {% include group-by-array collection=site.posts field="tags" %}
 
 {% for tag in group_names %}

@@ -47,6 +47,31 @@ The [repository](https://github.com/Adaickalavan/) consists of the following:
 [![certificate](/assets/images/certificate_neural_networks_and_deep_learning_coursera.jpg){:height="60%" width="60%" .align-center}](https://www.coursera.org/account/accomplishments/certificate/PLGXT56A8AF4)
 -->
 
+### Notes
+
+Users of IntelliJ-Idea as their Scala IDE might have encountered the following problem. Assume you have a scala class with accompanying methods written in a Foo.scala file.
+```scala
+//File : Foo.scala
+class Foo {
+  def foo1: Int = 2
+}
+```
+Then you try to import the Foo class into a worksheet named Bar.sc to test the behaviour of your Foo class.
+```scala
+//File : Bar.sc
+import Foo
+object Bar {
+  val bar1 = new Foo
+}
+```
+Everything works fine initially. However, if you return to Foo.scala file and make some changes, these changes will not be picked up by your Bar.sc worksheet. Errors such as "Object cannot be found" (i.e., referring to your new/modified object in Foo.scala file) will be thrown when trying to run your worksheet. Rebuilding, recompiling, or "Make Project" does not help. 
+
+However, upon restarting the IntelliJ application, your Bar.sc worksheet will work flawlessly and detect the new changes in Foo.scala file.
+
+Do the following to solve the problem:
+* Go to File -> Settings -> Languages & Frameworks -> Scala -> Worksheet (tab)
+* Unselect "Run worksheet in the compiler process"
+
 ## Course 1: Functional programming principles in Scala
 ### Week 4: Pattern matching
 

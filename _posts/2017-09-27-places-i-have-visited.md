@@ -1,10 +1,9 @@
 ---
 title: "Places I have visited"
 tags: 
-  - fun
-  - personal
+  - life
 categories:
-  - personal  
+  - life 
 last_modified_at: 2017-11-22
 ---
 
