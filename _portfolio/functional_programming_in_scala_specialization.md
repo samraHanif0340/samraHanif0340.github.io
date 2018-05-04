@@ -1,5 +1,5 @@
 ---
-title: "Functional programming in scala specialization - Martin Odersky"
+title: "Functional programming in scala specialization"
 excerpt: "Course review and resources"
 header:
   teaser: /assets/images/scala_c1_w4_l05_01.jpg
