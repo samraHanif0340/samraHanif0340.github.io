@@ -35,12 +35,14 @@ This is a 5 course specialisation.
 {: .notice--warning}
 The content of this page is now being added in stages. Visit at a later time for further updates.
 
-<!--
+
 ### Repository
 
-The [repository](https://github.com/Adaickalavan/) consists of the following:  
-* Projects - Solutions (.scala and .sc worksheets)
+The [repository](https://github.com/Adaickalavan/Functional-Programming-in-Scala-Specialization-EPFL-Coursera) consists of the following:  
+* In-class exercises - codes (.scala and .sc worksheets)
+* Projects - codes (.scala and .sc worksheets)
 
+<!--
 ### Verified Certificate
 
 * Neural Networks and Deep Learning 
