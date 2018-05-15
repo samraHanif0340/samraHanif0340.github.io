@@ -144,17 +144,17 @@ val in = Source.fromURL("https://lamp.epfl.ch/files/content/sites/lamp/files/tea
 ## Course 2: Functional program design in Scala
 ### Week 4: Functional reactive programming
 
-Odersky describes the "Signal" method for reactive programming, using a bank account example. In order to track the logic while using "Signal", I have provided an "accounts.scala" file (in addition to "accounts.sc" file) with many helpful print statements. Running "accounts.scala" file in debug mode, will print key values at intermediate stages, thus allowing us to track the logic behind "Signal" operation. 
+Odersky describes the "Signal" method for reactive programming, using a bank account example. In order to track the logic while using "Signal", an "accounts.scala" file is provided in the repository (in addition to "accounts.sc" file) with many helpful print statements. Running "accounts.scala" file in debug mode, will print key values at intermediate stages, thus allowing us to track the logic behind "Signal" operation. 
 ```scala
   println("xxx.caller->"+caller) //print identity of caller
   println("xxx.observers->"+observers) //print identity of observers in the set
   println("xxx.this->"+this) //print identitiy of the current object
 ```
 
-In short, we should remember the following points to understand "Signal" logic:
-1. On instantiation, Signal A stores its formula/definition in the ```myExpr = () => expr``` variable. Signal A is evaluated by updating its ```myValue``` variable.
+In short, we should remember the following points to understand "Signal":
+1. On instantiation or upon being called, Signal A updates its formula/definition in the ```myExpr = () => expr``` variable. Signal A also updates its ```myValue``` variable.
 1. Whenever an object B calls Signal A, Signal A stores the identity of the object B in its observers list. This is achieved via ```observers += caller.value``` in ```def apply()``` function.
-1.  Whenever a Signal A is updated or evaluated, it updates its ```myValue``` variable via ```myValue = newValue``` operation in ```protected def computeValue()``` function. Additionally, it calls all of its observers to update their values too via ```observers = Set.empty; obs.foreach(_.computeValue())``` in ```protected def computeValue()``` function. 
+1.  Whenever a Signal A is updated or evaluated, it updates its ```myValue``` variable via ```myValue = newValue``` operation in ```protected def computeValue()``` function. Additionally, Signal A calls all of its observers to update their values too via ```observers = Set.empty; obs.foreach(_.computeValue())``` in ```protected def computeValue()``` function. 
 
-Notice that the observers list of a Signal A is emptied after calling its observers. The observer list of Signal A will be populated again when some other object B calls Signal A in order to compute object B's ```myValue``` variable.
+Notice that the observers list of a Signal A is emptied after calling its observers. The observers list of Signal A will be populated again when some other object B calls Signal A in order to compute object B's ```myValue``` variable.
 
