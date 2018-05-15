@@ -18,9 +18,9 @@ Our example will demonstrate the following:
 * Running a Bokeh server
 * Simultaneously running multiple python threads for other tasks
 * Auto start of threads by simply starting the Bokeh server
-* Two way interaction among browser <--> server <--> pyhton threads
+* Interactions among: browser <--(two way)--> server <--(two way)--> pyhton threads
 
-We will be using the following:
+The following will be used:
 * Python 3.6
 * Multithreaded Python coding
 * Bokeh plots
@@ -38,14 +38,14 @@ The [repository](https://github.com/Adaickalavan/Real-Time-Streaming-Visualizati
 * .idea files - project setting files derived from PyCharm IDE
 
 The project structure is as follows:
-  ```
-  Real-Time-Streaming-Visualization   -- main folder
-  └── streaming                       -- python package, this is set as 'Source Root' in PyCharm
-      ├── __init__.py                 -- this file indicates that 'streaming' is a python package
-      ├── main.py                     -- script with main function
-      ├── Sensor.py                   -- multithreaded python script to obtain sensor data 
-      └── Visual.py                   -- Bokeh code for web dashboard
-  ```
+```
+Real-Time-Streaming-Visualization   -- main folder
+└── streaming                       -- python package, this is set as 'Source Root' in PyCharm
+    ├── __init__.py                 -- this file indicates that 'streaming' is a python package
+    ├── main.py                     -- script with main function
+    ├── Sensor.py                   -- multithreaded python script to obtain sensor data 
+    └── Visual.py                   -- Bokeh code for web dashboard
+```
 
 ### Solution 
 It is beneficial for beginners to read through the Bokeh [tutorial](https://mybinder.org/v2/gh/bokeh/bokeh-notebooks/master?filepath=tutorial%2F00%20-%20Introduction%20and%20Setup.ipynb) and [guide](http://bokeh.pydata.org/en/latest/docs/user_guide.html) to gain a better understanding of the visualization tool.
@@ -79,12 +79,12 @@ main()
 ```
 Here, we do the following:
 1. Create a threading event to be used as Flag for communication between threads in python
-1. Instantiate a Bokeh web document as ```webVisual```, which is defined in ```Visual.py``` file  
+1. Instantiate a Bokeh web document as ```webVisual```, which is defined in ```Visual.py``` file
 1. Instantiate our Sensor thread and run it
 1. For callback and interactive user experience:     
-    1. Feed the ```threads``` function into ```webVisual``` object to restart the thread from browser interface  
-    1. Feed the Bokeh document ```webVisual``` into our thread to enable the Sensor thread to inform the browser whenever new sensor data is available for plotting
-    1. Feed the threading event Flag to both the Sensor thread and webVisual as a common Flag
+    * Feed the ```threads``` function into ```webVisual``` object to restart the thread from browser interface 
+    * Feed the Bokeh document ```webVisual``` into our thread to enable the Sensor thread to inform the browser whenever new sensor data is available for plotting
+    * Feed the threading event Flag to both the Sensor thread and webVisual as a common Flag
 
 To run this program, open a command prompt and change your present directory to that of the main folder, for example ```C:\Real-Time-Streaming-Visualization```. Then issue the command ```bokeh serve --show streaming``` which will publish Bokeh document ```webVisual``` to a web browser at ```http://localhost:5006/streaming```. 
 
@@ -114,8 +114,8 @@ Here, the following is performed:
 1. Sensor thread runs continuously as long as the Flag is set
 1. Random numbers are generated to emulate sensor data
 1. Once new sensor data is available, the webVisual object is called via Bokeh's callback utility ```add_next_tick_callback``` 
-    1. In the callback, specifically invoke the ```update``` function of the ```Visual``` class
-    1. Feed the necessary argument (i.e., new sensor data which is available in ```self.val```) to the ```update``` function by using a [partial function](https://docs.python.org/3/library/functools.html)
+    * In the callback, specifically invoke the ```update``` function of the ```Visual``` class
+    * Feed the necessary argument (i.e., new sensor data which is available in ```self.val```) to the ```update``` function by using a [partial function](https://docs.python.org/3/library/functools.html)
 
 Refer to Bokeh [guide on threads](https://bokeh.pydata.org/en/latest/docs/user_guide/server.html#updating-from-threads) for more information on updating from threads. All actions from threads that update Bokeh document state must go through a ```add_next_tick_callback```.
 
@@ -215,24 +215,24 @@ The Bokeh web document contains the various plots, defines the source of data fo
 
 The key functions of each method defined in the ```Visual``` class is described below.
 1. definePlot()     
-    a. Create two graphs to plot values against time
-    1. x-axis of the second graph is linked to the first graph via the command ```x_range=p1.x_range```
-    1. First graph plots raw sensor data
-    1. Second graph plots processed sensor data (in the left y-axis) and classification results (in the right y-axis)
-    1. Places the two graphs into a ```gridplot``` for vertical alignment
+    * Create two graphs to plot values against time
+    * x-axis of the second graph is linked to the first graph via the command ```x_range=p1.x_range```
+    * First graph plots raw sensor data
+    * Second graph plots processed sensor data (in the left y-axis) and classification results (in the right y-axis)
+    * Places the two graphs into a ```gridplot``` for vertical alignment
 1. update()
-    1. This function will be called by the Sensor thread whenever new data is available for adding into the time plot
-    1. New data points for each graph is structured into a dictionary
-    1. The graphs are updated by feeding the dictionary into a stream as given by ```self.source.stream(new_data, rollover=20)``` with a rollover period 
-    1. The plots will be only be updated if the 'self.updateValue' is `True`
+    * This function will be called by the Sensor thread whenever new data is available for adding into the time plot
+    * New data points for each graph is structured into a dictionary
+    * The graphs are updated by feeding the dictionary into a stream as given by ```self.source.stream(new_data, rollover=20)``` with a rollover period 
+    * The plots will be only be updated if the `self.updateValue` is `True`
 1. checkbox1Handler()
-    1. This function will be invoked whenever there is a change to the checkboxes's state
-    1. If the first checkbox transitions from 'unticked' to 'ticked', then the Sensor thread will be restarted
-    1. If the first checkbox is unticked, then the Sensor thread will be terminated by clearing the Flag
-    1. If the second checkbox is ticked, the Bokeh server will enable updating of the graphs  
+    * This function will be invoked whenever there is a change to the checkboxes's state
+    * If the first checkbox transitions from 'unticked' to 'ticked', then the Sensor thread will be restarted
+    * If the first checkbox is unticked, then the Sensor thread will be terminated by clearing the Flag
+    * If the second checkbox is ticked, the Bokeh server will enable updating of the graphs  
 1. layout()
-    1. Define two checkboxes and their handler/callback function, namely ```checkbox1Handler()```
-    1. Position the text, checkboxes, and graphs into a nice layout
-    1. Add the layout to the web document to be served to the browser by the Bokeh server
+    * Define two checkboxes and their handler/callback function, namely ```checkbox1Handler()```
+    * Position the text, checkboxes, and graphs into a nice layout
+    * Add the layout to the web document to be served to the browser by the Bokeh server
 
 I hope this example would lead you to explore more advanced real-time data streaming visualizations for various applications, including machine learning and big data applications.
