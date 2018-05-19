@@ -142,7 +142,7 @@ val in = Source.fromURL("https://lamp.epfl.ch/files/content/sites/lamp/files/tea
 ```
 
 ## Course 2: Functional program design in Scala
-### Week 4: Functional reactive programming
+### Week 4 Lecture 3: Functional reactive programming
 
 Odersky describes the "Signal" method for reactive programming, using a bank account example. In order to track the logic while using "Signal", an "accounts.scala" file is provided in the repository (in addition to "accounts.sc" file) with many helpful print statements. Running "accounts.scala" file in debug mode, will print key values at intermediate stages, thus allowing us to track the logic behind "Signal" operation. 
 ```scala
@@ -157,4 +157,55 @@ In short, we should remember the following points to understand "Signal":
 1.  Whenever a Signal A is updated or evaluated, it updates its ```myValue``` variable via ```myValue = newValue``` operation in ```protected def computeValue()``` function. Additionally, Signal A calls all of its observers to update their values too via ```observers = Set.empty; obs.foreach(_.computeValue())``` in ```protected def computeValue()``` function. 
 
 Notice that the observers list of a Signal A is emptied after calling its observers. The observers list of Signal A will be populated again when some other object B calls Signal A in order to compute object B's ```myValue``` variable.
+
+### Week 4 Assignment: Calculator
+Contrary to the `Signal` class introduced during Lecture 3, the `Signal` class provided in the assignment has an additional `var observed` besides the original `var observers`. Here `observers` refer to objects which are dependent on me whereas `observed` refers to objects that I depend on. The relevant portions of the code are shown below.
+```scala
+class Signal[T](expr: => T) {
+
+  private var observers: Set[Signal[_]] = Set()
+  private var observed: List[Signal[_]] = Nil
+  ...
+
+  protected def computeValue(): Unit = {
+      for (sig <- observed)
+        sig.observers -= this
+      observed = Nil
+      ...
+    }
+
+  ...
+
+  def apply() = {
+      ...
+      caller.value.observed ::= this
+      myValue
+    }
+}
+```
+The principles of `var observed` is described next using an example. Assume we have 3 `Signals` defined as follows:
+```
+val a = Var(1)
+val b = Var(a() + 1)
+val c = Var(b() + 1)
+```
+On iniatilization of the three signals, the table below shows the `var observers` and `var observed` of each signal.
+
+| Signal | observers | observed |
+|:------:|:---------:|:--------:|
+| a      | b         | none     |
+| b      | c         | a        |
+| c      | none      | b        |
+
+If at a later time, the `expr` of signal `b` is changed to `b() = 2`, then value of signal `c` will be recomputed accordingly. The `var observers` and `var observed` list will be updated to become:
+
+| Signal | observers | observed |
+|:------:|:---------:|:--------:|
+| a      | none      | none     |
+| b      | c         | none     |
+| c      | none      | b        |
+
+Since signal `b` does not depend on signal `a` anymore, signal `b` is removed from `var observers` of signal `a`. Hence, in future, if signal `a` is updated, it does not need to inform or call signal `b` anymore.
+
+Note that the `Signal` class works correctly even without `var observed`. In the example above, without use of `var observed`, signal `a` makes a redundant call to signal `b` when signal `a` is updated in the future. Essentially, use of `var observed` avoids unnecessary computations.
 
