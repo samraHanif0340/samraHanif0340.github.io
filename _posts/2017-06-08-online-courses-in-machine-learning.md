@@ -51,14 +51,14 @@ last_modified_at: 2018-03-07
 <ol>
   <li><a href="https://www.coursera.org/specializations/python">Python for everybody (5 course series)</a></li>
   <li><a href="https://www.udacity.com/course/how-to-use-git-and-github--ud775">How to use Git and GitHub</a></li>
-  <li><a href="https://www.coursera.org/learn/machine-learning">Machine Learning - Andrew Ng</a> : <a class="smallLink" href="/portfolio/machine_learning_andrew_ng/">my work</a></li>
+  <li><a href="https://www.coursera.org/learn/machine-learning">Machine Learning - Andrew Ng</a> : <a href="/portfolio/machine_learning_andrew_ng/">my work</a></li>
   <li><a href="https://www.edx.org/course/learning-data-introductory-machine-caltechx-cs1156x">Learning From Data (Introductory Machine Learning)</a> : <a href="/portfolio/learning_from_data_yaser_s.abu-mostafa/">my work</a></li>
   <li><a href="https://www.edx.org/course/machine-learning-columbiax-csmm-102x-0">Machine Learning - John Paisley</a> : <a href="/portfolio/machine_learning_john_paisley/">my work</a></li> 
   <li><a href="https://www.edx.org/course/artificial-intelligence-ai-columbiax-csmm-101x-0">Artificial Intelligence</a> : <a href="/portfolio/artifical_intelligence_ansaf_salleb-aouissi/">my work</a></li> 
   <li><a href="https://www.coursera.org/specializations/deep-learning">Deep Learning.ai - Andrew Ng (5 course series)</a> : <a href="/portfolio/deep_learning_ai_andrew_ng/">my work</a></li> 
   <li><a href="https://www.coursera.org/specializations/data-science-python">Applied Data Science with Python Specialization (5 course series)</a></li>
   <li><a href="https://www.udacity.com/course/intro-to-hadoop-and-mapreduce--ud617">Intro to Hadoop and MapReduce</a></li> 
-  <li><a href="https://www.coursera.org/specializations/scala">Functional Programming in Scala Specialization (5 course series)</a></li>
+  <li><a href="https://www.coursera.org/specializations/scala">Functional Programming in Scala Specialization (5 course series)</a> : <a href="/portfolio/functional_programming_in_scala_specialization/">my work</a></li>
 </ol>
  
 <p>There are plenty of other Machine Learning courses available on the internet. It is a matter of trial and error in finding the good online courses. Please do share with me, if you find any other good online courses in Machine Learning.</p>
