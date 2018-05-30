@@ -1,5 +1,5 @@
 ---
-title: "Deep Learning - Time Series and NLP"
+title: "Deep Learning for Time Series and NLP"
 excerpt: "Project"
 header:
   teaser: assets/images/time_series_nlp_01.jpg
@@ -12,12 +12,23 @@ header:
 ## Project
 
 ### Problem
-In this project we develop a deep learning approach based on convolutional neural network(CNN) and long-short term memory(LSTM) to classify a time series sequence data. The same solution can be equally applied for character-level sentence classification. 
+In this project we develop a deep learning approach based on convolutional neural network(CNN) and long-short term memory(LSTM) to classify a sentences. The sentences in this project have been encoded in a deterministic one-to-one mapping. time series sequence data. The same solution can be equally applied for character-level sentence classification. 
+
+```
+line: letwmktwviuhskenamuhtwlpuhraletwlrvienskuhqvmvamuhxepmuhlekrpmamuhtwamuluhezpmlexeuhtwulultwvienqjuhtwmvypkrxzuhsktwmkpmiwuhskenamuhtwlpuhenuhxepmuhtwmkpmiwuhtwamuluhxepmuhsaendfuhtwamulbhbhsaendfuhqvijsaenvileenmcuhqvtwiwleenameebhbhsaendfuhtwvipmuhtwvipmlruhsaiwtvenmvleenmkvimvuhqvenamuhvienezuhenuhxepmuhskiwlepmdfuhtwamuluhqgqvtwskkrulmvuleniwuhvitwiwiwenxeuhvimvuhletwulvimvdfuhsaiwulqvpmezuhqvmvuhulmvuhvitwamdf
+label: 10
+```
 
 We will be using the following tools:
 * Python
 * Keras
 * Jupyter Notebook
+
+### Repository
+The [repository](https://github.com/Adaickalavan/Deep-Learning-for-Time-Series-and-NLP) consists of the following:  
+* Python script
+* Jupyter Notebook
+* Train and test data
 
 ### Solution 
 
@@ -37,8 +48,6 @@ from keras.layers import Dense, Activation, Dropout, Input, LSTM, Lambda, Bidire
 import keras.callbacks
 ```
 
-{: .notice--warning}
-More information on train and test data (i.e., time series data and natural language processing data) is currently being designed. Visit at a later time for further updates.
 
 Build the machine learning model as follows: 
 
@@ -194,12 +203,4 @@ write2file('ytest.txt',pred_labels)
 
 The end
 
-### Repository
 
-{: .notice--warning}
-Repository coming soon.
-
-The [repository](https://github.com/Adaickalavan/Deep-Learning-Time-Series-NLP) consists of the following:  
-* Python script
-* Jupyter Notebook
-* Train and test data

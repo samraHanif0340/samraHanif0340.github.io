@@ -18,11 +18,7 @@ feature_row:
 <a href="https://www.coursera.org/specializations/scala">Functional programming in scala specialization - Martin Odersky</a>
 
 ### Info
-This is an excellent course on mastering Scala, delivered in Coursera by the founder of the language himself, Prof. Martin Odersky from the famed  École Polytechnique Fédérale de Lausanne (EPFL). 
-
-<!-- 
-The course covers the three main neural network architectures, namely, feedforward neural networks, convolutional neural networks, and recursive neural networks. Their related applications, extensions, and tweaks are covered with sufficient example codes in Python, TensorFlow, and Keras. The specialisation uses Jupyter for its assignments. 
--->
+This is an excellent course on mastering Scala, delivered in Coursera by the founder of the language himself, Prof. Martin Odersky from the famed  École Polytechnique Fédérale de Lausanne (EPFL), Switzerland. Crucial parallel programming concepts, applicable in all programming languages, such as threads, parallel tasks, etc., are taught by equally excellent teachers named Aleksandar Prokopec and Viktor Kuncak. The teaching is accompanied with relevant hands-on exercises and coding assignments.
 
 ### Syllabus
 This is a 5 course specialisation.
@@ -31,10 +27,6 @@ This is a 5 course specialisation.
 3. Parallel programming
 4. Big Data Analysis with Scala and Spark
 5. Functional Programming in Scala Capstone
-
-{: .notice--warning}
-The content of this page is now being added in stages. Visit at a later time for further updates.
-
 
 ### Repository
 
@@ -218,7 +210,7 @@ class Signal[T](expr: => T) {
 }
 ```
 The principles of `var observed` is described next using an example. Assume we have 3 `Signals` defined as follows:
-```
+```scala
 val a = Var(1)
 val b = Var(a() + 1)
 val c = Var(b() + 1)
@@ -245,17 +237,45 @@ Note that the `Signal` class works correctly even without `var observed`. In the
 
 
 ## Course 3: Parallel Programming
-### Week 1 Lecture: Scalameter
-In this week, we are introduced to Scalameter library to measure the performance of our Scala code in terms of time, memory, etc. Remember to use the right version of Scalameter library compatible to your installed Scala version. If in doubt, please verify the compatible versions at [Maven Repository](https://mvnrepository.com/artifact/com.storm-enroute/scalameter-core). Below are examples of compatible Scalameter libraries for different Scala versions.
+### Week 1 Lecture 3: Resolving Deadlocks
+In this lecture, we are taught of `class Account` and of acquiring synchronized locks in the order of an unique ID to avoid deadlock situations. All instances of the `class Account` need to obtain an unique ID. This may be achieved via a companion `object Account` as shown next. Please refer to [week1_2.sc worksheet](https://github.com/Adaickalavan/Functional-Programming-in-Scala-Specialization-EPFL-Coursera/blob/master/Parallel%20Programming/exercise/src/main/scala/week1_2.sc) in the repository for the complete working example using companion object.
+
+```scala
+object Account{
+  def apply(amount:Int = 0): Account = new Account(amount)
+
+  private var uidCount: Long = 0L
+
+  def getUniqueId():Long = this.synchronized {
+    uidCount = uidCount + 1
+    uidCount
+  }
+}
+
+class Account(private var amount: Int = 0){
+  import Account._
+
+  val uid = getUniqueId()
+
+  private def lockAndTransfer(target: Account, n:Int): Unit ={...}
+
+  def transfer(target: Account, n:Int): Unit = {...}
+}
 ```
+
+### Week 1 Lecture 8: Scalameter
+In this week, we are introduced to Scalameter library to measure the performance of our Scala code in terms of time, memory, etc. Remember to use the right version of Scalameter library compatible to your installed Scala version. If in doubt, please verify the compatible versions at [Maven Repository](https://mvnrepository.com/artifact/com.storm-enroute/scalameter-core). Below are examples of compatible Scalameter libraries for different Scala versions.
+```scala
 scalaVersion := "2.11.7"
 libraryDependencies += "com.storm-enroute" %% "scalameter-core" % "0.6"
 ```
-```
+```scala
 scalaVersion := "2.12.4"
 libraryDependencies += "com.storm-enroute" %% "scalameter-core" % "0.10"
 ```
 
-### Week 1 In-class exercise: 
+### Week 1 Assignment: Box Blur
+In the 
 
-
+{: .notice--warning}
+The content of this page is now being added in stages. Visit at a later time for further updates.
