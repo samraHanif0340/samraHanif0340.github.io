@@ -149,8 +149,35 @@ val in = Source.fromURL("https://lamp.epfl.ch/files/content/sites/lamp/files/tea
 ```
 
 ## Course 2: Functional program design in Scala
-### Week 4 Lecture 3: Functional reactive programming
+### Week 3 Assignment: ScalaCheck
+In this week's assignment, we are tasked with writing properties to be checked by ScalaCheck. The default assignment code guides us to write a heap generator `genHeap` of type `Gen[H]` and define an implicit val `arbHeap` of type `Arbitrary[H]`. When a `property` is executed, the `forAll` function searches for a corresponding implicit `Arbitrary[H]` generator matching its required input `h:H`. An example is given below to illustrate this, where the `arbHeap` will be used as the implicit generator to produce its input `h` of typ `H`. 
+```scala
+  lazy val genHeap: Gen[H] = for {
+    x <- Arbitrary.arbitrary[A]
+    h <- Gen.frequency((45, Gen.const(empty)),(55,genHeap))
+  } yield insert(x, h)
 
+  implicit lazy val arbHeap: Arbitrary[H] = Arbitrary(genHeap)
+
+  property("property1") = forAll{(h: H) =>
+    val m = if (isEmpty(h)) 0 else findMin(h)
+    findMin(insert(m, h)) == m
+  }
+```
+In practice, it is best to avoid implicit parameters, such as implicit generators given by `Arbitrary[T]` values, to increase code comprehension. The above example is reproduced below with the generator for input `h:H` being explicitly defined as `genHeap`. This removes the need to define an intermediary `implicit val`.
+```scala
+  lazy val genHeap: Gen[H] = for {
+    x <- Arbitrary.arbitrary[A]
+    h <- Gen.frequency((45, Gen.const(empty)),(55,genHeap))
+  } yield insert(x, h)
+
+  property("property1") = forAll(genHeap){(h: H) =>
+    val m = if (isEmpty(h)) 0 else findMin(h)
+    findMin(insert(m, h)) == m
+  }
+```
+
+### Week 4 Lecture 3: Functional reactive programming
 Odersky describes the "Signal" method for reactive programming, using a bank account example. In order to track the logic while using "Signal", an "accounts.scala" file is provided in the repository (in addition to "accounts.sc" file) with many helpful print statements. Running "accounts.scala" file in debug mode, will print key values at intermediate stages, thus allowing us to track the logic behind "Signal" operation. 
 ```scala
   println("xxx.caller->"+caller) //print identity of caller
@@ -215,4 +242,20 @@ If at a later time, the `expr` of signal `b` is changed to `b() = 2`, then value
 Since signal `b` does not depend on signal `a` anymore, signal `b` is removed from `var observers` of signal `a`. Hence, in future, if signal `a` is updated, it does not need to inform or call signal `b` anymore.
 
 Note that the `Signal` class works correctly even without `var observed`. In the example above, without use of `var observed`, signal `a` makes a redundant call to signal `b` when signal `a` is updated in the future. Essentially, use of `var observed` avoids unnecessary computations.
+
+
+## Course 3: Parallel Programming
+### Week 1 Lecture: Scalameter
+In this week, we are introduced to Scalameter library to measure the performance of our Scala code in terms of time, memory, etc. Remember to use the right version of Scalameter library compatible to your installed Scala version. If in doubt, please verify the compatible versions at [Maven Repository](https://mvnrepository.com/artifact/com.storm-enroute/scalameter-core). Below are examples of compatible Scalameter libraries for different Scala versions.
+```
+scalaVersion := "2.11.7"
+libraryDependencies += "com.storm-enroute" %% "scalameter-core" % "0.6"
+```
+```
+scalaVersion := "2.12.4"
+libraryDependencies += "com.storm-enroute" %% "scalameter-core" % "0.10"
+```
+
+### Week 1 In-class exercise: 
+
 
