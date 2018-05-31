@@ -6,6 +6,7 @@ header:
 feature_row:
   - image_path: /assets/images/scala_c1_w4_l05_01.jpg
   - image_path: /assets/images/scala_c2_w4_a01_01.jpg 
+  - image_path: /assets/images/scala_c3_w1_a01_01.jpg 
 ---
 
 {% include feature_row %}
@@ -273,9 +274,6 @@ libraryDependencies += "com.storm-enroute" %% "scalameter-core" % "0.6"
 scalaVersion := "2.12.4"
 libraryDependencies += "com.storm-enroute" %% "scalameter-core" % "0.10"
 ```
-
-### Week 1 Assignment: Box Blur
-In the 
 
 {: .notice--warning}
 The content of this page is now being added in stages. Visit at a later time for further updates.

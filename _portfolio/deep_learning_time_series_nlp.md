@@ -18,7 +18,7 @@ In this project we develop a deep learning algorithm, based on a combination of 
 sentence: letwmktwviuhskenamuhtwlpuhraletwlrvienskuhqvmvamuhxepmuhlekrpmamuhtwamuluhezpmlexeuhtwulultwvienqjuhtwmvypkrxzuhsktwmkpmiwuhskenamuhtwlpuhenuhxepmuhtwmkpmiwuhtwamuluhxepmuhsaendfuhtwamulbhbhsaendfuhqvijsaenvileenmcuhqvtwiwleenameebhbhsaendfuhtwvipmuhtwvipmlruhsaiwtvenmvleenmkvimvuhqvenamuhvienezuhenuhxepmuhskiwlepmdfuhtwamuluhqgqvtwskkrulmvuleniwuhvitwiwiwenxeuhvimvuhletwulvimvdfuhsaiwulqvpmezuhqvmvuhulmvuhvitwamdf
 label: 10
 ```
-Sentences in the file have been encoded in a deterministic one-to-one mapping, to prove the point that the algorithm developed is data agnostic such that it can be applied to any other NLP or time series data classification problem.
+Sentences in the file have been encoded in a deterministic one-to-one mapping, to prove that the algorithm developed is data agnostic such that it can be applied to any other NLP or time series data classification problem.
 
 ### Repository
 The [repository](https://github.com/Adaickalavan/Deep-Learning-for-Time-Series-and-NLP) contains the following project files:
