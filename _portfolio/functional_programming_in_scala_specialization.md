@@ -2,11 +2,11 @@
 title: "Functional programming in scala specialization"
 excerpt: "Course review and resources"
 header:
-  teaser: /assets/images/scala_c2_w4_a01_01.jpg
+  teaser: /assets/images/scala_c3_w1_a01_01.jpg 
 feature_row:
-  - image_path: /assets/images/scala_c1_w4_l05_01.jpg
   - image_path: /assets/images/scala_c2_w4_a01_01.jpg 
   - image_path: /assets/images/scala_c3_w1_a01_01.jpg 
+  - image_path: /assets/images/scala_c3_w4_a01_01.jpg
 ---
 
 {% include feature_row %}
