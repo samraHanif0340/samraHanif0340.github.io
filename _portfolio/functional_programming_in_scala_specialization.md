@@ -238,6 +238,8 @@ Note that the `Signal` class works correctly even without `var observed`. In the
 
 
 ## Course 3: Parallel Programming
+Scala codes used in the lectures are available at the (intructors GitHub website)[https://github.com/axel22/parprog-snippets].
+
 ### Week 1 Lecture 3: Resolving Deadlocks
 In this lecture, we are taught of `class Account` and of acquiring synchronized locks in the order of an unique ID to avoid deadlock situations. All instances of the `class Account` need to obtain an unique ID. This may be achieved via a companion `object Account` as shown next. Please refer to [week1_2.sc worksheet](https://github.com/Adaickalavan/Functional-Programming-in-Scala-Specialization-EPFL-Coursera/blob/master/Parallel%20Programming/exercise/src/main/scala/week1_2.sc) in the repository for the complete working example using companion object.
 
