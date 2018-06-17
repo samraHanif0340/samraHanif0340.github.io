@@ -2,14 +2,14 @@
 main:
   - title: "About"
     url: /about/
-  - title: "Publications"
-    url: /publications/
   - title: "CV"
     url: /cv/
   - title: "Portfolio"
     url: /portfolio/
   - title: "Posts"
     url: /year-archive/
+  - title: "Publications"
+    url: /publications/
 #  - title: "Collections"
 #    url: /collection-archive/
 #  - title: "Sitemap"
