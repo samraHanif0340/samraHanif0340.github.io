@@ -35,6 +35,8 @@ The [repository](https://github.com/Adaickalavan/Functional-Programming-in-Scala
 * In-class exercises - codes (.scala and .sc worksheets)
 * Projects - codes (.scala and .sc worksheets)
 
+All the handouts and exercises of the course are also made available at [EPFL's Alaska website](http://alaska.epfl.ch/~dockermoocs/)
+
 <!--
 ### Verified Certificate
 
@@ -238,7 +240,7 @@ Note that the `Signal` class works correctly even without `var observed`. In the
 
 
 ## Course 3: Parallel Programming
-Scala codes used in the lectures are available at the (intructors GitHub website)[https://github.com/axel22/parprog-snippets].
+Scala codes used in the parallel programming lectures are available at the [intructors GitHub website](https://github.com/axel22/parprog-snippets).
 
 ### Week 1 Lecture 3: Resolving Deadlocks
 In this lecture, we are taught of `class Account` and of acquiring synchronized locks in the order of an unique ID to avoid deadlock situations. All instances of the `class Account` need to obtain an unique ID. This may be achieved via a companion `object Account` as shown next. Please refer to [week1_2.sc worksheet](https://github.com/Adaickalavan/Functional-Programming-in-Scala-Specialization-EPFL-Coursera/blob/master/Parallel%20Programming/exercise/src/main/scala/week1_2.sc) in the repository for the complete working example using companion object.
@@ -276,6 +278,77 @@ libraryDependencies += "com.storm-enroute" %% "scalameter-core" % "0.6"
 scalaVersion := "2.12.4"
 libraryDependencies += "com.storm-enroute" %% "scalameter-core" % "0.10"
 ```
+
+## Course 4: Big Data Analysis with Scala and Spark
+###  Week 1 Assignment: Wikipedia
+
+<!--
+Spark is initialized and used to process the wikipedia data in this week's assignment. While running  
+
+```
+INFO Utils: Successfully started service 'SparkUI' on port 4040.
+18/06/21 22:08:44 INFO SparkUI: Bound SparkUI to 0.0.0.0, and started at http://192.168.0.148:4040
+```
+
+![spark](/assets/images/scala_c4_w1_a01_02.jpg){:height="150%" width="95%" .align-center}
+
+
+1. If you are testing using an IDE such as IDEA, include the following lines at the end of your code 
+  ```
+  ...
+  System.in.read
+  sc.stop // sc is spark context
+  ```
+  This will ensure that the UI is accessible as long as you want. Just hit enter on the IDEA/Eclipse console to terminate the application
+
+1. 
+-->
+
+###  Week 2 Assignment: StackOverflow
+A couple of key points on `Option` type and data shuffling is discussed below, which are useful in this week's and general Spark programming.
+
+`Options` can be viewed as collections. We can `flatMap` a `Collection[Option[_]]` to `Collection[_]`. For example we can `flatMap` `List[Option[_]]` to `List[_]`. For example, the following code 
+
+```scala
+object exercise {
+  // instantiate sample list
+  val num = List(1,2,3,4,5,6,7)
+  // method 1: map
+  val numMap = num.map(p => if (p%2 == 0) Some(p*2) else None)
+  // method 2: flatMap
+  val numFlatMap = num.flatMap(p => if (p%2 == 0) Some(p*2) else None)
+  // method 3: flatMap in for loop
+  for {
+    num: Option[Int] <- numMap
+    out: Int <- num
+  } yield out
+}
+```
+will output
+```
+num: List[Int] = List(1, 2, 3, 4, 5, 6, 7)
+
+numMap: List[Option[Int]] = List(None, Some(4), None, Some(8), None, Some(12), None)
+
+numFlatMap: List[Int] = List(4, 8, 12)
+
+res0: List[Int] = List(4, 8, 12)
+```
+
+In the stackoverflow programming assignment, we are to implement the k-means clustering algorithm using Spark given the data points (`vectors`) and intial `means`. 
+
+This method is straightforward, but it is slower due to large data shuffling since we use 'groupBy' first
+```scala
+val cluster: RDD[(Int, Iterable[(LangIndex, HighScore)])] = vectors.groupBy(p => findClosest(p,means)).sortByKey(ascending=true)
+val newMeans: Array[(Int, Int)] = cluster.map(p => averageVectors(p._2)).collect()
+```
+An alternative medthod provided below is faster, since we create a pair RDD and use 'reduceByKey' first, thus reducing the amount of data shuffling
+```scala
+val cluster: RDD[(Int, (LangIndex, HighScore))] = vectors.map(p => (findClosest(p,means),p))
+    val newMeansOrdered: RDD[(Int, (LangIndex, HighScore))] = cluster.reduceByKey((a, b) => averageVectors(Iterable(a,b))).sortByKey(ascending=true)
+    val newMeans: Array[(LangIndex, HighScore)] = newMeansOrdered.map(x=>x._2).collect()
+```
+
 
 {: .notice--warning}
 The content of this page is now being added in stages. Visit at a later time for further updates.

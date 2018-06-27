@@ -20,7 +20,7 @@ Next, we focus on Spark and Hadoop.
   * Choose a package type: select `Pre-built for Apache Hadoop 2.7 and later`
   * Then, click on download `spark-x.x.x-bin-hadoop2.7.tgz`
 
-1. Unzip the Spark into your C drive, for example: `C:\spark-2.2.1-bin-hadoop2.7\` 
+1. Unzip the Spark into your C drive, for example unzip to: `C:\spark-2.2.1-bin-hadoop2.7\` 
 
 1. Download the entire winutils distribution from this [repository](https://github.com/steveloughran/winutils). Form the downloaded repo, copy the folder corresponding to your installed Hadoop version to a location on your C drive. In my case I copied `hadoop-2.7.1` folder to `C:\`. Then, rename the `hadoop-x.x.x` folder to `winutil`.
 
@@ -35,7 +35,7 @@ Next, we focus on Spark and Hadoop.
 
 To verify installation of Spark, open a comannd prompt and navigate to your SPARK_HOME directory, for example go to `C:\spark-2.2.1-bin-hadoop2.7\`. Run `bin\spark-shell` which should start up Scala console with a Spark session as `sc`. Exit the shell via `:quit` command.
 
-![spark](/assets/images/spark_in_scala_console.jpg){:height="150%" width="95%" .align-center}
+![spark](/assets/images/scala_c4_w1_a01_01.jpg){:height="150%" width="95%" .align-center}
 
 That is it, we are done. Yay!
 
