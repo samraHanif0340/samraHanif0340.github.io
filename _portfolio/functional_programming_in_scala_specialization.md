@@ -19,15 +19,14 @@ feature_row:
 <a href="https://www.coursera.org/specializations/scala">Functional programming in scala specialization - Martin Odersky</a>
 
 ### Info
-This is an excellent course on mastering Scala, delivered in Coursera by the founder of the language himself, Prof. Martin Odersky from the famed  École Polytechnique Fédérale de Lausanne (EPFL), Switzerland. Crucial parallel programming concepts, applicable in all programming languages, such as threads, parallel tasks, etc., are taught by equally excellent teachers named Aleksandar Prokopec and Viktor Kuncak. The teaching is accompanied with relevant hands-on exercises and coding assignments.
+This is an excellent course on mastering Scala, delivered in Coursera by the founder of the language himself, Prof. Martin Odersky from the famed  École Polytechnique Fédérale de Lausanne (EPFL), Switzerland. Crucial parallel programming concepts, applicable in all programming languages, such as threads, parallel tasks, data parallelism etc., are taught by equally excellent teachers named Aleksandar Prokopec and Viktor Kuncak. Dr. Heather Miller covers Spark (distributed programming) concepts comprehensively including cluster topology, latency, transformation & actions, pair RDD, partitions, etc. The teaching is accompanied with relevant hands-on exercises and coding assignments.
 
 ### Syllabus
-This is a 5 course specialisation.
+This is a 4 course specialisation.
 1. Functional Programming Principles in Scala
 2. Functional Program Design in Scala
 3. Parallel programming
 4. Big Data Analysis with Scala and Spark
-5. Functional Programming in Scala Capstone
 
 ### Repository
 
@@ -35,7 +34,7 @@ The [repository](https://github.com/Adaickalavan/Functional-Programming-in-Scala
 * In-class exercises - codes (.scala and .sc worksheets)
 * Projects - codes (.scala and .sc worksheets)
 
-All the handouts and exercises of the course are also made available at [EPFL's Alaska website](http://alaska.epfl.ch/~dockermoocs/)
+All the handouts and exercises of the course are also made available at [EPFL's Alaska website](http://alaska.epfl.ch/~dockermoocs/).
 
 <!--
 ### Verified Certificate
@@ -324,7 +323,7 @@ object exercise {
   } yield out
 }
 ```
-will output
+will output:
 ```
 num: List[Int] = List(1, 2, 3, 4, 5, 6, 7)
 
@@ -335,20 +334,16 @@ numFlatMap: List[Int] = List(4, 8, 12)
 res0: List[Int] = List(4, 8, 12)
 ```
 
-In the stackoverflow programming assignment, we are to implement the k-means clustering algorithm using Spark given the data points (`vectors`) and intial `means`. 
-
-This method is straightforward, but it is slower due to large data shuffling since we use 'groupBy' first
+For each iteration, in the k-means clustering, we need to group points together and update the cluster mean values. The first method below is straightforward, but it is slow due to large data shuffling since we use 'groupBy' first.
 ```scala
-val cluster: RDD[(Int, Iterable[(LangIndex, HighScore)])] = vectors.groupBy(p => findClosest(p,means)).sortByKey(ascending=true)
-val newMeans: Array[(Int, Int)] = cluster.map(p => averageVectors(p._2)).collect()
+val cluster: RDD[(Int, Iterable[(LangIndex, HighScore)])] = vectors.groupBy(p => findClosest(p,means))
+val newMeansRdd: Array[(Int, (LangIndex, HighScore))] = cluster.mapValues(p => averageVectors(p)).collect()
 ```
-An alternative medthod provided below is faster, since we create a pair RDD and use 'reduceByKey' first, thus reducing the amount of data shuffling
+An alternative method provided below is faster, since we create a pair RDD and use 'reduceByKey' first, thus reducing the amount of data shuffling. However, this method should not be used in this assignment since the 'averageVectors' method is not associative due to the use of '.toInt' rounding function.
 ```scala
 val cluster: RDD[(Int, (LangIndex, HighScore))] = vectors.map(p => (findClosest(p,means),p))
-    val newMeansOrdered: RDD[(Int, (LangIndex, HighScore))] = cluster.reduceByKey((a, b) => averageVectors(Iterable(a,b))).sortByKey(ascending=true)
-    val newMeans: Array[(LangIndex, HighScore)] = newMeansOrdered.map(x=>x._2).collect()
+val newMeansRdd: Array[(Int, (LangIndex, HighScore))] = cluster.reduceByKey((a, b) => averageVectors(Iterable(a,b))).collect()
 ```
-
 
 {: .notice--warning}
 The content of this page is now being added in stages. Visit at a later time for further updates.
