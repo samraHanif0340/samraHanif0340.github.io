@@ -279,71 +279,68 @@ libraryDependencies += "com.storm-enroute" %% "scalameter-core" % "0.10"
 ```
 
 ## Course 4: Big Data Analysis with Scala and Spark
-###  Week 1 Assignment: Wikipedia
+###  Week 1 Lectures
 
-<!--
-Spark is initialized and used to process the wikipedia data in this week's assignment. While running  
+1. While running Spark, your SBT shell may be inundated with `INFO` messages, preventing us from focusing on the program output.
+    ![scala](/assets/images/scala_c4_w1_a01_03.jpg){:height="120%" width="100%" .align-center}
+    To suppress the above `INFO` messages of Spark, include the following in your Scala code:
+    ```scala
+    // Create spark session
+    val spark:SparkSession = SparkSession.builder()
+                                         .appName("MyApp")
+                                         .config("spark.master", "local")
+                                         .getOrCreate()
+    // Set log message level
+    spark.sparkContext.setLogLevel("ERROR")
+    ```
 
-```
-INFO Utils: Successfully started service 'SparkUI' on port 4040.
-18/06/21 22:08:44 INFO SparkUI: Bound SparkUI to 0.0.0.0, and started at http://192.168.0.148:4040
-```
-
-![spark](/assets/images/scala_c4_w1_a01_02.jpg){:height="150%" width="95%" .align-center}
 
 
-1. If you are testing using an IDE such as IDEA, include the following lines at the end of your code 
-  ```
-  ...
-  System.in.read
-  sc.stop // sc is spark context
-  ```
-  This will ensure that the UI is accessible as long as you want. Just hit enter on the IDEA/Eclipse console to terminate the application
-
-1. 
--->
 
 ###  Week 2 Assignment: StackOverflow
 A couple of key points on `Option` type and data shuffling is discussed below, which are useful in this week's and general Spark programming.
 
-`Options` can be viewed as collections. We can `flatMap` a `Collection[Option[_]]` to `Collection[_]`. For example we can `flatMap` `List[Option[_]]` to `List[_]`. For example, the following code 
+1. `Options` can be viewed as collections. We can `flatMap` a `Collection[Option[_]]` to `Collection[_]`. For example we can `flatMap` `List[Option[_]]` to `List[_]`. For example, the following code 
+    ```scala
+    object exercise {
+        // instantiate sample list
+        val num = List(1,2,3,4,5,6,7)
+        // method 1: map
+        val numMap = num.map(p => if (p%2 == 0) Some(p*2) else None)
+        // method 2: flatMap
+        val numFlatMap = num.flatMap(p => if (p%2 == 0) Some(p*2) else None)
+        // method 3: flatMap in for loop
+        for {
+          num: Option[Int] <- numMap
+          out: Int <- num
+        } yield out
+    }
+    ```
+    will output:
+    ```scala
+    num: List[Int] = List(1, 2, 3, 4, 5, 6, 7)
 
-```scala
-object exercise {
-  // instantiate sample list
-  val num = List(1,2,3,4,5,6,7)
-  // method 1: map
-  val numMap = num.map(p => if (p%2 == 0) Some(p*2) else None)
-  // method 2: flatMap
-  val numFlatMap = num.flatMap(p => if (p%2 == 0) Some(p*2) else None)
-  // method 3: flatMap in for loop
-  for {
-    num: Option[Int] <- numMap
-    out: Int <- num
-  } yield out
-}
-```
-will output:
-```
-num: List[Int] = List(1, 2, 3, 4, 5, 6, 7)
+    numMap: List[Option[Int]] = List(None, Some(4), None, Some(8), None, Some(12), None)
 
-numMap: List[Option[Int]] = List(None, Some(4), None, Some(8), None, Some(12), None)
+    numFlatMap: List[Int] = List(4, 8, 12)
 
-numFlatMap: List[Int] = List(4, 8, 12)
+    res0: List[Int] = List(4, 8, 12)
+    ```
 
-res0: List[Int] = List(4, 8, 12)
-```
+1. For each iteration, in the k-means clustering, we need to group points together and update the cluster mean values. The first method below is straightforward, but it is slow due to large data shuffling since we use `groupBy` first.
+    ```scala
+    val cluster: RDD[(Int, Iterable[(LangIndex, HighScore)])] = vectors.groupBy(p => findClosest(p,means))
+    val newMeansRdd: Array[(Int, (LangIndex, HighScore))] = cluster.mapValues(p => averageVectors(p)).collect()
+    ```
+    An alternative method provided below is faster, since we create a pair RDD and use `reduceByKey` first, thus reducing the amount of data shuffling. However, this method should not be used in this assignment since the `averageVectors` method is not associative due to the use of `.toInt` rounding function.
+    ```scala
+    val cluster: RDD[(Int, (LangIndex, HighScore))] = vectors.map(p => (findClosest(p,means),p))
+    val newMeansRdd: Array[(Int, (LangIndex, HighScore))] = cluster.reduceByKey((a, b) => averageVectors(Iterable(a,b))).collect()
+    ```
 
-For each iteration, in the k-means clustering, we need to group points together and update the cluster mean values. The first method below is straightforward, but it is slow due to large data shuffling since we use 'groupBy' first.
-```scala
-val cluster: RDD[(Int, Iterable[(LangIndex, HighScore)])] = vectors.groupBy(p => findClosest(p,means))
-val newMeansRdd: Array[(Int, (LangIndex, HighScore))] = cluster.mapValues(p => averageVectors(p)).collect()
-```
-An alternative method provided below is faster, since we create a pair RDD and use 'reduceByKey' first, thus reducing the amount of data shuffling. However, this method should not be used in this assignment since the 'averageVectors' method is not associative due to the use of '.toInt' rounding function.
-```scala
-val cluster: RDD[(Int, (LangIndex, HighScore))] = vectors.map(p => (findClosest(p,means),p))
-val newMeansRdd: Array[(Int, (LangIndex, HighScore))] = cluster.reduceByKey((a, b) => averageVectors(Iterable(a,b))).collect()
-```
+###  Week 4 Lectures: Dataframes
 
-{: .notice--warning}
-The content of this page is now being added in stages. Visit at a later time for further updates.
+Some of the in-class Spark exercises are provided as `.scala` file in `Big Data Analysis with Scala and Spark -> exercise` [folder](https://github.com/Adaickalavan/Functional-Programming-in-Scala-Specialization-EPFL-Coursera/tree/master/Big%20Data%20Analysis%20with%20Scala%20and%20Spark/exercise/src/main/scala) of the repository, for the readers to try out and get an understanding of the Spark Dataframe APIs. 
+
+Additionally examples of Spark transformations and actions on Dataframes are also implemented in Databricks Community and the [notebook](https://github.com/Adaickalavan/Functional-Programming-in-Scala-Specialization-EPFL-Coursera/tree/master/Big%20Data%20Analysis%20with%20Scala%20and%20Spark/DatabricksCommunity) is available in this course repository. 
+
