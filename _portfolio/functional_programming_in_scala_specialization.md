@@ -294,9 +294,6 @@ libraryDependencies += "com.storm-enroute" %% "scalameter-core" % "0.10"
     spark.sparkContext.setLogLevel("ERROR")
     ```
 
-
-
-
 ###  Week 2 Assignment: StackOverflow
 A couple of key points on `Option` type and data shuffling is discussed below, which are useful in this week's and general Spark programming.
 
@@ -342,5 +339,99 @@ A couple of key points on `Option` type and data shuffling is discussed below, w
 
 Some of the in-class Spark exercises are provided as `.scala` file in `Big Data Analysis with Scala and Spark -> exercise` [folder](https://github.com/Adaickalavan/Functional-Programming-in-Scala-Specialization-EPFL-Coursera/tree/master/Big%20Data%20Analysis%20with%20Scala%20and%20Spark/exercise/src/main/scala) of the repository, for the readers to try out and get an understanding of the Spark Dataframe APIs. 
 
-Additionally examples of Spark transformations and actions on Dataframes are also implemented in Databricks Community and the [notebook](https://github.com/Adaickalavan/Functional-Programming-in-Scala-Specialization-EPFL-Coursera/tree/master/Big%20Data%20Analysis%20with%20Scala%20and%20Spark/DatabricksCommunity) is available in this course repository. 
+Additionally examples of Spark transformations and actions on Dataframes are also implemented in [Databricks Community](https://community.cloud.databricks.com/) and the [notebook](https://github.com/Adaickalavan/Functional-Programming-in-Scala-Specialization-EPFL-Coursera/tree/master/Big%20Data%20Analysis%20with%20Scala%20and%20Spark/DatabricksCommunity) is available in this course repository. 
 
+Some of the operations excuted in Databricks Community.
+```scala
+import org.apache.spark.sql.functions._
+import org.apache.spark.sql.SparkSession
+
+// Create spark session 
+val spark:SparkSession = SparkSession.builder()
+                                     .appName("MyApp")
+                                     .getOrCreate()
+
+// Create spark context
+import spark.implicits._
+
+// Define dataset
+case class Employee(id: Int, fname:String, lname:String, work:Array[Int], city:String, age:Int)
+val emp = Seq(Employee(12,"Joe","Smith",Array(38,67,89),"New York",34),
+                Employee(645,"Slate","Markham",Array(28,3),"Sydney",2),
+                Employee(12,"Sally","Owens",Array(48,1,0),"New York",12),
+                Employee(221,"Joe","Walker",Array(21),"Sydney",89),
+                Employee(12,"Joe","Runner",Array(21),"Sydney",89),
+                Employee(645,"Slate","Ontario",Array(12,3),"Wellington",25))
+// Convert dataset to RDD 
+val empRDD = spark.sparkContext.parallelize(emp)
+// Convert dataset to Dataframe
+val empDF = emp.toDF
+// Convert Dataframe to RDD
+val empRDDfromDF = empDF.rdd
+
+// Visualize Dataframe
+empDF.printSchema()
+empDF.show()
+```
+```
+root
+ |-- id: integer (nullable = false)
+ |-- fname: string (nullable = true)
+ |-- lname: string (nullable = true)
+ |-- work: array (nullable = true)
+ |    |-- element: integer (containsNull = false)
+ |-- city: string (nullable = true)
+ |-- age: integer (nullable = false)
+
++---+-----+-------+------------+----------+---+
+| id|fname|  lname|        work|      city|age|
++---+-----+-------+------------+----------+---+
+| 12|  Joe|  Smith|[38, 67, 89]|  New York| 34|
+|645|Slate|Markham|     [28, 3]|    Sydney|  2|
+| 12|Sally|  Owens|  [48, 1, 0]|  New York| 12|
+|221|  Joe| Walker|        [21]|    Sydney| 89|
+| 12|  Joe| Runner|        [21]|    Sydney| 89|
+|645|Slate|Ontario|     [12, 3]|Wellington| 25|
++---+-----+-------+------------+----------+---+
+```
+```scala
+val selectedemp = empDF.select($"id",$"lname")
+                       .where($"city" === "Sydney") 
+                       .orderBy($"id")
+selectedemp.show()
+
+val rankedemp = empDF.groupBy($"id")
+                     .max("age")
+rankedemp.show()
+
+val rank = empDF.groupBy($"id",$"fname")
+                .agg(count($"id"))
+                .orderBy($"fname",$"count(id)".desc) 
+rank.show()  
+``` 
+```
++---+-------+
+| id|  lname|
++---+-------+
+| 12| Runner|
+|221| Walker|
+|645|Markham|
++---+-------+
+
++---+--------+
+| id|max(age)|
++---+--------+
+| 12|      89|
+|645|      25|
+|221|      89|
++---+--------+
+
++---+-----+---------+
+| id|fname|count(id)|
++---+-----+---------+
+| 12|  Joe|        2|
+|221|  Joe|        1|
+| 12|Sally|        1|
+|645|Slate|        2|
++---+-----+---------+
+```
