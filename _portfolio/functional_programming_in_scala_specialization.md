@@ -19,7 +19,7 @@ feature_row:
 <a href="https://www.coursera.org/specializations/scala">Functional programming in scala specialization - Martin Odersky</a>
 
 ### Info
-This is an excellent course on mastering Scala, delivered in Coursera by the founder of the language himself, Prof. Martin Odersky from the famed  École Polytechnique Fédérale de Lausanne (EPFL), Switzerland. Crucial parallel programming concepts, applicable in all programming languages, such as threads, parallel tasks, data parallelism etc., are taught by equally excellent teachers named Aleksandar Prokopec and Viktor Kuncak. Dr. Heather Miller covers Spark (distributed programming) concepts comprehensively including cluster topology, latency, transformation & actions, pair RDD, partitions, etc. The teaching is accompanied with relevant hands-on exercises and coding assignments.
+This is an excellent course on mastering Scala, delivered in Coursera by the founder of the language himself, Prof. Martin Odersky from the famed  École Polytechnique Fédérale de Lausanne (EPFL), Switzerland. Crucial parallel programming concepts, applicable in all programming languages, such as threads, parallel tasks, data parallelism etc., are taught by equally excellent teachers named Aleksandar Prokopec and Viktor Kuncak. Dr. Heather Miller covers Spark (distributed programming) concepts comprehensively including cluster topology, latency, transformation & actions, pair RDD, partitions, Spark SQL, Dataframes, etc. The teaching is accompanied with relevant hands-on exercises and coding assignments.
 
 ### Syllabus
 This is a 4 course specialisation.
