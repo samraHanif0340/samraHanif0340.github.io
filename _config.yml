@@ -7,7 +7,7 @@
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Systems and Applications for Machine Learning"
+title                    : "Statistical Signal Processing and Machine Learning"
 title_separator          : "|"
 name                     : &name "Adaickalavan" # &name is a YAML anchor which can be *referenced later
 description              : &description "If nothing goes right, go left!"
