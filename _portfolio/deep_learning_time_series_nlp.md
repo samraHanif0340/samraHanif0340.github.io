@@ -29,7 +29,7 @@ Deep-Learning-for-Time-Series-and-NLP   # main folder
 ├── xtrain.txt                          # limited sample training/validation set
 ├── ytrain.txt                          # limited sample labels for training/validation set
 ├── xtest.txt                           # limited sample test set
-└── cnn_lstm-180-0.77.hdf5              # sample saved tensorflow model 
+└── cnn_lstm-180-0.87.hdf5              # sample saved tensorflow model 
 ```
 
 ### Solution 
@@ -332,13 +332,13 @@ model.fit(x_train, y_train_onehot,
 # Save model to continue later
 model.save('./cnn_lstm.hdf5')
 ```
-We have already trained the above model over 180 epochs using our full training set, which yielded a training set accuracy of ~99% and validation set accuracy of ~77%.
+We have already trained the above model over 180 epochs using our full training set, which yielded a training set accuracy of ~99% and validation set accuracy of ~87%.
 
 Hence, we now load the trained model containing the trained parameters.
 ```python
 #Load model to continue testing
-#Our saved file is named "cnn_lstm-180-0.77.hdf5"
-model = load_model('./cnn_lstm-180-0.77.hdf5')
+#Our saved file is named "cnn_lstm-180-0.87.hdf5"
+model = load_model('./cnn_lstm-180-0.87.hdf5')
 ```
 First, check accuracy on training and validation set.
 ```python
