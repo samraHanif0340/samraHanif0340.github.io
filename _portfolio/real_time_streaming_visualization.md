@@ -1,6 +1,6 @@
 ---
 title: "Real Time Streaming Visualization"
-excerpt: "Project"
+excerpt: "Project - Python"
 header:
   teaser: assets/images/real_time_streaming_visualization_01.jpg
 ---

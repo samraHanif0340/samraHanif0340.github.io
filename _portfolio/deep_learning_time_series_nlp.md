@@ -23,13 +23,13 @@ Sentences in the file have been encoded in a deterministic one-to-one mapping, t
 ### Repository
 The [repository](https://github.com/Adaickalavan/Deep-Learning-for-Time-Series-and-NLP) contains the following project files:
 ```
-Deep-Learning-for-Time-Series-and-NLP   -- main folder
-├── challenge.py                        -- code in Python script 
-├── challenge.ipynb                     -- code in iPython notebook
-├── xtrain.txt                          -- limited sample training/validation set
-├── ytrain.txt                          -- limited sample labels for training/validation set
-├── xtest.txt                           -- limited sample test set
-└── cnn_lstm-180-0.87.hdf5              -- sample saved tensorflow model 
+Deep-Learning-for-Time-Series-and-NLP   # main folder
+├── challenge.py                        # code in Python script 
+├── challenge.ipynb                     # code in iPython notebook
+├── xtrain.txt                          # limited sample training/validation set
+├── ytrain.txt                          # limited sample labels for training/validation set
+├── xtest.txt                           # limited sample test set
+└── cnn_lstm-180-0.87.hdf5              # sample saved tensorflow model 
 ```
 
 ### Solution 
