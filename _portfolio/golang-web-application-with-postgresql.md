@@ -84,7 +84,7 @@ The code provided in the repository is well commented, and when read together wi
 
     | (c) SQL insert | (d) Result|
     |:--------------:|:---------:|
-    |[![](/assets/images/postgresql_04.jpg)](/assets/images/postgresql_04.jpg) | [![](/assets/images/postgresql_05.jpg)](/assets/images/postgresql_05.jpg)|
+    |[![](/assets/images/postgresql_03.jpg)](/assets/images/postgresql_03.jpg) | [![](/assets/images/postgresql_04.jpg)](/assets/images/postgresql_04.jpg)|
 
 1. To have our Go code connect to the PostgreSQL database, setup the connection string as follows and execute the `sql.Open("postgres", connString)` command. 
     ```go
