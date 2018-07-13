@@ -19,10 +19,14 @@ We will describe how to simulate step-by-step the wireless communication chain o
 The [repository](https://github.com/Adaickalavan/RFID-System-Simulation) consists of the following:  
 * Matlab Codes for simulation of RFID system
 
-{: .notice--warning}
-More content will be added as time permits. Feel free to send me an email about any enquiries that you might have on simulating RFID systems.
+{: .notice--success}
+All equations, models, and algorithms in this repository were derived by hand, verified, and written in Matlab manually without using any off-the-shelf libraries.
 
 ## Model
+
+{: .notice--warning}
+More content and explanation will be added in this page as time permits.
+
 ### Antenna model & Wireless Channel
-### IQ Demodulator & Analog to Digital Converter
+### Phase Lock Loop
 ### Digital Baseband Receiver
