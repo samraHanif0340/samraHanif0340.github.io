@@ -1,5 +1,5 @@
 ---
-title: "RFID Simulation"
+title: "RFID System Simulation"
 excerpt: "How to simulate end-to-end RFID system"
 header:
   teaser: assets/images/rfid_01_adaptive_IIR_filter.jpg
