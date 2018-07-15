@@ -2,7 +2,7 @@
 title: "RFID System Simulation"
 excerpt: "Simulation of end-to-end RFID system"
 header:
-  teaser: assets/images/rfid_01_adaptive_IIR_filter.jpg
+  teaser: assets/images/rfid_00_adaptive_IIR_filter.jpg
 mathjax: true
 gallery_01:
   - url: /assets/images/rfid_02_seriesRLC.jpg
@@ -29,9 +29,13 @@ The [repository](https://github.com/Adaickalavan/RFID-System-Simulation) consist
 The project structure is as follows:
 ```
 RFID-System-Simulation        
-├── PSKSim.m           -- main file consisting of all simulation parameters
-├── constellation.m    -- defines the PSK constelation map and bit encoding
-├── channel.m          -- computes antenna channel model
+├── PSKSim.m           # main file consisting of all simulation parameters
+├── constellation.m    # defines the PSK constelation map and bit encoding
+├── channel.m          # computes antenna channel model
+├── ADPLL_degree.m     # implements phase lock loop
+└── Subaxis            # helper module for plotting
+    ├── parseArgs.m    # helper function for parsing varargin
+    └── subaxis.m      # create axes in tiled positions
 ```
 
 The following tools will be used to execute the simulation:
@@ -56,7 +60,10 @@ signifying succesful completion of simulation.
 
 ### Transmitter
 The transmitter simulates `M`-ary PSK signal at carrier frequency `fc` and at data rate of `fc/4`. The `constellation.m` file defines the PSK constellation map on the complex plane and symbol bit encoding. Differential encoding is used to counter cycle slips.
-![pic1](/assets/images/rfid_01_constellation_map.jpg){:height="80%" width="55%" .align-center}
+<div style="text-align: center">
+  <a href="/assets/images/rfid_01_constellation_map.jpg"><img src="/assets/images/rfid_01_constellation_map.jpg" height="40%" width="40%"></a>
+  <figcaption>Fig. 16-ary PSK constellation points on the unit circle, plus one end-of-packet symbol at coordinate $(-1, 0)$</figcaption>
+</div>
 
 The transmitter generates signal of the form:
 - initial silence period (unmodulated sinusoidal signal)   
@@ -87,7 +94,7 @@ Wireless channel consists of trasmitter antenna, wireless transmission medium of
 For all practical purposes, given that the separation between the transmitter and receiver is normally less than 10cm in an RFID application, we can model the wireless channel as mutually coupled pair of transmitter and receiver antenna coils. This leads to an equivalent circuit where the inductors are coupled via mutual inductance $M=k\sqrt{L_t\times L_r}$. Here, $k$ is the coefficient of coupling and provides a measure of the proximity of the primary
 and secondary coils, with values typically between 0.03 and 0.3. The value of $k$ is exactly unity only when the two coils are coalesced into a single coil.
 <figure>
-  <img src="/assets/images/rfid_02_equivalent_circuit.jpg">
+  <a href="/assets/images/rfid_02_equivalent_circuit.jpg"><img src="/assets/images/rfid_02_equivalent_circuit.jpg"></a>
   <figcaption>Fig. Antenna channel model. (Left): individual seriesRLC-$M$-parallelRLC circuits. (Right): Equivalent circuit</figcaption>
 </figure>
 The overall Laplace $s$ domain bandpass transfer function of combined resonantor channel is given as
@@ -114,14 +121,17 @@ Method 2, follows the procedures described by Farhang[^3], page 50. First, discr
 
 Both methods are implemented in `channel.m` file and visualized in the following figure.
 <figure>
-  <img src="/assets/images/rfid_03_channel_characteristic.jpg">
+  <a href="/assets/images/rfid_03_channel_characteristic.jpg"><img src="/assets/images/rfid_03_channel_characteristic.jpg"></a>
   <figcaption>Fig. (TopLeft): Laplace domain equivalent channel pole-zero map. (TopRight): Discrete domain equivalent channel pole-zero map. (Bottom): Frequency response of equivalent channel</figcaption>
 </figure>
 
 Frequency response of method 1 and method 2 around the zero frequency region (i.e., region of interest) is similar and matches that of Laplace $s$ domain equivalent lowpass transfer function. 
 
 The received modulated passband waveshape at the receiver after propagating through the transmitter and wireless channel is depicted below.
-![pic3](/assets/images/rfid_04_passband_waveshape.jpg)
+<div style="text-align: center">
+  <a href="/assets/images/rfid_04_passband_waveshape.jpg"><img src="/assets/images/rfid_04_passband_waveshape.jpg" height="80%" width="80%"></a>
+  <figcaption>Fig. Passband waveshape received at the receiver</figcaption>
+</div>
 
 Default simulation parameters for the wireless channel and antenna model are:
 ```
@@ -134,13 +144,38 @@ fresc = 14e6;    % Resonance frequency of receiver circuit
 
 ### Phase Lock Loop
 
-
+The phase of signal is extracted using a phase lock loop at the analog front-end of the receiver. Read [^4] & [^5].
 
 
 ### Digital Baseband Receiver
 
-The preamble is used as training sequence by the equalizer.
+Matched filtering is used to detect the start of the data packet. The preamble of the data packet is used as training sequence by the equalizer.
 
+Affine projection algorithm is utilised to equalize the dispersed signal. Affine projection is chosen due to its favourable properties:
+- It has a complexity in-between least-mean square(LMS) and recursive least squares(RLS) algorithm.
+- It provides ability to control the adaptation-speed, -magnitude, and misadjustment of the coefficients.
+<div style="text-align: center">
+  <a href="/assets/images/rfid_08_affine_projection.jpg"><img src="/assets/images/rfid_08_affine_projection.jpg" height="55%" width="55%"></a>
+  <figcaption>Fig. Baseband receiver utilizing affine projection equalization structure</figcaption>
+</div>
+
+Refer to P.S.R. Diniz[^6], section 4.6 for detailed explanation of the affine projection algorithm, and table 4.5 for a summary of the algorithm steps.
+
+The equalizer is configured to be a decision-feedback fractionally spaced equalizer, as fractionally spaced equalization achieves optimum matched filtering and symbol time synchronisation. A fractionally spaced equalizer outputs a single decision for each symbol sampled at a rate higher than the symbol rate. 
+
+The decoding by the digital baseband receiver is stopped when the end of packet symbol sequence is detected.
+
+Default simulation parameters for the digital baseband receiver model are:
+```
+kFwd_pos = 0:-1:-2;      % number and position of feed forward inputs of the equalizer
+kBwd = 2;                % number of decision feedback inputs of the equalizer
+mu = 0.25;               % convergence factor (step) (0 < mu < 1);
+L = 2;                   % data reuse factor (L=0 -> NLMS; L=1 -> BNLMS; ...)
+gamma = 1;               % small positive constant to avoid singularity
+bias = 0;                % default bias value of the equalizer
+delay = 1;               % timesteps to be skipped between consecutive input data fed to the affine projection equalizer
+fracEn = 1;              % enable fractionaly spaced equalization
+```
 
 ### References
 [^1]: S.T. Karris, *Circuit Analysis II with Matlab Applications,* 2nd ed. Fremont California: Orchard Publications, 2003.
@@ -148,3 +183,9 @@ The preamble is used as training sequence by the equalizer.
 [^2]: M.C. Jeruchim, P. Balaban, K.S. Shanmugam, *Simulation of Communication Systems,* 2nd ed. New York: Kluwer Academic Publishers, pp. 143, 2000.
 
 [^3]: B. Farhang-Boroujeny, *Signal Processing Techniques for Software Radios,* 2nd ed. Lulu Publishing House, pp. 50, 2010.
+
+[^4]:
+
+[^5]:
+
+[^6]: P.S.R. Diniz, *Adaptive Filtering - Algorithms and Practical Implementation,* 4th ed. New York: Springer, pp. 162 - 168, 2013. 
