@@ -1,6 +1,7 @@
 ---
 title: "Real Time Streaming Visualization"
 excerpt: "Project - Python"
+mathjax: true
 header:
   teaser: assets/images/real_time_streaming_visualization_01.jpg
 ---
@@ -18,7 +19,7 @@ Our example will demonstrate the following:
 * Running a Bokeh server
 * Simultaneously running multiple python threads for other tasks
 * Auto start of threads by simply starting the Bokeh server
-* Interactions among: browser <--(two way)--> server <--(two way)--> pyhton threads
+* Interactions among: browser $$\longleftrightarrow$$ server $$\longleftrightarrow$$ pyhton threads
 
 The following will be used:
 * Python 3.6

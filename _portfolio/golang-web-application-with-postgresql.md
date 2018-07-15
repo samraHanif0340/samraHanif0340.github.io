@@ -1,6 +1,7 @@
 ---
 title: "Golang Web Application with PostgreSQL Database"
 excerpt: "Project - Golang"
+mathjax: true
 header:
   teaser: assets/images/goweb_01.jpg
 ---
@@ -19,7 +20,7 @@ Our example will demonstrate the following:
 * Web routing in Go
 * Running a PostgreSQL database server
 * Creating and editing database in PostgreSQL
-* Interactions among: web browser <--(two way)--> Go web server <--(two way)--> PostgreSQL database 
+* Interactions among: web browser $$\longleftrightarrow$$ Go web server $$\longleftrightarrow$$ PostgreSQL database 
 
 The following will be used:
 * Golang (programming language)
@@ -67,8 +68,9 @@ The code provided in the repository is well commented, and when read together wi
 1. Refer to the [instructions pdf](https://github.com/Adaickalavan/GoWeb-PostgreSQL/blob/master/Spatial_Database_Lab1_PostgreSQL%20Tutorial%20I_GUI.pdf) for step-by-step instruction on adding, editing entries, and querying a database in PostgreSQL. Although the instructions are written for pgAdmin3, the steps remain the same in pgAdmin4 (with some user interface improvements).
 
 1. Steps to create and populate a databse in PostgreSQL using the pgAdmin4 graphical user interface is surmised below.
-    + (a) **Create a database and a table** Create a database = Databases --> Create --> Database --> `peopleDatabase`. Create a table = `peopleDatabase` --> Schemas --> Public --> Tables --> Create --> Table --> `peopleinfo`. Use all small letters when naming a table inside a database.
-    + (b) **Specify column headers** `peopleinfo` --> Properties --> Columns. Add the relevant columns with their corresponding settings as shown in the figure below.
+    + (a) **Create a database and a table** Create a database = Databases $$\rightarrow$$
+ Create $$\rightarrow$$ Database $$\rightarrow$$ `peopleDatabase`. Create a table = `peopleDatabase` $$\rightarrow$$ Schemas $$\rightarrow$$ Public $$\rightarrow$$ Tables $$\rightarrow$$ Create $$\rightarrow$$ Table $$\rightarrow$$ `peopleinfo`. Use all small letters when naming a table inside a database.
+    + (b) **Specify column headers** `peopleinfo` $$\rightarrow$$ Properties $$\rightarrow$$ Columns. Add the relevant columns with their corresponding settings as shown in the figure below.
     + (c) **SQL insert** To enter new values programatically into the table, execute the following code in the SQL query tool: 
     ```sql
     INSERT INTO peopleinfo(nama,birthday,occupation) VALUES
@@ -76,7 +78,7 @@ The code provided in the repository is well commented, and when read together wi
     ('Winnie the Pooh Bear', '5 Oct 1994', 'Farmer');
     ```
     Note that table values can be edited using the GUI by simply clicking on the rows of the table.
-    + (d) **Result** `peopleinfo` --> View/Edit Data --> All Rows. Final expected table in our database is displayed.
+    + (d) **Result** `peopleinfo` $$\rightarrow$$ View/Edit Data $$\rightarrow$$ All Rows. Final expected table in our database is displayed.
 
     | (a) Create a database and a table | (b) Specify column headers|
     |:---------------------------------:|:-------------------------:|
