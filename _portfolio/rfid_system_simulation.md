@@ -43,7 +43,7 @@ All equations, models, and algorithms in this repository were derived, verified,
 ## Model
 
 {: .notice--warning}
-Additional content and explanation may be added in this page as and when time permits. Any questions through email on the simulation is much welcomed.
+Any questions through email on the simulation is much welcomed.
 
 The main file in this simulation model is named `PSKSim.m`. To begin, simply run this main file with the preset default simulation parameters. It will plot various graphs visualizing the entire signal transmission from the transmitter to the symbol decision stage. 
 
@@ -67,7 +67,7 @@ The wireless communication chain that is simulated in this project includes:
 ### Transmitter
 The transmitter simulates `M`-ary PSK signal at carrier frequency `fc` and at data rate of `fc/4`. The `constellation.m` file defines the PSK constellation map on the complex plane and symbol bit encoding. Differential encoding is used to counter cycle slips.
 <div style="text-align: center">
-  <a href="/assets/images/rfid_02_constellation_map.jpg"><img src="/assets/images/rfid_02_constellation_map.jpg" height="40%" width="40%"></a>
+  <a href="/assets/images/rfid_02_constellation_map.jpg"><img src="/assets/images/rfid_02_constellation_map.jpg" height="55%" width="55%"></a>
   <figcaption>Fig. 16-ary PSK constellation points on the unit-radius circle, plus one end-of-packet symbol at coordinate $(-1, 0)$</figcaption>
 </div>
 
@@ -164,7 +164,7 @@ Our PLL simulation model include quantization noise, saturation noise, and phase
 
 <div style="text-align: center">
   <a href="/assets/images/rfid_07_pll_signal.jpg"><img src="/assets/images/rfid_07_pll_signal.jpg" height="100%" width="90%"></a>
-  <figcaption>Fig. Graphs visualizing the (i)input signal to PLL, (ii)TDC output, (iii)LF output, and (iv) DCO output.</figcaption>
+  <figcaption>Fig. Graphs visualizing the (i)Frequency of DCO output, (ii)Phase of DCO and TDC output, and (iii)Code levels of LF and TDC output.</figcaption>
 </div>
 
 Interested readers are referred to W. Tranter[^4] who provides excellent intuitive development of PLL models with accompanying MATLAB codes.
