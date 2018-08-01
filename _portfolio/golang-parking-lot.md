@@ -1,8 +1,8 @@
 ---
 title: "Golang Parking Lot Problem"
 excerpt: "Project - Golang"
-<!-- header:
-  teaser: assets/images/goweb_01.jpg -->
+header:
+  teaser: assets/images/parking_lot_at_oakland_airport.jpg
 ---
 
 {% include feature_row %}
