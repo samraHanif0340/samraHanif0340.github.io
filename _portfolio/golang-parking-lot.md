@@ -14,10 +14,6 @@ header:
 ### Problem
 In this project we will develop a Golang based solution to solve the *Parking Lot* problem.
 
-<!-- The expected end product of this project is shown below:
-
-![pic1](/assets/images/goweb_01.jpg){:height="150%" width="95%" .align-center} -->
-
 ### Repository
 The [repository](https://github.com/Adaickalavan/GoParkingLot) consists of the following:  
 * Golang code - complete functioning sample code
@@ -26,11 +22,13 @@ The project structure is as follows:
 ```
 GoParkingLot                  # main folder
 ├── vendor                    # folder containing dependant packages
-│   └── util                  # dependant package `util`  
-│       ├── item.go           # 
-│       └── priorityQueue.go  #
-├── car.go
-├── carpark.go
+│   ├── minheap               # dependant package `minheap`  
+│   │   ├── item.go           # element of heap
+│   │   └── priorityQueue.go  # min heap implementation
+│   └── pretty                # dependant package `pretty`  
+│       └── printer.go        # pretty prints array, slice, string
+├── car.go                    # element of carpark
+├── carpark.go                # carpark struct and pointer receiver methods
 └── main.go                   # main file of Go code 
 ```
 
