@@ -13,9 +13,9 @@ We prioritise recursive and clean codes. The solution codes are pretty self expl
 
 ## Questions 
 
-1) Find every pair of numbers (inclusive of duplicates) from two integer arrays (i.e. one number from each array), whose sum equals a given number. A hash map is used to store previously seen numbers, for quick O(1) retrieval later.
+1. Find every pair of numbers (inclusive of duplicates) from two integer arrays (i.e. one number from each array), whose sum equals a given number. A hash map is used to store previously seen numbers, for quick O(1) retrieval later.
 
-   ```go
+    ```go
     package main
 
     import (
@@ -49,15 +49,18 @@ We prioritise recursive and clean codes. The solution codes are pretty self expl
       output := findPair(arr1, arr2, n)
       fmt.Println(output)
     }
-   ```
+    ```
 
    Expected output:
 
-   ```go
+    ```go
     [[-2 6] [-2 6] [4 0] [4 0] [4 0] [4 0]]
-   ```
+    ```
 
-1) Delete a single node, given only the pointer to that node, in a singly-linked list. The desired node is deleted by copying the contents (i.e., value and pointer) of the next node into the current node.
+1. Delete a single node, given only the pointer to that node, in a singly-linked list. The desired node is deleted by copying the contents (i.e., value and pointer) of the next node into the current node.
+
+    {: .notice--warning}
+    This solution does not work for deleting the last node in a singly linked list.
 
     ```go
     package main
@@ -92,7 +95,9 @@ We prioritise recursive and clean codes. The solution codes are pretty self expl
       }
     }
     ```
+
     Expected output:
+
     ```go
     &{1 0xc04204a200}
     &{2 0xc04204a1f0}
@@ -100,5 +105,3 @@ We prioritise recursive and clean codes. The solution codes are pretty self expl
     &{5 0xc04204a1c0}
     &{6 <nil>}
     ```
-    {: .notice--warning}
-    This solution does not work for deleting the last node in a singly linked list.
