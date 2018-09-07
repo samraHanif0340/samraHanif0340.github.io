@@ -36,12 +36,19 @@ The [repository](https://github.com/Adaickalavan/Functional-Programming-in-Scala
 
 All the handouts and exercises of the course are also made available at [EPFL's Alaska website](http://alaska.epfl.ch/~dockermoocs/).
 
-<!--
 ### Verified Certificate
 
-* Neural Networks and Deep Learning 
-[![certificate](/assets/images/certificate_neural_networks_and_deep_learning_coursera.jpg){:height="60%" width="60%" .align-center}](https://www.coursera.org/account/accomplishments/certificate/PLGXT56A8AF4)
--->
+* Functional Programming Principles in Scala 
+[![certificate](/assets/images/certificate_functional_programming_principles_in_scala.jpg){:height="60%" width="60%" .align-center}](https://www.coursera.org/account/accomplishments/verify/SS8SV66ACL3N)
+
+* Functional Program Design in Scala  
+[![certificate](/assets/images/certificate_functional_program_design_in_scala.jpg){:height="60%" width="60%" .align-center}](https://www.coursera.org/account/accomplishments/verify/WXEQ7T7ZYVET)
+
+* Parallel Programming  
+[![certificate](/assets/images/certificate_parallel_programming.jpg){:height="60%" width="60%" .align-center}](https://www.coursera.org/account/accomplishments/verify/9GHFPMA6KXMT)
+
+* Big Data Analysis with Scala and Spark
+[![certificate](/assets/images/certificate_big_data_analysis_with_scala_and_spark.jpg){:height="60%" width="60%" .align-center}](https://www.coursera.org/account/accomplishments/verify/KR5C4H7Y5KP5)
 
 ### Notes
 1. **IntelliJ-Idea setup**  
@@ -68,7 +75,7 @@ All the handouts and exercises of the course are also made available at [EPFL's 
     * Go to File -> Settings -> Languages & Frameworks -> Scala -> Worksheet (tab)
     * Unselect "Run worksheet in the compiler process"
 
-1. **Running tests in sbt**  
+2. **Running tests in sbt**  
     To test only specific classes (e.g., `MySuite`) and sepcific test cases (e.g., `testName`) in your test suite, execute the following command in sbt
     ```scala
     test:testOnly *MySuite -- -z testName
