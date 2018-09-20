@@ -12,7 +12,7 @@ header:
 ## Project
 
 ### Problem
-In this project we develop a deep learning algorithm, based on a combination of convolutional neural network(CNN) and long-short term memory(LSTM) network, which is applicable for time series data classification and for natural language processing (NLP) applications. The algorithm development will be demonstrated using a 10-way text classification problem. A limited sample of training sentences, corresponding labels, and test sentences are given in the repository.
+In this project we develop a deep learning algorithm, based on a combination of convolutional neural network(CNN) and long-short term memory(LSTM) network, which is applicable for time series data classification and for natural language processing (NLP) applications. The algorithm development will be demonstrated using a 12-way text classification problem. A limited sample of training sentences, corresponding labels, and test sentences are given in the repository.
 
 ```
 sentence: letwmktwviuhskenamuhtwlpuhraletwlrvienskuhqvmvamuhxepmuhlekrpmamuhtwamuluhezpmlexeuhtwulultwvienqjuhtwmvypkrxzuhsktwmkpmiwuhskenamuhtwlpuhenuhxepmuhtwmkpmiwuhtwamuluhxepmuhsaendfuhtwamulbhbhsaendfuhqvijsaenvileenmcuhqvtwiwleenameebhbhsaendfuhtwvipmuhtwvipmlruhsaiwtvenmvleenmkvimvuhqvenamuhvienezuhenuhxepmuhskiwlepmdfuhtwamuluhqgqvtwskkrulmvuleniwuhvitwiwiwenxeuhvimvuhletwulvimvdfuhsaiwulqvpmezuhqvmvuhulmvuhvitwamdf
