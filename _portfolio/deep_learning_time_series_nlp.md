@@ -163,11 +163,11 @@ x_train, x_dev, y_train, y_dev = train_test_split(x_traindev,
                                                   random_state=1,
                                                   shuffle=True, 
                                                   stratify=y_traindev)
-# Check type and shape x_train, x_dev, y_train_onehot, y_dev_onehot
+# Check type and shape x_train, x_dev
 print('x_train is of type {} and of shape {}'.format(type(x_train), x_train.shape))
 print('x_dev is of type {} and of shape {}'.format(type(x_dev), x_dev.shape))
 ```
-Since the number of calsses are imbalanced, we compute and apply class weights to the cost function
+Since the number of classes are imbalanced, we compute and apply class weights to the cost function
 ```python
 #Compute class weights using y_train     
 unique, counts = np.unique(y_train, return_counts=True)
