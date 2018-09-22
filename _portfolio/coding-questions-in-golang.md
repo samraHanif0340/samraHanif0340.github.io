@@ -27,7 +27,7 @@ The [repository](https://github.com/Adaickalavan/Coding-Questions-in-Golang) con
 
 ## Solutions
 
-1. <a name="findpair"></a> Find every pair of numbers (inclusive of duplicates) from two integer arrays (i.e. one number from each array), whose sum equals a given number. A hash map is used to store previously seen numbers, for quick O(1) retrieval later.
+1. <a name="findPair"></a> Find every pair of numbers (inclusive of duplicates) from two integer arrays (i.e. one number from each array), whose sum equals a given number. A hash map is used to store previously seen numbers, for quick O(1) retrieval later.
 
     Link to solution [code](https://github.com/Adaickalavan/Coding-Questions-in-Golang/tree/master/findPair).
 
@@ -38,6 +38,7 @@ The [repository](https://github.com/Adaickalavan/Coding-Questions-in-Golang) con
       "fmt"
     )
 
+    //Retrieve pairs of numbers from two arrays which satisfies a given sum
     func findPair(arr1 []int, arr2 []int, n int) [][]int {
       hm := make(map[int]int)
       output := [][]int{}
@@ -59,18 +60,20 @@ The [repository](https://github.com/Adaickalavan/Coding-Questions-in-Golang) con
     }
 
     func main() {
+
       arr1 := []int{-1, -2, 4, 4, -2, -6, 5, -7}
-      arr2 := []int{6, 3, 4, 0, 0}
-      n := 4 //Desired sum
-      output := findPair(arr1, arr2, n)
-      fmt.Println(output)
+      arr2 := []int{0, 6, 3, 4, 0}
+      output := findPair(arr1, arr2, 4)
+      fmt.Print(output)
+
     }
+
     ```
 
-   Expected output:
+    Expected output:
 
     ```go
-    [[-2 6] [-2 6] [4 0] [4 0] [4 0] [4 0]]
+    [[4 0] [4 0] [-2 6] [-2 6] [4 0] [4 0]]
     ```
 
 1. Delete a single node, given only the pointer to that node, in a singly-linked list. The desired node is deleted by copying the contents (i.e., value and pointer) of the next node into the current node.
@@ -87,11 +90,13 @@ The [repository](https://github.com/Adaickalavan/Coding-Questions-in-Golang) con
       "fmt"
     )
 
+    //Node contains value and pointer to next node
     type node struct {
       val      int
       nextNode *node
     }
 
+    //Deletes node given by pointer
     func delete(ptr *node) {
       ptrNext := ptr.nextNode
       ptr.val = ptrNext.val
@@ -99,6 +104,7 @@ The [repository](https://github.com/Adaickalavan/Coding-Questions-in-Golang) con
     }
 
     func main() {
+
       sixthNode := &node{val: 6, nextNode: nil}
       fifthNode := &node{val: 5, nextNode: sixthNode}
       fourthNode := &node{val: 4, nextNode: fifthNode}
@@ -106,9 +112,9 @@ The [repository](https://github.com/Adaickalavan/Coding-Questions-in-Golang) con
       secondNode := &node{val: 2, nextNode: thirdNode}
       firstNode := &node{val: 1, nextNode: secondNode}
 
-      delete(sixthNode)
+      delete(fourthNode)
 
-      for ii := firstNode; ii != nil; ii = ii.nextNode{
+      for ii := firstNode; ii != nil; ii = ii.nextNode {
         fmt.Println(ii)
       }
     }
@@ -124,7 +130,7 @@ The [repository](https://github.com/Adaickalavan/Coding-Questions-in-Golang) con
     &{6 <nil>}
     ```
 
-1. Given a list of data points and a list of centroids, perform `K-Means Clustering` to return a new set of updated centroids.
+1. Given a list of data points and a list of centroids, perform `K-Means Clustering` to return a new set of updated centroids. Goroutines are used to parallelize the code execution.
 
     Link to solution [code](https://github.com/Adaickalavan/Coding-Questions-in-Golang/tree/master/kmeans).
 
@@ -169,6 +175,10 @@ The [repository](https://github.com/Adaickalavan/Coding-Questions-in-Golang) con
       fmt.Println(output)
     }
     ```
+    Expected output:
+    ```go
+    [1 3 4 4 5 7]
+    ```
 
 1. Print Fibonanci numbers using closures in Golang.
 
@@ -181,6 +191,7 @@ The [repository](https://github.com/Adaickalavan/Coding-Questions-in-Golang) con
       "fmt"
     )
 
+    //Closure returns a fibonanci function
     func evenFib() func() float64 {
       x := float64(0)
       y := float64(1)
@@ -197,4 +208,12 @@ The [repository](https://github.com/Adaickalavan/Coding-Questions-in-Golang) con
         fmt.Println(result)
       }
     }
+    ```
+    Expected output:
+    ```go
+    1
+    2
+    3
+    5
+    8
     ```
