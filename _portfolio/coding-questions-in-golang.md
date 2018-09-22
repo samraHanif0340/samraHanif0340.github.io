@@ -4,16 +4,17 @@ excerpt: "Programming trivia in Golang"
 header:
   teaser: assets/images/gopher_trivia.jpg
 feature_row:
-  - image_path: /assets/images/gophercises_jumping.jpg
   # - image_path: /assets/images/gophercises_punching.jpg
-  # - image_path: /assets/images/gophercises_lifting.jpg
+  - image_path: /assets/images/gophercises_lifting.jpg
 ---
+
+{% include feature_row type="center" %}
 
 {% include toc %}
 
 In this post, we will answer several programming challenge questions in Golang. These questions are often asked as part of interviews. Although there may be built-in methods to solve these problems, we shall only use basic data structures to solve each of them.
 
-We prioritise recursive and clean codes. The solution codes are pretty self explanatory.
+We prioritise recursive, concurrent, and clean codes. The solution codes are pretty self explanatory.
 
 ## Questions
 
