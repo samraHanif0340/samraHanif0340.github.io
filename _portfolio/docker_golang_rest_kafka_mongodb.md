@@ -18,9 +18,8 @@ The [repository](https://github.com/Adaickalavan/DictionaryAPI) contains the fol
 + Dockerfile
 + Dockercompose
 + Go code
-+ MongoDB
 + REST API
-+ Kafka -- in progress
++ MongoDB
 
 ## Design
 
