@@ -140,7 +140,7 @@ The [repository](https://github.com/Adaickalavan/Coding-Questions-in-Golang) con
 
 1. Given two sorted lists, merge them into a single sorted list.
 
-   Link to solution [code](https://github.com/Adaickalavan/Coding-Questions-in-Golang/tree/master/mergeSortedList)
+   Link to solution [code](https://github.com/Adaickalavan/Coding-Questions-in-Golang/tree/master/mergeSortedList).
 
     ```go
     package main
