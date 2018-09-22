@@ -5,8 +5,8 @@ header:
   teaser: assets/images/gopher_trivia.jpg
 feature_row:
   - image_path: /assets/images/gophercises_jumping.jpg
-  - image_path: /assets/images/gophercises_punching.jpg
-  - image_path: /assets/images/gophercises_lifting.jpg
+  # - image_path: /assets/images/gophercises_punching.jpg
+  # - image_path: /assets/images/gophercises_lifting.jpg
 ---
 
 {% include toc %}
@@ -22,6 +22,7 @@ We prioritise recursive and clean codes. The solution codes are pretty self expl
 3. [K-Means Clustering algorithm](#kmeans)
 4. [Given two sorted lists, merge them into a single sorted list](#mergeSortedList)
 5. [Print fibonanci numbers](#fibonanci)
+6. [Reverse a string](#reverseString)
 
 {: .notice--success}
 More programming challenge questions in Golang will be added as time permits. Let me know if there is any particular problem you would like to have solved here.
@@ -80,7 +81,7 @@ The [repository](https://github.com/Adaickalavan/Coding-Questions-in-Golang) con
     [[4 0] [4 0] [-2 6] [-2 6] [4 0] [4 0]]
     ```
 
-1. Delete a single node, given only the pointer to that node, in a singly-linked list. The desired node is deleted by copying the contents (i.e., value and pointer) of the next node into the current node.
+1. <a name="deleteSinglyLinkedNode"></a> Delete a single node, given only the pointer to that node, in a singly-linked list. The desired node is deleted by copying the contents (i.e., value and pointer) of the next node into the current node.
 
     Link to solution [code](https://github.com/Adaickalavan/Coding-Questions-in-Golang/tree/master/deleteSinglyLinkedNode).
 
@@ -134,11 +135,11 @@ The [repository](https://github.com/Adaickalavan/Coding-Questions-in-Golang) con
     &{6 <nil>}
     ```
 
-1. Given a list of data points and a list of centroids, perform `K-Means Clustering` to return a new set of updated centroids. Goroutines are used to parallelize the code execution.
+1. <a name="kmeans"></a> Given a list of data points and a list of centroids, perform `K-Means Clustering` to return a new set of updated centroids. Goroutines are used to parallelize the code execution.
 
     Link to solution [code](https://github.com/Adaickalavan/Coding-Questions-in-Golang/tree/master/kmeans).
 
-1. Given two sorted lists, merge them into a single sorted list.
+1. <a name="mergeSortedList"></a> Given two sorted lists, merge them into a single sorted list.
 
    Link to solution [code](https://github.com/Adaickalavan/Coding-Questions-in-Golang/tree/master/mergeSortedList).
 
@@ -184,7 +185,7 @@ The [repository](https://github.com/Adaickalavan/Coding-Questions-in-Golang) con
     [1 3 4 4 5 7]
     ```
 
-1. Print Fibonanci numbers using closures in Golang.
+1. <a name="fibonanci"></a> Print Fibonanci numbers using closures in Golang.
 
     Link to solution [code](https://github.com/Adaickalavan/Coding-Questions-in-Golang/tree/master/fibonanci).
 
@@ -220,4 +221,48 @@ The [repository](https://github.com/Adaickalavan/Coding-Questions-in-Golang) con
     3
     5
     8
+    ```
+1. <a name="reverseString"></a> Reverse a given string. The string is reversed in parallel using goroutines and channels.
+
+    Link to solution [code](https://github.com/Adaickalavan/Coding-Questions-in-Golang/tree/master/reverseString).
+
+    ```go
+    package main
+
+    import "fmt"
+
+    //Reverse a string in parallel
+    func reverser(arr1 []rune, length int, c0 chan int) {
+      c1 := make(chan int)
+      switch {
+      case length == 0:
+        c0 <- 1
+        return
+      case length == 1:
+        c0 <- 1
+        return
+      case length >= 2:
+        go reverser(arr1[1:length-1], length-2, c1)
+        arr1[0], arr1[length-1] = arr1[length-1], arr1[0]
+        <-c1
+        c0 <- 1
+      }
+    }
+
+    func main() {
+
+      str := "abcdefgh"
+      str1 := []rune(str)
+
+      ch := make(chan int)
+
+      go reverser(str1, len(str1), ch)
+      <-ch
+
+      fmt.Print(string(str1))
+    }
+    ```
+    Expected output:
+    ```go
+    hgfedcba
     ```
