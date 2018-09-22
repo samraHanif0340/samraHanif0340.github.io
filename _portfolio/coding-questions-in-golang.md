@@ -4,11 +4,11 @@ excerpt: "Programming trivia in Golang"
 header:
   teaser: assets/images/gopher_trivia.jpg
 feature_row:
-  # - image_path: /assets/images/gophercises_punching.jpg
+  - image_path: /assets/images/gophercises_punching.jpg
   - image_path: /assets/images/gophercises_lifting.jpg
 ---
 
-{% include feature_row type="center" %}
+{% include feature_row %}
 
 {% include toc %}
 
