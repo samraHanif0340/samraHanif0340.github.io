@@ -24,6 +24,7 @@ We prioritise recursive, concurrent, and clean codes. The solution codes are pre
 4. [Given two sorted lists, merge them into a single sorted list](#mergeSortedList)
 5. [Print fibonanci numbers](#fibonanci)
 6. [Reverse a string](#reverseString)
+7. [Match brackets](#matchBrackets)
 
 {: .notice--success}
 More programming challenge questions in Golang will be added as time permits. Let me know if there is any particular problem you would like to have solved here.
@@ -267,3 +268,21 @@ The [repository](https://github.com/Adaickalavan/Coding-Questions-in-Golang) con
     ```go
     hgfedcba
     ```
+
+1. <a name="matchBrackets"></a> Given a string containing just the characters '(', ')', '[', ']', '{', '}', determine if the input string is valid. An input string is valid if :
+    + Open brackets must be closed by the same type of brackets.
+    + Open brackets must be closed in the correct order.
+  
+    Note that an empty string is also considered valid. String below are considered valid strings.
+    ```text
+    "()"
+    "()[]{}"
+    "{[]}"
+    ```
+    Strings below are considered as invalid strings.
+    ```text
+    "(]"
+    "([)]"
+    ```
+    {: .notice--success}
+    Solution to this problem will be provided soon. In the meantime, feel free to post your own solutions to this problem.
