@@ -265,7 +265,7 @@ The [repository](https://github.com/Adaickalavan/Coding-Questions-in-Golang) con
     }
     ```
     Expected output:
-    ```go
+    ```text
     hgfedcba
     ```
 
@@ -288,9 +288,9 @@ The [repository](https://github.com/Adaickalavan/Coding-Questions-in-Golang) con
     "(]"
     "([)]"
     ```
-    
+
     Link to solution [code](https://github.com/Adaickalavan/Coding-Questions-in-Golang/tree/master/matchBrackets).
-    
+
     ```go
     package main
 
@@ -307,12 +307,14 @@ The [repository](https://github.com/Adaickalavan/Coding-Questions-in-Golang) con
       }
     }
 
+    //Map closing brackets to corresponding opening brackets
     var bracketMap = map[rune]rune{
       rune(')'): rune('('),
       rune('}'): rune('{'),
       rune(']'): rune('['),
     }
 
+    //Recursively compare brackets in a string
     func matchBrackets(stack *[]rune, input []rune) bool {
       switch {
       case len(*stack) == 0 && len(input) == 0:
@@ -343,10 +345,10 @@ The [repository](https://github.com/Adaickalavan/Coding-Questions-in-Golang) con
     }
     ```
     Expected output:
-    ```go
+    ```text
     The string  is true
     The string () is true
-    The string ()[]{}  is true
+    The string ()[]{} is true
     The string {[]} is true
     The string [ is false
     The string }{ is false
@@ -354,4 +356,3 @@ The [repository](https://github.com/Adaickalavan/Coding-Questions-in-Golang) con
     The string (] is false
     The string ([)] is false
     ```
-    
