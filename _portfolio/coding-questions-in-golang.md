@@ -24,7 +24,7 @@ We prioritise recursive, concurrent, and clean codes. The solution codes are pre
 4. [Given two sorted lists, merge them into a single sorted list](#mergeSortedList)
 5. [Print fibonanci numbers](#fibonanci)
 6. [Reverse a string](#reverseString)
-7. [Match brackets](#matchBrackets)
+7. [Match brackets in a string](#matchBrackets)
 
 {: .notice--success}
 More programming challenge questions in Golang will be added as time permits. Let me know if there is any particular problem you would like to have solved here.
