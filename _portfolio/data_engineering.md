@@ -1,6 +1,6 @@
 ---
-title: "Dockerized Services in Golang - REST, Kafka, MongoDB"
-excerpt: "Example of microservices"
+title: "Dockerized Microservices in Golang, Python, Kafka"
+excerpt: "Example of data pipeline engineering with REST, MongoDB, and input sensors"
 header:
   teaser: assets/images/gopher_docker.jpg
 ---
@@ -33,4 +33,4 @@ To run the current code as found in the repository, issue the following Docker c
   + `docker-compose down -v`
 
 {: .notice--success}
-Further extension of functionality and more description of the code will be proivded later.
+Further extension of functionality and more description of the code will be proivded later. This repository is a work in progress.
