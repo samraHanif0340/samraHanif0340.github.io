@@ -26,7 +26,7 @@ The [repository](https://github.com/Adaickalavan/IceCreamAPI) contains the follo
 
 The project structure is as follows:
 
-```txt
+```text
 project                             # Assumed to be located at C:/goWorkspace/
 └── src                             #
     └── icecreamapi                 # Main folder
