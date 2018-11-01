@@ -25,6 +25,7 @@ We prioritise recursive, concurrent, and clean codes. The solution codes are pre
 5. [Print fibonanci numbers](#fibonanci)
 6. [Reverse a string](#reverseString)
 7. [Match brackets in a string](#matchBrackets)
+8. [Range sum query](#rangeSum)
 
 {: .notice--success}
 More programming challenge questions in Golang will be added as time permits. Let me know if there is any particular problem you would like to have solved here.
@@ -356,3 +357,25 @@ The [repository](https://github.com/Adaickalavan/Coding-Questions-in-Golang) con
     The string (] is false
     The string ([)] is false
     ```
+
+2. <a name="rangeSum"></a> For an array $A$, its range sum $S$ from $i$ to $j$ is the sum of elements in between indices $i$ and $j$, inclusive, where $i≤j$.
+
+    $$ 
+    S(i,j)=\sum_{t=i}^jA\left[t\right]
+    $$
+
+    Implement a struct with a receiver method $S(i,j)$. The struct will only be instantiated once, whereas the receiver method may be called several times during runtime. The optimization goal would be to minimize
+    + usage of memory
+    + execution time of range sum receiver method $S$
+    + execution time of struct instantiation
+
+    Several test cases are shown below.
+    ```text
+    A = [-2, 0, 3, -5, 2, -1]
+    S(0, 2) //answer = 1
+    S(2, 5) //answer = -1
+    S(0, 5) //answer = -3
+    ```
+
+    Link to solution [code](https://github.com/Adaickalavan/Coding-Questions-in-Golang/tree/master/rangeSum).
+
