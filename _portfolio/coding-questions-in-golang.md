@@ -26,6 +26,7 @@ We prioritise recursive, concurrent, and clean codes. The solution codes are pre
 6. [Reverse a string](#reverseString)
 7. [Match brackets in a string](#matchBrackets)
 8. [Range sum query](#rangeSum)
+9. [Longest valid parentheses substring](#longestSubstring)
 
 {: .notice--success}
 More programming challenge questions in Golang will be added as time permits. Let me know if there is any particular problem you would like to have solved here.
@@ -378,3 +379,72 @@ The [repository](https://github.com/Adaickalavan/Coding-Questions-in-Golang) con
     ```
 
     Link to solution [code](https://github.com/Adaickalavan/Coding-Questions-in-Golang/tree/master/rangeSum).
+
+1. <a name="longestSubstring"></a> Given a string containing just characters '(' and ')', return the start and end indexes of the longest valid parentheses substring. Several test cases are shown below.
+    ```text
+    Input: "" // answer: startIndex = 0, endIndex = 0
+    Input: "(()" // answer: startIndex = 1, endIndex = 2
+    Input: ")()())" // answer: startIndex = 1, endIndex = 4
+    Input: "())((())" // answer: startIndex = 4, endIndex = 7
+    Input: "())(()" // answer: startIndex = 0, endIndex = 1
+    ```
+
+    Link to solution [code](https://github.com/Adaickalavan/Coding-Questions-in-Golang/tree/master/longestSubstring).
+
+    ```go
+    package main
+
+    import (
+      "fmt"
+    )
+
+    //Returns the longest valid parentheses substring
+    func longestSubstr(arr []rune) (int, int) {
+      start := 0
+      end := 0
+      longestStart := 0
+      longestEnd := 0
+      stack := []int{-1}
+
+      if len(arr) <= 1 {
+        return longestStart, longestEnd
+      }
+
+      for ii, val := range arr {
+        switch val {
+        case rune('('):
+          stack = append(stack, ii)
+        default: //case ')':
+          stack = stack[:len(stack)-1] //pop opening bracket
+          if len(stack) != 0 {
+            start = stack[len(stack)-1]
+            end = ii
+            if end-start > longestEnd-longestStart {
+              longestStart = start
+              longestEnd = end
+            }
+          } else { //empty stack
+            stack = append(stack, ii)
+          }
+        }
+      }
+      return longestStart + 1, longestEnd
+    }
+
+    func main() {
+      strList := []string{"", "(()", ")()())", "())((())", "())(()"}
+      for _, str := range strList {
+        input := []rune(str)
+        start, end := longestSubstr(input)
+        fmt.Println("Longest valid substring of", str, "is", string(input[start:end+1]), ", from ", start, "to ", end)
+      }
+    }
+    ```
+    Expected output:
+    ```text
+    Longest valid substring of  is   , from  0 to  0
+    Longest valid substring of (() is () , from  1 to  2
+    Longest valid substring of )()()) is ()() , from  1 to  4
+    Longest valid substring of ())((()) is (()) , from  4 to  7
+    Longest valid substring of ())(() is () , from  0 to  1
+    ```
