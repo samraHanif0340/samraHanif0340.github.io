@@ -1,6 +1,6 @@
 ---
-title: "Golang Web Application with PostgreSQL Database"
-excerpt: "Project - Golang"
+title: "Golang Web Application with PostgreSQL"
+excerpt: "Golang, PostgreSQL, Javascript"
 mathjax: true
 header:
   teaser: assets/images/goweb_01.jpg
