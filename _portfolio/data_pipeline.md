@@ -12,16 +12,18 @@ header:
 {: .notice--warning}
 This page is under construction. Please visit later for more updates.
 
-A real time streaming protocol ([RTSP](https://en.wikipedia.org/wiki/Real_Time_Streaming_Protocol)) video is streamed from a website using [OpenCV](https://opencv.org/) into a Kafka topic and consumed by a signal processing application. This project serves to highlight various important data engineering concepts. The data pipeline in detail is as follows:
+A real time streaming protocol ([RTSP](https://en.wikipedia.org/wiki/Real_Time_Streaming_Protocol)) video is streamed from a website using [OpenCV](https://opencv.org/) into a Kafka topic and consumed by a signal processing application. This project serves to highlight and demonstrate various important data engineering concepts. The data pipeline in detail is as follows:
 
-+ GoProducerRTSP module: An RTSP video is streamed from a third party website using dockerized [GoCV](https://gocv.io/) (a golang implementation of openCV) code written in Golang. The video is enqueued into a dockerized Kafka topic. RTSP is prevalent in security cameras and commercial camera systems.
-+ Zookeeper and Kafka modules: Zookeeper and Kafka container instances are spun from dockerized images from Confluent.
-+ PyConsumerRTSP module: The video is consumed from the Kafka topic by a standalone Python code running in the host machine (i.e., outside of Docker). The fetched video frames are displayed using openCV. Some simple signal processing is performed on the video and printed to screen. This signal procesing serves as a template for real practical signal processing code.
++ `GoProducerRTSP` module: An RTSP video is streamed from a third party website using dockerized [GoCV](https://gocv.io/) (a golang implementation of openCV) code written in Golang. The video is enqueued into a dockerized Kafka topic. RTSP is prevalent in security cameras and commercial camera systems.
++ Zookeeper and Kafka modules: Zookeeper and Kafka container instances are spun from dockerized images from [Confluent](https://docs.confluent.io/current/installation/docker/docs/image-reference.html).
++ `PyConsumerRTSP` module: The video is consumed from the Kafka topic by a standalone Python code running in the host machine (i.e., outside of Docker). The fetched video frames are displayed using openCV. Some simple computation is performed on each video frame and printed to screen by the Python code. This signal procesing portion serves as a template (or placeholder) for real practical signal processing code.
++ `PyConsumerRTSP2` module: This is a duplicate of `PyConsumerRTSP` package. Running two consumers from two different consumer groups simultaneously, namely `PyConsumerRTSP` and `PyConsumerRTSP2`, which consume from the same Kafka topic demonstrates scalability of the data pipeline.
 
 ## Repository
 
 The [repository](https://github.com/Adaickalavan/DataPipeline) contains the following:
 
++ Docker-compose file for Zookeeper and Kafka services
 + Go code
   + Dockerized Zookeeper and Kafka images
   + Dockerized Kafka producer with GoCV (openCV) library
@@ -70,15 +72,17 @@ DataPipeline                # Main folder
 ## System Design
 
 {: .notice--success}
-Further extension of functionality/code and more description of the code will be proivded if requested.
+Further description of the system design will be proivded if requested by readers.
 
-The complete system design of this project is illustrated by the following image.
+The complete system design and data flow of this project is illustrated by the following image.
 
 ![pipeline](/assets/images/pipeline_01.jpg){:height="100%" width="100%" .align-center}
 
-Each component of the syste will be explored in detail in the following sections.
+Each component of the system will be explored in detail in the following sections.
 
 ### Zookeeper and Kafka
+
+First, the Zookeeper and Kafka service are started as containers using docker images from Confluent.
 
 ```yml
 version: '3'
@@ -124,12 +128,13 @@ networks:
     driver: bridge
 ```
 
-The KAFKA_ADVERTISED_LISTENERS variable is set to localhost:29092. This makes Kafka accessible from outside the container by advertising its location on the Docker host.
+The `KAFKA_ADVERTISED_LISTENERS` variable is set to localhost:29092. This makes Kafka accessible from outside the container by advertising its location on the Docker host.
 
 To run the current code as found in the repository, issue the following Docker commands:
 
 + Create and run all containers
   + `docker-compose up`
+  
 + Tear down all containers and stored volume
   + `docker-compose down -v`
   + `docker system prune`
