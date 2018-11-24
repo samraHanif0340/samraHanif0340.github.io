@@ -1,6 +1,6 @@
 ---
 title: "Dockerized Microservices, RTSP Video, and Kafka"
-excerpt: "Data pipeline: Golang, Python, internal/external networking, zookeeper"
+excerpt: "Data pipeline: Golang, Python, Docker internal/external networking"
 header:
   teaser: assets/images/gopher_docker.jpg
 ---
@@ -12,22 +12,22 @@ header:
 {: .notice--warning}
 This page is under construction. Please visit later for more updates.
 
-A real time streaming protocol([RTSP](https://en.wikipedia.org/wiki/Real_Time_Streaming_Protocol)) video is streamed from a website using OpenCV, via a dockerized Kafka queue in Golang, and processed by a standalone Python code running in the host machine (i.e., outside of Docker). This project covers multiple important concepts. builds a REST web API to POST and GET word defintions to/from a dictionary stored in a MongoDB database. Dockerfile and Docker-compose files are provided to containerize the deployment of Go code and MongoDB database.
+A real time streaming protocol([RTSP](https://en.wikipedia.org/wiki/Real_Time_Streaming_Protocol)) video is streamed from a website using [OpenCV](https://opencv.org/), via a dockerized Kafka queue in Golang, and processed by a standalone Python code running in the host machine (i.e., outside of Docker). This project covers multiple important data engineering concepts, such as:
+
++ Streaming of RTSP video from a third party website using GoCV (a golang implementation of openCV). The code is containerized with Dockerfile and Docker-compose file. RTSP is prevalent in security cameras and commercial camera systems.
++ 
+  
 
 ## Repository
 
 The [repository](https://github.com/Adaickalavan/DataPipeline) contains the following:
 
 + Go code
+  + Dockerized Zookeeper and Kafka images
+  + Dockerized Kafka producer with GoCV (openCV) library
 + Python code
-+ Dockerized RTSP video streaming
-+ Dockerized openCV
-+ Zookeeper
-+ Kafka
-+ Docker internal networking between containers
-+ Docker external networking with processes outside Docker
-+ Dockerfile
-+ Dockercompose
+  + Kafka consumer for RTSP video
+  + Dummy signal processing code
 
 ## Project Structure
 
@@ -35,19 +35,38 @@ The project structure is as follows:
 
 ```text
 DataPipeline                # Main folder
-├── goproducerrtsp          # To import initial data into MongoDB
-│   ├── vendor              # To build image for initializing MongoDB
-│   ├── .env                # To build image for initializing MongoDB
-│   ├── Docker-compose.yml  # To build image for initializing MongoDB
-│   ├── vendor              # To build image for initializing MongoDB
-│   └── icecream.json       # Seed data
+├── goproducerrtsp          # To grab frames from RTSP video website and to enqueue in Kafka
+│   ├── vendor              # Dependency vendor files generated using 'dep ensure'
+│   │   └── ...             #
+│   ├── .env                # Environment variables
+│   ├── Docker-compose.yml  # To instantiate Docker container
+│   ├── Dockerfile          # To build Docker image
+│   ├── Gopkg.lock          # Dependency version file generated using 'dep ensure'
+│   ├── Gopkg.toml          # Dependency version file generated using 'dep ensure'
+│   └── main.go             # Go code
 ├── kafkapc                 # Helper files for Kafka producer and consumer
-│   ├── kafka-consumer.go   #
-│   └── kafka-producer.go   #
+│   ├── kafka-consumer.go   # Kafka consumer using Sarama and wvanbergen library
+│   └── kafka-producer.go   # Kafka producer using Sarama library
 ├── pythonconsumerrtsp      # To compose 3 containerized services
-├── pythonconsumerrtsp2              # Dockerfile to build `icecream` api image
-└── zookeeper               # Zookeeper and Kafka 
-    └── Docker-compose.yml  # 
+│   ├── dataprocessing      # Dependency vendor files generated using 'dep ensure'
+│   │   └── ...             #
+│   ├── kafkapc_python      # Dependency vendor files generated using 'dep ensure'
+│   │   └── ...             #
+│   ├── message             # Dependency vendor files generated using 'dep ensure'
+│   │   └── ...             #
+│   ├── .env                # Environment variables
+│   ├── Docker-compose.yml  # To instantiate Docker container
+│   ├── Dockerfile          # To build Docker image
+│   ├── main.py             # Python code
+│   └── requirements.txt    # Imported libraries in the python code
+├── pythonconsumerrtsp2     # Duplicate of `pythonconsumerrtsp` to illustrate code scalability
+│   ├── ...                 #
+│       .                   #
+│       .                   #
+│       .                   #
+│   └── ...                 #
+└── zookeeper               # Zookeeper and Kafka
+    └── Docker-compose.yml  # To instantiate Docker container
 ```
 
 ## Design
@@ -55,9 +74,11 @@ DataPipeline                # Main folder
 {: .notice--success}
 Further extension of functionality/code and more description of the code will be proivded if requested.
 
-To run the current code as found in the repository, issue the following Docker commands:
+The complete system design of this project is illustrated by the following image.
 
 ![pipeline](/assets/images/pipeline_01.jpg){:height="100%" width="100%" .align-center}
+
+Each component of the syste will be explored in detail in the following sections.
 
 ### Zookeeper and Kafka
 
@@ -96,8 +117,8 @@ services:
     environment:
       - KAFKA_BROKER_ID=1
       - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
-      # - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT_HOST://localhost:9092, PLAINTEXT://kafka:29092    
-      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT_HOST://192.168.99.100:9092, PLAINTEXT://kafka:29092
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT_HOST://localhost:9092, PLAINTEXT://kafka:29092
+      # - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT_HOST://192.168.99.100:9092, PLAINTEXT://kafka:29092
       - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT, PLAINTEXT_HOST:PLAINTEXT
       - KAFKA_INTER_BROKER_LISTENER_NAME=PLAINTEXT
       - KAFKA_JMX_PORT=9991
@@ -108,10 +129,15 @@ networks:
     driver: bridge
 ```
 
+To run the current code as found in the repository, issue the following Docker commands:
+
 + Create and run all containers
   + `docker-compose up`
 + Tear down all containers and stored volume
   + `docker-compose down -v`
+  + `docker system prune`
+  + `docker volume prune`
+  + `docker network prune`
 
 
 ### GoProducerRTSP
