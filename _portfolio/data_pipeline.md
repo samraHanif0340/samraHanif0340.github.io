@@ -43,21 +43,22 @@ DataPipeline                # Main folder
 │   ├── Dockerfile          # To build Docker image
 │   ├── Gopkg.lock          # Dependency version file generated using 'dep ensure'
 │   ├── Gopkg.toml          # Dependency version file generated using 'dep ensure'
-│   └── main.go             # Go code
-├── kafkapc                 # Helper files for Kafka producer and consumer
+│   └── main.go             # Go producing to Kafka
+├── kafkapc                 # Helper files for Kafka producer and consumer in Golang
 │   ├── kafka-consumer.go   # Kafka consumer using Sarama and wvanbergen library
 │   └── kafka-producer.go   # Kafka producer using Sarama library
-├── pythonconsumerrtsp      # To compose 3 containerized services
-│   ├── dataprocessing      # Dependency vendor files generated using 'dep ensure'
-│   │   └── ...             #
-│   ├── kafkapc_python      # Dependency vendor files generated using 'dep ensure'
-│   │   └── ...             #
-│   ├── message             # Dependency vendor files generated using 'dep ensure'
-│   │   └── ...             #
+├── pythonconsumerrtsp      # To consume from Kafka in Python, outside docker environment
+│   ├── dataprocessing      # Template folder for signal processing
+│   │   ├── __init__.py     # Package file
+│   │   └── alg.py          # Dummy signal processing object: Computes average pixel value
+│   ├── kafkapc_python      # Kafka producer and consumer using kafka-python library
+│   │   └── __init__.py     #
+│   ├── message             # Kafka message handling function
+│   │   └── __init__.py     #
 │   ├── .env                # Environment variables
 │   ├── Docker-compose.yml  # To instantiate Docker container
 │   ├── Dockerfile          # To build Docker image
-│   ├── main.py             # Python code
+│   ├── main.py             # Python consuming from Kafka
 │   └── requirements.txt    # Imported libraries in the python code
 ├── pythonconsumerrtsp2     # Duplicate of `pythonconsumerrtsp` to illustrate code scalability
 │   ├── ...                 #
@@ -66,10 +67,10 @@ DataPipeline                # Main folder
 │       .                   #
 │   └── ...                 #
 └── zookeeper               # Zookeeper and Kafka
-    └── Docker-compose.yml  # To instantiate Docker container
+    └── Docker-compose.yml  # To instantiate Docker container for Zookeeper and Kafka
 ```
 
-## Design
+## System Design
 
 {: .notice--success}
 Further extension of functionality/code and more description of the code will be proivded if requested.
