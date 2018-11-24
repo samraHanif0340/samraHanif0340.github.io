@@ -12,11 +12,11 @@ header:
 {: .notice--warning}
 This page is under construction. Please visit later for more updates.
 
-A real time streaming protocol([RTSP](https://en.wikipedia.org/wiki/Real_Time_Streaming_Protocol)) video is streamed from a website using [OpenCV](https://opencv.org/), via a dockerized Kafka queue in Golang, and processed by a standalone Python code running in the host machine (i.e., outside of Docker). This project covers multiple important data engineering concepts, such as:
+A real time streaming protocol ([RTSP](https://en.wikipedia.org/wiki/Real_Time_Streaming_Protocol)) video is streamed from a website using [OpenCV](https://opencv.org/) into a Kafka topic and consumed by a signal processing application. This project serves to highlight various important data engineering concepts. The data pipeline in detail is as follows:
 
-+ Streaming of RTSP video from a third party website using GoCV (a golang implementation of openCV). The code is containerized with Dockerfile and Docker-compose file. RTSP is prevalent in security cameras and commercial camera systems.
-+ 
-  
++ GoProducerRTSP module: An RTSP video is streamed from a third party website using dockerized [GoCV](https://gocv.io/) (a golang implementation of openCV) code written in Golang. The video is enqueued into a dockerized Kafka topic. RTSP is prevalent in security cameras and commercial camera systems.
++ Zookeeper and Kafka modules: Zookeeper and Kafka container instances are spun from dockerized images from Confluent.
++ PyConsumerRTSP module: The video is consumed from the Kafka topic by a standalone Python code running in the host machine (i.e., outside of Docker). The fetched video frames are displayed using openCV. Some simple signal processing is performed on the video and printed to screen. This signal procesing serves as a template for real practical signal processing code.
 
 ## Repository
 
@@ -44,9 +44,6 @@ DataPipeline                # Main folder
 │   ├── Gopkg.lock          # Dependency version file generated using 'dep ensure'
 │   ├── Gopkg.toml          # Dependency version file generated using 'dep ensure'
 │   └── main.go             # Go producing to Kafka
-├── kafkapc                 # Helper files for Kafka producer and consumer in Golang
-│   ├── kafka-consumer.go   # Kafka consumer using Sarama and wvanbergen library
-│   └── kafka-producer.go   # Kafka producer using Sarama library
 ├── pythonconsumerrtsp      # To consume from Kafka in Python, outside docker environment
 │   ├── dataprocessing      # Template folder for signal processing
 │   │   ├── __init__.py     # Package file
@@ -100,35 +97,34 @@ services:
       - ZOOKEEPER_SERVER_ID=1
       - ZOOKEEPER_CLIENT_PORT=2181
       - ZOOKEEPER_TICK_TIME=2000
-      - ZOOKEEPER_SERVERS=zookeeper:22888:23888
 
   #Kafka
   kafka:
     image: confluentinc/cp-kafka
     container_name: kafka
-    restart: unless-stopped
+    restart: always
     depends_on:
       - zookeeper
     networks:
       - dockerNet
     ports:
-      - 9092:9092 #Kafka broker - access port for external 
-      # - 29092:29092 #Kafka broker - access port for internal
-      # - 1099:1099 #JMX
+      - 9092:9092 #Kafka broker - access port for external
     environment:
       - KAFKA_BROKER_ID=1
       - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
-      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT_HOST://localhost:9092, PLAINTEXT://kafka:29092
-      # - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT_HOST://192.168.99.100:9092, PLAINTEXT://kafka:29092
+      # - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT_HOST://localhost:9092, PLAINTEXT://kafka:29092
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT_HOST://192.168.99.100:9092, PLAINTEXT://kafka:29092
       - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT, PLAINTEXT_HOST:PLAINTEXT
       - KAFKA_INTER_BROKER_LISTENER_NAME=PLAINTEXT
-      - KAFKA_JMX_PORT=9991
+      - KAFKA_JMX_PORT=1099
       - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
 
 networks:
   dockerNet:
     driver: bridge
 ```
+
+The KAFKA_ADVERTISED_LISTENERS variable is set to localhost:29092. This makes Kafka accessible from outside the container by advertising its location on the Docker host.
 
 To run the current code as found in the repository, issue the following Docker commands:
 
