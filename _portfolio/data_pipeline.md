@@ -9,11 +9,11 @@ header:
 
 ## Info
 
-A real time streaming protocol ([RTSP](https://en.wikipedia.org/wiki/Real_Time_Streaming_Protocol)) video is streamed from a website using [OpenCV](https://opencv.org/) into a Kafka topic and consumed by a signal processing application. This project serves to highlight and demonstrate various important data engineering concepts. The data pipeline is as follows:
+A real time streaming protocol ([RTSP](https://en.wikipedia.org/wiki/Real_Time_Streaming_Protocol)) video is streamed from a website using [OpenCV](https://opencv.org/) into a Kafka topic and consumed by a signal processing application. This project serves to highlight and demonstrate various key data engineering concepts. The data pipeline is as follows:
 
 + `GoProducerRTSP` module: An RTSP video is streamed from a third party website using dockerized [GoCV](https://gocv.io/) (a golang wrapper of openCV) code written in Golang. The video is enqueued in a dockerized Kafka topic. A multistage image build is performed to minimize runtime image size. RTSP is prevalent in security cameras and commercial camera systems.
 + Zookeeper and Kafka modules: Zookeeper and Kafka container instances are created from [Confluent](https://docs.confluent.io/current/installation/docker/docs/image-reference.html) docker images. Besides message passing, Kafka is used for inter-language communication between Golang code and Python code, in this project.
-+ `PyConsumerRTSP` module: The video is consumed from the Kafka topic by a standalone Python code running in the host machine (i.e., outside of Docker). The fetched video frames are displayed using OpenCV. Some simple computation is performed on each video frame and results are printed to screen. This simple signal processing code serves as a placeholder for the real signal processing code.
++ `PyConsumerRTSP` module: The video is consumed from the Kafka topic by a standalone Python code running in the host machine (i.e., outside of Docker). The fetched video frames are displayed using OpenCV. Some simple computation is performed on each video frame and results are printed to screen. This simple signal processing code serves as a placeholder for the real signal processing code later.
 + `PyConsumerRTSP2` module: This is a duplicate of `PyConsumerRTSP` module. The consumers of `PyConsumerRTSP` and `PyConsumerRTSP2` belong to two different consumer groups but consume from the same Kafka topic. Running them simultaneously, demonstrates the scalability of the data pipeline.
 
 ## Repository
@@ -26,7 +26,7 @@ The [repository](https://github.com/Adaickalavan/DataPipeline) contains the foll
   + Dockerized Kafka producer with GoCV (openCV) library
 + Python code
   + Kafka consumer for RTSP video
-  + Dummy signal processing code
+  + OpenCV and dummy signal processing code
 
 ## Project Structure
 
@@ -42,8 +42,8 @@ DataPipeline                # Main folder
 │   ├── Dockerfile          # To build Docker image
 │   ├── Gopkg.lock          # Dependency version file generated using 'dep ensure'
 │   ├── Gopkg.toml          # Dependency version file generated using 'dep ensure'
-│   └── main.go             # Go producing to Kafka
-├── pythonconsumerrtsp      # To consume from Kafka in Python, outside docker environment
+│   └── main.go             # Go code producing to Kafka
+├── pythonconsumerrtsp      # To consume from Kafka in Python, outside Docker environment
 │   ├── dataprocessing      # Template folder for signal processing
 │   │   ├── __init__.py     # Package file
 │   │   └── alg.py          # Dummy signal processing object: Computes average pixel value
@@ -54,7 +54,7 @@ DataPipeline                # Main folder
 │   ├── .env                # Environment variables
 │   ├── Docker-compose.yml  # To instantiate Docker container
 │   ├── Dockerfile          # To build Docker image
-│   ├── main.py             # Python consuming from Kafka
+│   ├── main.py             # Python code consuming from Kafka
 │   └── requirements.txt    # Imported libraries in the python code
 ├── pythonconsumerrtsp2     # Duplicate of `pythonconsumerrtsp` to illustrate code scalability
 │   ├── ...                 #
@@ -127,7 +127,7 @@ networks:
 
 Containers are connected via an internal Docker network named `dockerNet` to facilitate internal communication among containers. Containers can access each other by their `container_name`.
 
-Zookeeper port number is `2181` and is also published to localhost making it accessible to programs from outside the Docker environment.
+Zookeeper port number is `2181` and it is published to localhost making it accessible to programs from outside the Docker environment.
 
 The `KAFKA_ADVERTISED_LISTENERS` variable is set to `192.168.99.100:9092` and `kafka:29092`. This makes Kafka accessible from inside the Docker through `kafka:29092` and also from outside the Docker through `192.168.99.100:9092` by advertising its location on the host machine.
 
@@ -364,7 +364,7 @@ The Python code is to be run on a standalone mode, outside of the Docker environ
 
 Remember to use your Docker machine IP (e.g., `192.168.99.100` as shown in above code) if you are using Docker Tool (or a VM). Otherwise, if you are using native Docker, please replace the IP addresses with `localhost` as shown commented in the above code.
 
-Slice of bytes from Golang representing image pixel values is stored as base-64 string in Kafka topic. The `message.handler()` function converts base-64 string into appropriately shaped 3-channel RGB numpy matrix. Converted numpy matrix is then displayed by [OpenCV-python](https://opencv-python-tutroals.readthedocs.io/) library.
+Slice of bytes from Golang, representing image pixel values, is stored as base-64 string in Kafka topic. The `message.handler()` function converts base-64 string into appropriately shaped 3-channel RGB numpy matrix. Converted numpy matrix is then displayed by [OpenCV-python](https://opencv-python-tutroals.readthedocs.io/) library.
 
 The `dataprocessing.alg` module provides a template to perform any further signal processing steps.
 
@@ -377,9 +377,9 @@ pipreqs [options] <path/to/Python/project/folder>
 --force : to overwrite existing file
 ```
 
-Second, install the dependencies via `pip install -r /app/requirements.txt`.
+Second, install the dependencies via `pip install -r requirements.txt`.
 
-Although the Python code in this project is meant to be run as a standalone code, it may be containerized. Sample [Dockerfile](https://github.com/Adaickalavan/DataPipeline/blob/master/pyconsumerrtsp/Dockerfile) to build Python image and sample [Docker-compose.yml](https://github.com/Adaickalavan/DataPipeline/blob/master/pyconsumerrtsp/Docker-compose.yml) to instantiate the Python container are provided in the repository.
+Although the Python code in this project is meant to be run as a standalone code, it may be containerized. Sample [Dockerfile](https://github.com/Adaickalavan/DataPipeline/blob/master/pyconsumerrtsp/Dockerfile) to build the Python image and sample [Docker-compose.yml](https://github.com/Adaickalavan/DataPipeline/blob/master/pyconsumerrtsp/Docker-compose.yml) to instantiate the Python container are provided in the repository.
 
 ### PyConsumerRTSP2
 
