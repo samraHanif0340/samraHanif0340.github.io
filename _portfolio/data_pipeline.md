@@ -14,7 +14,7 @@ This page is under construction. Please visit later for more updates.
 
 A real time streaming protocol ([RTSP](https://en.wikipedia.org/wiki/Real_Time_Streaming_Protocol)) video is streamed from a website using [OpenCV](https://opencv.org/) into a Kafka topic and consumed by a signal processing application. This project serves to highlight and demonstrate various important data engineering concepts. The data pipeline in detail is as follows:
 
-+ `GoProducerRTSP` module: An RTSP video is streamed from a third party website using dockerized [GoCV](https://gocv.io/) (a golang wrapper of openCV) code written in Golang. The video is enqueued into a dockerized Kafka topic. RTSP is prevalent in security cameras and commercial camera systems.
++ `GoProducerRTSP` module: An RTSP video is streamed from a third party website using dockerized [GoCV](https://gocv.io/) (a golang wrapper of openCV) code written in Golang. The video is enqueued into a dockerized Kafka topic. A multistage image build is performed to minimize runtime image size. RTSP is prevalent in security cameras and commercial camera systems.
 + Zookeeper and Kafka modules: Zookeeper and Kafka container instances are spun from dockerized images from [Confluent](https://docs.confluent.io/current/installation/docker/docs/image-reference.html).
 + `PyConsumerRTSP` module: The video is consumed from the Kafka topic by a standalone Python code running in the host machine (i.e., outside of Docker). The fetched video frames are displayed using openCV. Some simple computation is performed on each video frame and printed to screen by the Python code. This signal procesing portion serves as a template (or placeholder) for real practical signal processing code.
 + `PyConsumerRTSP2` module: This is a duplicate of `PyConsumerRTSP` package. Running two consumers from two different consumer groups simultaneously, namely `PyConsumerRTSP` and `PyConsumerRTSP2`, which consume from the same Kafka topic demonstrates scalability of the data pipeline.
@@ -246,16 +246,17 @@ type Result struct {
 }
 ```
 
-
-GoCV library is used to stream the RTSP video
+Video frames captured by GoCV are of type `gocv.Mat` struct. It is then converted to type `image.Image` interface and type asserted into an RGBA image. The pixel values along with other image information are written into a struct and sent to Kafka topic.
 
 [Dep](https://golang.github.io/dep/) is used for Golang dependency management. To initialize, issue `dep init` command in the module's main working directory. Commands `dep ensure` ensures the project is in sync and `dep ensure -update` updates all the dependencies.
+
+Once, `vendor`, `Gopkg.lock`, and `Gopkg.toml` folders have been created by `dep` commands, a docker image is created by executing `docker build -t goproducerrtsp .` on the `Dockerfile` below.
 
 ```yml
 FROM denismakogon/gocv-alpine:3.4.2-buildstage as build-stage
 
 #Copy the local package files (from development computer) to the container's workspace (docker image)
-COPY . /go/src/app 
+COPY . /go/src/app
 # BUild the app command inside the container
 RUN go install app
 
@@ -271,8 +272,9 @@ COPY --from=build-stage /go/bin/app /go/bin/app
 ENTRYPOINT ["/go/bin/app"]
 ```
 
-+ Instantiate a container from the image
-  + `docker-compose up`
+The `denismakogon/gocv-alpine:3.4.2-buildstage` base image consists of Alpine 3.7, FFMPEG 4.0, Golang 1.10, OpenCV 3.4.2, and OpenCV 3.4.2 contrib packages required by GoCV. A multistage build is performed to minimize runtime image size. Hence, the compiled binary is copied from the build-stage into a basic runtime base image `denismakogon/gocv-alpine:3.4.2-runtime` consisting of Alpine 3.7.
+
+The `goproducerrtsp` service is started by the running `docker-compose up` on the following Docker-compose.yml file. To enable internal Docker communication between `goproducerrtsp` and `kafka` containers, the `KAFKAPORT` address is set to `kafka:29092`.
 
 ```yml
 version: '3'
@@ -288,9 +290,7 @@ services:
       - RTSPLINK=rtsp://184.72.239.149/vod/mp4:BigBuckBunny_175k.mov
     networks:
       - zookeeper_dockerNet
-        # To ensure that the containers in different docker-compose files communicate with each other,
-        # we place them on the same network. The full network name from 'kafka-zookeeper-mongo' docker-compose
-        # file is 'kafka_zookeeper_mongo_dockerNet'.
+        # To ensure that the containers in different docker-compose files communicate with each other, we place them on the same network. The complete network name is 'zookeeper_dockerNet'. It is derived by joining the name of the folder from which the network originates (i.e., zookeeper) and the name of the network (i.e., dockerNet).
     privileged: true  
 
 networks:
@@ -298,21 +298,11 @@ networks:
     external: true #Label the other docker-compose network as an external network to the current docker-compose file
 ```
 
-
-
-Issue the following commands in the working directory of the Docker-compose.yml file:
-
-+ To run Zookeeper and Kafka containers
-  + `docker-compose up`
-
-+ Build image of Go code
-  + `docker build -t goproducerrtsp .`
-
-
-
-
-
 ### PyConsumerRTSP
+
+
+
 
 ### PyConsumerRTSP2
 
+PyConsumerRTSP2 is simply a duplicate of PyConsumerRTSP module, to illustrate the scalability of the system.
