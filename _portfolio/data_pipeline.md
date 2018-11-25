@@ -1,5 +1,5 @@
 ---
-title: "Dockerized Microservices, RTSP Video, and Kafka"
+title: "RTSP Video, Kafka, and Microservices"
 excerpt: "Data pipeline: Golang, Python, Docker internal/external networking"
 header:
   teaser: assets/images/gopher_docker.jpg
@@ -11,10 +11,10 @@ header:
 
 A real time streaming protocol ([RTSP](https://en.wikipedia.org/wiki/Real_Time_Streaming_Protocol)) video is streamed from a website using [OpenCV](https://opencv.org/) into a Kafka topic and consumed by a signal processing application. This project serves to highlight and demonstrate various important data engineering concepts. The data pipeline in detail is as follows:
 
-+ `GoProducerRTSP` module: An RTSP video is streamed from a third party website using dockerized [GoCV](https://gocv.io/) (a golang wrapper of openCV) code written in Golang. The video is enqueued into a dockerized Kafka topic. A multistage image build is performed to minimize runtime image size. RTSP is prevalent in security cameras and commercial camera systems.
-+ Zookeeper and Kafka modules: Zookeeper and Kafka container instances are spun from dockerized images from [Confluent](https://docs.confluent.io/current/installation/docker/docs/image-reference.html). Besides message passing, Kafka is used for inter-language communication between Golang code and Python code, in this project.
-+ `PyConsumerRTSP` module: The video is consumed from the Kafka topic by a standalone Python code running in the host machine (i.e., outside of Docker). The fetched video frames are displayed using openCV. Some simple computation is performed on each video frame and results are printed to screen by the Python code. This signal procesing portion serves as a template (or placeholder) for real practical signal processing code.
-+ `PyConsumerRTSP2` module: This is a duplicate of `PyConsumerRTSP` package. Running two consumers from two different consumer groups simultaneously, namely `PyConsumerRTSP` and `PyConsumerRTSP2`, which consume from the same Kafka topic demonstrates scalability of the data pipeline.
++ `GoProducerRTSP` module: An RTSP video is streamed from a third party website using dockerized [GoCV](https://gocv.io/) (a golang wrapper of openCV) code written in Golang. The video is enqueued in a dockerized Kafka topic. A multistage image build is performed to minimize runtime image size. RTSP is prevalent in security cameras and commercial camera systems.
++ Zookeeper and Kafka modules: Zookeeper and Kafka container instances are created from [Confluent](https://docs.confluent.io/current/installation/docker/docs/image-reference.html) docker images. Besides message passing, Kafka is used for inter-language communication between Golang code and Python code, in this project.
++ `PyConsumerRTSP` module: The video is consumed from the Kafka topic by a standalone Python code running in the host machine (i.e., outside of Docker). The fetched video frames are displayed using OpenCV. Some simple computation is performed on each video frame and results are printed to screen. This simple signal processing code serves as a placeholder for the real signal processing code.
++ `PyConsumerRTSP2` module: This is a duplicate of `PyConsumerRTSP` module. The consumers of `PyConsumerRTSP` and `PyConsumerRTSP2` belong to two different consumer groups but consume from the same Kafka topic. Running them simultaneously, demonstrates the scalability of the data pipeline.
 
 ## Repository
 
@@ -69,7 +69,7 @@ DataPipeline                # Main folder
 ## System Design
 
 {: .notice--success}
-Further description of the system design will be proivded if requested by readers.
+Further description of the system design will be provided if requested by readers.
 
 The complete system design and data flow of this project is illustrated by the following image.
 
@@ -125,11 +125,11 @@ networks:
     driver: bridge
 ```
 
-Containers are conected via an internal Docker network named `dockerNet` to facilitate internal communicaion among containers. Containers can accessed one another by their `container_name`.
+Containers are connected via an internal Docker network named `dockerNet` to facilitate internal communication among containers. Containers can access each other by their `container_name`.
 
 Zookeeper port number is `2181` and is also published to localhost making it accessible to programs from outside the Docker environment.
 
-The `KAFKA_ADVERTISED_LISTENERS` variable is set to `192.168.99.100:9092` and `kafka:29092`. This makes Kafka accessible from inside the Docker through `kafka:29092` and also from outside the container through `192.168.99.100:9092` by advertising its location on the Docker host.
+The `KAFKA_ADVERTISED_LISTENERS` variable is set to `192.168.99.100:9092` and `kafka:29092`. This makes Kafka accessible from inside the Docker through `kafka:29092` and also from outside the Docker through `192.168.99.100:9092` by advertising its location on the host machine.
 
 Remember to use your Docker machine IP (e.g., `192.168.99.100` as shown in above code) if you are using Docker Tool (or a VM). Otherwise, if you are using native Docker, please replace the IP addresses with `localhost` as shown commented in the above code.
 
@@ -245,16 +245,16 @@ type Result struct {
 
 Video frames captured by GoCV are of type `gocv.Mat` struct. It is then converted to type `image.Image` interface and type asserted into an RGBA image. The pixel values along with other image information are written into a struct and sent to Kafka topic.
 
-[Dep](https://golang.github.io/dep/) is used for Golang dependency management. To initialize, issue `dep init` command in the module's main working directory. Commands `dep ensure` ensures the project is in sync and `dep ensure -update` updates all the dependencies.
+[Dep](https://golang.github.io/dep/) is used for Golang dependency management. To initialize, issue `dep init` command in the project's main working directory. Commands `dep ensure` ensures the project is in sync and `dep ensure -update` updates all the dependencies.
 
-Once `vendor`, `Gopkg.lock`, and `Gopkg.toml` folders have been created by `dep` commands, a docker image is created by executing `docker build -t goproducerrtsp .` on the `Dockerfile` below.
+Once `vendor`, `Gopkg.lock`, and `Gopkg.toml` folders have been created by `dep` commands, a docker image is created by executing `docker build -t goproducerrtsp .` on the Dockerfile below.
 
 ```yml
 FROM denismakogon/gocv-alpine:3.4.2-buildstage as build-stage
 
 #Copy the local package files (from development computer) to the container's workspace (docker image)
 COPY . /go/src/app
-# BUild the app command inside the container
+# Build the app command inside the container
 RUN go install app
 
 FROM denismakogon/gocv-alpine:3.4.2-runtime
@@ -364,11 +364,11 @@ The Python code is to be run on a standalone mode, outside of the Docker environ
 
 Remember to use your Docker machine IP (e.g., `192.168.99.100` as shown in above code) if you are using Docker Tool (or a VM). Otherwise, if you are using native Docker, please replace the IP addresses with `localhost` as shown commented in the above code.
 
-Slice of bytes from Golang representing image pixel values is stored as base-64 string in Kafka topic. The `message.handler` function converts base-64 string into appropriately shaped 3-channel RGB numpy matrix. Converted numpy matrix is then displayed by [OpenCV-python](https://opencv-python-tutroals.readthedocs.io/) library.
+Slice of bytes from Golang representing image pixel values is stored as base-64 string in Kafka topic. The `message.handler()` function converts base-64 string into appropriately shaped 3-channel RGB numpy matrix. Converted numpy matrix is then displayed by [OpenCV-python](https://opencv-python-tutroals.readthedocs.io/) library.
 
 The `dataprocessing.alg` module provides a template to perform any further signal processing steps.
 
-Python project dependencies can be easily managed in a two step process. First, execute `pipreqs` command to generate `requirements.txt` file containing all the required import libraries.
+Python project dependencies can be easily managed in a two step process. First, execute `pipreqs` command to generate `requirements.txt` file containing all the required library imports.
 
 ```python
 pipreqs [options] <path/to/Python/project/folder>
@@ -379,11 +379,11 @@ pipreqs [options] <path/to/Python/project/folder>
 
 Second, install the dependencies via `pip install -r /app/requirements.txt`.
 
-Although the Python code in this project is meant to be run as a standalone monolithic code, it may be containerized. Sample [Dockerfile](https://github.com/Adaickalavan/DataPipeline/blob/master/pyconsumerrtsp/Dockerfile) to build Python image and sample [Docker-compose.yml](https://github.com/Adaickalavan/DataPipeline/blob/master/pyconsumerrtsp/Docker-compose.yml) to instantiate the Python container are provided in the repsitory.
+Although the Python code in this project is meant to be run as a standalone code, it may be containerized. Sample [Dockerfile](https://github.com/Adaickalavan/DataPipeline/blob/master/pyconsumerrtsp/Dockerfile) to build Python image and sample [Docker-compose.yml](https://github.com/Adaickalavan/DataPipeline/blob/master/pyconsumerrtsp/Docker-compose.yml) to instantiate the Python container are provided in the repository.
 
 ### PyConsumerRTSP2
 
-The `pyconsumerrtsp2` Python module is simply a duplicate of `pyconsumerrtsp` module. Running both Python modules simultaneously illustrates the scalability and resilience of the Kafka based system. The `pyconsumerrtsp2` module similarly runs as a standalone monolithic code.
+The `pyconsumerrtsp2` Python module is simply a duplicate of `pyconsumerrtsp` module. Running both Python modules simultaneously illustrates the scalability and resilience of the Kafka based system. The `pyconsumerrtsp2` module similarly runs as a standalone code.
 
 From the `.env` file, we see that `pyconsumerrtsp2` subscribes to the same Kafka topic as `pyconsumerrtsp` but is assigned to a different consumergroup, namely, `consumerGroup_2`.
 ```yml
@@ -393,4 +393,4 @@ KAFKAPORT=192.168.99.100:9092 #For Docker Tool (e.g., in Windows 7)
 CONSUMERGROUP=consumerGroup_2
 ```
 
-Although both Python consumers read from the same underlying message queue `timeseries_1`, they work asynchronously processing data at different speeds and at different times. This enables horizontal scaling of multiple processes on the same data.
+Although both Python consumers read from the same underlying message queue `timeseries_1`, they work asynchronously by processing data at different speeds and at different times. This enables horizontal scaling of multiple processes on the same data.
