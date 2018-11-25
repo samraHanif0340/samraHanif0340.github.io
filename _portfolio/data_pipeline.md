@@ -15,7 +15,7 @@ This page is under construction. Please visit later for more updates.
 A real time streaming protocol ([RTSP](https://en.wikipedia.org/wiki/Real_Time_Streaming_Protocol)) video is streamed from a website using [OpenCV](https://opencv.org/) into a Kafka topic and consumed by a signal processing application. This project serves to highlight and demonstrate various important data engineering concepts. The data pipeline in detail is as follows:
 
 + `GoProducerRTSP` module: An RTSP video is streamed from a third party website using dockerized [GoCV](https://gocv.io/) (a golang wrapper of openCV) code written in Golang. The video is enqueued into a dockerized Kafka topic. A multistage image build is performed to minimize runtime image size. RTSP is prevalent in security cameras and commercial camera systems.
-+ Zookeeper and Kafka modules: Zookeeper and Kafka container instances are spun from dockerized images from [Confluent](https://docs.confluent.io/current/installation/docker/docs/image-reference.html).
++ Zookeeper and Kafka modules: Zookeeper and Kafka container instances are spun from dockerized images from [Confluent](https://docs.confluent.io/current/installation/docker/docs/image-reference.html). Besides message passing, Kafka is used for inter-language communication between Golang code and Python code, in this project.
 + `PyConsumerRTSP` module: The video is consumed from the Kafka topic by a standalone Python code running in the host machine (i.e., outside of Docker). The fetched video frames are displayed using openCV. Some simple computation is performed on each video frame and printed to screen by the Python code. This signal procesing portion serves as a template (or placeholder) for real practical signal processing code.
 + `PyConsumerRTSP2` module: This is a duplicate of `PyConsumerRTSP` package. Running two consumers from two different consumer groups simultaneously, namely `PyConsumerRTSP` and `PyConsumerRTSP2`, which consume from the same Kafka topic demonstrates scalability of the data pipeline.
 
@@ -300,7 +300,69 @@ networks:
 
 ### PyConsumerRTSP
 
+The video frames are retrieved a Kafka consumer The Kafka consumer uses [kafka-python](https://github.com/dpkp/kafka-python) library.
 
+```python
+from dotenv import load_dotenv
+import kafkapc_python as pc
+import os
+import cv2
+import message
+import dataprocessing.alg as alg
+
+def main():
+    # Create consumer 
+    consumer = pc.Consumer(
+        os.getenv('TOPICNAME'),
+        os.getenv('KAFKAPORT'),
+        os.getenv('CONSUMERGROUP')
+        )
+
+    # Prepare openCV window
+    print(cv2.__version__)
+    windowName = "RTSPvideo1"
+    cv2.namedWindow(windowName)
+    cv2.resizeWindow(windowName, 240, 160)
+
+    #Instantiate a signal processing model
+    model = alg.Model()
+
+    # Start consuming video
+    for m in consumer:
+        #Read message contents
+        val = m.value
+        print("Time:",m.timestamp,", Topic:",m.topic) 
+
+        #Message handler
+        img = message.handler(val)
+
+        #Show image
+        cv2.imshow(windowName, img)
+        cv2.waitKey(1)
+
+        #Process the message
+        model.run(img)
+
+    consumer.close()
+
+    return
+
+if __name__ == "__main__":
+    # Load environment variable
+    load_dotenv(override=True)
+    # Call main function
+    main()
+
+```
+
+To generate `requirements.txt` file for Python projects
+
+```python
+    pipreqs [options] <path/to/Python/project/folder>
+
+    [options]
+    --force : to overwrite existing file
+```
 
 
 ### PyConsumerRTSP2
