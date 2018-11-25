@@ -7,9 +7,6 @@ header:
 
 {% include toc %}
 
-{: .notice--warning}
-This page is under construction. Please visit later for more updates.
-
 ## Info
 
 A real time streaming protocol ([RTSP](https://en.wikipedia.org/wiki/Real_Time_Streaming_Protocol)) video is streamed from a website using [OpenCV](https://opencv.org/) into a Kafka topic and consumed by a signal processing application. This project serves to highlight and demonstrate various important data engineering concepts. The data pipeline in detail is as follows:
@@ -82,7 +79,7 @@ Each component of the system will be explored in detail in the following section
 
 ### Zookeeper and Kafka
 
-First, the Zookeeper and Kafka services are started as containers using docker images from Confluent. Below is the `Docker-compose.yml` file.
+Firstly, the Zookeeper and Kafka services are started as containers using docker images from Confluent. Below is the `Docker-compose.yml` file.
 
 ```yml
 version: '3'
@@ -148,7 +145,7 @@ Issue the following Docker commands in the working directory of the Docker-compo
 
 ### GoProducerRTSP
 
-Secondly, the Kafka producer code, in Golang, to stream RTSP video into Kafka topic `timeseries_1` is shown below. [Sarama](https://github.com/Shopify/sarama) library is used as the Golang client for Kafka producer. A further wrapper for Golang producer (and consumer) built on top of Sarama and [wvanbergen](github.com/wvanbergen/kafka/consumergroup) libraries is provided for ease of use in my [kafkapc](github.com/adaickalavan/kafkapc) package.
+The Kafka producer code, in Golang, to stream RTSP video into Kafka topic `timeseries_1` is shown below. [Sarama](https://github.com/Shopify/sarama) library is used as the Golang client for Kafka producer. A further wrapper for Golang producer (and consumer) built on top of Sarama and [wvanbergen](github.com/wvanbergen/kafka/consumergroup) libraries is provided for ease of use in my [kafkapc](github.com/adaickalavan/kafkapc) package.
 
 ```go
 package main
@@ -250,7 +247,7 @@ Video frames captured by GoCV are of type `gocv.Mat` struct. It is then converte
 
 [Dep](https://golang.github.io/dep/) is used for Golang dependency management. To initialize, issue `dep init` command in the module's main working directory. Commands `dep ensure` ensures the project is in sync and `dep ensure -update` updates all the dependencies.
 
-Once, `vendor`, `Gopkg.lock`, and `Gopkg.toml` folders have been created by `dep` commands, a docker image is created by executing `docker build -t goproducerrtsp .` on the `Dockerfile` below.
+Once `vendor`, `Gopkg.lock`, and `Gopkg.toml` folders have been created by `dep` commands, a docker image is created by executing `docker build -t goproducerrtsp .` on the `Dockerfile` below.
 
 ```yml
 FROM denismakogon/gocv-alpine:3.4.2-buildstage as build-stage
@@ -274,7 +271,7 @@ ENTRYPOINT ["/go/bin/app"]
 
 The `denismakogon/gocv-alpine:3.4.2-buildstage` base image consists of Alpine 3.7, FFMPEG 4.0, Golang 1.10, OpenCV 3.4.2, and OpenCV 3.4.2 contrib packages required by GoCV. A multistage build is performed to minimize runtime image size. Hence, the compiled binary is copied from the build-stage into a basic runtime base image `denismakogon/gocv-alpine:3.4.2-runtime` consisting of Alpine 3.7.
 
-The `goproducerrtsp` service is started by running `docker-compose up` on the following Docker-compose.yml file. To enable internal Docker communication between `goproducerrtsp` and `kafka` containers, the `KAFKAPORT` address is set to `kafka:29092`.
+The `goproducerrtsp` service is started by running `docker-compose up` on the following Docker-compose.yml file. To enable internal Docker communication between `goproducerrtsp` and `kafka` containers, set the `KAFKAPORT` address to `kafka:29092`.
 
 ```yml
 version: '3'
@@ -355,10 +352,8 @@ if __name__ == "__main__":
 
 ```
 
-Environment variables are saved in a `.env` file, as shown below. [python-dotenv](https://github.com/theskumar/python-dotenv) library is used to load the `.env` file into Python.
+Environment variables are saved in a `.env` file, as shown below. The [python-dotenv](https://github.com/theskumar/python-dotenv) library is used to load the `.env` file into Python.
 ```yml
-#Add environment variables here, if there is any
-
 TOPICNAME=timeseries_1
 # KAFKAPORT=localhost:9092 #For native Docker (e.g., in Windows 10)
 KAFKAPORT=192.168.99.100:9092 #For Docker Tool (e.g., in Windows 7)
@@ -369,11 +364,11 @@ The Python code is to be run on a standalone mode, outside of the Docker environ
 
 Remember to use your Docker machine IP (e.g., `192.168.99.100` as shown in above code) if you are using Docker Tool (or a VM). Otherwise, if you are using native Docker, please replace the IP addresses with `localhost` as shown commented in the above code.
 
-Slice of bytes from Golang representing image pixel values is stored as base-64 string in Kafka topic. `message.handler` function converts the base-64 string into appropriately shaped 3-channel RGB numpy matrix. Converted numpy matrix is then displayed by [OpenCV-python](https://opencv-python-tutroals.readthedocs.io/) library.
+Slice of bytes from Golang representing image pixel values is stored as base-64 string in Kafka topic. The `message.handler` function converts base-64 string into appropriately shaped 3-channel RGB numpy matrix. Converted numpy matrix is then displayed by [OpenCV-python](https://opencv-python-tutroals.readthedocs.io/) library.
 
 The `dataprocessing.alg` module provides a template to perform any further signal processing steps.
 
-Python project dependencies can be easily managed in a two step process. First, execute `pipreqs` command to generate `requirements.txt` file containing all the required import libraries via for Python projects.
+Python project dependencies can be easily managed in a two step process. First, execute `pipreqs` command to generate `requirements.txt` file containing all the required import libraries.
 
 ```python
 pipreqs [options] <path/to/Python/project/folder>
@@ -382,13 +377,20 @@ pipreqs [options] <path/to/Python/project/folder>
 --force : to overwrite existing file
 ```
 
-Although, the Python code in this project is meant to be run as a standalone monolithic code, it may be containerized. Sample [Dockerfile]() to build Python image and Docker-compose.yml to spin up the Python container are provided in the repsitory. and Do
+Second, install the dependencies via `pip install -r /app/requirements.txt`.
 
-docker compose file are included but not used can use for dockerizing the code
-
-
-
+Although the Python code in this project is meant to be run as a standalone monolithic code, it may be containerized. Sample [Dockerfile](https://github.com/Adaickalavan/DataPipeline/blob/master/pyconsumerrtsp/Dockerfile) to build Python image and sample [Docker-compose.yml](https://github.com/Adaickalavan/DataPipeline/blob/master/pyconsumerrtsp/Docker-compose.yml) to instantiate the Python container are provided in the repsitory.
 
 ### PyConsumerRTSP2
 
-PyConsumerRTSP2 is simply a duplicate of PyConsumerRTSP module, to illustrate the scalability of the system.
+The `pyconsumerrtsp2` Python module is simply a duplicate of `pyconsumerrtsp` module. Running both Python modules simultaneously illustrates the scalability and resilience of the Kafka based system. The `pyconsumerrtsp2` module similarly runs as a standalone monolithic code.
+
+From the `.env` file, we see that `pyconsumerrtsp2` subscribes to the same Kafka topic as `pyconsumerrtsp` but is assigned to a different consumergroup, namely, `consumerGroup_2`.
+```yml
+TOPICNAME=timeseries_1
+# KAFKAPORT=localhost:9092 #For native Docker (e.g., in Windows 10)
+KAFKAPORT=192.168.99.100:9092 #For Docker Tool (e.g., in Windows 7)
+CONSUMERGROUP=consumerGroup_2
+```
+
+Although both Python consumers read from the same underlying message queue `timeseries_1`, they work asynchronously processing data at different speeds and at different times. This enables horizontal scaling of multiple processes on the same data.
