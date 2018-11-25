@@ -7,10 +7,10 @@ header:
 
 {% include toc %}
 
-## Info
-
 {: .notice--warning}
 This page is under construction. Please visit later for more updates.
+
+## Info
 
 A real time streaming protocol ([RTSP](https://en.wikipedia.org/wiki/Real_Time_Streaming_Protocol)) video is streamed from a website using [OpenCV](https://opencv.org/) into a Kafka topic and consumed by a signal processing application. This project serves to highlight and demonstrate various important data engineering concepts. The data pipeline in detail is as follows:
 
@@ -249,8 +249,7 @@ type Result struct {
 
 GoCV library is used to stream the RTSP video
 
-
-
+[Dep](https://golang.github.io/dep/) is used for Golang dependency management. To initialize, issue `dep init` command in the module's main working directory. Commands `dep ensure` ensures the project is in sync and `dep ensure -update` updates all the dependencies.
 
 ```yml
 FROM denismakogon/gocv-alpine:3.4.2-buildstage as build-stage
