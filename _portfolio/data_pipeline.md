@@ -16,7 +16,7 @@ A real time streaming protocol ([RTSP](https://en.wikipedia.org/wiki/Real_Time_S
 
 + `GoProducerRTSP` module: An RTSP video is streamed from a third party website using dockerized [GoCV](https://gocv.io/) (a golang wrapper of openCV) code written in Golang. The video is enqueued into a dockerized Kafka topic. A multistage image build is performed to minimize runtime image size. RTSP is prevalent in security cameras and commercial camera systems.
 + Zookeeper and Kafka modules: Zookeeper and Kafka container instances are spun from dockerized images from [Confluent](https://docs.confluent.io/current/installation/docker/docs/image-reference.html). Besides message passing, Kafka is used for inter-language communication between Golang code and Python code, in this project.
-+ `PyConsumerRTSP` module: The video is consumed from the Kafka topic by a standalone Python code running in the host machine (i.e., outside of Docker). The fetched video frames are displayed using openCV. Some simple computation is performed on each video frame and printed to screen by the Python code. This signal procesing portion serves as a template (or placeholder) for real practical signal processing code.
++ `PyConsumerRTSP` module: The video is consumed from the Kafka topic by a standalone Python code running in the host machine (i.e., outside of Docker). The fetched video frames are displayed using openCV. Some simple computation is performed on each video frame and results are printed to screen by the Python code. This signal procesing portion serves as a template (or placeholder) for real practical signal processing code.
 + `PyConsumerRTSP2` module: This is a duplicate of `PyConsumerRTSP` package. Running two consumers from two different consumer groups simultaneously, namely `PyConsumerRTSP` and `PyConsumerRTSP2`, which consume from the same Kafka topic demonstrates scalability of the data pipeline.
 
 ## Repository
@@ -274,14 +274,14 @@ ENTRYPOINT ["/go/bin/app"]
 
 The `denismakogon/gocv-alpine:3.4.2-buildstage` base image consists of Alpine 3.7, FFMPEG 4.0, Golang 1.10, OpenCV 3.4.2, and OpenCV 3.4.2 contrib packages required by GoCV. A multistage build is performed to minimize runtime image size. Hence, the compiled binary is copied from the build-stage into a basic runtime base image `denismakogon/gocv-alpine:3.4.2-runtime` consisting of Alpine 3.7.
 
-The `goproducerrtsp` service is started by the running `docker-compose up` on the following Docker-compose.yml file. To enable internal Docker communication between `goproducerrtsp` and `kafka` containers, the `KAFKAPORT` address is set to `kafka:29092`.
+The `goproducerrtsp` service is started by running `docker-compose up` on the following Docker-compose.yml file. To enable internal Docker communication between `goproducerrtsp` and `kafka` containers, the `KAFKAPORT` address is set to `kafka:29092`.
 
 ```yml
 version: '3'
 
 services:
   #Producer to obtain data from RTSP and write into Kafka queue
-  rtsp:
+  goproducerrtsp:
     image: goproducerrtsp
     container_name: goproducerrtsp
     environment:
@@ -300,7 +300,7 @@ networks:
 
 ### PyConsumerRTSP
 
-The video frames are retrieved a Kafka consumer The Kafka consumer uses [kafka-python](https://github.com/dpkp/kafka-python) library.
+The video frames are retrieved by a Kafka consumer in Python using the [kafka-python](https://github.com/dpkp/kafka-python) library. A further wrapper for Python consumer (and producer) built on top of kafka-python library is provided for ease of use in my [kafkapc_python](https://github.com/Adaickalavan/DataPipeline/tree/master/pyconsumerrtsp/kafkapc_python) package.
 
 ```python
 from dotenv import load_dotenv
@@ -331,7 +331,7 @@ def main():
     for m in consumer:
         #Read message contents
         val = m.value
-        print("Time:",m.timestamp,", Topic:",m.topic) 
+        print("Time:",m.timestamp,", Topic:",m.topic)
 
         #Message handler
         img = message.handler(val)
@@ -355,14 +355,38 @@ if __name__ == "__main__":
 
 ```
 
-To generate `requirements.txt` file for Python projects
+Environment variables are saved in a `.env` file, as shown below. [python-dotenv](https://github.com/theskumar/python-dotenv) library is used to load the `.env` file into Python.
+```yml
+#Add environment variables here, if there is any
+
+TOPICNAME=timeseries_1
+# KAFKAPORT=localhost:9092 #For native Docker (e.g., in Windows 10)
+KAFKAPORT=192.168.99.100:9092 #For Docker Tool (e.g., in Windows 7)
+CONSUMERGROUP=consumerGroup_1
+```
+
+The Python code is to be run on a standalone mode, outside of the Docker environment. Hence, for the Python code to communicate with the `kafka` container living inside the Docker environment, set `KAFKAPORT=192.168.99.100:9092`.
+
+Remember to use your Docker machine IP (e.g., `192.168.99.100` as shown in above code) if you are using Docker Tool (or a VM). Otherwise, if you are using native Docker, please replace the IP addresses with `localhost` as shown commented in the above code.
+
+Slice of bytes from Golang representing image pixel values is stored as base-64 string in Kafka topic. `message.handler` function converts the base-64 string into appropriately shaped 3-channel RGB numpy matrix. Converted numpy matrix is then displayed by [OpenCV-python](https://opencv-python-tutroals.readthedocs.io/) library.
+
+The `dataprocessing.alg` module provides a template to perform any further signal processing steps.
+
+Python project dependencies can be easily managed in a two step process. First, execute `pipreqs` command to generate `requirements.txt` file containing all the required import libraries via for Python projects.
 
 ```python
-    pipreqs [options] <path/to/Python/project/folder>
+pipreqs [options] <path/to/Python/project/folder>
 
-    [options]
-    --force : to overwrite existing file
+[options]
+--force : to overwrite existing file
 ```
+
+Although, the Python code in this project is meant to be run as a standalone monolithic code, it may be containerized. Sample [Dockerfile]() to build Python image and Docker-compose.yml to spin up the Python container are provided in the repsitory. and Do
+
+docker compose file are included but not used can use for dockerizing the code
+
+
 
 
 ### PyConsumerRTSP2
