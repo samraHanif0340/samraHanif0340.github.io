@@ -136,17 +136,19 @@ The `KAFKA_ADVERTISED_LISTENERS` variable is set to `192.168.99.100:9092` and `k
 
 Remember to use your Docker machine IP (e.g., `192.168.99.100` as shown in above code) if you are using Docker Tool (or a VM). Otherwise, if you are using native Docker, please replace the IP addresses with `localhost` as shown commented in the above code.
 
-Issue the following Docker commands:
+Issue the following Docker commands in the working directory of the Docker-compose.yml file:
 
-+ To run the Zookeeper and Kafka containers
++ To run Zookeeper and Kafka containers
   + `docker-compose up`
-+ To tear down all containers and stored volume at the end
++ To tear down all containers and stored volume at the end of operation
   + `docker-compose down -v`
   + `docker system prune`
   + `docker volume prune`
   + `docker network prune`
 
 ### GoProducerRTSP
+
+Secondly, the Kafka producer code, in Golang, to stream RTSP video into Kafka topic `timeseries_1` is shown below. [Sarama](https://github.com/Shopify/sarama) library is used as the Golang client for Kafka producer. A further wrapper for Golang producer (and consumer) built on top of Sarama and [wvanbergen](github.com/wvanbergen/kafka/consumergroup) libraries is provided for ease of use in my [kafkapc](github.com/adaickalavan/kafkapc) package.
 
 ```go
 package main
@@ -230,6 +232,7 @@ func main() {
 		//Send message into Kafka queue
 		producer.Input() <- msg
 
+		//Print time of receiving each image to show the code is running
 		fmt.Fprintf(outputWriter, "---->>>> %v\n", time.Now())
 	}
 }
@@ -244,8 +247,10 @@ type Result struct {
 ```
 
 
-+ Build image of Go code
-  + `docker build -t goproducerrtsp .`
+GoCV library is used to stream the RTSP video
+
+
+
 
 ```yml
 FROM denismakogon/gocv-alpine:3.4.2-buildstage as build-stage
@@ -296,6 +301,13 @@ networks:
 
 
 
+Issue the following commands in the working directory of the Docker-compose.yml file:
+
++ To run Zookeeper and Kafka containers
+  + `docker-compose up`
+
++ Build image of Go code
+  + `docker build -t goproducerrtsp .`
 
 
 
