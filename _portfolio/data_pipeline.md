@@ -355,8 +355,10 @@ if __name__ == "__main__":
 Environment variables are saved in a `.env` file, as shown below. The [python-dotenv](https://github.com/theskumar/python-dotenv) library is used to load the `.env` file into Python.
 ```yml
 TOPICNAME=timeseries_1
-# KAFKAPORT=localhost:9092 #For native Docker (e.g., in Windows 10)
-KAFKAPORT=192.168.99.100:9092 #For Docker Tool (e.g., in Windows 7)
+#For native Docker (e.g., in Windows 10)
+# KAFKAPORT=localhost:9092 
+#For Docker Tool (e.g., in Windows 7)
+KAFKAPORT=192.168.99.100:9092 
 CONSUMERGROUP=consumerGroup_1
 ```
 
@@ -388,8 +390,10 @@ The `pyconsumerrtsp2` Python module is simply a duplicate of `pyconsumerrtsp` mo
 From the `.env` file, we see that `pyconsumerrtsp2` subscribes to the same Kafka topic as `pyconsumerrtsp` but is assigned to a different consumergroup, namely, `consumerGroup_2`.
 ```yml
 TOPICNAME=timeseries_1
-# KAFKAPORT=localhost:9092 #For native Docker (e.g., in Windows 10)
-KAFKAPORT=192.168.99.100:9092 #For Docker Tool (e.g., in Windows 7)
+#For native Docker (e.g., in Windows 10)
+# KAFKAPORT=localhost:9092 
+#For Docker Tool (e.g., in Windows 7)
+KAFKAPORT=192.168.99.100:9092 
 CONSUMERGROUP=consumerGroup_2
 ```
 
