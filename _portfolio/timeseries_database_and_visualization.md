@@ -12,7 +12,7 @@ This page is under construction. Please check back later for updates.
 
 ## Info
 
-A real-time time-series database is implemented using InfluxDB abd is visualized using Granafa.
+A real-time time-series database is implemented using InfluxDB and is visualized using Grafana.
 
 ![pipeline](/assets/images/timeseries_01.jpg){:height="100%" width="100%" .align-center}
 
