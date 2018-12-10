@@ -80,8 +80,6 @@ DataPipeline                # Main folder
 
 ## System Design
 
-
-
 The complete system design and data flow of this project is illustrated by the following image.
 
 ![pipeline](/assets/images/pipeline_01.jpg){:height="100%" width="100%" .align-center} -->
