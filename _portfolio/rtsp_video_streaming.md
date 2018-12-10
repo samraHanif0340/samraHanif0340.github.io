@@ -13,10 +13,10 @@ A real time streaming protocol ([RTSP](https://en.wikipedia.org/wiki/Real_Time_S
 
 + `GoProducerRTSP` module: An RTSP video is streamed from a third party website using dockerized [GoCV](https://gocv.io/) (a golang wrapper of openCV) code written in Golang. The video is enqueued in a dockerized Kafka topic. A multistage image build is performed to minimize runtime image size. RTSP is prevalent in security cameras and commercial camera systems.
 + Zookeeper and Kafka modules: Zookeeper and Kafka container instances are created from [Confluent](https://docs.confluent.io/current/installation/docker/docs/image-reference.html) docker images. Besides message passing, Kafka is used for inter-language communication between Golang code and Python code, in this project.
-+ `PyConsumerRTSP` module: The video is consumed from the Kafka topic by a standalone Python code running in the host machine (i.e., outside of Docker). The fetched video frames are displayed using OpenCV. Some simple computation is performed on each video frame and results are printed to screen. This simple signal processing code serves as a placeholder for the real signal processing code later.
++ `PyConsumerRTSP` module: The video is consumed from the Kafka topic by a Python code running in the host machine (i.e., outside of Docker). The fetched video frames are displayed using OpenCV. Some simple computation is performed on each video frame and results are printed to screen. This simple signal processing code serves as a placeholder for the real signal processing code later.
 + `PyConsumerRTSP2` module: This is a duplicate of `PyConsumerRTSP` module. The consumers of `PyConsumerRTSP` and `PyConsumerRTSP2` belong to two different consumer groups but consume from the same Kafka topic. Running them simultaneously, demonstrates the scalability of the data pipeline.
 
-## Repository
+## Learning Outcome
 
 The [repository](https://github.com/Adaickalavan/DataPipeline) contains the following:
 
@@ -27,6 +27,18 @@ The [repository](https://github.com/Adaickalavan/DataPipeline) contains the foll
 + Python code
   + Kafka consumer for RTSP video
   + OpenCV and dummy signal processing code
+
+At the end of this project, we should be able to:
++ manage Go dependencies using `dep`
++ stream RTSP video
++ use dockerized Zookeeper and Kafka
++ dockerize Golang code
++ perform internal/external Docker networking
++ use dockerized GoCV (i.e., Golang client for OpenCV)
++ use of Sarama library (Golang client for Kafka) and Kafka-Python library (Python client for Kafka)
++ perform docker multistage build to reduce image size
++ use Kafka for inter-language communication (between Golang and Python)
++ building scalable and fault tolerant data pipeline with multiple producers and consumers
 
 ## Project Structure
 
@@ -362,7 +374,7 @@ KAFKAPORT=192.168.99.100:9092
 CONSUMERGROUP=consumerGroup_1
 ```
 
-The Python code is to be run on a standalone mode, outside of the Docker environment. Hence, for the Python code to communicate with the `kafka` container living inside the Docker environment, set `KAFKAPORT=192.168.99.100:9092`.
+The Python code is to be run on the host machine, outside of the Docker environment. Hence, for the Python code to communicate with the `kafka` container living inside the Docker environment, set `KAFKAPORT=192.168.99.100:9092`.
 
 Remember to use your Docker machine IP (e.g., `192.168.99.100` as shown in above code) if you are using Docker Tool (or a VM). Otherwise, if you are using native Docker, please replace the IP addresses with `localhost` as shown commented in the above code.
 
@@ -381,11 +393,11 @@ pipreqs [options] <path/to/Python/project/folder>
 
 Second, install the dependencies via `pip install -r requirements.txt`.
 
-Although the Python code in this project is meant to be run as a standalone code, it may be containerized. Sample [Dockerfile](https://github.com/Adaickalavan/DataPipeline/blob/master/pyconsumerrtsp/Dockerfile) to build the Python image and sample [Docker-compose.yml](https://github.com/Adaickalavan/DataPipeline/blob/master/pyconsumerrtsp/Docker-compose.yml) to instantiate the Python container are provided in the repository.
+Although the Python code in this project is meant to be run on the host machine, it may be containerized. Sample [Dockerfile](https://github.com/Adaickalavan/DataPipeline/blob/master/pyconsumerrtsp/Dockerfile) to build the Python image and sample [Docker-compose.yml](https://github.com/Adaickalavan/DataPipeline/blob/master/pyconsumerrtsp/Docker-compose.yml) to instantiate the Python container are provided in the repository.
 
 ### PyConsumerRTSP2
 
-The `pyconsumerrtsp2` Python module is simply a duplicate of `pyconsumerrtsp` module. Running both Python modules simultaneously illustrates the scalability and resilience of the Kafka based system. The `pyconsumerrtsp2` module similarly runs as a standalone code.
+The `pyconsumerrtsp2` Python module is simply a duplicate of `pyconsumerrtsp` module. Running both Python modules simultaneously illustrates the scalability and resilience of the Kafka based system. The `pyconsumerrtsp2` module similarly runs on the host machine, outside the Docker environment.
 
 From the `.env` file, we see that `pyconsumerrtsp2` subscribes to the same Kafka topic as `pyconsumerrtsp` but is assigned to a different consumergroup, namely, `consumerGroup_2`.
 ```yml
