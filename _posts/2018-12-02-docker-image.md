@@ -18,3 +18,13 @@ Below, I have listed several helpful Docker images which I maintain at [DockerHu
     + Confluent-Kafka-Go
 
     This docker image can be used as a build-stage image to build applications which depend on Golang and confluent-kafka-go.
+
+1. **GoCV**
+
+   Automated docker build image for:
+   
+    + Golang:latest (Debian based image)
+    + GoCV
+    + OpenCV 4.0.0
+
+    This docker image can be used as a build-stage image to build applications which depend on Golang and GoCV.
