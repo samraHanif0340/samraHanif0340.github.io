@@ -18,7 +18,7 @@ A real time streaming protocol ([RTSP](https://en.wikipedia.org/wiki/Real_Time_S
 
 ## Learning Outcome
 
-The [repository](https://github.com/Adaickalavan/DataPipeline) contains the following:
+The [repository](https://github.com/Adaickalavan/RTSP-Video-Streaming) contains the following:
 
 + Docker-compose file for Zookeeper and Kafka services
 + Go code
