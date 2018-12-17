@@ -9,7 +9,7 @@ header:
 
 ## Info
 
-This Parking Lot Problem is a popular programming assignment at various companies like Google and Amazon. We are to utilize the appropriate data structures to solve a straightforward yet intricate problem of assigning vehicle slots in Golang.
+This Parking Lot Problem is a popular programming assignment at various companies like Google and Amazon. We are to utilize the appropriate data structures to solve a straightforward yet intricate problem of assigning vehicle slots, in Golang.
 
 ## Problem Statement
 
