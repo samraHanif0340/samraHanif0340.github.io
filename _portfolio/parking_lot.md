@@ -17,8 +17,8 @@ Parking lot problem. This is a popular programming assignment at companies like 
 
 The [repository](https://github.com/Adaickalavan/parking-lot) contains the following:
 
-+ Question in pdf
-+ Go code
++ Parking lot problem question in pdf
++ Golang solution code
 
 ## Instructions
 
