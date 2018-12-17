@@ -20,6 +20,13 @@ The [repository](https://github.com/Adaickalavan/parking-lot) contains the follo
 + Parking lot problem question in pdf
 + Golang solution code
 
+## Learning Outcome
+
+At the end of this project, we should be able to:
+
++ solve the Parking Lot problem with data structures optimized for complexity
++ utilize heap, hash map, and slice, data structures in Go
+
 ## Instructions
 
 1. **Setup Go**
