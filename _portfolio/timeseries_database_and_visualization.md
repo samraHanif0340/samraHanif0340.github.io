@@ -45,7 +45,7 @@ At the end of this project, we should be able to:
 
 The project structure is as follows:
 
-```go
+```text
 Timeseries-Database         # Main folder
 ├── influxdbgrafana         # Docker container for InfluxDB and Grafana
 │   ├── grafana             #
