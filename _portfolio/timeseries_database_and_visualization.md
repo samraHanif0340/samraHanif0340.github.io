@@ -10,7 +10,15 @@ header:
 {: .notice--success}
 This page is under construction. Please check back later for updates.
 
-## Info
+## Introduction
+
+The figure below shows a typical data engineering pipeline for a production system. 
+
+![data_engineering](/assets/images/data_engineering_01.jpg){:height="100%" width="100%" .align-center}
+
+It consists of some 
+
+We model the visualization part of a bigger data pipeline. The bigger data pipeline may be learnt from my other two proects, namely, [IceCream API](https://adaickalavan.github.io/portfolio/icecreamapi/) and [RTSP Video, Kafka, and Microservices](https://adaickalavan.github.io/portfolio/rtsp_video_streaming/) projects.
 
 A real-time time-series database is implemented using InfluxDB and is visualized using Grafana.
 
