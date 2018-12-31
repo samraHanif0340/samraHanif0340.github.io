@@ -2,7 +2,7 @@
 title: "Timeseries Database and Visualization"
 excerpt: "InfluxDB, Grafana, and Golang"
 header:
-  teaser: assets/images/data_engineering_01.jpg
+  teaser: assets/images/timeseries_01.jpg
 ---
 
 {% include toc %}
@@ -12,21 +12,27 @@ This page is under construction. Please check back later for updates.
 
 ## Introduction
 
-The figure below shows a typical data engineering pipeline for a production system. 
+The figure below shows a typical data engineering pipeline for a production system, where each block is a microservice launched from a Docker container.
 
 ![data_engineering](/assets/images/data_engineering_01.jpg){:height="100%" width="100%" .align-center}
 
-It consists of some 
+It consists of
++ REST api
++ Streaming of sensor inputs
++ Kafka for message queueing/passing
++ Signal processing blocks
++ Database (e.g., MongoDB, InfluxDB)
++ Visualization tool (e.g., Grafana)
 
-We model the visualization part of a bigger data pipeline. The bigger data pipeline may be learnt from my other two proects, namely, [IceCream API](https://adaickalavan.github.io/portfolio/icecreamapi/) and [RTSP Video, Kafka, and Microservices](https://adaickalavan.github.io/portfolio/rtsp_video_streaming/) projects.
+In this project, we develop the usage of timeseries database, InfluxDB, and visualization part of a bigger data pipeline. The bigger data pipeline may be learnt from my other two proects, namely, [IceCream API](https://adaickalavan.github.io/portfolio/icecreamapi/) and [RTSP Video, Kafka, and Microservices](https://adaickalavan.github.io/portfolio/rtsp_video_streaming/) projects.
 
 A real-time time-series database is implemented using InfluxDB and is visualized using Grafana.
 
 ![pipeline](/assets/images/timeseries_01.jpg){:height="100%" width="100%" .align-center}
 
-<!-- ## Learning Outcome
+## Learning Outcome
 
-The [repository](https://github.com/Adaickalavan/DataPipeline) contains the following:
+The [repository](https://github.com/Adaickalavan/Timeseries-Database-and-Visualization) contains the following:
 
 + Docker-compose file for Zookeeper and Kafka services
 + Go code
@@ -37,10 +43,10 @@ The [repository](https://github.com/Adaickalavan/DataPipeline) contains the foll
   + OpenCV and dummy signal processing code
 
 At the end of this project, we should be able to:
-+ manage Go dependencies using `dep`
-+ stream RTSP video
-+ use dockerized Zookeeper and Kafka
-+ dockerize Golang code
++ use dockerized InfluxDB and Grafana
++ visualize time series data in Grafana
++ query time series data in Grafana
+
 + perform internal/external Docker networking
 + use dockerized GoCV (i.e., Golang client for OpenCV)
 + use of Sarama library (Golang client for Kafka) and Kafka-Python library (Python client for Kafka)
@@ -48,7 +54,7 @@ At the end of this project, we should be able to:
 + use Kafka for inter-language communication (between Golang and Python)
 + building scalable and fault tolerant data pipeline with multiple producers and consumers
 
-## Project Structure
+<!-- ## Project Structure
 
 The project structure is as follows:
 
@@ -85,9 +91,3 @@ DataPipeline                # Main folder
 └── zookeeper               # Zookeeper and Kafka
     └── Docker-compose.yml  # To instantiate Docker container for Zookeeper and Kafka
 ```
-
-## System Design
-
-The complete system design and data flow of this project is illustrated by the following image.
-
-![pipeline](/assets/images/pipeline_01.jpg){:height="100%" width="100%" .align-center} -->
