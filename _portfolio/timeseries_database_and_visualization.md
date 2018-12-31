@@ -51,8 +51,8 @@ Timeseries-Database         # Main folder
 │   ├── grafana             #
 │   │   └── Demo.json       # Json file describing the Grafana layout
 │   └── Docker-compose.yml  # To instantiate Docker container
-├── gotimeseries            #
-│   ├── Docker-compose.yml  # To instantiate Docker container
-│   ├── Dockerfile          # To build Docker image
-│   └── main.go             # Go code (with mock data generator) feeding to InfluxDB
+└── gotimeseries            #
+    ├── Docker-compose.yml  # To instantiate Docker container
+    ├── Dockerfile          # To build Docker image
+    └── main.go             # Go code (with mock data generator) feeding to InfluxDB
 ```
