@@ -17,16 +17,18 @@ The figure below shows a typical data engineering pipeline for a production syst
 ![data_engineering](/assets/images/data_engineering_01.jpg){:height="100%" width="100%" .align-center}
 
 It consists of
+
 + REST api
 + Streaming of sensor inputs
 + Kafka for message queueing/passing
 + Signal processing blocks
 + Database (e.g., MongoDB, InfluxDB)
 + Visualization tool (e.g., Grafana)
++ GUI
 
-In this project, we develop the timeseries database, [InfluxDB](https://www.influxdata.com/), and visualize the timeseries data using [Grafana](https://grafana.com/). The building of the remainder of the system illustrated in the system design figure above is described in my other two projects, namely, [IceCream API](https://adaickalavan.github.io/portfolio/icecreamapi/) and [RTSP Video Streaming, Kafka, and Microservices](https://adaickalavan.github.io/portfolio/rtsp_video_streaming/) projects.
+In this project, we focus purely on developing the timeseries database, [InfluxDB](https://www.influxdata.com/), and visualizing of the timeseries data using [Grafana](https://grafana.com/). For simplicity, the input to InfluxDB is siulated using a mock data generator. Building the remainder of the data pipeline shown above is discussed in my other two projects, namely, [IceCream API](https://adaickalavan.github.io/portfolio/icecreamapi/) and [RTSP Video Streaming, Kafka, and Microservices](https://adaickalavan.github.io/portfolio/rtsp_video_streaming/) projects.
 
-A real-time time-series database is implemented using InfluxDB and is visualized using Grafana.
+The end product of this project should appear as follows.
 
 ![pipeline](/assets/images/timeseries_01.jpg){:height="100%" width="100%" .align-center}
 
@@ -36,52 +38,21 @@ The [repository](https://github.com/Adaickalavan/Timeseries-Database-and-Visuali
 
 At the end of this project, we should be able to:
 + use dockerized InfluxDB and Grafana
-+ visualize time series data in Grafana
++ visualize timeseries data in Grafana
 + query time series data in Grafana
-
-<!-- 
-+ Docker-compose file for Zookeeper and Kafka services
-+ Go code
-  + Dockerized Zookeeper and Kafka images
-  + Dockerized Kafka producer with GoCV (openCV) library
-+ Python code
-  + Kafka consumer for RTSP video
-  + OpenCV and dummy signal processing code
 
 ## Project Structure
 
 The project structure is as follows:
 
-```text
-DataPipeline                # Main folder
-├── goproducerrtsp          # To grab frames from RTSP video website and to enqueue in Kafka
-│   ├── vendor              # Dependency vendor files generated using 'dep ensure'
-│   │   └── ...             #
-│   ├── .env                # Environment variables
+```go
+Timeseries-Database         # Main folder
+├── influxdbgrafana         # Docker container for InfluxDB and Grafana
+│   ├── grafana             #
+│   │   └── Demo.json       # Json file describing the Grafana layout
+│   └── Docker-compose.yml  # To instantiate Docker container
+├── gotimeseries            #
 │   ├── Docker-compose.yml  # To instantiate Docker container
 │   ├── Dockerfile          # To build Docker image
-│   ├── Gopkg.lock          # Dependency version file generated using 'dep ensure'
-│   ├── Gopkg.toml          # Dependency version file generated using 'dep ensure'
-│   └── main.go             # Go code producing to Kafka
-├── pythonconsumerrtsp      # To consume from Kafka in Python, outside Docker environment
-│   ├── dataprocessing      # Template folder for signal processing
-│   │   ├── __init__.py     # Package file
-│   │   └── alg.py          # Dummy signal processing object: Computes average pixel value
-│   ├── kafkapc_python      # Kafka producer and consumer using kafka-python library
-│   │   └── __init__.py     #
-│   ├── message             # Kafka message handling function
-│   │   └── __init__.py     #
-│   ├── .env                # Environment variables
-│   ├── Docker-compose.yml  # To instantiate Docker container
-│   ├── Dockerfile          # To build Docker image
-│   ├── main.py             # Python code consuming from Kafka
-│   └── requirements.txt    # Imported libraries in the python code
-├── pythonconsumerrtsp2     # Duplicate of `pythonconsumerrtsp` to illustrate code scalability
-│   ├── ...                 #
-│       .                   #
-│       .                   #
-│       .                   #
-│   └── ...                 #
-└── zookeeper               # Zookeeper and Kafka
-    └── Docker-compose.yml  # To instantiate Docker container for Zookeeper and Kafka
+│   └── main.go             # Go code (with mock data generator) feeding to InfluxDB
 ```
