@@ -12,7 +12,7 @@ This page is under construction. Please check back later for updates.
 
 ## Introduction
 
-The figure below shows a typical data engineering pipeline for a production system, where each block is a microservice launched from a Docker container.
+The figure below shows a typical data engineering pipeline for a production system, where each block is a microservice launched from a Docker container. Docker is used for ease of deployment, environment agnostic characteristics, modularity (i.e., microservice), scalability, and maintainability in the long run.
 
 ![data_engineering](/assets/images/data_engineering_01.jpg){:height="100%" width="100%" .align-center}
 
@@ -24,7 +24,7 @@ It consists of
 + Database (e.g., MongoDB, InfluxDB)
 + Visualization tool (e.g., Grafana)
 
-In this project, we develop the usage of timeseries database, InfluxDB, and visualization part of a bigger data pipeline. The bigger data pipeline may be learnt from my other two proects, namely, [IceCream API](https://adaickalavan.github.io/portfolio/icecreamapi/) and [RTSP Video, Kafka, and Microservices](https://adaickalavan.github.io/portfolio/rtsp_video_streaming/) projects.
+In this project, we develop the timeseries database, [InfluxDB](https://www.influxdata.com/), and visualize the timeseries data using [Grafana](https://grafana.com/). The building of the remainder of the system illustrated in the system design figure above is described in my other two projects, namely, [IceCream API](https://adaickalavan.github.io/portfolio/icecreamapi/) and [RTSP Video Streaming, Kafka, and Microservices](https://adaickalavan.github.io/portfolio/rtsp_video_streaming/) projects.
 
 A real-time time-series database is implemented using InfluxDB and is visualized using Grafana.
 
@@ -34,6 +34,12 @@ A real-time time-series database is implemented using InfluxDB and is visualized
 
 The [repository](https://github.com/Adaickalavan/Timeseries-Database-and-Visualization) contains the following:
 
+At the end of this project, we should be able to:
++ use dockerized InfluxDB and Grafana
++ visualize time series data in Grafana
++ query time series data in Grafana
+
+<!-- 
 + Docker-compose file for Zookeeper and Kafka services
 + Go code
   + Dockerized Zookeeper and Kafka images
@@ -42,19 +48,7 @@ The [repository](https://github.com/Adaickalavan/Timeseries-Database-and-Visuali
   + Kafka consumer for RTSP video
   + OpenCV and dummy signal processing code
 
-At the end of this project, we should be able to:
-+ use dockerized InfluxDB and Grafana
-+ visualize time series data in Grafana
-+ query time series data in Grafana
-
-+ perform internal/external Docker networking
-+ use dockerized GoCV (i.e., Golang client for OpenCV)
-+ use of Sarama library (Golang client for Kafka) and Kafka-Python library (Python client for Kafka)
-+ perform docker multistage build to reduce image size
-+ use Kafka for inter-language communication (between Golang and Python)
-+ building scalable and fault tolerant data pipeline with multiple producers and consumers
-
-<!-- ## Project Structure
+## Project Structure
 
 The project structure is as follows:
 
