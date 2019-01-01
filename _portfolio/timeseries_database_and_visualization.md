@@ -26,7 +26,7 @@ It consists of
 + Visualization tool (e.g., Grafana)
 + GUI
 
-In this project, we focus purely on developing the timeseries database, [InfluxDB](https://www.influxdata.com/), and visualizing of the timeseries data using [Grafana](https://grafana.com/). For simplicity, the input to InfluxDB is siulated using a mock data generator. Building the remainder of the data pipeline shown above is discussed in my other two projects, namely, [IceCream API](https://adaickalavan.github.io/portfolio/icecreamapi/) and [RTSP Video Streaming, Kafka, and Microservices](https://adaickalavan.github.io/portfolio/rtsp_video_streaming/) projects.
+In this project, we focus purely on developing the timeseries database, [InfluxDB](https://www.influxdata.com/), and visualizing of the timeseries data using [Grafana](https://grafana.com/). For simplicity, the input to InfluxDB is simulated using a mock data generator. Building the remainder of the data pipeline shown above is discussed in my other two projects, namely, [IceCream API](https://adaickalavan.github.io/portfolio/icecreamapi/) and [RTSP Video Streaming, Kafka, and Microservices](https://adaickalavan.github.io/portfolio/rtsp_video_streaming/) projects.
 
 The end product of this project should appear as follows.
 
