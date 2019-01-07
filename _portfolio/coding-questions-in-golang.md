@@ -452,7 +452,7 @@ The [repository](https://github.com/Adaickalavan/Coding-Questions-in-Golang) con
 
 1. <a name="tddSet"></a> Implement a Set in Golang using test driven development method. The Set should implement `Add`,`Remove`,`Contains`,`Union`, and `Intersection`, functions.
 
-    Link to solution [code](https://github.com/Adaickalavan/Coding-Questions-in-Golang/tree/master/tddSet/tddSetSimple).
+    Link to solution [code](https://github.com/Adaickalavan/Coding-Questions-in-Golang/tree/master/tddSet).
 
     ```go
     package set
