@@ -27,6 +27,7 @@ We prioritise recursive, concurrent, and clean codes. The solution codes are pre
 7. [Match brackets in a string](#matchBrackets)
 8. [Range sum query](#rangeSum)
 9. [Longest valid parentheses substring](#longestSubstring)
+10. [Test driven development of Set](#tddSet)
 
 {: .notice--success}
 More programming challenge questions in Golang will be added as time permits. Let me know if there is any particular problem you would like to have solved here.
@@ -447,4 +448,72 @@ The [repository](https://github.com/Adaickalavan/Coding-Questions-in-Golang) con
     Longest valid substring of )()()) is ()() , from  1 to  4
     Longest valid substring of ())((()) is (()) , from  4 to  7
     Longest valid substring of ())(() is () , from  0 to  1
+    ```
+
+1. <a name="tddSet"></a> Implement a Set in Golang using test driven development method. The Set should implement `Add`,`Remove`,`Contains`,`Union`, and `Intersection`, functions.
+
+    Link to solution [code](https://github.com/Adaickalavan/Coding-Questions-in-Golang/tree/master/tddSet/tddSetSimple).
+
+    ```go
+    package set
+
+    import (
+      "fmt"
+    )
+
+    //Set implements the set
+    type Set map[interface{}]struct{}
+
+    //NewSet returns a new set
+    func NewSet() *Set {
+      s := Set{}
+      return &s
+    }
+
+    //Print prints the keys within the set
+    func (s *Set) Print() {
+      fmt.Print("Contents of Set: ")
+      for key := range *s {
+        fmt.Print(key, ", ")
+      }
+    }
+
+    //Add adds key to the set
+    func (s *Set) Add(key interface{}) {
+      (*s)[key] = struct{}{}
+    }
+
+    //Remove removes key from the set
+    func (s *Set) Remove(key interface{}) {
+      delete((*s), key)
+    }
+
+    //Contains checks whether a key exists in set
+    func (s *Set) Contains(key interface{}) bool {
+      _, ok := (*s)[key]
+      return ok
+    }
+
+    //Union joins two sets
+    func (s *Set) Union(other *Set) *Set {
+      newSet := NewSet()
+      for key := range *s {
+        (*newSet)[key] = struct{}{}
+      }
+      for key := range *other {
+        (*newSet)[key] = struct{}{}
+      }
+      return newSet
+    }
+
+    //Intersection returns intersection between two sets
+    func (s *Set) Intersection(other *Set) *Set {
+      newSet := NewSet()
+      for key := range *s {
+        if _, ok := (*other)[key]; ok {
+          (*newSet)[key] = struct{}{}
+        }
+      }
+      return newSet
+    }
     ```
