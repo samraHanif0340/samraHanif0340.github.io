@@ -18,8 +18,7 @@ The [repository](https://github.com/Adaickalavan/docker-images) contains the fol
 1. **GoKafka**
 
     Automated docker build image for:
-    + Alpine
-    + Golang
+    + Golang:alpine
     + Librdkafka
     + Confluent-Kafka-Go
 
@@ -31,15 +30,15 @@ The [repository](https://github.com/Adaickalavan/docker-images) contains the fol
 
 3. **GoCV-Alpine**
 
+   Automated docker build image for:
    1. gocv-alpine:4.0.0-build-stage
-      + Alpine
-      + Golang
+      + Golang:alpine
       + OpenCV 4.0.0
       + FFmpeg
-
-   2. gocv-alpine:4.0.0-runtime
-      + Alpine
-      + Golang
+  
+   Automated docker build image for:
+   1. gocv-alpine:4.0.0-runtime
+      + Golang:alpine
       + OpenCV 4.0.0
       + FFmpeg
       + Only necessary files included
@@ -53,7 +52,7 @@ The [repository](https://github.com/Adaickalavan/docker-images) contains the fol
      + OpenCV 4.0.0
      + FFmpeg
 
-   + FROM this-docker-file
+   + added in this-docker-file
      + GoCV
      + Librdkafka
      + Confluent-Kafka-Go
