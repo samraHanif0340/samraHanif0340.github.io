@@ -33,15 +33,15 @@ Automated docker build images and their contents are shown below.
     + FROM denismakogon/ffmpeg-alpine:4.0-golang
     + Add
       + OpenCV 4.0.1
-      + GUI
+      + GUI - highgui providing display functionalities for OpenCV
 
-    Output image: adaickalavan/gocv-alpine:4.0.1-buildstage
+    Output image: adaickalavan/gocv-alpine
   
 3. **GoCVKafka-Alpine**
 
     Repository [link](https://github.com/Adaickalavan/gocvkafka-alpine)
 
-    + FROM adaickalavan/gocv-alpine:4.0.1-buildstage
+    + FROM adaickalavan/gocv-alpine
     + Add
       + GoCV
       + Librdkafka
