@@ -11,7 +11,7 @@ header:
 
 We consider two programming assignments on REST API design and on dynamic programming skills. The first problem revolves around designing a scalable REST API with ability to handle large volume of requests. The second problem poses an extension to classic problems such as [*Knapsack Problem*](https://en.wikipedia.org/wiki/Knapsack_problem) and [*Coin Change Problem*](https://en.wikipedia.org/wiki/Change-making_problem).
 
-For clarity of presentation, the two problem statements are explained below, whereas the solutions are explained by the `README.md` files in their corresponding Github repositories.
+For clarity of presentation, the two problem statements are explained below, whereas the solutions are explained in their corresponding Github repositories.
 
 ## Problem Statement
 
