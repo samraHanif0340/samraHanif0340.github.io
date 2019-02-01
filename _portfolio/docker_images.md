@@ -26,7 +26,7 @@ Automated docker build images and their contents are shown below.
 
     Output image: adaickalavan/gokafka-alpine
 
-2. **GoCV-Alpine:4.0.1-buildstage**
+2. **GoCV-Alpine**
 
     Repository [link](https://github.com/Adaickalavan/gocv-alpine)
 
