@@ -9,7 +9,7 @@ header:
 
 ## Info
 
-This Parking Lot Problem is a popular programming assignment at various companies, like Google and Amazon. We are to utilize the appropriate data structures to solve a straightforward yet intricate problem of assigning vehicle slots, in Golang.
+This Parking Lot Problem is a popular programming assignment at various companies, like Google and Amazon. We are to utilize the appropriate data structures to solve a straightforward yet intricate problem of assigning vehicle slots, in Golang. The problem statement and its solution are first described. Finally, a code refactoring exercise, which is an extension to the original problem, is posed at the bottom of this page.
 
 ## Problem Statement
 
@@ -19,7 +19,7 @@ When a vehicle enters the parking lot, its vehicle registration number (i.e., nu
 
 + Each customer should be allocated the nearest available parking slot to the entry point.
 + Upon exiting the parking lot, the customer returns the ticket which marks their previously allocated lot as now available.
-+ Due to government regulation, the system should provide the ability to determine:
++ The system should provide the ability to determine:
   + Registration numbers of all cars of a particular colour.
   + Slot number in which a car with a given registration number is parked.
   + Slot numbers of all slots where a car of a particular colour is parked.
@@ -239,3 +239,33 @@ project                               # folder containing all project files
 4. **Alternative solutions to reduce complexity at the expense of increased memory**
     + To achieve complexity O(1) in retrieving a car by colour, implement an additional hash map with `colour` as `key` to store all the cars parked in the carpark.
     + To achieve complexity O(1) in retrieving a car by registration number, implement an additional hash map with `registration number` as `key` to store all the cars parked in the carpark.
+
+## Code Refactoring
+
+Thanks to you, Mr Zorro's multi­storey parking lot is functioning efficiently. Mr Zorro has now expanded his business by building two additional multistorey parking lots in adjacent plots of land. The multistorey parking lots are numbered in an increasing order (i.e., 1, 2, 3, etc). He needs your help to refactor your original ticketing system to manage all three multistorey parking lots.
+
+1. The expanded ticketing system should provide the same ability to determine
+     + registration numbers of all cars of a particular colour,
+     + slot number in which a car with a given registration number is parked, and
+     + slot numbers of all slots where a car of a particular colour is parked,
+
+    across all three parking lots. For example, the query `slot_numbers_for_cars_with_colour white` should return all white cars irrespective of the parking lot they are parked in.  
+
+2. The expanded ticketing system should distribute customers among the three parking lots following either one of two rules. The ticketing system should accept rule changes dynamically during operation.
+   + Rule A - Even Distribution: Vehicles are evenly distributed among the three parking lots based on the their occupancy rate. Occupancy rate is defined as percentage of parking slots filled within a multistorey parking lot. Multistorey parking lot with lower occupancy rate is filled first. If multiple multistorey parking lots have the same occupancy rate, the lowest numbered multistorey parking lot is chosen.  
+   + Rule B - Sequential Allocation: Vehicles are assigned to the lowest numbered multistorey parking lot which has available parking slots. That is to say, vehicles fill up multistorey parking lot 1 before filling parking lot 2, and parking lot 2 is filled before parking lot 3.
+
+3. Remember that each customer should still be allocated the nearest available parking slot to the entry point within the multistorey parking lot to which they were assigned to.
+
+4. Vehicle registration number (i.e., number plate) and colour are noted upon ticket issuance. Upon exiting the parking lot, the customer returns the ticket which marks their previously allocated lot as now available.
+
+**Example**
+
+The following commands run in sequence should produce output as shown below:
+
+|              Input              |                       Output                       |
+|:-------------------------------:|:--------------------------------------------------:|
+| create_parking_lot 5            | Created a parking lot with 5 slots                 |
+| create_parking_lot 3            | Created a parking lot with 3 slots                 |
+| create_parking_lot 6            | Created a parking lot with 6 slots                 |
+| dispatch_rule even_distribution | Dispatcher is now using the Even Distribution rule |
