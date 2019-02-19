@@ -309,7 +309,7 @@ networks:
 
 ### PyConsumerRTSP
 
-The video frames are retrieved by a Kafka consumer in Python using the [kafka-python](https://github.com/dpkp/kafka-python) library. A further wrapper for Python consumer (and producer) built on top of kafka-python library is provided for ease of use in my [kafkapc_python](https://github.com/Adaickalavan/DataPipeline/tree/master/pyconsumerrtsp/kafkapc_python) package.
+The video frames are retrieved by a Kafka consumer in Python using the [kafka-python](https://github.com/dpkp/kafka-python) library. A further wrapper for Python consumer (and producer) built on top of kafka-python library is provided for ease of use in my [kafkapc_python](https://github.com/Adaickalavan/RTSP-Video-Streaming/tree/master/pyconsumerrtsp/kafkapc_python) package.
 
 ```python
 from dotenv import load_dotenv
@@ -393,7 +393,7 @@ pipreqs [options] <path/to/Python/project/folder>
 
 Second, install the dependencies via `pip install -r requirements.txt`.
 
-Although the Python code in this project is meant to be run on the host machine, it may be containerized. Sample [Dockerfile](https://github.com/Adaickalavan/DataPipeline/blob/master/pyconsumerrtsp/Dockerfile) to build the Python image and sample [Docker-compose.yml](https://github.com/Adaickalavan/DataPipeline/blob/master/pyconsumerrtsp/Docker-compose.yml) to instantiate the Python container are provided in the repository.
+Although the Python code in this project is meant to be run on the host machine, it may be containerized. Sample [Dockerfile](https://github.com/Adaickalavan/RTSP-Video-Streaming/blob/master/pyconsumerrtsp/Dockerfile) to build the Python image and sample [Docker-compose.yml](https://github.com/Adaickalavan/RTSP-Video-Streaming/blob/master/pyconsumerrtsp/Docker-compose.yml) to instantiate the Python container are provided in the repository.
 
 ### PyConsumerRTSP2
 
