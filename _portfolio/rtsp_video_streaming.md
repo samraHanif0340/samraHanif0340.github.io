@@ -157,7 +157,7 @@ Issue the following Docker commands in the working directory of the Docker-compo
 
 ### GoProducerRTSP
 
-The Kafka producer code, in Golang, to stream RTSP video into Kafka topic `timeseries_1` is shown below. [Sarama](https://github.com/Shopify/sarama) library is used as the Golang client for Kafka producer. A further wrapper for Golang producer (and consumer) built on top of Sarama and [wvanbergen](github.com/wvanbergen/kafka/consumergroup) libraries is provided for ease of use in my [kafkapc](github.com/adaickalavan/kafkapc) package.
+The Kafka producer code, in Golang, to stream RTSP video into Kafka topic `timeseries_1` is shown below. [Sarama](https://github.com/Shopify/sarama) library is used as the Golang client for Kafka producer. A further wrapper for Golang producer (and consumer) built on top of Sarama and [wvanbergen](https://github.com/wvanbergen/kafka/consumergroup) libraries is provided for ease of use in my [kafkapc](https://github.com/Adaickalavan/kafkapc) package.
 
 ```go
 package main
