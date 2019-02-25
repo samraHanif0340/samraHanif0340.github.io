@@ -13,6 +13,7 @@ categories:
 Sample C++ code for transmitting data via UDP socket.
 
 ```c++
+// C++ UDP Transmitter
 
 #include "Network.h"
 #include "iostream"
@@ -48,6 +49,8 @@ int main()
 Sample C++ code for receiving data via UDP socket.
 
 ```c++
+// C++ UDP Receiver
+
 #include "Network.h"
 #include "iostream"
 
@@ -78,9 +81,11 @@ int main()
 }
 ```
 
-Include the following code as `Network.h` header file, which is required for the UDP streaming above.
+Include the following code as `Network.h` header file, which is required for the C++ UDP streaming above.
 
 ```c++
+// Network.h header file for C++ UDP
+
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
 #include <system_error>
 #include <string>
@@ -167,9 +172,10 @@ class UDPSocket
 };
 ```
 
-Sample Python code for receiving data via UDP socket
+Sample Python code for receiving data via UDP socket.
 
 ```python
+# Python UDP Receiver
 
 import socket
 BUFFER_LEN = 100 #in bytes
