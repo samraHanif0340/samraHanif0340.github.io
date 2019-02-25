@@ -3,7 +3,11 @@ title: "Scalable Deployment"
 excerpt: "Video Analytics, TensorFlow Serving, Golang, Kafka, Docker, REST"
 header:
   teaser: assets/images/scalable_deployment_01.jpg
+feature_row:
+  - image_path: assets/images/scalable_deployment_01.jpg
 ---
+
+{% include feature_row %}
 
 {% include toc %}
 
