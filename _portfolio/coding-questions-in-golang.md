@@ -28,6 +28,7 @@ We prioritise recursive, concurrent, and clean codes. The solution codes are pre
 8. [Range sum query](#rangeSum)
 9. [Longest valid parentheses substring](#longestSubstring)
 10. [Test driven development of Set](#tddSet)
+11. [Sorted word count](#sortedWordCount)
 
 {: .notice--success}
 More programming challenge questions in Golang will be added as time permits. Let me know if there is any particular problem you would like to have solved here.
@@ -515,5 +516,123 @@ The [repository](https://github.com/Adaickalavan/Coding-Questions-in-Golang) con
         }
       }
       return newSet
+    }
+    ```
+
+2. <a name="sortedWordCount"></a> Given an input text, produce a table of words and the number of times those words have occurred in the input text. Sort the words first by descending order of cardinality, then by alphabetical order. Other constraints:
+   + Split words on whitespaces (newlines, spaces, tabs)
+   + Remove any non-letter characters. In regex terms, remove anything not of the class [a-zA-Z]
+   + Convert words to lowercase
+   + Only list the first 10 most frequently occurring words
+   + The text can include punctuation, non-letter characters, and mixed case
+  
+    Output should be formatted as: `<word><space><count><newline>`
+
+    Example input text:
+    ```text
+    The quick brown fox jumped over the lazy dog's bowl.
+    The dog was angry with the fox for considering him lazy.
+    ```
+    Expected output:
+    ```text
+    the 4
+    fox 2
+    lazy 2
+    angry 1
+    bowl 1
+    brown 1
+    considering 1
+    dog 1
+    dogs 1
+    for 1
+    ```
+
+    Link to solution [code](https://github.com/Adaickalavan/Coding-Questions-in-Golang/tree/master/sortedWordCount).
+
+    ```go
+    package main
+
+    import (
+      "fmt"
+      "log"
+      "regexp"
+      "sort"
+      "strings"
+    )
+
+    type byCount []wordCount
+
+    func (words byCount) Len() int {
+      return len(words)
+    }
+
+    func (words byCount) Swap(i int, j int) {
+      words[i], words[j] = words[j], words[i]
+    }
+
+    // Less sorts words by count, in descending order followed by alphabetical order
+    func (words byCount) Less(i int, j int) bool {
+      switch {
+      case words[i].count > words[j].count:
+        return true
+      case words[i].count == words[j].count && words[i].word < words[j].word:
+        return true
+      default:
+        return false
+      }
+    }
+
+    type wordCount struct {
+      word  string
+      count int
+    }
+
+    func sorter(words []string) {
+      m := make(map[string]int)
+      var list []wordCount
+
+      for _, word := range words {
+        m[word] = m[word] + 1
+      }
+
+      for key, val := range m {
+        list = append(list, wordCount{word: key, count: val})
+      }
+
+      sort.Sort(byCount(list))
+
+      // Print the 10 most frequent words
+      for _, elem := range list[:10] {
+        fmt.Println(elem.word, elem.count)
+      }
+
+    }
+
+    func clean(str string) []string {
+      // Convert letters to lowercase and split string into words
+      words := strings.Fields(strings.ToLower(str))
+
+      // Remove all non letter characters
+      reg, err := regexp.Compile("[^a-zA-Z0-9]+")
+      if err != nil {
+        log.Fatal(err)
+      }
+      for ii, elem := range words {
+        words[ii] = reg.ReplaceAllString(elem, "")
+      }
+
+      return words
+    }
+
+    func main() {
+      // Example string
+      str := `The quick brown fox jumped over the lazy dog's bowl.
+      The dog was angry with the fox for considering him lazy.`
+
+      // Clean up the string
+      words := clean(str)
+
+      // Sort the words
+      sorter(words)
     }
     ```
