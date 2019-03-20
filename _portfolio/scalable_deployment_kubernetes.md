@@ -2,8 +2,12 @@
 title: "Scalable Deployment in Kubernetes"
 excerpt: "Video Analytics, TensorFlow Serving, Golang, Kafka, Docker, REST"
 header:
-  teaser: assets/images/scalable_deployment_01.jpg
+  teaser: /assets/images/scalable_deployment_01.jpg
+feature_row:
+  - image_path: /assets/images/scalable_deployment_01.jpg
 ---
+
+{% include feature_row type="center"%}
 
 {% include toc %}
 
@@ -12,7 +16,15 @@ This page is under construction. Please check back later for updates.
 
 ## Introduction
 
-In this project, we will develop a real-time video analytic (i.e., machine learning on video input) from IP cameras and display deployment using
+In this project, we will develop a real-time video analytic (i.e., machine learning on video input) pipeline. Video feed will be streamed from IP cameras into a Kafka queue, processed by a machine learning model, the predictions will be imprinted onto the video, queued again into another Kafka topic, and then streamed to web for display. Microservices architecture is adopted, where all code is containerized using Dockers and orchestrated using Kubernetes.
+
+The following tools will be used in this project:
++ Kubernetes
++ Docker
++ Golang
++ Kafka
++ REST
++ TensorFlow Serving API
 
 The complete system design and data flow of this project is illustrated by the following image.
 

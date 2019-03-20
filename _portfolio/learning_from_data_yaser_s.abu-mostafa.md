@@ -5,8 +5,6 @@ header:
   teaser: /assets/images/Learning_from_Data_CaltechX.jpg
 feature_row:
   - image_path: /assets/images/Learning_from_Data_CaltechX.jpg
-#    alt: "Gameplay 2048"
-#    title: "Gameplay 2048"
 ---
 
 {% include feature_row type="center"%}
