@@ -2,7 +2,7 @@
 title: "RTSP Video, Kafka, and Microservices"
 excerpt: "Data pipeline: Golang, Python, Docker internal/external networking"
 header:
-  teaser: assets/images/surveilance_camera.jpg
+  teaser: assets/images/rtsp_video_streaming_01.jpg
 ---
 
 {% include toc %}

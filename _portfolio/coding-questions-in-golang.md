@@ -2,7 +2,7 @@
 title: "Coding Questions in Golang"
 excerpt: "Programming trivia in Golang"
 header:
-  teaser: assets/images/gopher_trivia.jpg
+  teaser: assets/images/coding_questions_in_golang_01.jpg
 feature_row:
   - image_path: /assets/images/gophercises_punching.jpg
   - image_path: /assets/images/gophercises_lifting.jpg
@@ -519,7 +519,7 @@ The [repository](https://github.com/Adaickalavan/Coding-Questions-in-Golang) con
     }
     ```
 
-2. <a name="sortedWordCount"></a> Given an input text, produce a table of words and the number of times those words have occurred in the input text. Sort the words first by descending order of cardinality, then by alphabetical order. Other constraints:
+<!-- 1. <a name="sortedWordCount"></a> Given an input text, produce a table of words and the number of times those words have occurred in the input text. Sort the words first by descending order of cardinality, then by alphabetical order. Other constraints:
    + Split words on whitespaces (newlines, spaces, tabs)
    + Remove any non-letter characters. In regex terms, remove anything not of the class [a-zA-Z]
    + Convert words to lowercase
@@ -635,4 +635,4 @@ The [repository](https://github.com/Adaickalavan/Coding-Questions-in-Golang) con
       // Sort the words
       sorter(words)
     }
-    ```
+    ``` -->

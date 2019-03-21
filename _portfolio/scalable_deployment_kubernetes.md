@@ -2,12 +2,13 @@
 title: "Scalable Deployment in Kubernetes"
 excerpt: "Video Analytics, TensorFlow Serving, Golang, Kafka, Docker, REST"
 header:
-  teaser: /assets/images/scalable_deployment_01.jpg
+  teaser: /assets/images/scalable_deployment_kubernetes_01.jpg
 feature_row:
-  - image_path: /assets/images/scalable_deployment_01.jpg
+  - image_path: /assets/images/scalable_deployment_kubernetes_03.jpg
+  - image_path: /assets/images/scalable_deployment_kubernetes_04.jpg
 ---
 
-{% include feature_row type="center"%}
+{% include feature_row %}
 
 {% include toc %}
 
@@ -26,9 +27,11 @@ The following tools will be used in this project:
 + REST
 + TensorFlow Serving API
 
+In this project, the video analytic will be on object recognition similar to ImageNet competition. In fact, we will deploy a TensorFlow Serving saved model, originally trained on ImageNet database, in our project.
+
 The complete system design and data flow of this project is illustrated by the following image.
 
-![pipeline](/assets/images/scalable_deployment_02.jpg){:height="100%" width="100%" .align-center}
+![pipeline](/assets/images/scalable_deployment_kubernetes_02.jpg){:height="100%" width="100%" .align-center}
 
 ## Learning Outcome
 
