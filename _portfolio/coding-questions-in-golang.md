@@ -28,7 +28,7 @@ We prioritise recursive, concurrent, and clean codes. The solution codes are pre
 8. [Range sum query](#rangeSum)
 9. [Longest valid parentheses substring](#longestSubstring)
 10. [Test driven development of Set](#tddSet)
-11. [Sorted word count](#sortedWordCount)
+<!-- 11. [Sorted word count](#sortedWordCount) -->
 
 {: .notice--success}
 More programming challenge questions in Golang will be added as time permits. Let me know if there is any particular problem you would like to have solved here.
