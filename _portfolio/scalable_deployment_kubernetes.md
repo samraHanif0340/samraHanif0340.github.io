@@ -27,7 +27,7 @@ The following tools will be used in this project:
 + REST
 + TensorFlow Serving API
 
-In this project, the video analytic will be on object recognition similar to ImageNet competition. In fact, we will deploy a TensorFlow Serving saved model, originally trained on ImageNet database, in our project.
+In this project, the video analytic will be object classification task, similar to the ImageNet competition. In fact, we will deploy a TensorFlow Serving saved model which was originally trained on ImageNet database.
 
 The complete system design and data flow of this project is illustrated by the following image.
 
