@@ -45,9 +45,10 @@ The complete system design and data flow of this project is illustrated by the f
 Find the source code in the [repository](https://github.com/Adaickalavan/Scalable-Deployment-Kubernetes).
 
 At the end of this project, we should be able to:
-+ Write deployment.yml files in Kubernetes and docker-compose.yml files in Docker.
++ Write deployment.yml files in Kubernetes and docker-compose.yml files in Docker
 + Run containerized Confluent Zookeeper and Confluent Kafka in Kubernetes
 + Use GoCV (Golang client for OpenCV) to stream video and to manipulate images in Golang
++ Build TensorFlow Serving and communicate using REST to deploy machine learning models
 + 
 
 ## Project Structure
@@ -231,12 +232,54 @@ For beginners in Kubernetes, please see my [post](/guides/guide-to-kubernetes/) 
 
 <u>main.go</u>
 + Consumes video from Kafka topic `TOPICNAMEIN`, and handles valid messages using `main-->message()` function.
-+ Consists of three goroutines, namely, (i) to consume messages from `TOPICNAMEIN`, (ii) to query TensorFlow model, and (ii) to rewrite processed frames into `TOPICNAMEOUT`
-+ The predictions of each machine learning model is imprinted onto the video.
++ The Kafka consumer always attempts to retrieve the latest messages in the Kafka topic-partition queue. This is achieved by moving the committed offset through the following code:
+    ```go
+      //Record the current topic-partition assignments
+      tpSlice, err := c.Assignment()
+      if err != nil {
+        log.Println(err)
+        continue
+      }
+
+      //Obtain the last message offset for all topic-partition
+      for index, tp := range tpSlice {
+        _, high, err := c.QueryWatermarkOffsets(*(tp.Topic), tp.Partition, 100)
+        if err != nil {
+          log.Println(err)
+          continue
+        }
+        tpSlice[index].Offset = kafka.Offset(high)
+      }
+
+      //Consume the last message in topic-partition
+      c.Assign(tpSlice)
+    ```
++ Consists of three goroutines, namely, (i) to consume messages from `TOPICNAMEIN`, (ii) to query TensorFlow model, and (ii) to rewrite processed frames into `TOPICNAMEOUT`.
+
+<u>main-->message()</u>  
++ Frame is extracted from received Kafka message
++ Frame is fed to each of the TensorFlow Serving saved models
++ The class predictions from each of the TensorFlow Serving is retrieved and imprinted onto the video.
+
+<u>models-->imagenet.Predict()</u>
++ Encodes `gocv.Mat` type to `JPEG` type, packs the images into a JSON structure and makes a POST request to the TensorFlow Serving pod at port 8500. 
++ Returns the predicted class
++ In the event the goroutine panicks, it is recovered and restarted via the defer function:
+    ```go
+    defer func() {
+      if r := recover(); r != nil {
+        log.Println("models-->imn.Predict():PANICKED AND RESTARTING")
+        log.Println("Panic:", r)
+        go imn.Predict()
+      }
+    }()
+    ```
 
 <u>confluentkafkago-->NewConsumer()</u>
 + Provides a high level wrapper code for creation of Confluent Kafka consumers.
 
+<u>assets-->imagenetLabels.json</u>
++ Contains class labels in JSON format from ImageNet competition. 
 
 ### TFServing
 
