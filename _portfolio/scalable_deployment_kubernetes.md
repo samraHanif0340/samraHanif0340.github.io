@@ -137,12 +137,12 @@ This project can be run either in Kubernetes cluster using the provided `deploym
     <td class="tg-7d57"></td>
   </tr>
   <tr>
-    <td class="tg-0pky">To start Zookeeper and Kafka</td>
+    <td class="tg-0pky">Start Zookeeper and Kafka</td>
     <td class="tg-0pky"><code>$ cd ~/Scalable-Deployment-Kubernetes/zookeeper</code><br><code>$ kubectl apply -f deployment.yml</code></td>
     <td class="tg-0pky"><code>$ cd ~/Scalable-Deployment-Kubernetes/zookeeper</code><br><code>$ docker-compose up</code></td>
   </tr>
   <tr>
-    <td class="tg-7d57">To start GoProducer<br>
+    <td class="tg-7d57">Start GoProducer<br>
       <ol style='list-style-type:disc'>
 		    <li>Streams video from IP camera into Kafka queue</li>
 	    </ol>
@@ -151,7 +151,7 @@ This project can be run either in Kubernetes cluster using the provided `deploym
     <td class="tg-7d57"><code>$ cd ~/Scalable-Deployment-Kubernetes/goproducer</code><br><code>$ docker build -t goproducer .</code><br><code>$ docker-compose up</code></td>
   </tr>
   <tr>
-    <td class="tg-0pky">To start GoConsumer<br>
+    <td class="tg-0pky">Start GoConsumer<br>
       <ol style='list-style-type:disc'>
 		    <li>Classifies objects in each frame using Resnet machine learning model</li>
 	    </ol>
@@ -160,7 +160,7 @@ This project can be run either in Kubernetes cluster using the provided `deploym
     <td class="tg-0pky"><code>$ cd ~/Scalable-Deployment-Kubernetes/goconsumer</code><br><code>$ docker build -t goconsumer .</code><br><code>$ docker-compose up</code></td>
   </tr>
   <tr>
-    <td class="tg-7d57">To start TensorFlow Serving<br>
+    <td class="tg-7d57">Start TensorFlow Serving<br>
       <ol style='list-style-type:disc'>
 		    <li>Answers REST queries to port 8501</li>
 	    </ol>
@@ -169,7 +169,7 @@ This project can be run either in Kubernetes cluster using the provided `deploym
     <td class="tg-7d57"><code>$ cd ~/Scalable-Deployment-Kubernetes/tfserving</code><br><code>$ docker build -t tfserving .</code><br><code>$ docker-compose up</code></td>
   </tr>
   <tr>
-    <td class="tg-0pky">To start GoVideo<br>
+    <td class="tg-0pky">Start GoVideo<br>
       <ol style='list-style-type:disc'>
 		    <li>Broadcasts video to web</li>
 	    </ol>
@@ -218,16 +218,23 @@ For beginners in Kubernetes, please see my [post](/guides/guide-to-kubernetes/) 
 <u>main.go</u>
 + Streams video from `VIDEOLINK` at `FRAMEINTERVAL` interval and writes them into Kafka topic `TOPICNAME`. 
 
-<u>confluentkafkago-->producer.go</u>
+<u>confluentkafkago-->NewProducer()</u>
 + Provides a high level wrapper code for creation of Confluent Kafka producers.
 + `message.max.bytes` is set to 100MB to support large sized messages such as images with high quality or large size
 
 ### GoConsumer
 
 <u>deployment.yml</u>
-+ 
++ `MODELURLS` and `LABELURLS` contain addresses to TensorFlowServing saved model and class labels, respectively.
++ Multiple machine learning models can be applied to the same video.
++ Here, we have simply duplicated the same machine learning model, Resnet, twice to mimic use of different machine learning models.
 
-<u>confluentkafkago-->consumer.go</u>
+<u>main.go</u>
++ Consumes video from Kafka topic `TOPICNAMEIN`, and handles valid messages using `main-->message()` function.
++ Consists of three goroutines, namely, (i) to consume messages from `TOPICNAMEIN`, (ii) to query TensorFlow model, and (ii) to rewrite processed frames into `TOPICNAMEOUT`
++ The predictions of each machine learning model is imprinted onto the video.
+
+<u>confluentkafkago-->NewConsumer()</u>
 + Provides a high level wrapper code for creation of Confluent Kafka consumers.
 
 
