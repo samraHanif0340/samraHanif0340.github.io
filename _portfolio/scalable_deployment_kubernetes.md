@@ -45,8 +45,9 @@ The complete system design and data flow of this project is illustrated by the f
 Find the source code in the [repository](https://github.com/Adaickalavan/Scalable-Deployment-Kubernetes).
 
 At the end of this project, we should be able to:
-+ Running containerized Zookeeper and Kafka in Kubernetes
-+ 
++ Write deployment.yml files in Kubernetes and docker-compose.yml files in Docker.
++ Run containerized Confluent Zookeeper and Confluent Kafka in Kubernetes
++ Use GoCV (Golang client for OpenCV) to stream video and to manipulate images in Golang
 + 
 
 ## Project Structure
@@ -178,7 +179,6 @@ This project can be run either in Kubernetes cluster using the provided `deploym
   </tr>
 </table></div>
 <br>
-
 To terminate the microservices
 + in Kubernetes, execute `kubectl delete -f deployment.yml` in the respective folders of each susbsytem. 
 + in Docker, simply close the terminal used to run the subsystem.
@@ -204,7 +204,7 @@ For beginners in Kubernetes, please see my [post](/guides/guide-to-kubernetes/) 
               fieldPath: status.podIP
     ```
 + The variable `MY_POD_IP` can be referenced elsewhere in the yml file as `$(MY_POD_IP)`. However, such variables must be declared before being used, for example in `KAFKA_ADVERTISED_LISTENERS`.
-+ The variables `KAFKA_REPLICA_FETCH_MAX_BYTES` and `KAFKA_MESSAGE_MAX_BYTES` are set to 100Mb to handle larger video frame sizes.
++ The variables `KAFKA_REPLICA_FETCH_MAX_BYTES` and `KAFKA_MESSAGE_MAX_BYTES` are set to 100MB to handle larger video frame sizes.
 + To save hard disk memory, we opt to delete logs older than 1 minute by setting `KAFKA_LOG_CLEANUP_POLICY` and `KAFKA_LOG_RETENTION_MIUTES`.
 + Here, `KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR` is set to 1 as there is only one Kafka broker.
 + `Service`'s are used to communicate between pods in Kubernetes
@@ -213,13 +213,23 @@ For beginners in Kubernetes, please see my [post](/guides/guide-to-kubernetes/) 
 
 <u>deployment.yml</u>
 + Environment variable `VIDEOLINK` states the IP address of the IP camera
-+ Environment variable `FRAMEINTERVAL` states
++ Environment variable `FRAMEINTERVAL` determines the frames-per-second (fps) of the video. For example, 42ms translates into 24 fps.
 
+<u>main.go</u>
++ Streams video from `VIDEOLINK` at `FRAMEINTERVAL` interval and writes them into Kafka topic `TOPICNAME`. 
+
+<u>confluentkafkago-->producer.go</u>
++ Provides a high level wrapper code for creation of Confluent Kafka producers.
++ `message.max.bytes` is set to 100MB to support large sized messages such as images with high quality or large size
 
 ### GoConsumer
 
 <u>deployment.yml</u>
-+
++ 
+
+<u>confluentkafkago-->consumer.go</u>
++ Provides a high level wrapper code for creation of Confluent Kafka consumers.
+
 
 ### TFServing
 
