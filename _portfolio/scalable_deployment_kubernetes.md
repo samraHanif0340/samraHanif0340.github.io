@@ -99,9 +99,90 @@ Scalable-Deployment-Kubernetes                     # Main folder
     └── docker-compose.yml                         # Docker deployment
 ```
 
+# Instructions
+
+This project can be run either in Kubernetes cluster using the provided deployment.yml files or in Docker using the provided docker-compose.yml files. The pipeline consists of 5 subsystems, namely, (i) Zookeeper & Kafka, (ii) GoProducer, (iii) GoConsumer, (iv) TFServing, and (v) GoVideo. Commands to be executed to run each of the subsystem is provided below for both Kubernetes and Docker environments.
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;border-color:#aaa;margin:0px auto;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aaa;color:#333;background-color:#fff;width: 33%}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:bold;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aaa;color:#fff;background-color:#f38630;}
+.tg .tg-7d57{background-color:#FCFBE3;border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-kwiq{color:#000000;border-color:inherit;text-align:center;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+@media screen and (max-width: 767px) {.tg {width: auto !important;}.tg col {width: equal !important;}.tg-wrap {overflow-x: auto;-webkit-overflow-scrolling: touch;margin: auto 0px;}}
+</style>
+<div class="tg-wrap"><table class="tg">
+  <tr>
+    <th class="tg-kwiq">Steps</th>
+    <th class="tg-kwiq">Kubernetes</th>
+    <th class="tg-kwiq">Docker</th>
+  </tr>
+  <tr>
+    <td class="tg-7d57">Start Kubernetes cluster
+      <ol style='list-style-type:disc'>
+        <li>Sample command given here starts a minikube cluster</li>
+		    <li>Run the <code>eval</code> statement at the beginning of each shell. It enables the use of local Docker daemon to build Docker images  within Kubernetes cluster.</li>
+	    </ol>
+    </td>
+    <td class="tg-7d57"><code>$ minikube start</code><br><code>$ eval $(minikube docker-env)</code></td>
+    <td class="tg-7d57"></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">To start Zookeeper and Kafka</td>
+    <td class="tg-0pky"><code>$ cd ~/Scalable-Deployment-Kubernetes/zookeeper</code><br><code>$ kubectl apply -f deployment.yml</code></td>
+    <td class="tg-0pky"><code>$ cd ~/Scalable-Deployment-Kubernetes/zookeeper</code><br><code>$ docker-compose up</code></td>
+  </tr>
+  <tr>
+    <td class="tg-7d57">To start GoProducer<br>
+      <ol style='list-style-type:disc'>
+		    <li>Streams video from IP camera into Kafka queue</li>
+	    </ol>
+    </td>
+    <td class="tg-7d57"><code>$ cd ~/Scalable-Deployment-Kubernetes/goproducer</code><br><code>$ docker build -t goproducer .</code><br><code>$ kubectl apply -f deployment.yml</code></td>
+    <td class="tg-7d57"><code>$ cd ~/Scalable-Deployment-Kubernetes/goproducer</code><br><code>$ docker build -t goproducer .</code><br><code>$ docker-compose up</code></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">To start GoConsumer<br>
+      <ol style='list-style-type:disc'>
+		    <li>Classifies objects in each frame using Resnet machine learning model</li>
+	    </ol>
+    </td>
+    <td class="tg-0pky"><code>$ cd ~/Scalable-Deployment-Kubernetes/goconsumer</code><br><code>$ docker build -t goconsumer .</code><br><code>$ kubectl apply -f deployment.yml</code></td>
+    <td class="tg-0pky"><code>$ cd ~/Scalable-Deployment-Kubernetes/goconsumer</code><br><code>$ docker build -t goconsumer .</code><br><code>$ docker-compose up</code></td>
+  </tr>
+  <tr>
+    <td class="tg-7d57">To start TensorFlow Serving<br>
+      <ol style='list-style-type:disc'>
+		    <li>Answers REST queries to port 8501</li>
+	    </ol>
+    </td>
+    <td class="tg-7d57"><code>$ cd ~/Scalable-Deployment-Kubernetes/tfserving</code><br><code>$ docker build -t tfserving .</code><br><code>$ kubectl apply -f deployment.yml</code></td>
+    <td class="tg-7d57"><code>$ cd ~/Scalable-Deployment-Kubernetes/tfserving</code><br><code>$ docker build -t tfserving .</code><br><code>$ docker-compose up</code></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">To start GoVideo<br>
+      <ol style='list-style-type:disc'>
+		    <li>Broadcasts video to web</li>
+	    </ol>
+    </td>
+    <td class="tg-0pky"><code>$ cd ~/Scalable-Deployment-Kubernetes/govideo</code><br><code>$ docker build -t govideo .</code><br><code>$ kubectl apply -f deployment.yml</code></td>
+    <td class="tg-0pky"><code>$ cd ~/Scalable-Deployment-Kubernetes/govideo</code><br><code>$ docker build -t govideo .</code><br><code>$ docker-compose up</code></td>
+  </tr>
+</table></div>
+
+To terminate the pipeline
++ in Kubernetes, execute `kubectl delete -f deployment.yml` in the respective folders of each susbsytem. 
++ in Docker, simply close the terminal used to run the subsystem.
+
 ## System Design
 
+Each subsystem of the pipeline, as shown above, is further explored in the following sections.
+
 ### Zookeeper and Kafka
+
+
+
 
 ### GoProducer
 
