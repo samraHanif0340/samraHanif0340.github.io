@@ -7,7 +7,7 @@ categories:
 last_modified_at: 2019-03-06    
 ---
 
-I highly recommend the `Golden Guide To Kubernetes Application Development` book by Matthew Palmer for beginners to master Kubernetes. The book guides us step by step, while covering all necessary commands/concepts, to succesfully deploy our containers in Kubernetes.    
+I highly recommend the `Golden Guide To Kubernetes Application Development` book by Matthew Palmer for beginners to master Kubernetes. The book guides us step by step, while covering all necessary commands/concepts, to successfully deploy our containers in Kubernetes.
 
 Free articles/snippets from the book can be found [here](https://matthewpalmer.net/kubernetes-app-developer/#free-chapter).
 
