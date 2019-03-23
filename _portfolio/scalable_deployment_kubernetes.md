@@ -31,16 +31,23 @@ In this project, the video analytics will focus on a frame-by-frame object class
 
 The complete system design and data flow of this project is illustrated by the following image.
 
+{% capture fig_pipeline %}
 ![pipeline](/assets/images/scalable_deployment_kubernetes_02.jpg){:height="100%" width="100%" .align-center}
+{% endcapture %}
+
+<figure id="pipeline">
+  {{ fig_pipeline | markdownify | remove: "<p>" | remove: "</p>" }}
+  <figcaption>Scalable microservices architecture for video analytics pipeline.</figcaption>
+</figure>
 
 ## Learning Outcome
 
 Find the source code in the [repository](https://github.com/Adaickalavan/Scalable-Deployment-Kubernetes).
 
 At the end of this project, we should be able to:
-+ ...
-+ ...
-+ ...
++ Running containerized Zookeeper and Kafka in Kubernetes
++ 
++ 
 
 ## Project Structure
 
@@ -99,9 +106,9 @@ Scalable-Deployment-Kubernetes                     # Main folder
     └── docker-compose.yml                         # Docker deployment
 ```
 
-# Instructions
+## Instructions
 
-This project can be run either in Kubernetes cluster using the provided deployment.yml files or in Docker using the provided docker-compose.yml files. The pipeline consists of 5 subsystems, namely, (i) Zookeeper & Kafka, (ii) GoProducer, (iii) GoConsumer, (iv) TFServing, and (v) GoVideo. Commands to be executed to run each of the subsystem is provided below for both Kubernetes and Docker environments.
+This project can be run either in Kubernetes cluster using the provided `deployment.yml` files or in Docker using the provided `docker-compose.yml` files. The pipeline consists of 5 subsystems, namely, (i) Zookeeper & Kafka, (ii) GoProducer, (iii) GoConsumer, (iv) TFServing, and (v) GoVideo. Commands to be executed to run each of the subsystem is provided below for both Kubernetes and Docker environments.
 
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;border-color:#aaa;margin:0px auto;}
@@ -170,29 +177,58 @@ This project can be run either in Kubernetes cluster using the provided deployme
     <td class="tg-0pky"><code>$ cd ~/Scalable-Deployment-Kubernetes/govideo</code><br><code>$ docker build -t govideo .</code><br><code>$ docker-compose up</code></td>
   </tr>
 </table></div>
+<br>
 
-To terminate the pipeline
+To terminate the microservices
 + in Kubernetes, execute `kubectl delete -f deployment.yml` in the respective folders of each susbsytem. 
 + in Docker, simply close the terminal used to run the subsystem.
 
 ## System Design
 
-Each subsystem of the pipeline, as shown above, is further explored in the following sections.
+Each subsystem of the [pipeline](#pipeline), is further explored in the following sections. For brevity, only deployment in Kubernetes (i.e., `deployment.yml`) is discussed below, since the discussions are similar for deployment in Docker environment using its counterpart `docker-compose.yml` files.
+
+For beginners in Kubernetes, please see my [post](/guides/guide-to-kubernetes/) on guide to quickly mastering Kubernetes.
 
 ### Zookeeper and Kafka
 
-
-
+<u>deployment.yml</u>
++ Confluent Zookeeper and Kafka images are used.
++ `kind` of Zookeeper and Kafka are set to `StatefulSet` as they should have persistent states
++ A single Kafka broker with 5 ports (19091, 19092, 19093, 19094, 19095) is used, although this could be easily scaled up to multiple Kafka brokers.
++ IP address of the Kafka pod is obtained by declaring `MY_POD_IP` in the environment variable as follows:
+    ```yml
+    env
+      - name: MY_POD_IP
+        valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+    ```
++ The variable `MY_POD_IP` can be referenced elsewhere in the yml file as `$(MY_POD_IP)`. However, such variables must be declared before being used, for example in `KAFKA_ADVERTISED_LISTENERS`.
++ The variables `KAFKA_REPLICA_FETCH_MAX_BYTES` and `KAFKA_MESSAGE_MAX_BYTES` are set to 100Mb to handle larger video frame sizes.
++ To save hard disk memory, we opt to delete logs older than 1 minute by setting `KAFKA_LOG_CLEANUP_POLICY` and `KAFKA_LOG_RETENTION_MIUTES`.
++ Here, `KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR` is set to 1 as there is only one Kafka broker.
++ `Service`'s are used to communicate between pods in Kubernetes
 
 ### GoProducer
 
+<u>deployment.yml</u>
++ Environment variable `VIDEOLINK` states the IP address of the IP camera
++ Environment variable `FRAMEINTERVAL` states
+
+
 ### GoConsumer
+
+<u>deployment.yml</u>
++
 
 ### TFServing
 
-The `deployment.yml` runs two `tfserving` instances in a load balancing manner to serve REST requests from clients at port 8501 and gRPC requests at port 8500.
+<u>deployment.yml</u>
++ The `deployment.yml` runs two `tfserving` instances in a load balancing manner to serve REST requests from clients at port 8501 and gRPC requests at port 8500.
 
 ### GoVideo
+
+<u>deployment.yml</u>
 
 To view the video output:
 + go to `<Kubernetes Cluster IP>:30163`. If you are running Minikube at `192.168.99.100`, then go to `192.168.99.100:30163`.
