@@ -12,9 +12,6 @@ feature_row:
 
 {% include toc %}
 
-{: .notice--success}
-This page is under construction. Please check back later for updates.
-
 ## Introduction
 
 In this project, we will develop a real-time video analytic pipeline (i.e., machine learning on a video stream). Video feed will be streamed from IP cameras into a Kafka queue, processed by a machine learning model, predictions are imprinted onto the frames, processed frames are queued again into another Kafka topic, and then streamed to web for display. Microservices architecture is adopted, where all code is containerized using Dockers and orchestrated using Kubernetes.
@@ -47,9 +44,11 @@ Find the source code in the [repository](https://github.com/Adaickalavan/Scalabl
 At the end of this project, we should be able to:
 + Write deployment.yml files in Kubernetes and docker-compose.yml files in Docker
 + Run containerized Confluent Zookeeper and Confluent Kafka in Kubernetes
++ Always retrieve the latest message in the Kafka topic-partition queue
 + Use GoCV (Golang client for OpenCV) to stream video and to manipulate images in Golang
-+ Build TensorFlow Serving and communicate using REST to deploy machine learning models
-+ 
++ Use TensorFlow Serving, with REST API, to deploy machine learning models
++ Form MJPEG from JPEG images and broadcast the video to web
++ Recover and restart a goroutine which panicked
 
 ## Project Structure
 
@@ -181,7 +180,7 @@ This project can be run either in Kubernetes cluster using the provided `deploym
 </table></div>
 <br>
 To terminate the microservices
-+ in Kubernetes, execute `kubectl delete -f deployment.yml` in the respective folders of each susbsytem. 
++ in Kubernetes, execute `kubectl delete -f deployment.yml` in the respective folders of each susbsytem.
 + in Docker, simply close the terminal used to run the subsystem.
 
 ## System Design
@@ -262,7 +261,7 @@ For beginners in Kubernetes, please see my [post](/guides/guide-to-kubernetes/) 
 + The class predictions from each of the TensorFlow Serving is retrieved and imprinted onto the video.
 
 <u>models-->imagenet.Predict()</u>
-+ Encodes `gocv.Mat` type to `JPEG` type, packs the images into a JSON structure and makes a POST request to the TensorFlow Serving pod at port 8500. 
++ Encodes `gocv.Mat` type to `JPEG` type, packs the images into a JSON structure and makes a POST request to the TensorFlow Serving pod at port 8501. 
 + Returns the predicted class
 + In the event the goroutine panicks, it is recovered and restarted via the defer function:
     ```go
@@ -283,15 +282,29 @@ For beginners in Kubernetes, please see my [post](/guides/guide-to-kubernetes/) 
 
 ### TFServing
 
+<u>dockerfile</u>
++ `tensorflow/serving` is used as the base image
++ Our TensorFlow saved model is copied from `./resnet` folder into the image's `/model/tfModel` folder
++ Since a TensorFlow Serving can hold multiple models simultaneously, the desired model to be used is specified by setting the environment variable `MODEL_NAME` to that of the desired model's folder name in the image. In our case, desired model's folder name would be `tfmodel`.
+
 <u>deployment.yml</u>
-+ The `deployment.yml` runs two `tfserving` instances in a load balancing manner to serve REST requests from clients at port 8501 and gRPC requests at port 8500.
++ The `deployment.yml` runs two `tfserving` replicas in a load balancing manner to serve REST requests from clients at port 8501 and gRPC requests at port 8500.
+
+<u>resnet</u>
++ Please refer to the official [guide](https://www.tensorflow.org/tfx/guide/serving) on how to build and use a TensorFlow Serving model.
 
 ### GoVideo
 
 <u>deployment.yml</u>
++ To view the video output:
+  + go to `<Kubernetes Cluster IP>:<NODEPORT>`. For example, if you are running Minikube at `192.168.99.100`, then go to `192.168.99.100:30163`.
+  + go to `<Docker machine IP>:<NODEPORT>`. For example, if you are running Docker natively, go to `127.0.0.1:30163`. If you are running Docker in a virtual machine at `192.168.99.100`, then go to `192.168.99.100:30163`.
 
-To view the video output:
-+ go to `<Kubernetes Cluster IP>:30163`. If you are running Minikube at `192.168.99.100`, then go to `192.168.99.100:30163`.
-+ go to `<Docker machine IP>:30163`. If you are running Docker natively, go to `127.0.0.1:30163`. If you are running Docker in a virtual machine at `192.168.99.100`, then go to `192.168.99.100:30163`.
+<u>main.go</u>
 
-The video output will appear as follows:
+<u>mjpeg-->stream.go</u>
+
+<!-- The video output will appear as follows: -->
+
+<!-- {: .notice--success}
+This page is under construction. Please check back later for updates. -->
