@@ -296,15 +296,22 @@ For beginners in Kubernetes, please see my [post](/guides/guide-to-kubernetes/) 
 ### GoVideo
 
 <u>deployment.yml</u>
++ Runs one instance of `govideo` and a `govideo-service` service.
 + To view the video output:
-  + go to `<Kubernetes Cluster IP>:<NODEPORT>`. For example, if you are running Minikube at `192.168.99.100`, then go to `192.168.99.100:30163`.
-  + go to `<Docker machine IP>:<NODEPORT>`. For example, if you are running Docker natively, go to `127.0.0.1:30163`. If you are running Docker in a virtual machine at `192.168.99.100`, then go to `192.168.99.100:30163`.
+  + from outside Kubernetes, go to `<Kubernetes Cluster IP>:<NODEPORT>`. For example, if you are running Minikube at `192.168.99.100`, then go to `192.168.99.100:30163`.
+  + from outside Docker, go to `<Docker machine IP>:<NODEPORT>`. For example, if you are running Docker natively, go to `127.0.0.1:30163`. If you are running Docker in a virtual machine at `192.168.99.100`, then go to `192.168.99.100:30163`.
 
 <u>main.go</u>
++ Uses a goroutine to read processed video frames from Kafka topic `TOPICNAME` and calls `mjpeg-->*Stream.UpdateJPEG()` to form MJPEG
++ Runs a web server listening at `<POD IP>:<DISPLAYPORT>`, which is mapped to external node (i.e., host machine) at `<Machine IP>:<NODEPORT>` by the `govideo-service` service.
 
-<u>mjpeg-->stream.go</u>
+<u>mjpeg-->Stream.UpdateJPEG()</u>
++ Updates JPEG images to form MJPEG, which is then copied into the channels corresponding to each connected web client.
 
-<!-- The video output will appear as follows: -->
+<u>mjpeg-->Stream.ServeHTTP()</u>
++ Provides a `ServeHTTP()` handle pattern to broadcast MJPEG to each connected web client at a rate of 1/`FRAMEINTERVAL`.
+
+<!-- A sample video output is as follows. It contains the predicted ImageNet object classes. -->
 
 <!-- {: .notice--success}
 This page is under construction. Please check back later for updates. -->
