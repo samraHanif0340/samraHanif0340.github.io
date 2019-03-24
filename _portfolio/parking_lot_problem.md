@@ -197,7 +197,7 @@ At the end of this project, we should be able to:
 
 The project structure is as follows:
 
-```txt
+```text
 project                               # folder containing all project files
 ├── bin                               # contains executable commands
 │   ├── setup                         # place your commands to build/compile the Go code here in `setup` file
