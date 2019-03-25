@@ -260,7 +260,7 @@ For beginners in Kubernetes, please see my [post](/guides/guide-to-kubernetes/) 
 + Frame is fed to each of the TensorFlow Serving saved models
 + The class predictions from each of the TensorFlow Serving is retrieved and imprinted onto the video.
 
-<u>models-->imagenet.Predict()</u>
+<u>models-->*imagenet.Predict()</u>
 + Encodes `gocv.Mat` type to `JPEG` type, packs the images into a JSON structure and makes a POST request to the TensorFlow Serving pod at port 8501. 
 + Returns the predicted class
 + In the event the goroutine panicks, it is recovered and restarted via the defer function:
@@ -305,10 +305,10 @@ For beginners in Kubernetes, please see my [post](/guides/guide-to-kubernetes/) 
 + Uses a goroutine to read processed video frames from Kafka topic `TOPICNAME` and calls `mjpeg-->*Stream.UpdateJPEG()` to form MJPEG
 + Runs a web server listening at `<POD IP>:<DISPLAYPORT>`, which is mapped to external node (i.e., host machine) at `<Machine IP>:<NODEPORT>` by the `govideo-service` service.
 
-<u>mjpeg-->Stream.UpdateJPEG()</u>
+<u>mjpeg-->*Stream.UpdateJPEG()</u>
 + Updates JPEG images to form MJPEG, which is then copied into the channels corresponding to each connected web client.
 
-<u>mjpeg-->Stream.ServeHTTP()</u>
+<u>mjpeg-->*Stream.ServeHTTP()</u>
 + Provides a `ServeHTTP()` handle pattern to broadcast MJPEG to each connected web client at a rate of 1/`FRAMEINTERVAL`.
 
 <!-- A sample video output is as follows. It contains the predicted ImageNet object classes. -->
