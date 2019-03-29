@@ -310,14 +310,13 @@ For beginners in Kubernetes, please see my [post](/guides/guide-to-kubernetes/) 
 
 <u>mjpeg-->*Stream.ServeHTTP()</u>
 + Provides a `ServeHTTP()` handle pattern to broadcast MJPEG to each connected web client at a rate of 1/`FRAMEINTERVAL`.
++ A sample video output is as follows. It contains the predicted ImageNet object classes.
 
-A sample video output is as follows. It contains the predicted ImageNet object classes.
+    {% capture fig_output %}
+    ![output](/assets/images/scalable_deployment_kubernetes_06.jpg){:height="70%" width="70%" .align-center}
+    {% endcapture %}
 
-{% capture fig_output %}
-![output](/assets/images/scalable_deployment_kubernetes_06.jpg){:height="70%" width="70%" .align-center}
-{% endcapture %}
-
-<figure id="output">
-  {{ fig_output | markdownify | remove: "<p>" | remove: "</p>" }}
-  <figcaption>A frame, from the output video, containing the predicted ImageNet class.</figcaption>
-</figure>
+    <figure id="output">
+      {{ fig_output | markdownify | remove: "<p>" | remove: "</p>" }}
+      <figcaption>A frame, from the output video, containing the predicted ImageNet class.</figcaption>
+    </figure>
