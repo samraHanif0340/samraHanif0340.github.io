@@ -314,10 +314,10 @@ For beginners in Kubernetes, please see my [post](/guides/guide-to-kubernetes/) 
 A sample video output is as follows. It contains the predicted ImageNet object classes.
 
 {% capture fig_output %}
-![output](/assets/images/scalable_deployment_kubernetes_06.jpg){:height="100%" width="100%" .align-center}
+![output](/assets/images/scalable_deployment_kubernetes_06.jpg){:height="70%" width="70%" .align-center}
 {% endcapture %}
 
 <figure id="output">
   {{ fig_output | markdownify | remove: "<p>" | remove: "</p>" }}
-  <figcaption>An output video frame with predicted ImageNet class.</figcaption>
+  <figcaption>A frame, from the output video, containing the predicted ImageNet class.</figcaption>
 </figure>
