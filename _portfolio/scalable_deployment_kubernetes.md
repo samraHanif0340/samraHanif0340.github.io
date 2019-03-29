@@ -112,8 +112,8 @@ Scalable-Deployment-Kubernetes                     # Main folder
 This project can be run either in Kubernetes cluster using the provided `deployment.yml` files or in Docker using the provided `docker-compose.yml` files. The pipeline consists of 5 subsystems, namely, (i) Zookeeper & Kafka, (ii) GoProducer, (iii) GoConsumer, (iv) TFServing, and (v) GoVideo. Commands to be executed to run each of the subsystem is provided below for both Kubernetes and Docker environments.
 
 <style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;border-color:#aaa;margin:0px auto;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aaa;color:#333;background-color:#fff;width: 33%}
+.tg {border-collapse:collapse;border-spacing:0;border-color:#aaa;margin:0px auto;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 10px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aaa;color:#333;background-color:#fff;width: 33%}
 .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:bold;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aaa;color:#fff;background-color:#f38630;}
 .tg .tg-7d57{background-color:#FCFBE3;border-color:inherit;text-align:left;vertical-align:top}
 .tg .tg-kwiq{color:#000000;border-color:inherit;text-align:center;vertical-align:top}
@@ -313,7 +313,7 @@ For beginners in Kubernetes, please see my [post](/guides/guide-to-kubernetes/) 
   + from outside Docker, go to `<Docker machine IP>:<NODEPORT>`. For example, if you are running Docker natively, go to `127.0.0.1:30163`. If you are running Docker in a virtual machine at `192.168.99.100`, then go to `192.168.99.100:30163`.
 
 <u>main.go</u>
-+ Uses a goroutine to read processed video frames from Kafka topic `TOPICNAME` and calls `mjpeg-->*Stream.UpdateJPEG()` to form MJPEG
++ Uses a goroutine to read processed video frames from Kafka topic `TOPICNAME` and calls `mjpeg.*Stream.UpdateJPEG()` to form MJPEG
 + Runs a web server listening at `<POD IP>:<DISPLAYPORT>`, which is mapped to external node (i.e., host machine) at `<Machine IP>:<NODEPORT>` by the `govideo-service` service.
 
 <u>mjpeg.*Stream.UpdateJPEG()</u>
