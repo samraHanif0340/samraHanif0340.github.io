@@ -312,10 +312,9 @@ For beginners in Kubernetes, please see my [post](/guides/guide-to-kubernetes/) 
 + Provides a `ServeHTTP()` handle pattern to broadcast MJPEG to each connected web client at a rate of 1/`FRAMEINTERVAL`.
 + A sample video output is shown below. It contains the predicted ImageNet object classes.
   {% capture fig_output %}
-  ![output](/assets/images/scalable_deployment_kubernetes_06.jpg){:height="70%" width="70%" .align-center}
+  ![output](/assets/images/scalable_deployment_kubernetes_06.jpg){:height="60%" width="60%" .align-center}
   {% endcapture %}
-
-  <figure id="output">
-    {{ fig_output | markdownify | remove: "<p>" | remove: "</p>" }}
-    <figcaption>A frame, from the output video, containing the predicted ImageNet class.</figcaption>
-  </figure>
+<figure id="output">
+  {{ fig_output | markdownify | remove: "<p>" | remove: "</p>" }}
+  <figcaption>A frame, from the output video, containing the predicted ImageNet class.</figcaption>
+</figure>
