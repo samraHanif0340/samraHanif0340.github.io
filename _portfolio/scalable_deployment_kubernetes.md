@@ -63,9 +63,10 @@ Scalable-Deployment-Kubernetes                     # Main folder
 │   │   ├── confluentkafkago                       #
 │   │   │   ├── consumer.go                        # Confluent-Kafka-Go consumer wrapper
 │   │   │   └── producer.go                        # Confluent-Kafka-Go producer wrapper
-│   │   └── models                                 #
-│   │       ├── handler.go                         # Handler for all TensorFlow models
-│   │       └── imagenet.go                        # Handler for imagenet TensorFlow model
+│   │   ├── models                                 #
+│   │   │   ├── handler.go                         # Handler for all TensorFlow models
+│   │   │   └── imagenet.go                        # Handler for imagenet TensorFlow model
+│   │   └── profile                                # Golang code profiler
 │   ├── deployment.yml                             # Kubernetes deployment
 │   ├── docker-compose.yml                         # Docker deployment
 │   ├── dockerfile                                 # To create Docker container
@@ -83,7 +84,6 @@ Scalable-Deployment-Kubernetes                     # Main folder
 │   ├── vendor                                     # Dependency files
 │   │   ├── confluentkafkago                       #
 │   │   │   └── consumer.go                        # Confluent-Kafka-Go consumer wrapper
-│   │   ├── gocv.io                                # Golang client for OpenCV
 │   │   └── mjpeg                                  #
 │   │       └── stream.go                          # Streams JPEG pictures to web to form motion JPEG (MJPEG)
 │   ├── deployment.yml                             # Kubernetes deployment
@@ -218,7 +218,7 @@ For beginners in Kubernetes, please see my [post](/guides/guide-to-kubernetes/) 
 <u>main.go</u>
 + Streams video from `VIDEOLINK` at `FRAMEINTERVAL` interval and writes them into Kafka topic `TOPICNAME`. 
 
-<u>confluentkafkago-->NewProducer()</u>
+<u>confluentkafkago.NewProducer()</u>
 + Provides a high level wrapper code for creation of Confluent Kafka producers.
 + `message.max.bytes` is set to 100MB to support large sized messages such as images with high quality or large size
 
@@ -230,54 +230,65 @@ For beginners in Kubernetes, please see my [post](/guides/guide-to-kubernetes/) 
 + Here, we have simply duplicated the same machine learning model, Resnet, twice to mimic use of different machine learning models.
 
 <u>main.go</u>
-+ Consumes video from Kafka topic `TOPICNAMEIN`, and handles valid messages using `main-->message()` function.
-+ The Kafka consumer always attempts to retrieve the latest messages in the Kafka topic-partition queue. This is achieved by moving the committed offset through the following code:
-    ```go
-      //Record the current topic-partition assignments
-      tpSlice, err := c.Assignment()
-      if err != nil {
-        log.Println(err)
-        continue
-      }
-
-      //Obtain the last message offset for all topic-partition
-      for index, tp := range tpSlice {
-        _, high, err := c.QueryWatermarkOffsets(*(tp.Topic), tp.Partition, 100)
-        if err != nil {
-          log.Println(err)
-          continue
-        }
-        tpSlice[index].Offset = kafka.Offset(high)
-      }
-
-      //Consume the last message in topic-partition
-      c.Assign(tpSlice)
-    ```
++ Consumes video from Kafka topic `TOPICNAMEIN`, and handles valid messages using `main.message()` function.
 + Consists of three goroutines, namely, (i) to consume messages from `TOPICNAMEIN`, (ii) to query TensorFlow model, and (ii) to rewrite processed frames into `TOPICNAMEOUT`.
 
-<u>main-->message()</u>  
+<u>main.message()</u>  
 + Frame is extracted from received Kafka message
 + Frame is fed to each of the TensorFlow Serving saved models
 + The class predictions from each of the TensorFlow Serving is retrieved and imprinted onto the video.
 
-<u>models-->*imagenet.Predict()</u>
+<u>models.*imagenet.Predict()</u>
 + Encodes `gocv.Mat` type to `JPEG` type, packs the images into a JSON structure and makes a POST request to the TensorFlow Serving pod at port 8501. 
 + Returns the predicted class
 + In the event the goroutine panicks, it is recovered and restarted via the defer function:
     ```go
     defer func() {
       if r := recover(); r != nil {
-        log.Println("models-->imn.Predict():PANICKED AND RESTARTING")
+        log.Println("models.*imagenet.Predict():PANICKED AND RESTARTING")
         log.Println("Panic:", r)
         go imn.Predict()
       }
     }()
     ```
 
-<u>confluentkafkago-->NewConsumer()</u>
+<u>confluentkafkago.NewConsumer()</u>
 + Provides a high level wrapper code for creation of Confluent Kafka consumers.
 
-<u>assets-->imagenetLabels.json</u>
+<u>confluentkafkago.LatestOffset()</u>
++ LatestOffset() resets consumer offset to the latest message in the topic-partition queue, if the difference between the low and high watermark is more than the desired diff. 
++ Setting `diff=0`, Kafka consumer will always consume the latest message.
+    ```go
+    func LatestOffset(c *kafka.Consumer, diff int) error {
+
+      // Record the current topic-partition assignments
+      tpSlice, err := c.Assignment()
+      if err != nil {
+        return err
+      }
+
+      //Obtain the last message offset for all topic-partition
+      for index, tp := range tpSlice {
+        low, high, err := c.QueryWatermarkOffsets(*(tp.Topic), tp.Partition, 100)
+        if err != nil {
+          return err
+        }
+        if high-low < int64(diff) {
+          return errors.New("Offset difference between Low and High is smaller than diff")
+        }
+        tpSlice[index].Offset = kafka.Offset(high)
+      }
+
+      //Consume the last message in topic-partition
+      err = c.Assign(tpSlice)
+      if err != nil {
+        return err
+      }
+      return nil
+    }
+    ```
+
+<u>assets/imagenetLabels.json</u>
 + Contains class labels in JSON format from ImageNet competition. 
 
 ### TFServing
@@ -305,16 +316,11 @@ For beginners in Kubernetes, please see my [post](/guides/guide-to-kubernetes/) 
 + Uses a goroutine to read processed video frames from Kafka topic `TOPICNAME` and calls `mjpeg-->*Stream.UpdateJPEG()` to form MJPEG
 + Runs a web server listening at `<POD IP>:<DISPLAYPORT>`, which is mapped to external node (i.e., host machine) at `<Machine IP>:<NODEPORT>` by the `govideo-service` service.
 
-<u>mjpeg-->*Stream.UpdateJPEG()</u>
+<u>mjpeg.*Stream.UpdateJPEG()</u>
 + Updates JPEG images to form MJPEG, which is then copied into the channels corresponding to each connected web client.
 
-<u>mjpeg-->*Stream.ServeHTTP()</u>
+<u>mjpeg.*Stream.ServeHTTP()</u>
 + Provides a `ServeHTTP()` handle pattern to broadcast MJPEG to each connected web client at a rate of 1/`FRAMEINTERVAL`.
 + A sample video output is shown below. It contains the predicted ImageNet object classes.
-  {% capture fig_output %}
-  ![output](/assets/images/scalable_deployment_kubernetes_06.jpg){:height="60%" width="60%" .align-center}
-  {% endcapture %}
-<figure id="output">
-  {{ fig_output | markdownify | remove: "<p>" | remove: "</p>" }}
-  <figcaption>A frame, from the output video, containing the predicted ImageNet class.</figcaption>
-</figure>
+
+  ![OutputVideo](/assets/images/scalable_deployment_kubernetes_06.jpg){:height="60%" width="60%" .align-center}
