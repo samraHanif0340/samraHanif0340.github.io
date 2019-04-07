@@ -720,7 +720,8 @@ The [repository](https://github.com/Adaickalavan/Coding-Questions-in-Golang) con
       c <- res{key: key, val: float64(count) / float64(subSequenceLen)}
     }
     ```
-2. <a name="bfs&dfs"></a> Traverse a tree, in a breadth first and depth first manner, from the starting node till the ending node. The first node, namely `node1`, is the starting node. The node with a field value `end:true` marks the ending node. Return true if an end node is reached, else return false. Remember to avoid possible cycles in the tree.
+
+1. <a name="bfs&dfs"></a> Traverse a tree, in a breadth first and depth first manner, from the starting node till the ending node. The first node, namely `node1`, is the starting node. The node with a field value `end:true` marks the ending node. Return true if an end node is reached, else return false. Remember to avoid possible cycles in the tree.
   
     Example input tree:
     ```text
