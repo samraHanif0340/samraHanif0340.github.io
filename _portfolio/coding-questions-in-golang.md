@@ -730,7 +730,7 @@ The [repository](https://github.com/Adaickalavan/Coding-Questions-in-Golang) con
             |                   |
           node2               node 3
             |                   |
-        ----------              |
+        -----------             |
         |         |             |
       node4     node5         node 6
                   |
