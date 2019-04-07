@@ -724,19 +724,19 @@ The [repository](https://github.com/Adaickalavan/Coding-Questions-in-Golang) con
     Example input tree:
     ```text
     Tree structure
-            node1
-              |
-        ---------------------
-        |                   |
-        node2               node 3
-          |                   |
-      ----------              |
-      |         |             |
-    node4     node5         node 6
-            |
-          -----------
-          |         |
-          node7     node8
+                    node1
+                      |
+            ---------------------
+            |                   |
+          node2               node 3
+            |                   |
+        ----------              |
+        |         |             |
+      node4     node5         node 6
+                  |
+             -----------
+             |         |
+           node7     node8
     ```
     Expected output:
     ```text
