@@ -658,6 +658,7 @@ The [repository](https://github.com/Adaickalavan/Coding-Questions-in-Golang) con
     7: 0
     8: 0.33
     ```
+    Explanation of the output: At index location 0, 2/3 of the letters match between DNA sequence (i.e., ATG) and subsequence (i.e., CTG), hence percentage match is 66.6%. At index location 1, 0/3 of the letters match between DNA sequence (i.e., TGC) and subsequence (i.e., CTG), hence percentage match is 0%. At index location 7, 0/3 of the letters match between DNA sequence (i.e., GC-) and subsequence (i.e., CTG), hence percentage match is 0%. At index location 8, 1/3 of the letters match between DNA sequence (i.e., C--) and subsequence (i.e., CTG), hence percentage match is 33.3%.
 
     Link to solution [code](https://github.com/Adaickalavan/Coding-Questions-in-Golang/tree/master/fuzzyStringMatch).
 
@@ -719,7 +720,7 @@ The [repository](https://github.com/Adaickalavan/Coding-Questions-in-Golang) con
       c <- res{key: key, val: float64(count) / float64(subSequenceLen)}
     }
     ```
-1. <a name="bfs&dfs"></a> Traverse a tree, in a breadth first and depth first manner, from the starting node till the ending node. The first node, namely `node1`, is the starting node. The node with a field value `end:true` marks the ending node. Return true if an end node is reached, else return false. Remember to avoid possible cycles in the tree.
+2. <a name="bfs&dfs"></a> Traverse a tree, in a breadth first and depth first manner, from the starting node till the ending node. The first node, namely `node1`, is the starting node. The node with a field value `end:true` marks the ending node. Return true if an end node is reached, else return false. Remember to avoid possible cycles in the tree.
   
     Example input tree:
     ```text
