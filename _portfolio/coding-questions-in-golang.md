@@ -30,6 +30,7 @@ We prioritise recursive, concurrent, and clean codes. The solution codes are pre
 10. [Test driven development of Set](#tddSet)
 <!-- 11. [Sorted word count](#sortedWordCount) -->
 12. [Fuzzy String Match](#fuzzyStringMatch)
+13. [Breadth First Search & Depth First Search](#bfs&dfs)
 
 {: .notice--success}
 More programming challenge questions in Golang will be added as time permits. Let me know if there is any particular problem you would like to have solved here.
@@ -716,5 +717,131 @@ The [repository](https://github.com/Adaickalavan/Coding-Questions-in-Golang) con
       }
       // Return result
       c <- res{key: key, val: float64(count) / float64(subSequenceLen)}
+    }
+    ```
+1. <a name="bfs&dfs"></a> Traverse a tree, in a breadth first and depth first manner, from the starting node till the ending node. The first node, namely `node1`, is the starting node. The node with a field value `end:true` marks the ending node. Return true if an end node is reached, else return false. Remember to avoid possible cycles in the tree.
+  
+    Example input tree:
+    ```text
+    Tree structure
+            node1
+              |
+        ---------------------
+        |                   |
+        node2               node 3
+          |                   |
+      ----------              |
+      |         |             |
+    node4     node5         node 6
+            |
+          -----------
+          |         |
+          node7     node8
+    ```
+    Expected output:
+    ```text
+    Breath first search = 1 2 3 4 5 6 7 8 true
+    Depth first search = 1 2 4 5 7 8 true
+    ```
+
+    Link to solution [code](https://github.com/Adaickalavan/Coding-Questions-in-Golang/tree/master/breadthFirstSearch-DepthFirstSearch).  
+
+    ```go
+    package main
+
+    import "fmt"
+
+    var m = make(map[string]bool)
+
+    type node struct {
+      next []*node
+      end  bool
+      name string
+    }
+
+    type queue []*node
+
+    // depth first search
+    func dfs(curNode *node) bool {
+      if _, ok := m[curNode.name]; ok {
+        return false
+      }
+
+      fmt.Print(curNode.name, " ")
+
+      if curNode.end {
+        return true
+      }
+
+      for _, newNode := range curNode.next {
+        if dfs(newNode) {
+          return true
+        }
+      }
+
+      return false
+    }
+
+    // breadth first search
+    func bfs(q *queue) bool {
+      if len(*q) == 0 {
+        return false
+      }
+
+      curNode := (*q)[0]
+
+      if _, ok := m[curNode.name]; ok {
+        return false
+      }
+
+      fmt.Print(curNode.name, " ")
+
+      if curNode.end {
+        return true
+      }
+
+      *q = append((*q)[1:], curNode.next...)
+
+      if bfs(q) {
+        return true
+      }
+
+      return false
+    }
+
+    func main() {
+
+      node1 := &node{end: false, name: "1"}
+      node2 := &node{end: false, name: "2"}
+      node3 := &node{end: false, name: "3"}
+      node4 := &node{end: false, name: "4"}
+      node5 := &node{end: false, name: "5"}
+      node6 := &node{end: false, name: "6"}
+      node7 := &node{end: false, name: "7"}
+      node8 := &node{end: true, name: "8"}
+
+      nexta := []*node{node2, node3}
+      nextb := []*node{node4, node5}
+      nextc := []*node{node6}
+      nextd := []*node{node7, node8}
+
+      node1.next = nexta
+      node2.next = nextb
+      node3.next = nextc
+      node5.next = nextd
+
+      // Breadth first search
+      fmt.Print("Breath first search = ")
+      n := queue([]*node{node1})
+      tree := bfs(&n)
+      fmt.Println(tree)
+
+      // Reset map
+      m = make(map[string]bool)
+
+      // Depth first search
+      fmt.Print("Depth first search = ")
+      tree = dfs(node1)
+      fmt.Println(tree)
     }
     ```
