@@ -66,7 +66,9 @@ Scalable-Deployment-Kubernetes                     # Main folder
 │   │   ├── models                                 #
 │   │   │   ├── handler.go                         # Handler for all TensorFlow models
 │   │   │   └── imagenet.go                        # Handler for imagenet TensorFlow model
-│   │   └── profile                                # Golang code profiler
+│   │   └── github.com                             #
+│   │       └── pkg                                #
+│   │           └── profile                        # Golang code profiler (cpu and memory)
 │   ├── deployment.yml                             # Kubernetes deployment
 │   ├── docker-compose.yml                         # Docker deployment
 │   ├── dockerfile                                 # To create Docker container
