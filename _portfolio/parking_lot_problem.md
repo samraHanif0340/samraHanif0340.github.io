@@ -269,3 +269,6 @@ The following commands run in sequence should produce output as shown below:
 | create_parking_lot 3            | Created a parking lot with 3 slots                 |
 | create_parking_lot 6            | Created a parking lot with 6 slots                 |
 | dispatch_rule even_distribution | Dispatcher is now using the Even Distribution rule |
+
+{: .notice--info}
+This code refactoring problem is left as an exercise for the readers.
