@@ -2,7 +2,7 @@
 title: "Parking Lot Problem Extended"
 excerpt: "Solved in Golang with data structures optimized for complexity"
 header:
-  teaser: assets/images/parkinglot_02.jpg
+  teaser: assets/images/parkinglot_extended_01.jpg
 ---
 
 {% include toc %}
@@ -79,7 +79,7 @@ At the end of this project, we should be able to:
 
 The project structure is as follows:
 
-```txt
+```text
 project                               # folder containing all project files
 ├── bin                               # contains executable commands
 │   ├── setup                         # contains commands to build/compile the Go code
