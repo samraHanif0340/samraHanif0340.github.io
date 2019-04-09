@@ -242,6 +242,9 @@ project                               # folder containing all project files
 
 ## Code Refactoring
 
+{: .notice--info}
+This code refactoring problem is provided as an exercise for the readers.
+
 Thanks to you, Mr Zorro's multi­storey parking lot is functioning efficiently. Mr Zorro has now expanded his business by building two additional multistorey parking lots in adjacent plots of land. The multistorey parking lots are numbered in an increasing order (i.e., 1, 2, 3, etc). He needs your help to refactor your original ticketing system to manage all three multistorey parking lots.
 
 1. The expanded ticketing system should provide the same ability to determine
@@ -269,6 +272,3 @@ The following commands run in sequence should produce output as shown below:
 | create_parking_lot 3            | Created a parking lot with 3 slots                 |
 | create_parking_lot 6            | Created a parking lot with 6 slots                 |
 | dispatch_rule even_distribution | Dispatcher is now using the Even Distribution rule |
-
-{: .notice--info}
-This code refactoring problem is left as an exercise for the readers.
