@@ -28,7 +28,7 @@ We prioritise recursive, concurrent, and clean codes. The solution codes are pre
 8. [Range sum query](#rangeSum)
 9. [Longest valid parentheses substring](#longestSubstring)
 10. [Test driven development of Set](#tddSet)
-<!-- 11. [Sorted word count](#sortedWordCount) -->
+11. [Sorted word count](#sortedWordCount)
 12. [Fuzzy String Match](#fuzzyStringMatch)
 13. [Breadth First Search & Depth First Search](#bfs&dfs)
 
@@ -521,7 +521,7 @@ The [repository](https://github.com/Adaickalavan/Coding-Questions-in-Golang) con
     }
     ```
 
-<!-- 1. <a name="sortedWordCount"></a> Given an input text, produce a table of words and the number of times those words have occurred in the input text. Sort the words first by descending order of cardinality, then by alphabetical order. Other constraints:
+1. <a name="sortedWordCount"></a> Given an input text, produce a table of words and the number of times those words have occurred in the input text. Sort the words first by descending order of cardinality, then by alphabetical order. Other constraints:
    + Split words on whitespaces (newlines, spaces, tabs)
    + Remove any non-letter characters. In regex terms, remove anything not of the class [a-zA-Z]
    + Convert words to lowercase
@@ -637,7 +637,7 @@ The [repository](https://github.com/Adaickalavan/Coding-Questions-in-Golang) con
       // Sort the words
       sorter(words)
     }
-    ``` -->
+    ```
 
 1. <a name="fuzzyStringMatch"></a> Given a DNA sequence (i.e., input string) and a DNA subsequence (i.e., search string), compute the percentage match of the DNA subsequence at every index location of the DNA sequence.
     Example input text:
