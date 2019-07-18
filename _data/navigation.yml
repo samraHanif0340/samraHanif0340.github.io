@@ -2,6 +2,8 @@
 main:
   - title: "About"
     url: /about/
+  - title: "Chat with Me!"
+    url: /calendar/
   - title: "CV"
     url: /cv/
   - title: "Portfolio"
