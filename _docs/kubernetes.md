@@ -37,4 +37,4 @@ toc: true
 <br/><img src="/assets/images/wiki/wiki_kubernetes_02.jpg" width="100%"/>
 
 + The `Kubernetes Service` in the above file is illustrated pictorially below.
-<br/><img src="/assets/images/wiki/wiki_kubernetes_04.jpg" width="100%" height="120%"/>
+<br/><img src="/assets/images/wiki/wiki_kubernetes_04.jpg" width="100%" height="150%"/>

@@ -15,7 +15,7 @@ toc: true
 
 ## Docker Compose
 + To instantiate the container image, run a docker compose file by executing `$ docker-compose up`. Docker compose file contains instructions to instantiate the image, set environment variables, setup networks, etc. 
-<br/><img src="/assets/images/wiki/wiki_docker_02.jpg" width="100%" height="130%"/>
+<br/><img src="/assets/images/wiki/wiki_docker_02.jpg" width="100%" height="160%"/>
 
 ## Configuration
 + Need to set proxy for Docker if we use Docker behind a corporate proxy, e.g., `http://10.0.0.0:8080/`. Hence, create a `http-proxy.conf` file at `/etc/systemd/system/docker.service.d/` such that `/etc/systemd/system/docker.service.d/http-proxy.conf` file contains the following.

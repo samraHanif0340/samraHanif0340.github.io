@@ -41,7 +41,7 @@ toc: true
         pip install -U python-dotenv
         ```
     1. Specify the `ROOT` environment variable, which refers to the directory path containing the project, in the `.env` file as follows.
-        ```.env
+        ```
         # File: emotion-recognition/.env
         ROOT = /home/admin/src/github.com/emotion-recognition
         ```
