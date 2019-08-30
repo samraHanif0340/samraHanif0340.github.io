@@ -144,6 +144,8 @@ keep_files:
 encoding: "utf-8"
 markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 
+# Build settings
+remote_theme: mmistakes/minimal-mistakes
 
 # Conversion
 markdown: kramdown
@@ -195,14 +197,14 @@ defaults:
       author_profile: true
   # _docs
   - scope:
-      path: ""
+      path: "_docs"
       type: docs
     values:
       layout: single
-      read_time: false
+      read_time: true
       author_profile: false
-      share: false
-      comments: false
+      share: true
+      comments: true
       sidebar:
         nav: "docs"
         
@@ -224,13 +226,13 @@ maps:
     api_key: AIzaSyA4vnO8pNFkNCuuugSwFkps7MGgTPNJf2w  
 
 # Plugins
-gems:
-  - jekyll-archives
+plugins:
   - jekyll-paginate
   - jekyll-sitemap
   - jekyll-gist
   - jekyll-feed
   - jemoji
+  - jekyll-include-cache
 
 # mimic GitHub Pages with --safe
 whitelist:

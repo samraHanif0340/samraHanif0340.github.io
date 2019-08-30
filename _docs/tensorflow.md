@@ -11,7 +11,7 @@ Every machine learning project must produce a saved model as its final deliverab
 + Independent of the source code that created the model.
 + Suitable for deployment via TensorFlow Serving, TensorFlow Lite, in many programming languages (e.g., C++, Java, Go)
 + A saved model produces a folder consisting of the following files:
-    ```bash
+    ```text
     tfserving                                           # TensorFlow Serving 
     ├── cnn                                             # model name 
     |    ├── 1                                          # model version
