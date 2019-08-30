@@ -4,12 +4,12 @@ main:
     url: /about/
   - title: "CV"
     url: /cv/
-  - title: "Guide"
-    url: /docs/guide/
   - title: "Portfolio"
     url: /portfolio/
   - title: "Posts"
     url: /year-archive/
+  - title: "Guide"
+    url: /docs/guide/  
   - title: "Publications"
     url: /publications/
 
