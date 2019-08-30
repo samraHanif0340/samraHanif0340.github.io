@@ -5,6 +5,12 @@
 # For technical reasons, this file is *NOT* reloaded automatically when you use
 # `jekyll serve`. If you change this file, please restart the server process.
 
+# Build settings
+remote_theme             : "mmistakes/minimal-mistakes"
+
+minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+
+
 # Site Settings
 locale                   : "en-US"
 title                    : "Signal Processing & Machine Learning"
@@ -144,9 +150,6 @@ keep_files:
 encoding: "utf-8"
 markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 
-# Build settings
-remote_theme: mmistakes/minimal-mistakes
-
 # Conversion
 markdown: kramdown
 highlighter: rouge
@@ -197,7 +200,7 @@ defaults:
       author_profile: true
   # _docs
   - scope:
-      path: "_docs"
+      path: ""
       type: docs
     values:
       layout: single
@@ -228,7 +231,6 @@ maps:
 
 # Plugins
 plugins:
-  - jekyll-archives
   - jekyll-paginate
   - jekyll-sitemap
   - jekyll-gist
@@ -243,6 +245,7 @@ whitelist:
   - jekyll-gist
   - jekyll-feed
   - jemoji
+  - jekyll-include-cache
 
 # Archives
 #  Type
