@@ -4,8 +4,6 @@ permalink: /docs/kubernetes/
 toc: true
 ---
 
-# Kubernetes
-
 + Container orchestration system: automates container deployment, scaling, networking, storage, and scheduling.
 + `node`: A worker machine in the Kubernetes cluster, responsible for actually running pods
 + `pod`: layer of abstraction containing one or more container runtimes like Docker or rkt. Single-container pods are preferred.

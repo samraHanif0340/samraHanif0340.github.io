@@ -4,8 +4,6 @@ permalink: /docs/kafka/
 toc: true
 ---
 
-# Kafka
-
 ## Apache Kafka
 + Apache Kafka is a publish/subscribe messaging system
 + Also known as a distributed commit log

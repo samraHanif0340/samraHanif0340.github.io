@@ -4,8 +4,6 @@ permalink: /docs/docker/
 toc: true
 ---
 
-# Docker
-
 ## Docker File
 + Containerization is packaging an application, its dependencies, and its configuration into a single deployable unit, called an image.
 + Failed Docker containers can be restarted automatically.

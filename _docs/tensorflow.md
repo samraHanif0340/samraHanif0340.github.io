@@ -4,8 +4,6 @@ permalink: /docs/tensorflow/
 toc: true
 ---
 
-# TensorFlow
-
 Every machine learning project must produce a saved model as its final deliverable.
 
 ## SavedModel

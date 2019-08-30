@@ -4,8 +4,6 @@ permalink: /docs/python/
 toc: true
 ---
 
-# Python
-
 ## Code style
 + Follow the [PEP 8 Python style guide](https://www.python.org/dev/peps/pep-0008/), except TensorFlow uses 2 spaces instead of 4. 
 
@@ -70,7 +68,7 @@ toc: true
         model.load_weights(ROOT+"/model/facial_expression_model_weights.h5")  # Load weights for TensorFlow model
         ```
 
- ## Dependency management   
+## Dependency management   
 + To generate `requirements.txt` file for Python dependencies.
     ```python
     pipreqs [options] <path to main project folder>

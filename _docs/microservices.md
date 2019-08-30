@@ -4,8 +4,6 @@ permalink: /docs/microservices/
 toc: true
 ---
 
-# Microservices Architecture
-
 1. A generic microservices architecture is as follows:
 <br/><img src="/assets/images/wiki/wiki_microservices_01.jpg" width="90%"/>
     + Each function or feature is encapsulated in a Docker container. 
