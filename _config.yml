@@ -225,9 +225,10 @@ maps:
   google:
     api_key: AIzaSyA4vnO8pNFkNCuuugSwFkps7MGgTPNJf2w  
 
-    
+
 # Plugins
 plugins:
+  - jekyll-archives
   - jekyll-paginate
   - jekyll-sitemap
   - jekyll-gist
