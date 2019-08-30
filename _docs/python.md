@@ -27,7 +27,7 @@ toc: true
 + Strictly do not perform relative import for any files or modules in Python. 
 + Always perform absolute import. 
     1. Assume the following project structure.
-        ```txt
+        ```text
         emotion-recognition                         # Main project directory 
         ├── model                                   # Machine learning model folder 
         |   ├── facial_expression_model_weights.h5  # Machine learning saved weights

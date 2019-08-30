@@ -11,11 +11,11 @@ toc: true
 + Aids reusability, refactorability, scalability, and maintainability of code.
 + Each command used to generate Docker image  generates a new intermediate image via a delta — essentially capturing only what changed from the previous intermediate step.
 + The following is a representative Docker file with multistage build feature. Build the image using the command `$ docker build -t <container name>` .
-<br/><img src="/assets/images/wiki/wiki_docker_01.jpg" width="90%"/>
+<br/><img src="/assets/images/wiki/wiki_docker_01.jpg" width="100%"/>
 
 ## Docker Compose
 + To instantiate the container image, run a docker compose file by executing `$ docker-compose up`. Docker compose file contains instructions to instantiate the image, set environment variables, setup networks, etc. 
-<br/><img src="/assets/images/wiki/wiki_docker_02.jpg" width="90%"/>
+<br/><img src="/assets/images/wiki/wiki_docker_02.jpg" width="100%" height="130%"/>
 
 ## Configuration
 + Need to set proxy for Docker if we use Docker behind a corporate proxy, e.g., `http://10.0.0.0:8080/`. Hence, create a `http-proxy.conf` file at `/etc/systemd/system/docker.service.d/` such that `/etc/systemd/system/docker.service.d/http-proxy.conf` file contains the following.

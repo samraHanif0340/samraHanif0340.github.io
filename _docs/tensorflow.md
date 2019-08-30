@@ -11,7 +11,7 @@ Every machine learning project must produce a saved model as its final deliverab
 + Independent of the source code that created the model.
 + Suitable for deployment via TensorFlow Serving, TensorFlow Lite, in many programming languages (e.g., C++, Java, Go)
 + A saved model produces a folder consisting of the following files:
-    ```txt
+    ```text
     tfserving                                           # TensorFlow Serving 
     ├── cnn                                             # model name 
     |    ├── 1                                          # model version
@@ -39,6 +39,6 @@ Every machine learning project must produce a saved model as its final deliverab
     + The assets folder allow you to add external files that may be needed.
 + Refer to the [official tutorial](https://www.tensorflow.org/tfx/tutorials/serving/rest_simple#save_your_model) for saving and loading a TensorFlow model. 
 + A simplified example of writing TensorFlow machine leanring model and saving it into SavedModel in Python is given below.
-<br/><img src="/assets/images/wiki/wiki_tensorflow_01.jpg" width="90%"/>
+<br/><img src="/assets/images/wiki/wiki_tensorflow_01.jpg" width="100%" height="130%"/>
 + An overview of the TensorFlow SavedModel building and deploying process is illustrated here.
-<br/><img src="/assets/images/wiki/wiki_tensorflow_02.jpg" width="90%"/>
+<br/><img src="/assets/images/wiki/wiki_tensorflow_02.jpg" width="100%" height="130%"/>

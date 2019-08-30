@@ -9,8 +9,8 @@ toc: true
 
 ## Commands
 + To see git hitsory, run:
-    ```git
-    git log --graph --oneline --decorate
+    ```bash
+    $ git log --graph --oneline --decorate
     ```
 
 ## Configuration

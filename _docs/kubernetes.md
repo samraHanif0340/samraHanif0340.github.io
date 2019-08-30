@@ -26,7 +26,7 @@ toc: true
 + Deployment manages, replicates to handle increased load, and updates, a set of pods through a single parent object
 + Nests a pod specification (deployment.spec.template) inside the deployment's configuration 
 + A representative Kubernetes Deployment file is shown below.
-<br/><img src="/assets/images/wiki/wiki_kubernetes_01.jpg" width="90%"/>
+<br/><img src="/assets/images/wiki/wiki_kubernetes_01.jpg" width="100%"/>
 
 + `Horizontal Pod Autoscaler` is a new resource in modern versions of Kubernetes that manages the number of replicas in your deployment automatically, based on resource utilization(e.g., memory, CPU, custom metrics).
 <br/><img src="/assets/images/wiki/wiki_kubernetes_03.jpg" width="30%"/>
@@ -34,7 +34,7 @@ toc: true
 ## Kubernetes Service
 + Services routes network requests to appropriate pods based on matching labels
 + A representative `Kubernetes Service` file is shown below.
-<br/><img src="/assets/images/wiki/wiki_kubernetes_02.jpg" width="90%"/>
+<br/><img src="/assets/images/wiki/wiki_kubernetes_02.jpg" width="100%"/>
 
 + The `Kubernetes Service` in the above file is illustrated pictorially below.
-<br/><img src="/assets/images/wiki/wiki_kubernetes_04.jpg" width="90%"/>
+<br/><img src="/assets/images/wiki/wiki_kubernetes_04.jpg" width="100%" height="120%"/>
