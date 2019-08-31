@@ -125,7 +125,7 @@ author:
       url: "https://www.linkedin.com/in/adaickalavan"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://adaickalavan.github.io/"   
+      url: "https://github.com/Adaickalavan"   
     - label: "Website"
       icon: "fas fa-fw fa-link"
       url: "https://adaickalavan.github.io/"
@@ -141,7 +141,7 @@ footer:
       url: "https://www.linkedin.com/in/adaickalavan"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://adaickalavan.github.io/"
+      url: "https://github.com/Adaickalavan"
 
 
 # Reading Files
