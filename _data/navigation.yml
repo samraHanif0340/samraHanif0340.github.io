@@ -8,9 +8,30 @@ main:
     url: /portfolio/
   - title: "Posts"
     url: /year-archive/
+  - title: "Guide"
+    url: /docs/guide/  
   - title: "Publications"
     url: /publications/
-#  - title: "Collections"
-#    url: /collection-archive/
-#  - title: "Sitemap"
-#    url: /sitemap/
+
+# documentation links
+docs:
+  - title: Setups and Standards
+    children:
+      - title: "Guide"
+        url: /docs/guide/
+      - title: "Docker"
+        url: /docs/docker/
+      - title: "Git"
+        url: /docs/git/
+      - title: "Kafka"
+        url: /docs/kafka/
+      - title: "Kubernetes"
+        url: /docs/kubernetes/
+      - title: "Linux"
+        url: /docs/linux/
+      - title: "Microservices"
+        url: /docs/microservices/
+      - title: "Python"
+        url: /docs/python/
+      - title: "TensorFlow"
+        url: /docs/tensorflow/
