@@ -1,14 +1,9 @@
 ---
 title: "Golang Web Application with PostgreSQL"
 excerpt: "Golang, PostgreSQL, Javascript"
-mathjax: true
 header:
   teaser: assets/images/goweb_01.jpg
 ---
-
-{% include feature_row %}
-
-<!-- {% include toc %} -->
 
 ## Project
 

@@ -2,15 +2,13 @@
 title: "Coding Questions in Golang"
 excerpt: "Programming trivia in Golang"
 header:
-  teaser: assets/images/coding_questions_in_golang_01.jpg
-feature_row:
+  teaser: /assets/images/coding_questions_in_golang_01.jpg
+gallery:
   - image_path: /assets/images/gophercises_punching.jpg
   - image_path: /assets/images/gophercises_lifting.jpg
 ---
 
-{% include feature_row %}
-
-<!-- {% include toc %} -->
+{% include gallery %}
 
 In this post, we will answer several programming challenge questions in Golang. These questions are often asked as part of interviews. Although there may be built-in methods to solve these problems, we shall only use basic data structures to solve each of them.
 

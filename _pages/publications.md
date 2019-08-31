@@ -1,7 +1,6 @@
 ---
 permalink: /publications/
 excerpt: "Patents and publications"
-last_modified_at: 2017-06-03
 ---
 
 <!--

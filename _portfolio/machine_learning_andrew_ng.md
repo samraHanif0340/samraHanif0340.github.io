@@ -3,15 +3,13 @@ title: "Machine Learning - Andrew Ng"
 excerpt: "Course review and resources"
 header:
   teaser: /assets/images/Machine_Learning_Stanford.jpg
-feature_row:
+gallery:
   - image_path: /assets/images/machine_learning_andrew_ng_p02_01.jpg
   - image_path: /assets/images/machine_learning_andrew_ng_p06_01.jpg
   - image_path: /assets/images/machine_learning_andrew_ng_p07_01.jpg
 ---
 
-{% include feature_row %}
-
-<!-- {% include toc %} -->
+{% include gallery %}
 
 ## Review
 

@@ -3,14 +3,12 @@ title: "MNIST"
 excerpt: "Neural network and convolutional neural networks for MNIST"
 header:
   teaser: /assets/images/MNIST_1.jpg
-feature_row:
+gallery:
   - image_path: /assets/images/MNIST_1.jpg
   - image_path: /assets/images/MNIST_2.jpg
 ---
 
-{% include feature_row %}
-
-<!-- {% include toc %} -->
+{% include gallery %}
 
 ## Summary
 This page contains different Python implementations for recognising handwritten digits from the famous MNIST database.

@@ -2,10 +2,8 @@
 title: "Paxos"
 excerpt: "Scalable API and Dynamic Programming"
 header:
-  teaser: assets/images/paxos_01.jpg
+  teaser: /assets/images/paxos_01.jpg
 ---
-
-<!-- {% include toc %} -->
 
 ## Info
 

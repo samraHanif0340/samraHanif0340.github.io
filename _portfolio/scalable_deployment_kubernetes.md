@@ -3,14 +3,12 @@ title: "Scalable Deployment in Kubernetes"
 excerpt: "Video Analytics, TensorFlow Serving, Golang, Kafka, Docker, REST"
 header:
   teaser: /assets/images/scalable_deployment_kubernetes_01.jpg
-feature_row:
+gallery:
   - image_path: /assets/images/scalable_deployment_kubernetes_03.jpg
   - image_path: /assets/images/scalable_deployment_kubernetes_04.jpg
 ---
 
-{% include feature_row %}
-
-<!-- {% include toc %} -->
+{% include gallery %}
 
 ## Introduction
 

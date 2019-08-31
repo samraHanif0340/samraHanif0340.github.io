@@ -2,12 +2,8 @@
 title: "Deep Learning for Time Series and NLP"
 excerpt: "Project"
 header:
-  teaser: assets/images/time_series_nlp_01.jpg
+  teaser: /assets/images/time_series_nlp_01.jpg 
 ---
-
-{% include feature_row %}
-
-<!-- {% include toc %} -->
 
 ## Project
 

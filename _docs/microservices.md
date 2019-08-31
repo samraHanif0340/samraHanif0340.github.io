@@ -1,5 +1,6 @@
 ---
 title: "Microservices"
+toc: false
 ---
 
 1. A generic microservices architecture is as follows:

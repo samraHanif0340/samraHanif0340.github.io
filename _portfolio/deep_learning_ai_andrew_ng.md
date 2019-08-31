@@ -2,15 +2,16 @@
 title: "Deep Learning.ai - Andrew Ng"
 excerpt: "Course review and resources"
 header:
-  teaser: assets/images/deep_learning_c4w2_p01_01_happymodel.png
-feature_row:
-  - image_path: assets/images/deep_learning_c4w3_p01_01_yolo.jpg 
-  - image_path: assets/images/deep_learning_c4w4_p02_01_nst.jpg
+  teaser: /assets/images/deep_learning_c4w2_p01_01_happymodel.png
+gallery:
+  - image_path: /assets/images/deep_learning_c4w3_p01_01_yolo.jpg 
+  - image_path: /assets/images/deep_learning_c4w4_p02_01_nst.jpg
+toc: false     
 ---
 
-{% include feature_row %}
+{% include gallery %}
 
-<!-- {% include toc %} -->
+{% include toc %}
 
 ## Review
 

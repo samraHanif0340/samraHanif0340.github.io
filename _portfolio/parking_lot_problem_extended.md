@@ -5,8 +5,6 @@ header:
   teaser: assets/images/parkinglot_extended_01.jpg
 ---
 
-<!-- {% include toc %} -->
-
 ## Info
 
 This project addresses an extended problem to that of the original [Parking Lot Problem](https://adaickalavan.github.io/portfolio/parking_lot_problem/).

@@ -2,10 +2,8 @@
 title: "Docker Images"
 excerpt: "Golang, GoCV, Librdkafka, Confluent-Kafka-Go"
 header:
-  teaser: assets/images/gopher_docker.jpg
+  teaser: /assets/images/gopher_docker.jpg
 ---
-
-<!-- {% include toc %} -->
 
 ## Info
 

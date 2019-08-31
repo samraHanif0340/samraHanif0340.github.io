@@ -72,15 +72,13 @@
     border-bottom: 1px solid $border-color;
   }
 
-  text-align: justify;
-  
   p,
   li,
   dl {
     font-size: 1em;
     /* Start of my additions */
     text-align: justify;
-    /* End of my additions */
+    /* End of my additions */    
   }
 
   /* paragraph indents */

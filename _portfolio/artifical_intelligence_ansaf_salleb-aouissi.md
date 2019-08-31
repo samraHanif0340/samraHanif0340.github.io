@@ -3,8 +3,7 @@ title: "Artificial Intelligence - Ansaf Salleb-Aouissi"
 excerpt: "Course review and resources"
 header:
   teaser: /assets/images/Artificial_Intelligence_ColumbiaX.jpg
-mathjax: true
-feature_row:
+gallery_01:
   - image_path: /assets/images/artificial_intelligence_p02_02.jpg
   - image_path: /assets/images/artificial_intelligence_p03_04.jpg
   - image_path: /assets/images/artificial_intelligence_p04_03.jpg
@@ -17,12 +16,10 @@ gallery_07_02:
   - url: /assets/images/artificial_intelligence_p03_04.jpg
     image_path: /assets/images/artificial_intelligence_p03_04.jpg
   - url: /assets/images/artificial_intelligence_p03_03.jpg
-    image_path: /assets/images/artificial_intelligence_p03_03.jpg     
+    image_path: /assets/images/artificial_intelligence_p03_03.jpg       
 ---
 
-{% include feature_row %}
-
-<!-- {% include toc %} -->
+{% include gallery id="gallery_01" %}
 
 ## Review
 

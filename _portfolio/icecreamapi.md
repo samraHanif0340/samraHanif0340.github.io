@@ -5,8 +5,6 @@ header:
   teaser: assets/images/icecream.jpg
 ---
 
-<!-- {% include toc %} -->
-
 ## Info
 
 A JSON Web Token (JWT) authenticated REST API, to perform CRUD operations on a pre-seeded MongoDB of various icecream products, is developed. The code is completely containerized using Docker images.

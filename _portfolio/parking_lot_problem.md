@@ -2,10 +2,8 @@
 title: "Parking Lot Problem"
 excerpt: "Solved in Golang with data structures optimized for complexity"
 header:
-  teaser: assets/images/parkinglot_01.jpg
+  teaser: /assets/images/parkinglot_01.jpg
 ---
-
-<!-- {% include toc %} -->
 
 ## Info
 

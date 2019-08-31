@@ -1,7 +1,6 @@
 ---
 title: "CWDAML and Adaptive CWDA Algorithm"
 excerpt: "Adaptive learning algorithms proposed in my PhD."
-mathjax : true
 header:
   teaser: assets/images/PhD/ACWDA_BER.jpg
 author_profile: false
@@ -14,15 +13,13 @@ sidebar:
     text: "Optical Communication receiver design"
   - title: "Contributions"
     text: "Proposed (i) 2 novel adaptive learning algorithms, namely, CWDAML and adaptive CWDA for long-haul optical communication receiver design, and (ii) an all-optical filter design for intensity-modulated direct-detected radio-over-fiber receivers, used in broadband wireless optical access networks."
-feature_row:
-  - image_path: assets/images/PhD/ACWDA_BER.jpg
-  - image_path: assets/images/PhD/ACWDA_BER_and_cycle_slip.jpg
-  - image_path: assets/images/PhD/ACWDA_NL_cycle_slip.jpg
+gallery:
+  - image_path: /assets/images/PhD/ACWDA_BER.jpg
+  - image_path: /assets/images/PhD/ACWDA_BER_and_cycle_slip.jpg
+  - image_path: /assets/images/PhD/ACWDA_NL_cycle_slip.jpg   
 ---
 
-{% include feature_row %}
-
-<!-- {% include toc %} -->
+{% include gallery %}
 
 ## Overview
 

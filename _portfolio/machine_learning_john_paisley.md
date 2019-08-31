@@ -1,21 +1,17 @@
 ---
 title: "Machine Learning - John Paisley"
 excerpt: "Course review and resources"
-mathjax: true
 header:
   teaser: /assets/images/Machine_Learning_ColumbiaX.jpg
-feature_row:
+gallery:
   - image_path: /assets/images/Machine_Learning_ColumbiaX.jpg
-#    alt: "Gameplay 2048"
-#    title: "Gameplay 2048"
   - image_path: /assets/images/machine_learning_john_paisley_p04_02.jpg
-#    alt: "Gameplay 2048"
-#    title: "Gameplay 2048"
+toc: false
 ---
 
-{% include feature_row %}
+{% include gallery %}
 
-<!-- {% include toc %} -->
+{% include toc %}
 
 ## Review
 

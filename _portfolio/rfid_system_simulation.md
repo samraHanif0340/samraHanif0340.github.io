@@ -2,18 +2,16 @@
 title: "RFID System Simulation"
 excerpt: "Simulation of end-to-end RFID system"
 header:
-  teaser: assets/images/rfid_00_adaptive_IIR_filter.jpg
-mathjax: true
+  teaser: /assets/images/rfid_00_adaptive_IIR_filter.jpg
 gallery_01:
   - url: /assets/images/rfid_09_equalization.jpg
     image_path: /assets/images/rfid_09_equalization.jpg
   - url: /assets/images/rfid_10_equalization_zoom.jpg
     image_path: /assets/images/rfid_10_equalization_zoom.jpg
+toc: false  
 ---
 
-{% include feature_row %}
-
-<!-- {% include toc %} -->
+{% include toc %}
 
 ## Info
 We will describe how to simulate the wireless communication chain of a phase-shift keyed (PSK) modulated radio freqeuncy identification (RFID) system in Matlab. We endeavour to provide the mathematical equations and corresponding Matlab code to model the transmitter, wireless channel, analog front-end, and a digital baseband receiver of a RFID system. 

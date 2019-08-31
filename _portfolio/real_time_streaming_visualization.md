@@ -1,14 +1,9 @@
 ---
 title: "Real Time Streaming Visualization"
 excerpt: "Project - Python"
-mathjax: true
 header:
-  teaser: assets/images/real_time_streaming_visualization_01.jpg
+  teaser: /assets/images/real_time_streaming_visualization_01.jpg
 ---
-
-{% include feature_row %}
-
-<!-- {% include toc %} -->
 
 ## Project
 
