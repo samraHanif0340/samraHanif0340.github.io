@@ -5,6 +5,7 @@
 # For technical reasons, this file is *NOT* reloaded automatically when you use
 # `jekyll serve`. If you change this file, please restart the server process.
 
+<<<<<<< HEAD
 # Theme Settings
 #
 # Review documentation to determine if you should use `theme` or `remote_theme`
@@ -14,6 +15,14 @@ theme                    : minimal-mistakes-jekyll
 # remote_theme             : mmistakes/minimal-mistakes
 minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
+=======
+# Build settings
+remote_theme             : "mmistakes/minimal-mistakes"
+
+minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+
+
+>>>>>>> 819dbcc28d96fad74b7874c69b23a36462aff312
 # Site Settings
 locale                   : "en-US"
 title                    : "Signal Processing & Machine Learning"
@@ -180,7 +189,6 @@ keep_files:
 encoding: "utf-8"
 markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 
-
 # Conversion
 markdown: kramdown
 highlighter: rouge
@@ -200,6 +208,7 @@ kramdown:
   smart_quotes: lsquo,rsquo,ldquo,rdquo
   enable_coderay: false
 
+<<<<<<< HEAD
 # Collections
 collections:
   docs:
@@ -209,6 +218,50 @@ collections:
     output: true
     permalink: /:collection/:path/
 
+=======
+# Defaults
+defaults:
+  # _portfolio
+  - scope:
+      path: ""
+      type: portfolio
+    values:
+      layout: single
+      author_profile: true
+      share: true
+      comments: true
+  # _posts
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: true
+      share: true
+      related: true
+  # _pages
+  - scope:
+      path: "_pages"
+      type: pages
+    values:
+      layout: single
+      author_profile: true
+  # _docs
+  - scope:
+      path: ""
+      type: docs
+    values:
+      layout: single
+      read_time: true
+      author_profile: false
+      share: true
+      comments: true
+      sidebar:
+        nav: "docs"
+        
+>>>>>>> 819dbcc28d96fad74b7874c69b23a36462aff312
 
 # Sass/SCSS
 sass:
@@ -223,17 +276,26 @@ paginate_path: /page:num/
 timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
 
+<<<<<<< HEAD
 # Plugins (previously gems:)
 plugins:
   - jekyll-archives
+=======
+
+# Plugins
+plugins:
+>>>>>>> 819dbcc28d96fad74b7874c69b23a36462aff312
   - jekyll-paginate
   - jekyll-sitemap
   - jekyll-gist
   - jekyll-feed
   - jemoji
   - jekyll-include-cache
+<<<<<<< HEAD
   - jekyll-algolia
   - minimal-mistakes-jekyll
+=======
+>>>>>>> 819dbcc28d96fad74b7874c69b23a36462aff312
 
 # mimic GitHub Pages with --safe
 whitelist:
@@ -244,9 +306,12 @@ whitelist:
   - jekyll-feed
   - jemoji
   - jekyll-include-cache
+<<<<<<< HEAD
   - jekyll-algolia
   - minimal-mistakes-jekyll
 
+=======
+>>>>>>> 819dbcc28d96fad74b7874c69b23a36462aff312
 
 # Archives
 #  Type
