@@ -1,6 +1,5 @@
 ---
 title: "Python"
-permalink: /docs/python/
 ---
 
 ## Code style

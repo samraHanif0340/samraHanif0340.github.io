@@ -1,6 +1,5 @@
 ---
 title: "Docker"
-permalink: /docs/docker/
 ---
 
 ## Docker File

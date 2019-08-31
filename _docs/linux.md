@@ -1,6 +1,5 @@
 ---
 title: "Linux"
-permalink: /docs/linux/
 ---
 
 ## Configuration

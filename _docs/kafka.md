@@ -1,6 +1,5 @@
 ---
 title: "Kafka"
-permalink: /docs/kafka/
 ---
 
 ## Apache Kafka

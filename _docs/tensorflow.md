@@ -1,6 +1,5 @@
 ---
 title: "TensorFlow"
-permalink: /docs/tensorflow/
 ---
 
 Every machine learning project must produce a saved model as its final deliverable.

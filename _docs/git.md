@@ -1,6 +1,5 @@
 ---
 title: "Git"
-permalink: /docs/git/
 ---
 
 ## Tutorial
