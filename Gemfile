@@ -14,9 +14,5 @@ group :jekyll_plugins do
   gem "jemoji"
   gem "jekyll-include-cache"
   gem "jekyll-algolia"
-<<<<<<< HEAD
   gem "minimal-mistakes-jekyll"
 end
-=======
-end
->>>>>>> 819dbcc28d96fad74b7874c69b23a36462aff312
