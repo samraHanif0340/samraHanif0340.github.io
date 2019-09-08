@@ -12,4 +12,4 @@ Feel free to explore my site.
 
 + The <a href="/portfolio/">portfolio</a> tab contains several of my works on statistical signal processing, distributed high performance, computing, machine learning, amd my doctoral endeavour.
 + The <a href="/year-archive/">posts</a> tab contain standalone posts on specific topics.
-+ The <a nhref="/docs/guide/">guide</a> tab contains setup configurations and recommended coding standards, for various languages and tools.
++ The <a href="/docs/guide/">guide</a> tab contains setup configurations and recommended coding standards, for various languages and tools.
