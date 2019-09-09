@@ -47,9 +47,25 @@ Several notable settings in Kafka deployment are mentioned below.
     "auto.offset.reset": "earliest" //or “latest”  
     ```
 + Kafka Config
-    ```bash
+    ```yml
     KAFKA_LOG_CLEANUP_POLICY=delete #Cleanup policy for segments beyond the retention window
     KAFKA_LOG_RETENTION_MINUTES=1 #Minutes to keep a log file before deleting. Default 168 hours.
     ```
-+ Always retrieve the latest message by resetting the committed offset
-<br/><img src="/assets/images/wiki/wiki_kafka_05.jpg" width="80%"/>
++ Always retrieve the latest message by resetting the committed offset. The example below is in Golang.
+    ```go
+    // LatestOffset resets consumer offset to the latest message in the topic
+    func LatestOffset(c *kafka.Consumer) {
+
+        // Record the current topic-partition assignments
+        tpSlice, _ := c.Assignment()
+        
+        //Obtain the last message offset for all topic-partition
+        for index, tp := range tpSlice {
+            _, high, _ := c.QueryWatermarkOffsets(*(tp.Topic), tp.Partition, 100)
+            tpSlice[index].Offset = kafka.Offset(high)
+        }
+
+        //Consume the last message in topic-partition
+        c.Assign(tpSlice)
+    }
+    ```

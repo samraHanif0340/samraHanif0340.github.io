@@ -24,7 +24,43 @@ title: "Kubernetes"
 + Deployment manages, replicates to handle increased load, and updates, a set of pods through a single parent object
 + Nests a pod specification (deployment.spec.template) inside the deployment's configuration 
 + A representative Kubernetes Deployment file is shown below.
-<br/><img src="/assets/images/wiki/wiki_kubernetes_01.jpg" width="100%"/>
+    ```yml
+    # deployment.yml
+    apiVersion: extensions/v1beta1 # Kubernetes API version it’s from
+    kind: Deployment # Type of object
+
+    metadata: # Descriptive information of object
+    name: tfsimagenet
+    annotations: # Won’t be indexed or queried on
+        contact: Adaickalavan <adaickalavan@email.com> 
+
+    spec: # Desired state of object
+    replicas: 2 # How many copies of each pod do we want?
+
+    strategy: # How do we want to update the pods?
+        type: RollingUpdate # Updates pods one at a time
+        rollingUpdate:
+        maxSurge: 1 # Maximum number of pods above desired replicas
+
+    selector: # Which pods are managed by this deployment?
+        matchLabels: # This matches against the labels we set on the pod
+        app: tfsimagenet
+
+    template:
+        metadata:
+        name: tfsimagenet
+        labels: # Used in deployment and service selector  
+            app: tfsimagenet
+        spec:
+        containers:
+            - name: tfsimagenet
+            image: tfsimagenet
+            imagePullPolicy: IfNotPresent
+            ports:
+                - name: rest
+                containerPort: 8501
+            resources:
+    ```
 
 + `Horizontal Pod Autoscaler` is a new resource in modern versions of Kubernetes that manages the number of replicas in your deployment automatically, based on resource utilization(e.g., memory, CPU, custom metrics).
 <br/><img src="/assets/images/wiki/wiki_kubernetes_03.jpg" width="30%"/>
@@ -32,7 +68,28 @@ title: "Kubernetes"
 ## Kubernetes Service
 + Services routes network requests to appropriate pods based on matching labels
 + A representative `Kubernetes Service` file is shown below.
-<br/><img src="/assets/images/wiki/wiki_kubernetes_02.jpg" width="100%"/>
+    ```yml
+    # service.yml
+    apiVersion: v1
+    kind: Service
+
+    metadata:
+    name: tfsimagenet-service
+
+    spec:
+    type: NodePort
+
+    selector:
+        app: tfsimagenet
+
+    ports: # Three types of ports for a service 
+        # nodePort - static  port on each node which is accessible from outside the cluster 
+        # port - port exposed internally in the cluster 
+        # targetPort - the container port to send requests to
+        - nodeport: 30163
+        port: 8080
+        targetPort: 8501
+    ```
 
 + The `Kubernetes Service` in the above file is illustrated pictorially below.
 <br/><img src="/assets/images/wiki/wiki_kubernetes_04.jpg" width="100%" height="150%"/>
