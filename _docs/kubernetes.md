@@ -63,7 +63,8 @@ title: "Kubernetes"
     ```
 
 + `Horizontal Pod Autoscaler` is a new resource in modern versions of Kubernetes that manages the number of replicas in your deployment automatically, based on resource utilization(e.g., memory, CPU, custom metrics).
-<br/><img src="/assets/images/wiki/wiki_kubernetes_03.jpg" width="30%"/>
+
+![podAutoscaler](/assets/images/wiki/wiki_kubernetes_03.jpg){:height="40%" width="40%" .align-center}
 
 ## Kubernetes Service
 + Services routes network requests to appropriate pods based on matching labels
@@ -92,4 +93,5 @@ title: "Kubernetes"
     ```
 
 + The `Kubernetes Service` in the above file is illustrated pictorially below.
-<br/><img src="/assets/images/wiki/wiki_kubernetes_04.jpg" width="100%" height="150%"/>
+
+    [![service](/assets/images/wiki/wiki_kubernetes_04.jpg)](/assets/images/wiki/wiki_kubernetes_04.jpg)

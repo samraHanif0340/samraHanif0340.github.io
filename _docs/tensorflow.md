@@ -61,4 +61,5 @@ Every machine learning project must produce a saved model as its final deliverab
     ```
 
 + An overview of the TensorFlow SavedModel building and deploying process is illustrated here.
-<br/><img src="/assets/images/wiki/wiki_tensorflow_02.jpg" width="100%" height="200%"/>
+
+    [![tensorFlowSavedModel](/assets/images/wiki/wiki_tensorflow_02.jpg)](/assets/images/wiki/wiki_tensorflow_02.jpg)
