@@ -56,16 +56,16 @@ Several notable settings in Kafka deployment are mentioned below.
     // LatestOffset resets consumer offset to the latest message in the topic
     func LatestOffset(c *kafka.Consumer) {
 
-        // Record the current topic-partition assignments
-        tpSlice, _ := c.Assignment()
-        
-        //Obtain the last message offset for all topic-partition
-        for index, tp := range tpSlice {
-            _, high, _ := c.QueryWatermarkOffsets(*(tp.Topic), tp.Partition, 100)
-            tpSlice[index].Offset = kafka.Offset(high)
-        }
+        // Record the current topic-partition assignments
+        tpSlice, _ := c.Assignment()
 
-        //Consume the last message in topic-partition
-        c.Assign(tpSlice)
+        //Obtain the last message offset for all topic-partition
+        for index, tp := range tpSlice {
+            _, high, _ := c.QueryWatermarkOffsets(*(tp.Topic), tp.Partition, 100)
+            tpSlice[index].Offset = kafka.Offset(high)
+        }
+
+        //Consume the last message in topic-partition
+        c.Assign(tpSlice)
     }
     ```
