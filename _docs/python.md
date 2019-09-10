@@ -4,8 +4,8 @@ title: "Python"
 
 ## Code style
 + Follow the [PEP 8 Python style guide](https://www.python.org/dev/peps/pep-0008/), except TensorFlow uses 2 spaces instead of 4. 
-
 + Please conform to the [Google Python Style Guide](https://github.com/google/styleguide/blob/gh-pages/pyguide.md), and use [pylint](https://www.pylint.org/) to check your Python changes.
++ All naming of folders, files, and functions, shall follow `camelCase` format.
 
 ## Code linting
 + `black` is a very unforgiving code formatter. It doesn’t have any configuration options, and it has a very specific style. Code formatters will change the code automatically to meet a collection of style and layout practices.
@@ -28,8 +28,11 @@ title: "Python"
         ```text
         emotion-recognition                         # Main project directory 
         ├── model                                   # Machine learning model folder 
-        |   ├── facial_expression_model_weights.h5  # Machine learning saved weights
-        |   └── facial-expression-recognition.py    # Python code 
+        |   ├── analysis                            # Package - Helper    
+        |   |   └── predictions.py                  # Module - Analysis 
+        |   ├── checkpoint                          # Package - Helper    
+        |   |   └── emotion_recognition_weights.h5  # Machine learning saved weights
+        |   └── emotionRecognition.py               # Python code 
         ├── tfgraph                                 # TensorFlow graph folder 
         |   └── cnn.py                              # Graph architecture
         └── .env                                    # Environment variables 
@@ -45,7 +48,7 @@ title: "Python"
         ```
     1. Place the following piece of code at the top of the Python code file. It will add the project directory given by `ROOT` to `sys.path` and make it searchable by Python. 
         ```python
-        # File: emotion-recognition/model/facial-expression-recognition.py
+        # File: emotion-recognition/model/emotionRecognition.py
         # Setup
         import os
         import sys
@@ -54,17 +57,19 @@ title: "Python"
         ROOT = os.getenv("ROOT")
         sys.path.append(ROOT)
         ```
-    1. Import local packages as follows.
+    1. Import local packages or modules as follows.
         ```python
-        # File: emotion-recognition/model/facial-expression-recognition.py
+        # File: emotion-recognition/model/emotionRecognition.py
         # Import local packages
         from tfgraph import cnn
+        from model.analysis import predictions
         ```
     1. To open files in Python, create absolute paths by adding the file path within the project directory and the `ROOT`. An example is as follows. 
         ```python
-        # File: emotion-recognition/model/facial-expression-recognition.py
-        model.load_weights(ROOT+"/model/facial_expression_model_weights.h5")  # Load weights for TensorFlow model
+        # File: emotion-recognition/model/emotionRecognition.py
+        model.load_weights(ROOT+"/model/checkpoint/emotion_recognition_weights.h5")  # Load weights for TensorFlow model
         ```
++ Only import Python packages and modules. Never import Python functions, i.e., `def`, directly into another Python file.
 
 ## Dependency management   
 + To generate `requirements.txt` file for Python dependencies.
@@ -83,3 +88,55 @@ title: "Python"
     ```python
     pip install -r /requirements.txt
     ```
+
+## Machine learning folder structure
+
+1. The following serves as a representative project folder structure.
+    ```text
+    emotion-recognition                             # Main project directory 
+    ├── assets                                      # Assets
+    |   ├── images
+    |     ...
+    |     ...
+    ├── dataset                                     # Dataset
+    |   ├── fer2013.csv
+    |   └── happy-1.jpg
+    ├── model                                       # Machine learning model folder 
+    |   ├── analysis                                # Package - Analysis    
+    |   |   └── predictions.py                      # Module - Predictions 
+    |   ├── checkpoints                             # Checkpoints    
+    |   |   ├── emotion_recognition_weights.h5      # Machine learning saved weights
+    |   |   └── emotion_recognition_structure.json  # Machine learning saved structure
+    |   ├── helper                                  # Package - Helper    
+    |   |   └── convert.py                          # Module - Convert 
+    |   ├── emotionRecognition.py                   # Static image code 
+    |   └── emotionRecognitionStream.py             # Streaming video code 
+    ├── prepostprocessing                           # Pre/Post-processing folder 
+    |   ├── emonetLabels.json                       # Labels
+    |   ├── haarcascade_frontalface_default.xml     # .xml file for ML models
+    |   └── preprocess.py                           # Pre-processing functions   
+    ├── tfgraph                                     # TensorFlow graph folder 
+    |   └── cnn.py                                  # Graph architecture
+    ├── tfserving                                   # TensorFlow Serving 
+    |   ├── cnn
+    |       ├── ...                                  
+    |       ...
+    ├── .env                                        # Environment variables 
+    └── README.md                                   # Readme file
+    ```
+
+1. `assets` folder should contain miscellaneous files. For example, it can contain images used for explanation in `Readme.md`.
+1. `dataset` folder should minimal amount of sample test data used in the project for testing and demonstration purposes. Complete dataset is advised to be stored in an external Hadoop cluster.
+1. `model` folder contains all peripheral code used in developing and testing the machine learning tensorflow graph. 
+    + This folder ideally should contain a runnable example to illustrate the entire machine learning model.
+    + Local code should be abstracted into packages and modules. For example, `analysis` and `helper` are local packages, whereas `predictions.py` and `convert.py` are local modules.
+    + Package and module naming should be intuitive and non-repetitive. For example, reading  an import statement in Python, such as `import model.analysis.predictions`, should clearly indicate the meaning/functionality of the code being imported.
+    + A `checkpoints` sub-folder is desirable to keep track of previously trained architecture and weights. 
+1. **PRODUCTION CODE** `prepostprocessing` folder is a top level folder containing well abstracted pre/post-processing code, which will be ported into production.
+1. **PRODUCTION CODE** `tfgraph` folder is a top level folder containing well abstracted and commented machine learning TensorFlow graph. The graph (e.g., `cnn.py`) is converted into `SavedModel` format and saved with identical name in the `tfserving` folder (e.g., `cnn`).  
+1. **PRODUCTION CODE** `tfserving` folder. Please see `TensorFlow` wiki to learn more about the structure of `tfserving` folder.
+1. **PRODUCTION CODE** `.env` file should contain the environment variables, e.g., `ROOT` variable, which will be ported into production.
+1. `README.md` file shall contain a brief description of the following:
+    + Explanation of what the project is about
+    + Instructions to run a sample of the code
+    + Desired input and output of the machine learning model    
