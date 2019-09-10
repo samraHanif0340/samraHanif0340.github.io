@@ -35,3 +35,5 @@ docs:
         url: /docs/python/
       - title: "TensorFlow"
         url: /docs/tensorflow/
+      - title: "C++"
+        url: /docs/cpp/
