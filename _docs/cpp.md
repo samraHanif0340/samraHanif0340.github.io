@@ -3,7 +3,7 @@ title: "C++"
 ---
 
 ## Serial program
-+ Mathematically $$\int_{0}^{1}\frac{4}{1+x^2}dx\approx\pi$$. This integral can be approximated as a sum of
+1. Mathematically $$\int_{0}^{1}\frac{4}{1+x^2}dx\approx\pi$$. This integral can be approximated as a sum of
 rectangles: 
 
     $$
@@ -11,7 +11,7 @@ rectangles:
     $$
 
     where each rectangle has width $$\Delta x$$ and height $$\frac{4}{1+((i+0.5)\Delta x)^2}$$ at the middle of interval $$i$$. Here, $$N = 1/\Delta x$$.
-+ A serial C++ program to compute $$\pi$$ this is as follows:
+1. A serial C++ program to compute $$\pi$$ is as follows:
 
     ```c++
     double runPiSerial(int numSteps){
@@ -33,14 +33,14 @@ Parallel programming in C++ may be achieved using OpenMP, MPI, and multithreadin
 
 ## Open MP
 
-+ OpenMP is a multi-threading, shared address model. Threads communicate by sharing variables.
-+ To create multiple threads or parallel regions, use compiler directive: `#pragma omp parallel`.
-+ To control race conditions, use synchronization to protect data conflicts.
-+ Synchronization 
+1. OpenMP is a multi-threading, shared address model. Threads communicate by sharing variables.
+1. To create multiple threads or parallel regions, use compiler directive: `#pragma omp parallel`.
+1. To control race conditions, use synchronization to protect data conflicts.
+1. Synchronization 
     + `#pragma omp barrier`: Each thread waits until all threads arrive.
     + `#pragma omp critical`: Only one thread at a time can enter a critical region. Threads wait their turn – only one at a time calls code within the block.
     + `#pragma omp atomic`: Provides mutual exclusion but only applies to the update of a memory location.
-    + A parallel program with synchornisation to compute $\pi$ is as follows:
+1. A parallel program with synchronization to compute $$\pi$$ is as follows:
     ```c++
     double runPiParallelSync(int numSteps, int nThreadsInput){
         double x;
@@ -73,8 +73,8 @@ Parallel programming in C++ may be achieved using OpenMP, MPI, and multithreadin
         return pi;
     }
     ```
-+ WorkSharing Loop: `#pragma omp for`
-    + The loop worksharing construct splits up loop iterations among the threads in a team. This is a simpler parallelization technique compared to using synchronization. 
+1. WorkSharing Loop: `#pragma omp for`
+    + The loop worksharing construct splits up loop iterations (i.e., `for` loops) among the threads in a team. This essentially simplifies parallelization compared to using synchronization. 
     + Ensure the loop iterations independent so they can safely execute in any order without loop-carried dependencies.
     + Combining values from different threads into a single accumulation variable is known as reduction. In OpenMP, use the reduction clause: `reduction (op : list)`
     + Inside a work-sharing construct:
@@ -83,7 +83,7 @@ Parallel programming in C++ may be achieved using OpenMP, MPI, and multithreadin
         + Local copies are reduced into a single value and
         combined with the original global value.
         + The variables in `list` must be shared in the  enclosing parallel region.
-    + A parallel program with worksharing loop to compute $\pi$ is as follows: 
+1. A parallel program with worksharing loop to compute $$\pi$$ is as follows: 
     ```c++
     double runPiWorkSharing(int numSteps){
         double pi, sum = 0.0;
