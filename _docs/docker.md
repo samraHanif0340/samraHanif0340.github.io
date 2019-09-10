@@ -69,11 +69,18 @@ title: "Docker"
         - /dev/video0:/dev/video0 
         networks:
         - zookeeper_dockerNet 
-            # To ensure containers in different docker-compose files communicate  with each other, we place them on the       same network. The complete network name is 'zookeeper_dockerNet'. It is derived by joining the name of the folder from which the network originates (i.e., zookeeper) and the name of the network (i.e., dockerNet).
+            # To ensure containers in different docker-compose 
+            # files communicate  with each other, we place them 
+            # on the same network. The complete network name is # 'zookeeper_dockerNet'. It is derived by joining 
+            # the name of the folder from which the network 
+            # originates (i.e., zookeeper) and the name of the 
+            # network (i.e., dockerNet).
 
     networks:
     zookeeper_dockerNet:
-        external: true #Label the other docker-compose network as an external network to the current docker-compose file
+        external: true 
+        # Label the other docker-compose network as an external 
+        # network to the current docker-compose file
     ```
 
 ## Configuration
@@ -83,7 +90,7 @@ title: "Docker"
     Environment="HTTP_PROXY=http://10.0.0.0:8080/"
     Environment="HTTPS_PROXY=https://10.0.0.0:8080/"
     Environment="NO_PROXY=http://172.16.0.0/"
-    ```    
+    ```  
     Note that we can set no proxy for internal IP addresses such as `http://172.16.0.0/`.
 
 + Restart the Docker daemon to start using the new proxy setting.
