@@ -37,7 +37,7 @@ In part 1 of the project, we are required to compute the ridge regression weight
 
 To solve, implement the equations given in Lecture 3, Slide 23.
 
-![L3S23](/assets/images/machine_learning_john_paisley_p01_01.jpg){:height="60%" width="60%" .align-center}
+![L3S23](/assets/images/machine_learning_john_paisley_p01_01.jpg){:height="90%" width="90%" .align-center}
 
 In part 2 of the project, we are required to give 10 data points to measure given values of $$y$$, $$\mathbf{X}$$, $$\lambda$$, and $$\sigma^2$$, via active learning procedure.
 
