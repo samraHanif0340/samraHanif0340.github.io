@@ -29,7 +29,7 @@ The [repository](https://github.com/Adaickalavan/Machine-Learning-CSMM102x-John-
 * Projects - Instructions, test data sets, desired outputs, and Python solution codes
 
 ### Verified Certificate
-[![certificate](/assets/images/Machine_Learning_ColumbiaX.jpg){:height="60%" width="60%" .align-center}](https://courses.edx.org/certificates/f0b21c7e213f46af83b1f5c50b7a8d7e)
+[![certificate](/assets/images/Machine_Learning_ColumbiaX.jpg){:height="90%" width="90%" .align-center}](https://courses.edx.org/certificates/f0b21c7e213f46af83b1f5c50b7a8d7e)
 
 ## Week 3 Project: Linear Regression
 
@@ -43,9 +43,9 @@ In part 2 of the project, we are required to give 10 data points to measure give
 
 To solve, implement the active learning procedure given in Lecture 5, Slide 18 and update the posterior distribution following the equations in Lecture 5, Slide 16.
 
-![L5S16](/assets/images/machine_learning_john_paisley_p01_02.jpg){:height="60%" width="60%" .align-center}
+![L5S16](/assets/images/machine_learning_john_paisley_p01_02.jpg){:height="90%" width="90%" .align-center}
 
-![L5S18](/assets/images/machine_learning_john_paisley_p01_03.jpg){:height="60%" width="60%" .align-center}
+![L5S18](/assets/images/machine_learning_john_paisley_p01_03.jpg){:height="90%" width="90%" .align-center}
 
 Points to note:
 * No preprocessing or normalization of the data is required 
@@ -71,7 +71,7 @@ We are required to implement a $$K$$-class Bayes classifier to compute the proba
 
 To solve, implement the equations given in Lecture 7, Slide 27.
 
-![L7S27](/assets/images/machine_learning_john_paisley_p02_01.jpg){:height="60%" width="60%" .align-center}
+![L7S27](/assets/images/machine_learning_john_paisley_p02_01.jpg){:height="90%" width="90%" .align-center}
 
 The test data set and desired output was generated using $$K = 6$$ classes having index values $$0,1,2,...,5$$. A smaller number of classes was used to simplify simulation data. After verification, please reset number of classes $$K = 10$$ in your code before submission.
 
@@ -79,9 +79,9 @@ The test data set and desired output was generated using $$K = 6$$ classes havin
 
 We are required to implement K-means clustering and EM Gaussian Mixture Models on a set of input covariate vectors $$\mathbf{x}_i$$. To solve, implement the equations on Lecture 14, Slide 15 and Lecture 16, Slide 20 for K-means clustering and EM GMM, respectively.
 
-![L14S15](/assets/images/machine_learning_john_paisley_p03_01.jpg){:height="60%" width="60%" .align-center}
+![L14S15](/assets/images/machine_learning_john_paisley_p03_01.jpg){:height="90%" width="90%" .align-center}
 
-![L16S20](/assets/images/machine_learning_john_paisley_p03_02.jpg){:height="60%" width="60%" .align-center}
+![L16S20](/assets/images/machine_learning_john_paisley_p03_02.jpg){:height="90%" width="90%" .align-center}
 
 The test data set and desired output was generated using $$K = 3$$ , to simplify simulation. After verification, please reset number of clusters to 5 in your code before submission.
 
@@ -112,7 +112,7 @@ Sigma[:,:,2] = np.array([[4.26557534301669,	1.29968325221235],
 
 We are required to implement the probablistic matrix factorization (PMF) model. To solve, implement the equations on Lecture 17, Slide 19.
 
-![L17S19](/assets/images/machine_learning_john_paisley_p04_01.jpg){:height="60%" width="60%" .align-center}
+![L17S19](/assets/images/machine_learning_john_paisley_p04_01.jpg){:height="90%" width="90%" .align-center}
 
 The test data set provided has 1200 rows of ratings, with `Nu = 100` users and `Nv = 100` objects.
 
@@ -130,4 +130,4 @@ Additionally, initialize `Vmatrix` of size `Nv x dim` by the values provided in 
 
 Shown below is the maximization of the log joint likelihood objective function versus iteration number, produced by my Python solution for this project.
 
-![loglikelihood](/assets/images/machine_learning_john_paisley_p04_02.jpg){:height="60%" width="60%" .align-center}
+![loglikelihood](/assets/images/machine_learning_john_paisley_p04_02.jpg){:height="90%" width="90%" .align-center}
