@@ -19,6 +19,8 @@ docs:
     children:
       - title: "Guide"
         url: /docs/guide/
+      - title: "C++"
+        url: /docs/cpp/        
       - title: "Docker"
         url: /docs/docker/
       - title: "Git"
@@ -35,5 +37,3 @@ docs:
         url: /docs/python/
       - title: "TensorFlow"
         url: /docs/tensorflow/
-      - title: "C++"
-        url: /docs/cpp/
