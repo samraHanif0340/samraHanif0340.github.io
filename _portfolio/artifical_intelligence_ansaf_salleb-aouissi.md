@@ -37,7 +37,7 @@ The [repository](https://github.com/Adaickalavan/Artifical-Intelligence-Ansaf-Sa
 * Projects - Instructions and Python solution codes
 
 ### Verified Certificate
-[![certificate](/assets/images/Artificial_Intelligence_ColumbiaX.jpg){:height="90%" width="90%" .align-center}](https://courses.edx.org/certificates/dfecac6d791f4900b65f681c25597dce)
+[![certificate](/assets/images/Artificial_Intelligence_ColumbiaX.jpg){:height="80%" width="80%" .align-center}](https://courses.edx.org/certificates/dfecac6d791f4900b65f681c25597dce)
 
 ## Week 2 Project: Search Algorithms
 
@@ -202,10 +202,10 @@ machine learning agorithms using SciKit-Learn library, which is included in the 
 ### Perceptron
 
 Simply implement the perceptron algorithm given on Slide 9, Lecture 6a:
-![Perceptron](/assets/images/artificial_intelligence_p03_01.jpg){:height="90%" width="90%" .align-center}
+![Perceptron](/assets/images/artificial_intelligence_p03_01.jpg){:height="80%" width="80%" .align-center}
 
 A sample decision bundary drawn by the perceptron learning lagorithm on the test data:
-![Perceptron](/assets/images/artificial_intelligence_p03_02.jpg){:height="90%" width="90%" .align-center}
+![Perceptron](/assets/images/artificial_intelligence_p03_02.jpg){:height="80%" width="80%" .align-center}
 
 ### Linear regression
 
@@ -294,14 +294,14 @@ We are to solve a sudoku board by formulating the problem as a constraint satisf
 
 First, implement the AC-3 algorithm (arc consistency) according to the pseudocode given on Slide 59, Lecture 8.
 
-![ac3](/assets/images/artificial_intelligence_p04_01.jpg){:height="90%" width="90%" .align-center}
+![ac3](/assets/images/artificial_intelligence_p04_01.jpg){:height="80%" width="80%" .align-center}
 
 
 A constraint is represented as $$C_x$$ != $$C_y$$ (value in cell $$x$$ not equal to value in cell $$y$$), where a cell is one of the 81 squares on the board. Every square on the board must have a different value than the squares in its row, its column, and its box (the local 3x3 grid). Therefore, each cell has 20 constraints with other cells (3x8 = 24, but 4 are duplicates, leaving 20 unique ones). Therefore, there are 81*20 = 1620 constraints in total.
 
 Next, implement the backtracking search algorithm with forward checking inference. Remember to use arc consistency check on the sudoku board initially as a preprocessing step before feeding the sudoku board into the BTS with inference algorithm. Using arc consistency check as a preprocessing step dramatically reduces the combination of values to be checked (i.e., reduces depth of BTS tree) and thus hastens the BTS algorithm. Pseudocode for BTS algorithm with inference is given on Slide 61, Lecture 8. 
 
-![ac3](/assets/images/artificial_intelligence_p04_02.jpg){:height="90%" width="90%" .align-center}
+![ac3](/assets/images/artificial_intelligence_p04_02.jpg){:height="80%" width="80%" .align-center}
 
 A few things to remember in optimizing the run-time of your code:
 * Iterating through dictionary.items() would be faster than iterating through keys and accessing elements by them. 
