@@ -105,3 +105,27 @@ Parallel programming in C++ may be achieved using OpenMP, MPI, and multithreadin
         return pi;
     }
     ```
+1. Major OpenMP constructs
+    + To create a team of threads
+        ```c
+        #pragma omp parallel
+        ```
+    + To share work between threads:
+        ```c
+        #pragma omp for
+        #pragma omp single
+        ```
+    + To prevent conflicts (prevent races)
+        ```c
+        #pragma omp critical
+        #pragma omp atomic
+        #pragma omp barrier
+        #pragma omp master
+        ```
+    + Data environment clauses
+        ```c
+        private (variable_list)
+        firstprivate (variable_list)
+        lastprivate (variable_list)
+        reduction(+:variable_list)   
+        ``` 
