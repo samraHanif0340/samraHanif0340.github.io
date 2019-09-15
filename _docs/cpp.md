@@ -114,6 +114,8 @@ Parallel programming in C++ may be achieved using OpenMP, MPI, and multithreadin
         ```c
         #pragma omp for
         #pragma omp single
+        #pragma omp sections
+        #pragma omp section
         ```
     + To prevent conflicts (prevent races)
         ```c
