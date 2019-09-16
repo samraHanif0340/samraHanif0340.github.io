@@ -4,7 +4,8 @@ title: "C++"
 
 ## Code Style
 1. Code interpretability trumps everything else.
-1. Do not use Class Inheritance or Friendship constructs in C++ codes. Inheritance and Friendship reduces code traceability.
+1. Do not use Class Inheritance or Friendship features in C++ codes. Inheritance and Friendship reduces code traceability.
+1. Wherever possible, follow C style instead of C++, as it makes the code more aligned with the driving philosophies of Golang.
 
 ## Code Documentation - Doxygen  
 
@@ -104,7 +105,6 @@ Parallel programming in C++ may be achieved using OpenMP, MPI, and multithreadin
                 x = (ii + 0.5)*step;
                 sum = sum + 4.0/(1.0+x*x);
             }
-
         }
         pi = step * sum;
         
