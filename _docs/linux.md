@@ -8,3 +8,7 @@ title: "Linux"
     Acquire::http::proxy "http://10.0.0.0:8080/";
     Acquire::https::proxy "https://10.0.0.0:8080/";
     ```    
++ Restart the networking to start using the new proxy setting.
+    ``` bash
+    $ systemctl restart networking
+    ```        

@@ -91,13 +91,14 @@ title: "Python"
 
 ## Machine learning folder structure
 
-1. The following serves as a representative project folder structure.
+The following serves as a representative project folder structure.
+
     ```text
     emotion-recognition                             # Main project directory 
     ├── assets                                      # Assets
     |   ├── images
-    |     ...
-    |     ...
+    |       ...
+    |       ...
     ├── dataset                                     # Dataset
     |   ├── fer2013.csv
     |   └── happy-1.jpg
@@ -109,8 +110,8 @@ title: "Python"
     |   |   └── emotion_recognition_structure.json  # Machine learning saved structure
     |   ├── helper                                  # Package - Helper    
     |   |   └── convert.py                          # Module - Convert 
-    |   ├── emotionRecognition.py                   # Static image code 
-    |   └── emotionRecognitionStream.py             # Streaming video code 
+    |   ├── emotionRecognition.py                   # Example runnable code for static image input 
+    |   └── emotionRecognitionStream.py             # Example runnable code for video stream input
     ├── prepostprocessing                           # Pre/Post-processing folder 
     |   ├── emonetLabels.json                       # Labels
     |   ├── haarcascade_frontalface_default.xml     # .xml file for ML models
@@ -125,18 +126,20 @@ title: "Python"
     └── README.md                                   # Readme file
     ```
 
-1. `assets` folder should contain miscellaneous files. For example, it can contain images used for explanation in `Readme.md`.
-1. `dataset` folder should minimal amount of sample test data used in the project for testing and demonstration purposes. Complete dataset is advised to be stored in an external Hadoop cluster.
-1. `model` folder contains all peripheral code used in developing and testing the machine learning tensorflow graph. 
-    + This folder ideally should contain a runnable example to illustrate the entire machine learning model.
+1. [<span style="color:blue">Non-Production Code</span>] `assets` folder should contain miscellaneous files. For example, it can contain images used for explanation in `Readme.md`.
+1. [<span style="color:blue">Non-Production Code</span>] `dataset` folder should contain minimal amount of sample test data used in the project for testing and demonstration purposes. Complete dataset is advised to be stored in an external Hadoop cluster.
+1. [<span style="color:blue">Non-Production Code</span>] `model` folder contains all peripheral code used in developing and testing the machine learning tensorflow graph. 
+    + This folder should ideally contain a complete runnable example in Python to illustrate the entire machine learning model. For example, `emotionRecognition.py` and `emotionRecognitionStream.py` are complete standalone examples to analyse static images and video streams, respectively.
     + Local code should be abstracted into packages and modules. For example, `analysis` and `helper` are local packages, whereas `predictions.py` and `convert.py` are local modules.
-    + Package and module naming should be intuitive and non-repetitive. For example, reading  an import statement in Python, such as `import model.analysis.predictions`, should clearly indicate the meaning/functionality of the code being imported.
+    + Package and module naming should be intuitive and non-repetitive. For example, reading  an import statement in Python, such as `import model.analysis.predictions`, should clearly indicate the meaning or functionality of the code being imported.
     + A `checkpoints` sub-folder is desirable to keep track of previously trained architecture and weights. 
-1. **PRODUCTION CODE** `prepostprocessing` folder is a top level folder containing well abstracted pre/post-processing code, which will be ported into production.
-1. **PRODUCTION CODE** `tfgraph` folder is a top level folder containing well abstracted and commented machine learning TensorFlow graph. The graph (e.g., `cnn.py`) is converted into `SavedModel` format and saved with identical name in the `tfserving` folder (e.g., `cnn`).  
-1. **PRODUCTION CODE** `tfserving` folder. Please see `TensorFlow` wiki to learn more about the structure of `tfserving` folder.
-1. **PRODUCTION CODE** `.env` file should contain the environment variables, e.g., `ROOT` variable, which will be ported into production.
-1. `README.md` file shall contain a brief description of the following:
+1. [<span style="color:green">Production Code</span>] `prepostprocessing` folder is a top level folder containing well abstracted pre/post-processing code, which will be ported into production.
+1. [<span style="color:green">Production Code</span>] `tfgraph` folder is a top level folder containing well abstracted and commented machine learning TensorFlow graph written in Python. The graph (e.g., `cnn.py`) is converted into `SavedModel` format and saved with an identical name in the `tfserving` folder (e.g., `cnn`). Although the contents of this folder are not directly used in production, the Python TensorFlow graphs are needed to understand the corresponding `tfserving` which was actually deployed. 
+1. [<span style="color:green">Production Code</span>] `tfserving` folder. Please see `TensorFlow` wiki to learn more about the structure of `tfserving` folder. The `tfserving` model will be deployed using Docker containers in production.
+1. [<span style="color:green">Production Code</span>] `.env` file should contain the environment variables, e.g., `ROOT` variable, which will be ported into production.
+1. [<span style="color:blue">Non-Production Code</span>] `README.md` file shall contain a brief description of the following:
     + Explanation of what the project is about
     + Instructions to run a sample of the code
-    + Desired input and output of the machine learning model    
+    + Desired input and output of the machine learning model
+
+Note: All <span style="color:green">Production Code</span> needs to undergo code review before being merged into the master branch. Whereas, coding standards of <span style="color:blue">Non-Production Code</span> need not necessarily be scrutinised.
