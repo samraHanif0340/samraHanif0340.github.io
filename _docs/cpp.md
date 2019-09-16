@@ -2,6 +2,13 @@
 title: "C++"
 ---
 
+## Code Style
+1. Code interpretability trumps everything else.
+1. Do not use Class Inheritance or Friendship constructs in C++ codes. Inheritance and Friendship reduces code traceability.
+
+## Code Documentation - Doxygen  
+
+
 ## Serial program
 1. Mathematically $$\int_{0}^{1}\frac{4}{1+x^2}dx\approx\pi$$. This integral can be approximated as a sum of
 rectangles: 

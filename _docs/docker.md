@@ -84,7 +84,8 @@ title: "Docker"
     ```
 
 ## Configuration
-+ Need to set proxy for Docker if we use Docker behind a corporate proxy, e.g., `http://10.0.0.0:8080/`. Hence, create a `http-proxy.conf` file at `/etc/systemd/system/docker.service.d/` such that `/etc/systemd/system/docker.service.d/http-proxy.conf` file contains the following.
+1. Install Docker Engine and Docker Compose from the official [site](https://docs.docker.com/install/linux/docker-ce/ubuntu/). 
+1. Need to set proxy for Docker if we use Docker behind a corporate proxy, e.g., `http://10.0.0.0:8080/`. Hence, create a `http-proxy.conf` file at `/etc/systemd/system/docker.service.d/` such that `/etc/systemd/system/docker.service.d/http-proxy.conf` file contains the following.
     ```
     [Service]
     Environment="HTTP_PROXY=http://10.0.0.0:8080/"
@@ -93,8 +94,14 @@ title: "Docker"
     ```  
     Note that we can set no proxy for internal IP addresses such as `http://172.16.0.0/`.
 
-+ Restart the Docker daemon to start using the new proxy setting.
+1. Restart the Docker daemon to start using the new proxy setting.
     ```bash
     $ systemctl daemon-reload
     $ service docker restart
     ```
+
+1. To use `RUN apt-get` command inside `dockerfile` behind a proxy, set proxy for Linux `apt` using the environment `ENV` variable in the `dockerfile` as follows.
+    ```bash
+    ENV http_proxy "http://10.0.0.0:8080/"
+    ENV https_proxy "https://10.0.0.0:8080/"
+    ```            
