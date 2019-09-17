@@ -11,8 +11,8 @@ title: "C++"
 
 ## Code Documentation - Doxygen  
 1. Install Doxygen
-    ```
-    apt-get install doxygen
+    ```bash
+    $ apt-get install doxygen
     ```
 
 ## Serial program
