@@ -93,38 +93,38 @@ title: "Python"
 
 The following serves as a representative project folder structure.
 
-    ```text
-    emotion-recognition                             # Main project directory 
-    ├── assets                                      # Assets
-    |   ├── images
-    |       ...
-    |       ...
-    ├── dataset                                     # Dataset
-    |   ├── fer2013.csv
-    |   └── happy-1.jpg
-    ├── model                                       # Machine learning model folder 
-    |   ├── analysis                                # Package - Analysis    
-    |   |   └── predictions.py                      # Module - Predictions 
-    |   ├── checkpoints                             # Checkpoints    
-    |   |   ├── emotion_recognition_weights.h5      # Machine learning saved weights
-    |   |   └── emotion_recognition_structure.json  # Machine learning saved structure
-    |   ├── helper                                  # Package - Helper    
-    |   |   └── convert.py                          # Module - Convert 
-    |   ├── emotionRecognition.py                   # Example runnable code for static image input 
-    |   └── emotionRecognitionStream.py             # Example runnable code for video stream input
-    ├── prepostprocessing                           # Pre/Post-processing folder 
-    |   ├── emonetLabels.json                       # Labels
-    |   ├── haarcascade_frontalface_default.xml     # .xml file for ML models
-    |   └── preprocess.py                           # Pre-processing functions   
-    ├── tfgraph                                     # TensorFlow graph folder 
-    |   └── cnn.py                                  # Graph architecture
-    ├── tfserving                                   # TensorFlow Serving 
-    |   ├── cnn
-    |       ├── ...                                  
-    |       ...
-    ├── .env                                        # Environment variables 
-    └── README.md                                   # Readme file
-    ```
+```text
+emotion-recognition                             # Main project directory 
+├── assets                                      # Assets
+|   ├── images
+|       ...
+|       ...
+├── dataset                                     # Dataset
+|   ├── fer2013.csv
+|   └── happy-1.jpg
+├── model                                       # Machine learning model folder 
+|   ├── analysis                                # Package - Analysis    
+|   |   └── predictions.py                      # Module - Predictions 
+|   ├── checkpoints                             # Checkpoints    
+|   |   ├── emotion_recognition_weights.h5      # Machine learning saved weights
+|   |   └── emotion_recognition_structure.json  # Machine learning saved structure
+|   ├── helper                                  # Package - Helper    
+|   |   └── convert.py                          # Module - Convert 
+|   ├── emotionRecognition.py                   # Example runnable code for static image input 
+|   └── emotionRecognitionStream.py             # Example runnable code for video stream input
+├── prepostprocessing                           # Pre/Post-processing folder 
+|   ├── emonetLabels.json                       # Labels
+|   ├── haarcascade_frontalface_default.xml     # .xml file for ML models
+|   └── preprocess.py                           # Pre-processing functions   
+├── tfgraph                                     # TensorFlow graph folder 
+|   └── cnn.py                                  # Graph architecture
+├── tfserving                                   # TensorFlow Serving 
+|   ├── cnn
+|       ├── ...                                  
+|       ...
+├── .env                                        # Environment variables 
+└── README.md                                   # Readme file
+```
 
 1. [<span style="color:blue">Non-Production Code</span>] `assets` folder should contain miscellaneous files. For example, it can contain images used for explanation in `Readme.md`.
 1. [<span style="color:blue">Non-Production Code</span>] `dataset` folder should contain minimal amount of sample test data used in the project for testing and demonstration purposes. Complete dataset is advised to be stored in an external Hadoop cluster.

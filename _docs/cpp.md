@@ -4,11 +4,16 @@ title: "C++"
 
 ## Code Style
 1. Code interpretability trumps everything else.
+1. Please conform to the [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html).
 1. Do not use Class Inheritance or Friendship features in C++ codes. Inheritance and Friendship reduces code traceability.
 1. Wherever possible, follow C style instead of C++, as it makes the code more aligned with the driving philosophies of Golang.
+1. All naming of folders, files, and functions, shall follow `camelCase` format.
 
 ## Code Documentation - Doxygen  
-
+1. Install Doxygen
+    ```
+    apt-get install doxygen
+    ```
 
 ## Serial program
 1. Mathematically $$\int_{0}^{1}\frac{4}{1+x^2}dx\approx\pi$$. This integral can be approximated as a sum of

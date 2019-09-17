@@ -25,6 +25,8 @@ docs:
         url: /docs/docker/
       - title: "Git"
         url: /docs/git/
+      - title: "Golang"
+        url: /docs/golang/        
       - title: "Kafka"
         url: /docs/kafka/
       - title: "Kubernetes"
