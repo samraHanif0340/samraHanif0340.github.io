@@ -15,6 +15,46 @@ title: "C++"
     $ apt-get install doxygen
     ```
 
+# Folder structure
+The following serves as a representative project folder structure.
+
+```text
+cppprocessing                  # Main project directory 
+├── apps                       # Folder for executable main files
+|   ├── CMakeLists.txt            
+|   └── tutorial.cpp           # Executable main file 
+├── assets                     # Assets
+|   ├── ...
+|   ... 
+├── bin                        # Binary files
+├── build                      # CMake build system files 
+├── include                    # Headers
+|   ├── computepi.h
+|   └── helloworld.h   
+├── libs                       # Local libraries
+|   ├── computepi
+|   |   ├── CMakeLists.txt
+|   |   └── computepi.cpp 
+|   └── helloworld    
+|       ├── CMakeLists.txt
+|       └── computepi.cpp 
+├── CMakeLists.txt 
+├── docker-compose.yml
+├── Dockerfile                            
+└── README.md                  # Readme file
+```
+1. `apps` folder may contain one or more main files.    
+1. `assets` folder should contain miscellaneous files. For example, it can contain images used for explanation in `Readme.md`.
+1. `bin` folder may contain one or more binary files, which correspond to the main files in `apps` folder.
+1. `build` folder contain the CMake build system.
+1. `include` folder contains the C/C++ headers.
+1. `libs` contains the local libraries in individual folders.
+1. `CMakeLists.txt` defines the top-level CMake commands.
+1. `README.md` file shall contain a brief description of the following:
+    + Explanation of what the project is about
+    + Instructions to run a sample of the code
+    + Desired input and output of the code
+
 ## Serial program
 1. Mathematically $$\int_{0}^{1}\frac{4}{1+x^2}dx\approx\pi$$. This integral can be approximated as a sum of
 rectangles: 

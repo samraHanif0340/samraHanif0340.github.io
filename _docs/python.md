@@ -32,7 +32,7 @@ title: "Python"
         |   |   └── predictions.py                  # Module - Analysis 
         |   ├── checkpoint                          # Package - Helper    
         |   |   └── emotion_recognition_weights.h5  # Machine learning saved weights
-        |   └── emotionRecognition.py               # Python code 
+        |   └── emoRec.py                           # Python code 
         ├── tfgraph                                 # TensorFlow graph folder 
         |   └── cnn.py                              # Graph architecture
         └── .env                                    # Environment variables 
@@ -48,7 +48,7 @@ title: "Python"
         ```
     1. Place the following piece of code at the top of the Python code file. It will add the project directory given by `ROOT` to `sys.path` and make it searchable by Python. 
         ```python
-        # File: emotion-recognition/model/emotionRecognition.py
+        # File: emotion-recognition/model/emoRec.py
         # Setup
         import os
         import sys
@@ -59,14 +59,14 @@ title: "Python"
         ```
     1. Import local packages or modules as follows.
         ```python
-        # File: emotion-recognition/model/emotionRecognition.py
+        # File: emotion-recognition/model/emoRec.py
         # Import local packages
         from tfgraph import cnn
         from model.analysis import predictions
         ```
     1. To open files in Python, create absolute paths by adding the file path within the project directory and the `ROOT`. An example is as follows. 
         ```python
-        # File: emotion-recognition/model/emotionRecognition.py
+        # File: emotion-recognition/model/emoRec.py
         model.load_weights(ROOT+"/model/checkpoint/emotion_recognition_weights.h5")  # Load weights for TensorFlow model
         ```
 + Only import Python packages and modules. Never import Python functions, i.e., `def`, directly into another Python file.
@@ -102,6 +102,8 @@ emotion-recognition                             # Main project directory
 ├── dataset                                     # Dataset
 |   ├── fer2013.csv
 |   └── happy-1.jpg
+├── example                                     # Standalone example code 
+|   └── emoRecStream.py
 ├── model                                       # Machine learning model folder 
 |   ├── analysis                                # Package - Analysis    
 |   |   └── predictions.py                      # Module - Predictions 
@@ -110,8 +112,7 @@ emotion-recognition                             # Main project directory
 |   |   └── emotion_recognition_structure.json  # Machine learning saved structure
 |   ├── helper                                  # Package - Helper    
 |   |   └── convert.py                          # Module - Convert 
-|   ├── emotionRecognition.py                   # Example runnable code for static image input 
-|   └── emotionRecognitionStream.py             # Example runnable code for video stream input
+|   └── emoRec.py                               # Code used during model development
 ├── prepostprocessing                           # Pre/Post-processing folder 
 |   ├── emonetLabels.json                       # Labels
 |   ├── haarcascade_frontalface_default.xml     # .xml file for ML models
@@ -128,8 +129,9 @@ emotion-recognition                             # Main project directory
 
 1. [<span style="color:blue">Non-Production Code</span>] `assets` folder should contain miscellaneous files. For example, it can contain images used for explanation in `Readme.md`.
 1. [<span style="color:blue">Non-Production Code</span>] `dataset` folder should contain minimal amount of sample test data used in the project for testing and demonstration purposes. Complete dataset is advised to be stored in an external Hadoop cluster.
+1. [<span style="color:blue">Non-Production Code</span>] `example` folder contains a complete, runnable, well-abstracted Python code to illustrate the entire machine learning model. For example, `emoRecStream.py` is a complete standalone example to analyse video stream.
 1. [<span style="color:blue">Non-Production Code</span>] `model` folder contains all peripheral code used in developing and testing the machine learning tensorflow graph. 
-    + This folder should ideally contain a complete runnable example in Python to illustrate the entire machine learning model. For example, `emotionRecognition.py` and `emotionRecognitionStream.py` are complete standalone examples to analyse static images and video streams, respectively.
+    + Contains code files (i.e., `emoRec.py`) used during training, testing, and building phase of the machine learning model.
     + Local code should be abstracted into packages and modules. For example, `analysis` and `helper` are local packages, whereas `predictions.py` and `convert.py` are local modules.
     + Package and module naming should be intuitive and non-repetitive. For example, reading  an import statement in Python, such as `import model.analysis.predictions`, should clearly indicate the meaning or functionality of the code being imported.
     + A `checkpoints` sub-folder is desirable to keep track of previously trained architecture and weights. 
