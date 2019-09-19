@@ -6,7 +6,7 @@ header:
   overlay_image: /assets/images/machine_small.jpg       
 ---
 
-Welcome to my personal site. Here, I delve into the world of statistical signal processing, machine learning, blockchain, and pretty much about anything else which involves intelligence. In truth, machine learning spawned from the field of statistics and stochastic processes. Hence, a good grasp of the underlying mathematics and algorithms are necessary to excel in successfully automating intelligence to solve problems - a.k.a. machine learning!
+Welcome to my personal site. Here, I delve into the world of statistical signal processing, distributed high-performance computing, modeling & simulation, machine learning, and pretty much about anything else which involve mathematics and programming. In truth, many fields such as signal processing, simulation, and machine learning spawned from the field of statistics and stochastic processes. Hence, a good grasp of the underlying mathematics and algorithms are necessary to excel in successfully automating intelligence to solve problems - a.k.a. teaching a machine!
 
 Feel free to explore my site.
 
