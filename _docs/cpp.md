@@ -189,33 +189,49 @@ Parallel programming in C++ may be achieved using OpenMP, MPI, and multithreadin
     .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aaa;color:#333;background-color:#fff;}
     .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aaa;color:#fff;background-color:#f38630;}
     .tg .tg-baqh{text-align:center;vertical-align:top}
+    .tg .tg-7d57{background-color:#FCFBE3;border-color:inherit;text-align:left;vertical-align:top}
+    .tg .tg-g30d{background-color:#FCFBE3;border-color:inherit;text-align:center;vertical-align:top}
+    .tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
+    .tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+    .tg .tg-0lax{text-align:left;vertical-align:top}
     .tg .tg-dg7a{background-color:#FCFBE3;text-align:left;vertical-align:top}
     .tg .tg-yq6s{background-color:#FCFBE3;text-align:center;vertical-align:top}
-    .tg .tg-0lax{text-align:left;vertical-align:top}
     </style>
-    <table class="tg" style="undefined;table-layout: fixed; width: 306px">
-    <colgroup>
-    <col style="width: 153px">
-    <col style="width: 153px">
-    </colgroup>
-    <tr>
-        <th class="tg-baqh">Directive</th>
-        <th class="tg-baqh">Barrier at the end</th>
-    </tr>
-    <tr>
-        <td class="tg-dg7a">#pragma omp parallel</td>
-        <td class="tg-yq6s">implicit</td>
-    </tr>
-    <tr>
-        <td class="tg-0lax">#pragma omp master</td>
-        <td class="tg-baqh">none</td>
-    </tr>
-    <tr>
-        <td class="tg-dg7a">#pragma omp single</td>
-        <td class="tg-yq6s">implicit</td>
-    </tr>
-    <tr>
-        <td class="tg-0lax">#pragma omp task</td>
-        <td class="tg-baqh">none</td>
-    </tr>
+    <table class="tg" style="undefined;table-layout: fixed; width: 361px">
+        <colgroup>
+        <col style="width: 181px">
+        <col style="width: 180px">
+        </colgroup>
+        <tr>
+            <th class="tg-c3ow">Directive</th>
+            <th class="tg-c3ow">Barrier at the end</th>
+        </tr>
+        <tr>
+            <td class="tg-7d57">#pragma omp parallel</td>
+            <td class="tg-g30d">implicit</td>
+        </tr>
+        <tr>
+            <td class="tg-0pky">#pragma omp for</td>
+            <td class="tg-c3ow">implicit</td>
+        </tr>
+        <tr>
+            <td class="tg-7d57">#pragma omp master</td>
+            <td class="tg-g30d">none</td>
+        </tr>
+        <tr>
+            <td class="tg-0pky">#pragma omp single</td>
+            <td class="tg-c3ow">implicit</td>
+        </tr>
+        <tr>
+            <td class="tg-7d57">#pragma omp task</td>
+            <td class="tg-g30d">none</td>
+        </tr>
+        <tr>
+            <td class="tg-0lax">#pragma omp barrier</td>
+            <td class="tg-baqh">implicit</td>
+        </tr>
+        <tr>
+            <td class="tg-dg7a">#pragma omp for</td>
+            <td class="tg-yq6s">implicit</td>
+        </tr>
     </table>
