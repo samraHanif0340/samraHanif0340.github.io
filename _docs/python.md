@@ -4,21 +4,15 @@ title: "Python"
 
 ## Code style
 + Follow the [PEP 8 Python style guide](https://www.python.org/dev/peps/pep-0008/), except TensorFlow uses 2 spaces instead of 4. 
-+ Please conform to the [Google Python Style Guide](https://github.com/google/styleguide/blob/gh-pages/pyguide.md), and use [pylint](https://www.pylint.org/) to check your Python changes.
++ Please conform to the [Google Python Style Guide](https://github.com/google/styleguide/blob/gh-pages/pyguide.md).
 + All naming of folders, files, and functions, shall follow `camelCase` format.
 
 ## Code linting
-+ `black` is a very unforgiving code formatter. It doesn’t have any configuration options, and it has a very specific style. Code formatters will change the code automatically to meet a collection of style and layout practices.
-
-    Note: `black` requires Python 3.6+.
-
-+ Install black via pip:
++ A good code formatter is `autopep8`.
++ `autopep8` automatically formats Python code to conform to the PEP 8 style guide.
++ Install `autopep8` via pip:
     ```bash
-    $ pip install black
-    ```
-    Then to run black at the command line, provide the file or directory you want to format:
-    ```bash
-    $ black test.py     
+    $ pip install --upgrade autopep8     
     ```
 
 ## Paths for importing modules and for opening files
