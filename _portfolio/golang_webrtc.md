@@ -42,21 +42,21 @@ At the end of this project, we should be able to:
 The project structure is as follows:
 
 ```text
-Go-WebRTC                        # Main folder
-├── handler                      # Process video frames using machine learning models
-│   └── respond.go
-├── static                       # Streams video from IP camera into Kafka
+Go-WebRTC                    # Main folder
+├── handler                      
+│   └── respond.go           # Generate HTTP responses
+├── static                       
 │   └── js
-│       └── connect.js           #
-├── template                     # Publishes video to web
-│   ├── join.html
-|   └── publish.html
+│       └── connect.js       # Javascript to establish WebRTC connection
+├── template                
+│   ├── join.html            # Webpage template for user to join the broadcast 
+|   └── publish.html         # Webpage template for user to broadcast
 ├── .env
-├── docker-compose.yml           # Docker deployment
-├── dockerfile                   # To create Docker container
+├── docker-compose.yml       # Docker deployment
+├── dockerfile               # To create Docker container
 ├── go.mod
 ├── go.sum
-├── main.go                      # Main file
+├── main.go                  # Main file
 └── README.md                                 
 ```
 
