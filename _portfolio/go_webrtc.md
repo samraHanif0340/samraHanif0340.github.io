@@ -16,17 +16,6 @@ The following tools will be used in this project:
 + Javascript
 + HTML
 
-<!-- The end product of this system is illustrated by the following image. -->
-
-<!-- {% capture fig_pipeline %}
-![pipeline](/assets/images/webrtc_03.jpg){:height="100%" width="100%" .align-center}
-{% endcapture %} -->
-
-<!-- <figure id="pipeline">
-  {{ fig_pipeline | markdownify | remove: "<p>" | remove: "</p>" }}
-  <figcaption>Video and data broadcast through WebRTC.</figcaption>
-</figure> -->
-
 ## Learning Outcome
 
 Find the source code in the [repository](https://github.com/Adaickalavan/Go-WebRTC).
@@ -74,6 +63,17 @@ Go-WebRTC                    # Main folder
 1. Go to `localhost:8088/publish` web page which will start capturing video using your webcam. This video, along with some accompanying data, will be broadcast to multiple clients.
 1. Then open another tab in your browser, and go to `localhost:8088/join` to see the broadcasted video and data. Multiple clients can view the broadcast by joining the same weblink. 
 1. The video and data connection will dynamically resume if the publisher or client disconnects and rejoins later.
+
+<!-- The end product of this system is illustrated by the following image. -->
+
+<!-- {% capture fig_pipeline %}
+![pipeline](/assets/images/webrtc_03.jpg){:height="100%" width="100%" .align-center}
+{% endcapture %} -->
+
+<!-- <figure id="pipeline">
+  {{ fig_pipeline | markdownify | remove: "<p>" | remove: "</p>" }}
+  <figcaption>Video and data broadcast to multiple clients through WebRTC.</figcaption>
+</figure> -->
 
 ## System Design
 Certain key aspects of the system is further explored in the following sections.
