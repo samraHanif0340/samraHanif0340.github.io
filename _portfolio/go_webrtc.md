@@ -52,7 +52,7 @@ Go-WebRTC                    # Main folder
 │       └── connect.js       # Javascript to establish WebRTC connection
 ├── template                
 │   ├── join.html            # Webpage template for client to join the broadcast 
-|   └── publish.html         # Webpage template for publisher to broadcast
+│   └── publish.html         # Webpage template for publisher to broadcast
 ├── .env
 ├── docker-compose.yml       # Docker deployment
 ├── dockerfile               # To create Docker container
