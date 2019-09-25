@@ -9,11 +9,21 @@ title: "C++"
 1. Wherever possible, follow C style instead of C++, as it makes the code more aligned with the driving philosophies of Golang.
 1. All naming of folders, files, and functions, shall follow `camelCase` format.
 
-## Code Documentation - Doxygen  
+## Code Documentation - Sphinx + Breathe + Doxygen + CMake 
 1. Install Doxygen
     ```bash
     $ apt-get install doxygen
     ```
+1. Install Sphinx
+    ```bash
+    $ apt-get install python3-sphinx
+    $ pip install sphinx_rtd_theme
+    ```    
+1. Install Breathe
+    + Breathe is the bridge between Doxygen and Sphinx; taking the output from the former and making it available through some special directives in the latter.
+    ```bash
+    $ pip install breathe
+    ```     
 
 # Folder structure
 The following serves as a representative project folder structure.
