@@ -17,6 +17,10 @@ title: "Python"
 
 ## Paths for importing modules and for opening files
 + Strictly do not perform relative import for any files or modules in Python. 
++ Never perform wildcard imports such as
+    ```python
+    from libraries import *
+    ```
 + Always perform absolute import. 
     1. Assume the following project structure.
         ```text
