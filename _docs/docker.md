@@ -101,7 +101,11 @@ title: "Docker"
     ```
 
 1. To use `RUN apt-get` command inside `dockerfile` behind a proxy, set proxy for Linux `apt` using the environment `ENV` variable in the `dockerfile` as follows.
-    ```bash
+    ```dockerfile
+    # Dockerfile
+    FROM ubuntu
+    ...
     ENV http_proxy "http://10.0.0.0:8080/"
     ENV https_proxy "https://10.0.0.0:8080/"
+    ...
     ```            
