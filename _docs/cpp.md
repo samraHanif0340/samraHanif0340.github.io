@@ -5,15 +5,25 @@ title: "C++"
 ## Code Style
 1. Code interpretability trumps everything else.
 1. Please conform to the [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html).
-1. Do not use Class Inheritance or Friendship features in C++ codes. Inheritance and Friendship reduces code traceability.
+1. Avoid using Class Inheritance or Friendship features in C++ codes. Inheritance and Friendship reduces code traceability.
 1. Wherever possible, follow C style instead of C++, as it makes the code more aligned with the driving philosophies of Golang.
 1. All naming of folders, files, and functions, shall follow `camelCase` format.
 
-## Code Documentation - Doxygen  
+## Code Documentation - Sphinx + Breathe + Doxygen + CMake 
 1. Install Doxygen
     ```bash
     $ apt-get install doxygen
     ```
+1. Install Sphinx
+    ```bash
+    $ apt-get install python3-sphinx
+    $ pip install sphinx_rtd_theme
+    ```    
+1. Install Breathe
+    + Breathe is the bridge between Doxygen and Sphinx; taking the output from the former and making it available through some special directives in the latter.
+    ```bash
+    $ pip install breathe
+    ```     
 
 # Folder structure
 The following serves as a representative project folder structure.
@@ -227,11 +237,19 @@ Parallel programming in C++ may be achieved using OpenMP, MPI, and multithreadin
             <td class="tg-g30d">none</td>
         </tr>
         <tr>
-            <td class="tg-0lax">#pragma omp barrier</td>
-            <td class="tg-baqh">implicit</td>
+            <td class="tg-0pky">#pragma omp barrier</td>
+            <td class="tg-c3ow">implicit</td>
         </tr>
         <tr>
-            <td class="tg-dg7a">#pragma omp for</td>
-            <td class="tg-yq6s">implicit</td>
+            <td class="tg-7d57">#pragma omp for</td>
+            <td class="tg-g30d">implicit</td>
+        </tr>
+        <tr>
+            <td class="tg-0pky">#pragma omp sctions</td>
+            <td class="tg-c3ow">implicit</td>
+        </tr>
+        <tr>
+            <td class="tg-7d57">#pragma omp section</td>
+            <td class="tg-g30d">none</td>
         </tr>
     </table>
