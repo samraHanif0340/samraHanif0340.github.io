@@ -115,7 +115,7 @@ Certain key aspects of the system is further explored in the following sections.
 
 ## List of exercises
 
-In order to run the solutions for the exercise, the following steps
+<!-- In order to run the solutions for the exercise, the following steps -->
 
 For easy reference, each code solution is named according to the slide on which they appear in the course [notes](https://www.openmp.org/wp-content/uploads/Intro_To_OpenMP_Mattson.pdf).
 
