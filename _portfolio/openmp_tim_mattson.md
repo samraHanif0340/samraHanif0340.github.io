@@ -1,5 +1,5 @@
 ---
-title: "Parallel programming with OpenMP"
+title: "Parallel programming with OpenMP - Tim Mattson"
 excerpt: "OpenMP, C/C++, Docker"
 header:
   teaser: /assets/images/openmp_01.jpg
