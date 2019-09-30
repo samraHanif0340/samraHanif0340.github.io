@@ -8,18 +8,16 @@ header:
 {: .notice--success}
 This page is under construction. Please check back later for updates.
 
-<!-- ## Introduction
+## Introduction
 
-In this project, we will develop a real-time video and data broadcasting service using WebRTC in Golang. Video feed will be streamed from the publisher's web camera through WebRTC media API to multiple browser-based end clients. Simultaneously, some accompanying data will be streamed from the publisher to the multiple end-clients through the WebRTC data channel. All the code is containerized using Dockers.
+This project explores the use of OpenMP for parallel programming in C/C++. We provide the code solutions to C/C++ and OpenMP coding exercises from the Intro to OpenMP by Tim Mattson, Intel Corp, online course at Youtube. Watch the course [video](https://www.youtube.com/watch?v=nE-xN4Bf8XI&list=PLLX-Q6B8xqZ8n8bwjGdzBJ25X2utwnoEG) and read the course [notes](https://www.openmp.org/wp-content/uploads/Intro_To_OpenMP_Mattson.pdf). All the code is containerized using Dockers.
 
 The following tools will be used in this project:
++ C/C++
++ OpenMP
 + Docker
-+ Golang
-+ WebRTC
-+ Javascript
-+ HTML
 
-## Learning Outcome
+<!-- ## Learning Outcome
 
 Find the source code in the [repository](https://github.com/Adaickalavan/Go-WebRTC).
 
@@ -29,9 +27,9 @@ At the end of this project, we should be able to:
 + Write and deploy Javascript in the browser to initiate WebRTC connections and to communicate with the signalling server.
 + Host the `Publish` and `Join` webpages on a Go server.
 + Remember the publisher and client so as to reconnect upon a loss of connection.
-+ Perform dependency management using Go Module. 
++ Perform dependency management using Go Module.  -->
 
-## Project Structure
+<!-- ## Project Structure
 
 The project structure is as follows:
 
@@ -52,9 +50,9 @@ Go-WebRTC                    # Main folder
 ├── go.sum
 ├── main.go                  # Main file
 └── README.md                                 
-```
+``` -->
 
-## Instructions
+<!-- ## Instructions
 1. Download the code using `git clone https://github.com/Adaickalavan/Go-WebRTC.git`
 1. To run locally:
     + Ensure `GO111MODULE=on` in your terminal.
@@ -65,20 +63,9 @@ Go-WebRTC                    # Main folder
     + Then run `docker-compose up`.
 1. Go to `localhost:8088/publish` web page which will start capturing video using your webcam. This video, along with some accompanying data, will be broadcast to multiple clients.
 1. Then open another tab in your browser, and go to `localhost:8088/join` to see the broadcasted video and data. Multiple clients can view the broadcast by joining the same weblink. 
-1. The video and data connection will dynamically resume if the publisher or client disconnects and rejoins later.
+1. The video and data connection will dynamically resume if the publisher or client disconnects and rejoins later. -->
 
-<!-- The end product of this system is illustrated by the following image. -->
-
-<!-- {% capture fig_pipeline %}
-![pipeline](/assets/images/webrtc_03.jpg){:height="100%" width="100%" .align-center}
-{% endcapture %} -->
-
-<!-- <figure id="pipeline">
-  {{ fig_pipeline | markdownify | remove: "<p>" | remove: "</p>" }}
-  <figcaption>Video and data broadcast to multiple clients through WebRTC.</figcaption>
-</figure> -->
-
-## System Design
+<!-- ## System Design
 Certain key aspects of the system is further explored in the following sections.
 
 ### Go Server - main.go
