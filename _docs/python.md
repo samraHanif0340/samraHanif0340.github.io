@@ -16,7 +16,7 @@ title: "Python"
     ```
 
 ## Paths for importing modules and for opening files
-+ Strictly do not perform relative import for any files or modules in Python. 
++ Strictly do not perform relative import for any files or modules in Python.
 + Never perform wildcard imports such as
     ```python
     from libraries import *
@@ -26,9 +26,9 @@ title: "Python"
         ```text
         emotion-recognition                         # Main project directory 
         ├── model                                   # Machine learning model folder 
-        |   ├── analysis                            # Package - Helper    
-        |   |   └── predictions.py                  # Module - Analysis 
-        |   ├── checkpoint                          # Package - Helper    
+        |   ├── analysis                            # Package    
+        |   |   └── predictions.py                  # Module 
+        |   ├── checkpoint                          # Checkpoint folder    
         |   |   └── emotion_recognition_weights.h5  # Machine learning saved weights
         |   └── emoRec.py                           # Python code 
         ├── tfgraph                                 # TensorFlow graph folder 
@@ -76,15 +76,16 @@ title: "Python"
 
     [options]
         --force : to overwrite existing file
+        --proxy <url> : when using behind a corporate proxy
     ```
-    Example command assuming the project is located at `home/admin/src/github.com/scalable-deployment/tfsemonet` . 
+    Example command assuming the project is located at `home/admin/src/github.com/scalable-deployment/tfsemonet` and we are behind a corporate proxy of `http://10.0.0.0:8080/`. 
     ```
-    pipreqs --force /home/admin/src/github.com/scalable-deployment/tfsemonet
+    pipreqs --force --proxy http://10.0.0.0:8080/ /home/admin/src/github.com/scalable-deployment/tfsemonet
     ```
 
-+ To install dependencies, issue the following commands.
++ To install dependencies, issue the following command.
     ```python
-    pip install -r /requirements.txt
+    pip install -r /path/to/requirements.txt
     ```
 
 ## Machine learning folder structure
@@ -111,7 +112,7 @@ emotion-recognition                             # Main project directory
 |   ├── helper                                  # Package - Helper    
 |   |   └── convert.py                          # Module - Convert 
 |   └── emoRec.py                               # Code used during model development
-├── prepostprocessing                           # Pre/Post-processing folder 
+├── lib                                         # Libraries
 |   ├── emonetLabels.json                       # Labels
 |   ├── haarcascade_frontalface_default.xml     # .xml file for ML models
 |   └── preprocess.py                           # Pre-processing functions   
@@ -133,7 +134,7 @@ emotion-recognition                             # Main project directory
     + Local code should be abstracted into packages and modules. For example, `analysis` and `helper` are local packages, whereas `predictions.py` and `convert.py` are local modules.
     + Package and module naming should be intuitive and non-repetitive. For example, reading  an import statement in Python, such as `import model.analysis.predictions`, should clearly indicate the meaning or functionality of the code being imported.
     + A `checkpoints` sub-folder is desirable to keep track of previously trained architecture and weights. 
-1. [<span style="color:green">Production Code</span>] `prepostprocessing` folder is a top level folder containing well abstracted pre/post-processing code, which will be ported into production.
+1. [<span style="color:green">Production Code</span>] `lib` folder is a top level folder containing well abstracted local (i.e., self-written) and third party libraries, which will be ported into production.
 1. [<span style="color:green">Production Code</span>] `tfgraph` folder is a top level folder containing well abstracted and commented machine learning TensorFlow graph written in Python. The graph (e.g., `cnn.py`) is converted into `SavedModel` format and saved with an identical name in the `tfserving` folder (e.g., `cnn`). Although the contents of this folder are not directly used in production, the Python TensorFlow graphs are needed to understand the corresponding `tfserving` which was actually deployed. 
 1. [<span style="color:green">Production Code</span>] `tfserving` folder. Please see `TensorFlow` wiki to learn more about the structure of `tfserving` folder. The `tfserving` model will be deployed using Docker containers in production.
 1. [<span style="color:green">Production Code</span>] `.env` file should contain the environment variables, e.g., `ROOT` variable, which will be ported into production.
