@@ -14,7 +14,7 @@ This project explores the use of OpenMP for parallel programming in C/C++. We pr
 
 All the code is containerized using Dockers.
 
-A very useful OpenMP 3.1 API C/C++ syntax quick reference card is available from OpenMP [here](./assets/OpenMP3.1-CCard.pdf)
+A very useful OpenMP 3.1 API C/C++ syntax quick reference card is available from OpenMP [here](https://github.com/Adaickalavan/OpenMP-Tim-Mattson/blob/master/assets/OpenMP3.1-CCard.pdf)
 
 The following tools will be used in this project:
 + C/C++
