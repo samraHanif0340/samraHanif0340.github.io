@@ -67,7 +67,7 @@ Go-WebRTC                    # Main folder
 <!-- The end product of this system is illustrated by the following image. -->
 
 <!-- {% capture fig_pipeline %}
-![pipeline](/assets/images/webrtc_03.jpg){:height="100%" width="100%" .align-center}
+![pipeline](/assets/images/webrtc_02.jpg){:height="100%" width="100%" .align-center}
 {% endcapture %} -->
 
 <!-- <figure id="pipeline">
