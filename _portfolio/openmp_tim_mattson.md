@@ -131,9 +131,9 @@ For easy reference, each code solution is named according to the slide on which 
 .tg .tg-9ikn{border-color:#656565;text-align:left;vertical-align:middle}
 .tg .tg-2bev{border-color:#656565;text-align:left;vertical-align:top}
 </style>
-<table class="tg" style="undefined;table-layout: fixed; width: 790px">
+<table class="tg" style="undefined;table-layout: fixed; width: 777px">
 <colgroup>
-<col style="width: 354px">
+<col style="width: 341px">
 <col style="width: 436px">
 </colgroup>
   <tr>
