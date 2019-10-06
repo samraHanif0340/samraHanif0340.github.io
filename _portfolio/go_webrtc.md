@@ -10,9 +10,9 @@ header:
 In this project, we will develop a real-time video and data broadcasting service using WebRTC in Golang. Video feed will be streamed from the publisher's web camera through WebRTC media API to multiple browser-based end clients. Simultaneously, some accompanying data will be streamed from the publisher to the multiple end-clients through the WebRTC data channel. All the code is containerized using Dockers.
 
 The following tools will be used in this project:
++ WebRTC
 + Docker
 + Golang
-+ WebRTC
 + Javascript
 + HTML
 
@@ -64,16 +64,16 @@ Go-WebRTC                    # Main folder
 1. Then open another tab in your browser, and go to `localhost:8088/join` to see the broadcasted video and data. Multiple clients can view the broadcast by joining the same weblink. 
 1. The video and data connection will dynamically resume if the publisher or client disconnects and rejoins later.
 
-<!-- The end product of this system is illustrated by the following image. -->
+The end product of this system is illustrated by the following image.
 
-<!-- {% capture fig_pipeline %}
-![pipeline](/assets/images/webrtc_02.jpg){:height="100%" width="100%" .align-center}
-{% endcapture %} -->
+{% capture fig_webrtc %}
+![webrtc](/assets/images/webrtc_02.jpg){:height="100%" width="100%" .align-center}
+{% endcapture %}
 
-<!-- <figure id="pipeline">
-  {{ fig_pipeline | markdownify | remove: "<p>" | remove: "</p>" }}
-  <figcaption>Video and data broadcast to multiple clients through WebRTC.</figcaption>
-</figure> -->
+<figure id="webrtc">
+  {{ fig_webrtc | markdownify | remove: "<p>" | remove: "</p>" }}
+  <figcaption>Video and data broadcast to multiple clients through WebRTC. (Left) Publisher's captured video. (Right) Multiple client viewing the broadcast. Random text and random box is brodcasted via the data track. Video is broadcasted via the video track. </figcaption>
+</figure>
 
 ## System Design
 Certain key aspects of the system is further explored in the following sections.
