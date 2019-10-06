@@ -11,7 +11,7 @@ This project explores the use of OpenMP for parallel programming in C/C++ via th
 + Watch the course [video](https://www.youtube.com/playlist?list=PLLX-Q6B8xqZ8n8bwjGdzBJ25X2utwnoEG).
 + Read the course [notes](https://www.openmp.org/wp-content/uploads/Intro_To_OpenMP_Mattson.pdf). 
 + Do the exercise [files](https://www.openmp.org/wp-content/uploads/Mattson_OMP_exercises.zip).
-+ A very useful OpenMP 3.1 API C/C++ syntax quick reference card is available from OpenMP [here](http://openmp.org/mp-documents/OpenMP3.1-CCard.pdf).
++ A useful OpenMP 3.1 API C/C++ syntax quick reference [card](http://openmp.org/mp-documents/OpenMP3.1-CCard.pdf).
 
 We provide the code solutions to OpenMP coding exercises in C/C++. All of our code is built using CMake and is containerized using Dockers.
 
