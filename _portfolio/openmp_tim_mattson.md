@@ -91,7 +91,7 @@ For easy reference, each solution code is named according to the slide on which 
   </tr>
   <tr>
     <td class="tg-oxga">Slide 38 - Parallel 'Hello World' program</td>
-    <td class="tg-2fy7" rowspan="6">1) <span style="font-weight:bold">Main file</span>: `/apps/tutorial.cpp`<br>2) <span style="font-weight:bold">Build</span>: `docker build -t openmp .` on `Dockerfile`<br>3) <span style="font-weight:bold">Set</span>: `command: /src/bin/tutorial` in `docker-compose.yaml` file <br>4) <span style="font-weight:bold">Run</span>: `docker-compose up` on `docker-compose.yaml` file</td>
+    <td class="tg-2fy7" rowspan="6">1) <span style="font-weight:bold">File</span>: `/apps/tutorial.cpp`<br>2) <span style="font-weight:bold">Build</span>: `docker build -t openmp .` on `Dockerfile`<br>3) <span style="font-weight:bold">Set</span>: `command: /src/bin/tutorial` in `docker-compose.yaml` file <br>4) <span style="font-weight:bold">Run</span>: `docker-compose up` on `docker-compose.yaml` file</td>
   </tr>
   <tr>
     <td class="tg-9ikn">Slide 48 - Compute Pi in serial</td>
@@ -110,11 +110,11 @@ For easy reference, each solution code is named according to the slide on which 
   </tr>
   <tr>
     <td class="tg-5rba">Slide 119 - Mandel Brot</td>
-    <td class="tg-5rba">1) <span style="font-weight:bold">Main file</span>: `/apps/mandel.c`<br>2) <span style="font-weight:bold">Build</span>: `docker build -t openmp .` on `Dockerfile`<br>3) <span style="font-weight:bold">Set</span>: `command: /src/bin/mandel` in `docker-compose.yaml` file<br>4) <span style="font-weight:bold">Run</span>: `docker-compose up` on `docker-compose.yaml` file<br></td>
+    <td class="tg-5rba">1) <span style="font-weight:bold">File</span>: `/apps/mandel.c`<br>2) <span style="font-weight:bold">Build</span>: `docker build -t openmp .` on `Dockerfile`<br>3) <span style="font-weight:bold">Set</span>: `command: /src/bin/mandel` in `docker-compose.yaml` file<br>4) <span style="font-weight:bold">Run</span>: `docker-compose up` on `docker-compose.yaml` file<br></td>
   </tr>
   <tr>
     <td class="tg-2bev">Slide 124 - Linked list computed serially</td>
-    <td class="tg-9ikn" rowspan="3">1) <span style="font-weight:bold">Main file</span>: `/apps/linked.c`<br>2) <span style="font-weight:bold">Build</span>: `docker build -t openmp .` on `Dockerfile`<br>3) <span style="font-weight:bold">Set</span>: `command: /src/bin/linked` in `docker-compose.yaml` file<br>4) <span style="font-weight:bold">Run</span>: `docker-compose up` on `docker-compose.yaml` file<br></td>
+    <td class="tg-9ikn" rowspan="3">1) <span style="font-weight:bold">File</span>: `/apps/linked.c`<br>2) <span style="font-weight:bold">Build</span>: `docker build -t openmp .` on `Dockerfile`<br>3) <span style="font-weight:bold">Set</span>: `command: /src/bin/linked` in `docker-compose.yaml` file<br>4) <span style="font-weight:bold">Run</span>: `docker-compose up` on `docker-compose.yaml` file<br></td>
   </tr>
   <tr>
     <td class="tg-5rba">Slide 128 - Linked list in parallel without Tasks</td>
