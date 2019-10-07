@@ -71,14 +71,14 @@ Go-WebRTC                    # Main folder
 
 The end product of this system is illustrated in the following image.
 
-{% capture fig_webrtc %}
+<!-- {% capture fig_webrtc %}
 ![webrtc](/assets/images/webrtc_02.jpg){:height="100%" width="100%" .align-center}
 {% endcapture %} -->
 
 <figure id="webrtc">
   {{ fig_webrtc | markdownify | remove: "<p>" | remove: "</p>" }}
   <figcaption>Video and data broadcast to multiple clients through WebRTC. (Left) Publisher's captured video. (Right) Multiple client viewing the broadcast. Random text and random box is brodcasted via the data track. Video is broadcasted via the video track. </figcaption>
-</figure>
+</figure> -->
 
 {% include gallery id="gallery_01" %}
 
