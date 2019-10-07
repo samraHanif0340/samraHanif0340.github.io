@@ -3,6 +3,7 @@ title: "RTSP Video, Kafka, and Microservices"
 excerpt: "Data pipeline: Golang, Python, Docker internal/external networking"
 header:
   teaser: /assets/images/rtsp_video_streaming_01.jpg
+date: "2018-11-01"   
 ---
 
 ## Info

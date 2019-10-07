@@ -7,6 +7,7 @@ gallery:
   - image_path: /assets/images/Machine_Learning_ColumbiaX.jpg
   - image_path: /assets/images/machine_learning_john_paisley_p04_02.jpg
 toc: false
+date: "2017-04-01" 
 ---
 
 {% include gallery %}

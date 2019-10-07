@@ -16,7 +16,8 @@ gallery_07_02:
   - url: /assets/images/artificial_intelligence_p03_04.jpg
     image_path: /assets/images/artificial_intelligence_p03_04.jpg
   - url: /assets/images/artificial_intelligence_p03_03.jpg
-    image_path: /assets/images/artificial_intelligence_p03_03.jpg       
+    image_path: /assets/images/artificial_intelligence_p03_03.jpg   
+date: "2017-08-01"         
 ---
 
 {% include gallery id="gallery_01" %}

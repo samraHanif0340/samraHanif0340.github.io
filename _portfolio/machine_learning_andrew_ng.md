@@ -7,6 +7,7 @@ gallery:
   - image_path: /assets/images/machine_learning_andrew_ng_p02_01.jpg
   - image_path: /assets/images/machine_learning_andrew_ng_p06_01.jpg
   - image_path: /assets/images/machine_learning_andrew_ng_p07_01.jpg
+date: "2016-07-01"   
 ---
 
 {% include gallery %}

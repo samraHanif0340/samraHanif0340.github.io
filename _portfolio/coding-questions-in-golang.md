@@ -6,6 +6,7 @@ header:
 gallery:
   - image_path: /assets/images/gophercises_punching.jpg
   - image_path: /assets/images/gophercises_lifting.jpg
+date: "2018-09-01"   
 ---
 
 {% include gallery %}

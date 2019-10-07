@@ -7,6 +7,7 @@ gallery:
   - image_path: /assets/images/scala_c2_w4_a01_01.jpg 
   - image_path: /assets/images/scala_c3_w1_a01_01.jpg 
   - image_path: /assets/images/scala_c3_w4_a01_01.jpg
+date: "2018-06-01"   
 ---
 
 {% include gallery %}

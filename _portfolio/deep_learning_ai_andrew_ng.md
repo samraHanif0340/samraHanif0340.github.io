@@ -6,7 +6,8 @@ header:
 gallery:
   - image_path: /assets/images/deep_learning_c4w3_p01_01_yolo.jpg 
   - image_path: /assets/images/deep_learning_c4w4_p02_01_nst.jpg
-toc: false     
+toc: false 
+date: "2018-01-01"     
 ---
 
 {% include gallery %}

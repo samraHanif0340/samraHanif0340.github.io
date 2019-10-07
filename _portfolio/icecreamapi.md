@@ -3,6 +3,7 @@ title: "IceCream API - Docker, Go, REST, JWT, Mongo"
 excerpt: "Example of dockerized and authenticated microservices"
 header:
   teaser: assets/images/icecream.jpg
+date: "2018-10-01"   
 ---
 
 ## Info

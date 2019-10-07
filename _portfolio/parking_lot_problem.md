@@ -3,6 +3,7 @@ title: "Parking Lot Problem"
 excerpt: "Solved in Golang with data structures optimized for complexity"
 header:
   teaser: /assets/images/parkinglot_01.jpg
+date: "2018-12-01" 
 ---
 
 ## Info
