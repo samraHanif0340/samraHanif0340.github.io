@@ -6,6 +6,7 @@ header:
 gallery:
   - image_path: /assets/images/MNIST_1.jpg
   - image_path: /assets/images/MNIST_2.jpg
+date: "2017-07-01"   
 ---
 
 {% include gallery %}

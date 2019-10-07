@@ -3,6 +3,7 @@ title: "Timeseries Database and Visualization"
 excerpt: "InfluxDB, Grafana, and Golang"
 header:
   teaser: /assets/images/timeseries_01.jpg
+date: "2018-12-01"   
 ---
 
 {: .notice--success}

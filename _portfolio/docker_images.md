@@ -3,6 +3,7 @@ title: "Docker Images"
 excerpt: "Golang, GoCV, Librdkafka, Confluent-Kafka-Go"
 header:
   teaser: /assets/images/gopher_docker.jpg
+date: "2019-01-15"   
 ---
 
 ## Info

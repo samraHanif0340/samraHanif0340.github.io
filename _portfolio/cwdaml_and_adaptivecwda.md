@@ -17,6 +17,7 @@ gallery:
   - image_path: /assets/images/PhD/ACWDA_BER.jpg
   - image_path: /assets/images/PhD/ACWDA_BER_and_cycle_slip.jpg
   - image_path: /assets/images/PhD/ACWDA_NL_cycle_slip.jpg   
+date: "2014-08-01"   
 ---
 
 {% include gallery %}

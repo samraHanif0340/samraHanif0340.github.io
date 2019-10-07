@@ -9,6 +9,7 @@ gallery_01:
   - url: /assets/images/rfid_10_equalization_zoom.jpg
     image_path: /assets/images/rfid_10_equalization_zoom.jpg
 toc: false  
+date: "2016-05-01" 
 ---
 
 {% include toc %}

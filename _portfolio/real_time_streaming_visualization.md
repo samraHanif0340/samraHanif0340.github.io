@@ -3,6 +3,7 @@ title: "Real Time Streaming Visualization"
 excerpt: "Project - Python"
 header:
   teaser: /assets/images/real_time_streaming_visualization_01.jpg
+date: "2018-05-15"   
 ---
 
 ## Project

@@ -3,6 +3,7 @@ title: "Deep Learning for Time Series and NLP"
 excerpt: "Project"
 header:
   teaser: /assets/images/time_series_nlp_01.jpg 
+date: "2018-03-01"   
 ---
 
 ## Project

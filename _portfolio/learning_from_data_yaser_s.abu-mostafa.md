@@ -3,6 +3,7 @@ title: "Learning from data - Yaser S.Abu Mostafa"
 excerpt: "Course review and resources"
 header:
   teaser: /assets/images/Learning_from_Data_CaltechX.jpg
+date: "2016-12-01" 
 ---
 
 ## Review
