@@ -28,7 +28,7 @@ In this project, the video analytics will focus on a frame-by-frame object class
 The complete system design and data flow of this project is illustrated by the following image.
 
 {% capture fig_pipeline %}
-![pipeline](/assets/images/scalable_deployment_kubernetes_02.jpg){:height="100%" width="100%" .align-center}
+[![pipeline](/assets/images/scalable_deployment_kubernetes_02.jpg)](/assets/images/scalable_deployment_kubernetes_02.jpg){:height="100%" width="100%" .align-center}
 {% endcapture %}
 
 <figure id="pipeline">
