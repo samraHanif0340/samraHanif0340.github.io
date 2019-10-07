@@ -3,6 +3,11 @@ title: "WebRTC Video & Data Streaming"
 excerpt: "WebRTC, Golang, Javascript, HTML, Docker"
 header:
   teaser: /assets/images/webrtc_01.jpg
+gallery_01:
+  - url: /assets/images/webrtc_02.jpg
+    image_path: /assets/images/webrtc_02.jpg
+  - url: /assets/images/webrtc_03.jpg
+    image_path: /assets/images/webrtc_03.jpg      
 ---
 
 ## Introduction
@@ -64,16 +69,20 @@ Go-WebRTC                    # Main folder
 1. Then open another tab in your browser, and go to `localhost:8088/join` to see the broadcasted video and data. Multiple clients can view the broadcast by joining the same weblink. 
 1. The video and data connection will dynamically resume if the publisher or client disconnects and rejoins later.
 
-The end product of this system is illustrated by the following image.
+The end product of this system is illustrated in the following image.
 
 {% capture fig_webrtc %}
 ![webrtc](/assets/images/webrtc_02.jpg){:height="100%" width="100%" .align-center}
-{% endcapture %}
+{% endcapture %} -->
 
 <figure id="webrtc">
   {{ fig_webrtc | markdownify | remove: "<p>" | remove: "</p>" }}
   <figcaption>Video and data broadcast to multiple clients through WebRTC. (Left) Publisher's captured video. (Right) Multiple client viewing the broadcast. Random text and random box is brodcasted via the data track. Video is broadcasted via the video track. </figcaption>
 </figure>
+
+{% include gallery id="gallery_01" %}
+
+
 
 ## System Design
 Certain key aspects of the system is further explored in the following sections.
