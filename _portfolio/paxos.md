@@ -3,6 +3,7 @@ title: "Paxos"
 excerpt: "Scalable API and Dynamic Programming"
 header:
   teaser: /assets/images/paxos_01.jpg
+date: "2019-01-01"   
 ---
 
 ## Info

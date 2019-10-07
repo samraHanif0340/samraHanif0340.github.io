@@ -6,7 +6,7 @@ header:
 gallery:
   - image_path: /assets/images/scalable_deployment_kubernetes_03.jpg
   - image_path: /assets/images/scalable_deployment_kubernetes_04.jpg
-date: "2019-05-01"  
+date: "2019-03-01"  
 ---
 
 {% include gallery %}

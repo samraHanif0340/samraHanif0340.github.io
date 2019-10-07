@@ -7,7 +7,8 @@ gallery_01:
   - url: /assets/images/webrtc_02.jpg
     image_path: /assets/images/webrtc_02.jpg
   - url: /assets/images/webrtc_03.jpg
-    image_path: /assets/images/webrtc_03.jpg      
+    image_path: /assets/images/webrtc_03.jpg   
+date: "2019-10-01"    
 ---
 
 ## Introduction
