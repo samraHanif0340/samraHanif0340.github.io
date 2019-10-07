@@ -80,9 +80,7 @@ The end product of this system is illustrated in the following image.
   <figcaption></figcaption>
 </figure> -->
 
-{% include gallery id="gallery_01" %}
-
-Video and data broadcast to multiple clients through WebRTC. (Left) Publisher's captured video. (Right) Multiple client viewing the broadcast. Random text and random box is brodcasted via the data track. Video is broadcasted via the video track. 
+{% include gallery id="gallery_01" caption="Video and data broadcast to multiple clients through WebRTC. (Left) Publisher's captured video at http://domainId:8088/publish. (Right) Multiple client viewing the broadcast at http://domainId:8088/join. Random text and random box is brodcasted via the data track, whereas video is broadcasted via the video track."%}
 
 ## System Design
 Certain key aspects of the system is further explored in the following sections.
