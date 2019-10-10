@@ -81,10 +81,10 @@ For easy reference, each solution code is named according to the slide on which 
 .tg .tg-2fy7{background-color:#ffffff;border-color:#656565;text-align:left;vertical-align:middle}
 .tg .tg-2bev{border-color:#656565;text-align:left;vertical-align:top}
 </style>
-<table class="tg" style="undefined;table-layout: fixed; width: 777px">
+<table class="tg">
 <colgroup>
-<col style="width: 345px">
-<col style="width: 432px">
+<col style="width: 30%">
+<col style="width: 70%">
 </colgroup>
   <tr>
     <th class="tg-di1h">Exercise</th>
