@@ -15,6 +15,14 @@ title: "Python"
     $ pip install --upgrade autopep8     
     ```
 
+# Documentation
++ Variables and functions which are only meant for local use within a library, must be made private and non-exportable. Add “__” (double underscore ) in front of the variable and function name to hide them when accessing them from out of class. For example, `__x` and `def __normFace(img, face):` represent a hidden variable and a hidden function, respectively.
++ Hidden variables and functions will not be included in the documentation.
+
++ Use Sphinx as Python code documentation tool.
++ Use `numpy` docstring to document packages, modules, and functions.
+
+
 ## Paths for importing modules and for opening files
 + Strictly do not perform relative import for any files or modules in Python.
 + Never perform wildcard imports such as
