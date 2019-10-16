@@ -2,15 +2,11 @@
 title: "Python"
 ---
 
-## Code style
+## Code style and linting
 + Follow the [PEP 8 Python style guide](https://www.python.org/dev/peps/pep-0008/), except TensorFlow uses 2 spaces instead of 4. 
-+ Please conform to the [Google Python Style Guide](https://github.com/google/styleguide/blob/gh-pages/pyguide.md).
++ Please conform to the [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html).
 + All naming of folders, files, and functions, shall follow `camelCase` format.
-
-## Code linting
-+ A good code formatter is `autopep8`.
-+ `autopep8` automatically formats Python code to conform to the PEP 8 style guide.
-+ Install `autopep8` via pip:
++ A good code formatter is `autopep8`. `autopep8` automatically formats Python code to conform to the PEP 8 style guide. Install `autopep8` via pip:
     ```bash
     $ pip install --upgrade autopep8     
     ```

@@ -4,6 +4,16 @@ title: "TensorFlow"
 
 Every machine learning project must produce a saved model as its final deliverable.
 
+## Keras
++ Do not import libraries directly from the `Keras` package such as
+    ```python
+    import keras.utils
+    ```
++ Always import from the `Tensorflow` package. For example, 
+    ```python
+    import tensorflow.keras.utils
+    ```
+
 ## SavedModel
 + Contains complete architecture and weights. 
 + Independent of the source code that created the model.

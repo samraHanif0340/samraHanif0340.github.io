@@ -9,21 +9,11 @@ title: "C++"
 1. Wherever possible, follow C style instead of C++, as it makes the code more aligned with the driving philosophies of Golang.
 1. All naming of folders, files, and functions, shall follow `camelCase` format.
 
-## Code Documentation - Sphinx + Breathe + Doxygen + CMake 
+## Code Documentation - Doxygen 
 1. Install Doxygen
     ```bash
     $ apt-get install doxygen
     ```
-1. Install Sphinx
-    ```bash
-    $ apt-get install python3-sphinx
-    $ pip install sphinx_rtd_theme
-    ```    
-1. Install Breathe
-    + Breathe is the bridge between Doxygen and Sphinx; taking the output from the former and making it available through some special directives in the latter.
-    ```bash
-    $ pip install breathe
-    ```     
 
 # Folder structure
 The following serves as a representative project folder structure.
@@ -207,10 +197,10 @@ Parallel programming in C++ may be achieved using OpenMP, MPI, and multithreadin
     .tg .tg-dg7a{background-color:#FCFBE3;text-align:left;vertical-align:top}
     .tg .tg-yq6s{background-color:#FCFBE3;text-align:center;vertical-align:top}
     </style>
-    <table class="tg" style="undefined;table-layout: fixed; width: 361px">
+    <table class="tg">
         <colgroup>
-        <col style="width: 181px">
-        <col style="width: 180px">
+        <col style="width: 50%">
+        <col style="width: 50%">
         </colgroup>
         <tr>
             <th class="tg-c3ow">Directive</th>

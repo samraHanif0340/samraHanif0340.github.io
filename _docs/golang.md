@@ -13,7 +13,7 @@ title: "Golang"
     + [Code Review Comments](https://github.com/golang/go/wiki/CodeReviewComments).
 
 ## Code Documentation - GoDoc
-1. Godoc extracts and generates documentation for Go programs.
+1. GoDoc extracts and generates documentation for Go programs.
 1. It runs as a web server and presents the documentation as a web page.
 1. Usage:
     ```bash
