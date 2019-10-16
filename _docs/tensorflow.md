@@ -9,7 +9,7 @@ Every machine learning project must produce a saved model as its final deliverab
     ```python
     import keras.utils
     ```
-+ Always import from the `Tensorflow` package. For example, 
+    Instead, always import from the `Tensorflow` package. For example, 
     ```python
     import tensorflow.keras.utils
     ```
