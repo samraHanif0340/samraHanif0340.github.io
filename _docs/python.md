@@ -78,7 +78,6 @@ Note: All <span style="color:green">Production Code</span> needs to undergo code
 ## Documentation
 + Variables, functions, and methods, which are only meant for local use within a library, must be made private and non-exportable. Add “__” (double underscore) in front of the name to hide them when accessing them from out of class. For example, `__x` and `def __normFace(self, img, face):` represent a hidden variable and a hidden method, respectively.
 + Hidden variables, functions, and methods, will not be included in the documentation.
-
 + Write docstrings in `numpy` [format](https://numpydoc.readthedocs.io/en/latest/format.html) to document the Python code. 
 + Docstrings must be written for 
     + Classes, and class methods
@@ -93,7 +92,6 @@ Note: All <span style="color:green">Production Code</span> needs to undergo code
     """
     ````    
 + Documents are stored in the `./doc` directory at the root of the project repository.
-
 + Sphinx is the desired tool to generate code documentation.
     + Install Sphinx
         ```bash
@@ -128,7 +126,8 @@ Note: All <span style="color:green">Production Code</span> needs to undergo code
             Enable sphinx.ext.mathjax extension.    
         --ext-viewcode
             Enable sphinx.ext.viewcode extension.
-        --extensions=napoleon    
+        --extensions='sphinx.ext.napoleon'    
+            Napoleon provides support for Google and NumPy styled docstrings.
         ```
         For example:
         ```bash
@@ -170,7 +169,6 @@ Note: All <span style="color:green">Production Code</span> needs to undergo code
         ...
         ...
         ```
-
     + Populate your master file at `/doc/index.rst` and create other documentation source files, as needed.    
     + Generate documents.
         ```bash 
@@ -178,7 +176,6 @@ Note: All <span style="color:green">Production Code</span> needs to undergo code
         $ make -C ./doc html
         ```
     + View the Sphinx documentation by browsing `/doc/_build/html/index.html` in your web browser.
-   
 + Alternatively, for quick and easy document generation, pdoc3 tool may be used. 
     + Execute the following commands at the project's root directory.
         ```bash
