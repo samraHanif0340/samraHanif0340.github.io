@@ -93,8 +93,12 @@ Note: All <span style="color:green">Production Code</span> needs to undergo code
 + For Sphinx tool, generate documents using:
     ```bash
     $ pip install sphinx
+    $ pip install sphinx-rtd-theme
     $ cd /path/to/project/root
-    $ pdoc --html --force --output-dir doc ./lib
+    $ mkdir doc
+    $ cd doc
+    $ sphinx-quickstart
+    $ sphinx-build -b html . builddir
     ```
 + Alternatively for pdoc3 tool, generate documents using the following in the root directory of the project.
     ```bash
