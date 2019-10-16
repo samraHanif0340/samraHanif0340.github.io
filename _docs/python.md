@@ -60,7 +60,7 @@ emotion-recognition                             # Main project directory
 
 1. [<span style="color:blue">Non-Production Code</span>] `assets` folder should contain miscellaneous files. For example, it can contain images used for explanation in `Readme.md`.
 1. [<span style="color:blue">Non-Production Code</span>] `dataset` folder should contain minimal amount of sample test data used in the project for testing and demonstration purposes. Complete dataset is advised to be stored in an external Hadoop cluster.
-1. [<span style="color:green">Production Code</span>] `doc` folder contains the documents generated from Python code comments. For details of how the documents are generated, refer to the [code documentation](#Documentation) steps.   
+1. [<span style="color:green">Production Code</span>] `doc` folder contains the documents generated from Python code comments. For details of how the documents are generated, refer to the code [documentation](#documentation) steps.   
 1. [<span style="color:blue">Non-Production Code</span>] `example` folder contains a complete, runnable, well-abstracted Python code to illustrate the entire machine learning model. For example, `emoRecStream.py` is a complete standalone example to analyse video stream.
 1. [<span style="color:blue">Non-Production Code</span>] `model` folder contains all peripheral code used in developing and testing the machine learning tensorflow graph. 
     + Contains code files (i.e., `emoRec.py`) used during training, testing, and building phase of the machine learning model.
@@ -75,7 +75,7 @@ emotion-recognition                             # Main project directory
     + Explanation of what the project is about
     + Instructions to run a sample of the code
     + Desired input and output of the machine learning model
-1. [<span style="color:green">Production Code</span>] `requirements` file contains the dependent libraries and their version require to run this code. For details on how the `requirements.txt` file is generated, refer to the [dependency management](#Dependencies) section.   
+1. [<span style="color:green">Production Code</span>] `requirements` file contains the dependent libraries and their version require to run this code. For details on how the `requirements.txt` file is generated, refer to the [dependency](#dependencies) management section.   
 
 Note: All <span style="color:green">Production Code</span> needs to undergo code review before being merged into the master branch. Whereas, coding standards of <span style="color:blue">Non-Production Code</span> need not necessarily be scrutinised.
 
@@ -83,29 +83,115 @@ Note: All <span style="color:green">Production Code</span> needs to undergo code
 + Variables, functions, and methods, which are only meant for local use within a library, must be made private and non-exportable. Add “__” (double underscore) in front of the name to hide them when accessing them from out of class. For example, `__x` and `def __normFace(self, img, face):` represent a hidden variable and a hidden method, respectively.
 + Hidden variables, functions, and methods, will not be included in the documentation.
 
-+ Use [`numpy` formatted](https://numpydoc.readthedocs.io/en/latest/format.html) docstring to document the Python code. 
++ Write docstrings in `numpy` [format](https://numpydoc.readthedocs.io/en/latest/format.html) to document the Python code. 
 + Docstrings must be written for 
-    + Classes and class methods
-    + Packages, modules, and functions
+    + Classes, and class methods
+    + Packages, and functions
     + Scripts
++ To do notes are written as part of docstrings. 
+    ```python
+    """
+    TODO
+    ----
+    Blah blah.     
+    """
+    ````    
 + Documents are stored in the `./doc` directory at the root of the project repository.
+
 + Sphinx is the desired tool to generate code documentation.
-+ For Sphinx tool, generate documents using:
-    ```bash
-    $ pip install sphinx
-    $ pip install sphinx-rtd-theme
-    $ cd /path/to/project/root
-    $ mkdir doc
-    $ cd doc
-    $ sphinx-quickstart
-    $ sphinx-build -b html . builddir
-    ```
-+ Alternatively for pdoc3 tool, generate documents using the following in the root directory of the project.
-    ```bash
-    $ pip install pdoc3
-    $ cd /path/to/project/root
-    $ pdoc --html --force --output-dir doc ./lib
-    ```
+    + Install Sphinx
+        ```bash
+        $ pip install sphinx
+        $ pip install sphinx-rtd-theme
+        ```
+    + Make doc directory
+        ```bash
+        $ cd /path/to/project/root
+        $ mkdir doc
+        ```
+    + Setup Sphinx   
+        ```bash
+        $ sphinx-quickstart [options] [path/to/project/root/doc]
+
+        [options]
+        -q
+           QUIET. Skips interactive wizard
+        -p PROJECT
+            Project name
+        -a AUTHOR 
+            Author name
+        -v VERSION
+            Version of project
+        --ext-autodoc
+            Enable sphinx.ext.autodoc extension.    
+        --ext-todo
+            Enable sphinx.ext.todo extension.
+        --ext-coverage
+            Enable sphinx.ext.coverage extension.    
+        --ext-mathjax
+            Enable sphinx.ext.mathjax extension.    
+        --ext-viewcode
+            Enable sphinx.ext.viewcode extension.
+        --extensions=napoleon    
+        ```
+        For example:
+        ```bash
+        $ cd /path/to/project/root
+        $ sphinx-quickstart \
+            -q -p Emotion-Recognition -a Adaickalavan \
+            -v v0.0.1 \
+            --ext-autodoc \
+            --ext-todo \
+            --ext-coverage \
+            --ext-mathjax \
+            --ext-viewcode \
+            --extensions='sphinx.ext.napoleon' \
+            ./doc
+        ```
+    + Change the following in `/doc/conf.py` file
+        ```python
+        ...
+        ...
+        # import os
+        # import sys
+        # sys.path.insert(0, os.path.abspath('.'))
+        ...
+        ...
+        html_theme = 'alabaster'
+        ...
+        ...
+        ```
+        to
+        ```python
+        ...
+        ...
+        import os
+        import sys
+        sys.path.insert(0, os.path.abspath('..'))
+        ...
+        ...
+        html_theme = 'sphinx_rtd_theme'
+        ...
+        ...
+        ```
+
+    + Populate your master file at `/doc/index.rst` and create other documentation source files, as needed.    
+    + Generate documents.
+        ```bash 
+        $ cd /path/to/project/root
+        $ make -C ./doc html
+        ```
+    + View the Sphinx documentation by browsing `/doc/_build/html/index.html` in your web browser.
+   
++ Alternatively, for quick and easy document generation, pdoc3 tool may be used. 
+    + Execute the following commands at the project's root directory.
+        ```bash
+        $ pip install pdoc3
+        $ cd /path/to/project/root
+        $ mkdir doc1
+        $ pdoc --html --force --output-dir doc1 ./lib
+        ```
+    + View the pdoc3 documentation by browsing `/doc1/lib/index.html` in your web browser.    
 
 ## Import paths
 + Strictly do not perform relative import for any files or modules in Python.
@@ -167,12 +253,14 @@ Note: All <span style="color:green">Production Code</span> needs to undergo code
     pipreqs [options] <path to main project folder>
 
     [options]
-        --force : to overwrite existing file
-        --proxy <url> : when using behind a corporate proxy
+    --force
+        to overwrite existing file
+    --proxy <url> 
+        when using behind a corporate proxy
     ```
     Example command assuming the project is located at `home/admin/src/github.com/scalable-deployment/tfsemonet` and we are behind a corporate proxy of `http://10.0.0.0:8080/`. 
-    ```
-    pipreqs --force --proxy http://10.0.0.0:8080/ /home/admin/src/github.com/scalable-deployment/tfsemonet
+    ```bash
+    $ pipreqs --force --proxy http://10.0.0.0:8080/ /home/admin/src/github.com/scalable-deployment/tfsemonet
     ```
 
 + To install dependencies, issue the following command.
