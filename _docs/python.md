@@ -243,7 +243,7 @@ Note: All <span style="color:green">Production Code</span> needs to undergo code
 ## Dependencies   
 + To generate `requirements.txt` file for Python dependencies.
     ```python
-    pipreqs [options] <path to main project folder>
+    pipreqs [options] /path/to/project/root
 
     [options]
     --force
