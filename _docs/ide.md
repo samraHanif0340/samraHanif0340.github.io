@@ -19,3 +19,4 @@ The following are the recommended extensions to be installed in the IDE, which f
 + Python
 + vscode-pdf
 + YAML
+
