@@ -1,3 +1,7 @@
+---
+title: "IDE"
+---
+
 ## Integrated Development Environment
 
 VSCode is suggested as the standard IDE. VSCode is open source and free. It can be downloaded from its official [website](https://code.visualstudio.com/).
