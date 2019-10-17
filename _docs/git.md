@@ -27,6 +27,6 @@ title: "Git"
         proxy = http://10.0.0.0:8080/
     [https]
         proxy = https://10.0.0.0:8080/
-    [http "https://abc.com"]
+    [http "http://abc.com/"]
 	    proxy = 	    
     ```    
