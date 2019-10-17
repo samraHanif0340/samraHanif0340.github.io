@@ -127,7 +127,7 @@ Note: All <span style="color:green">Production Code</span> needs to undergo code
         --ext-viewcode
             Enable sphinx.ext.viewcode extension.
         --extensions='sphinx.ext.napoleon'    
-            Napoleon provides support for Google and NumPy styled docstrings.
+            Napoleon supports Google and NumPy styled docstrings.
         ```
         For example:
         ```bash

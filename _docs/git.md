@@ -23,7 +23,7 @@ title: "Git"
     [user]
         email = name@email.com
         name = name
-    [http]gt
+    [http]
         proxy = http://10.0.0.0:8080/
     [https]
         proxy = https://10.0.0.0:8080/
