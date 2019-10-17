@@ -169,7 +169,7 @@ Note: All <span style="color:green">Production Code</span> needs to undergo code
         ...
         ...
         ```
-    + Populate your master file at `/doc/index.rst` and create other documentation source files, as needed.    
+    + Populate your master file at `/doc/index.rst` as needed.    
     + Generate documents.
         ```bash 
         $ cd /path/to/project/root
@@ -255,8 +255,15 @@ Note: All <span style="color:green">Production Code</span> needs to undergo code
     ```bash
     $ pipreqs --force --proxy http://10.0.0.0:8080/ /home/admin/src/github.com/scalable-deployment/tfsemonet
     ```
-
 + To install dependencies, issue the following command.
     ```python
     pip install -r /path/to/requirements.txt
+    ```
+
+## Configuration
++ Setup proxy configurations for pip when using pip behind a corporate proxy, e.g., `http://10.0.0.0:8080/`. 
++ To achieve this, create a `pip.conf` file at `~/.pip/` such that `~/.pip/pip.conf` file contains the following.
+    ```
+    [global]
+    proxy = http://10.0.0.0:8080/     
     ```
