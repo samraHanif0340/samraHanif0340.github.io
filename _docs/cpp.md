@@ -3,11 +3,31 @@ title: "C++"
 ---
 
 ## Code Style
-1. Code interpretability trumps everything else.
+1. Always remember that code interpretability and maintainability trumps everything else.
 1. Please conform to the [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html).
 1. Avoid using Class Inheritance or Friendship features in C++ codes. Inheritance and Friendship reduces code traceability.
+1. In general macros should not be used.
 1. Wherever possible, follow C style instead of C++, as it makes the code more aligned with the driving philosophies of Golang.
-1. All naming of folders, files, and functions, shall follow `camelCase` format.
+
+## Naming
++ C++ files should end in .cc and header files should end in .h.
++ Naming guide:
+
+    | Type                       | Format             | Example                               |
+    | ---------------------------|:-------------------| :-------------------------------------|
+    | Filename                   | lowercase.cc       | myusefulclass.cc                      |
+    | Namespace Names            | lower_with_under   | using namespace websearch::index_util |
+    | Typedef                    | CapWords           | typedef struct _MyClass MyClass;      |
+    | Enumerator                 | CapWords           | enum Color {red, yellow};             |
+    | Aliases                    | CapWords           | using Calc = void (*) (int, int);     |
+    | Constants                  | kCapWords          | const int kDaysInWeek = 7;            |
+    | Variables                  | lower_with_under   | std::string table_name;               |
+    | Function Names             | CapWords           |	void MyFunction(){};                  |
+    | Function Parameters        | lower_with_under   | void my_function(int max_count){};    |
+    | Structures                 | CapWords           | struct UrlTableProperties{};          |
+    | Struct Data Member         | lower_with_under   | int num_entries;                      |
+    | Classes                    | CapWords           |	class UrlTableTester{};               |
+    | Class Data Member          | lower_with_under_  | std::string table_name_;              |
 
 ## Code Documentation - Doxygen 
 1. Install Doxygen
