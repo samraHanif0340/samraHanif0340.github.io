@@ -294,13 +294,13 @@ Note: All <span style="color:green">Production Code</span> needs to undergo code
     --proxy <url> 
         when using behind a corporate proxy
     ```
-    Example command assuming the project is located at `home/admin/src/github.com/scalable-deployment/tfsemonet` and we are behind a corporate proxy of `http://10.0.0.0:8080/`. 
+    Example command assuming the project is located at `home/admin/src/github.com/scalable-deployment/tfsemonet`.
     ```bash
-    $ pipreqs --force --proxy http://10.0.0.0:8080/ /home/admin/src/github.com/scalable-deployment/tfsemonet
+    $ pipreqs --force /home/admin/src/github.com/scalable-deployment/tfsemonet
     ```
 + To install dependencies, issue the following command.
-    ```python
-    pip install -r /path/to/requirements.txt
+    ```bash
+    $ pip install -r /path/to/requirements.txt
     ```
 
 ## Configuration
