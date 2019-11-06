@@ -16,8 +16,9 @@ title: "Golang"
 + The convention in Go is to use mixedCase rather than underscores to write multiword names.
 + Packages are given lower case, single-word names; there should be no need for underscores or mixedCase. 
 + Naming guide:
+
     | Type                       | Internal           | Exported                       |
-    | ---------------------------|:-------------------| :------------------------------|
+    | :--------------------------|:-------------------| :------------------------------|
     | Packages	                 |                    | lowercase                      |
     | Variables 	             | mixedCase          |	MixedCase                      |
     | Function/Method Names	     | mixedCase          |	MixedCase                      |

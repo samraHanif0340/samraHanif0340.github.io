@@ -14,8 +14,9 @@ title: "Python"
 + Avoid dashes (-) in any file/package/module/definition name.
 + While Python supports making things private by using a leading double underscore __ (aka. “dunder”) prefix on a name, this is discouraged. Prefer the use of a single underscore.
 + Naming guide:
+
     | Type                       | Public             | Internal                       |
-    | ---------------------------|:-------------------| :------------------------------|
+    | :--------------------------|:-------------------| :------------------------------|
     | Packages	                 | lower_with_under   | 	                           |
     | Modules	                 | lower_with_under   |	_lower_with_under              |
     | Classes                    | CapWords           |	_CapWords                      |

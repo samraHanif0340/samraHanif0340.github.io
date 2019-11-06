@@ -14,7 +14,7 @@ title: "C++"
 + Naming guide:
 
     | Type                       | Format             | Example                               |
-    | ---------------------------|:-------------------| :-------------------------------------|
+    | :--------------------------|:-------------------| :-------------------------------------|
     | Filename                   | lowercase.cc       | myusefulclass.cc                      |
     | Namespace Names            | lower_with_under   | using namespace websearch::index_util |
     | Typedef                    | CapWords           | typedef struct _MyClass MyClass;      |
