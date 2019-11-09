@@ -12,6 +12,21 @@ title: "Golang"
     + [Effective Go](https://golang.org/doc/effective_go.html).
     + [Code Review Comments](https://github.com/golang/go/wiki/CodeReviewComments).
 
+## Naming    
++ The convention in Go is to use mixedCase rather than underscores to write multiword names.
++ Packages are given lower case, single-word names; there should be no need for underscores or mixedCase. 
++ Naming guide:
+
+    | Type                       | Internal           | Exported                       |
+    | :--------------------------|:-------------------| :------------------------------|
+    | Packages	                 |                    | lowercase                      |
+    | Variables 	             | mixedCase          |	MixedCase                      |
+    | Function/Method Names	     | mixedCase          |	MixedCase                      |
+    | Function/Method Parameters | mixedCase          |	                               |
+    | Structs                    | mixedCase          |	MixedCase                      |
+    | Exceptions	             |                    |	MixedCase                      |
+    | Constants	                 | mixedCase          | MixedCase                      |
+
 ## Code Documentation - GoDoc
 1. GoDoc extracts and generates documentation for Go programs.
 1. It runs as a web server and presents the documentation as a web page.

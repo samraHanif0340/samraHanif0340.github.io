@@ -3,13 +3,31 @@ title: "Python"
 ---
 
 ## Code style and linting
-+ Follow the [PEP 8 Python style guide](https://www.python.org/dev/peps/pep-0008/), except TensorFlow uses 2 spaces instead of 4. 
 + Please conform to the [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html).
-+ All naming of folders, files, and functions, shall follow `camelCase` format.
 + A good code formatter is `autopep8`. `autopep8` automatically formats Python code to conform to the PEP 8 style guide. Install `autopep8` via pip:
     ```bash
     $ pip install --upgrade autopep8     
     ```
+
+## Naming
++ Python filenames must have a `.py` extension.
++ Avoid dashes (-) in any file/package/module/definition name.
++ While Python supports making things private by using a leading double underscore __ (aka. “dunder”) prefix on a name, this is discouraged. Prefer the use of a single underscore.
++ Naming guide:
+
+    | Type                       | Public             | Internal                       |
+    | :--------------------------|:-------------------| :------------------------------|
+    | Packages	                 | lower_with_under   | 	                           |
+    | Modules	                 | lower_with_under   |	_lower_with_under              |
+    | Classes                    | CapWords           |	_CapWords                      |
+    | Exceptions	             | CapWords           |	                               |
+    | Functions	                 | lower_with_under() |	_lower_with_under()            |
+    | Global/Class Constants	 | CAPS_WITH_UNDER    | _CAPS_WITH_UNDER               |
+    | Global/Class Variables	 | lower_with_under   | _lower_with_under              |
+    | Instance Variables         | lower_with_under   | _lower_with_under              |
+    | Method Names               | lower_with_under() | _lower_with_under()            |
+    | Function/Method Parameters | lower_with_under   |	                               |
+    | Local Variables	         | lower_with_under   |                                |	
 
 ## Machine learning folder structure
 
@@ -76,7 +94,7 @@ emotion-recognition                             # Main project directory
 Note: All <span style="color:green">Production Code</span> needs to undergo code review before being merged into the master branch. Whereas, coding standards of <span style="color:blue">Non-Production Code</span> need not necessarily be scrutinised.
 
 ## Documentation
-+ Variables, functions, and methods, which are only meant for local use within a library, must be made private and non-exportable. Add “__” (double underscore) in front of the name to hide them when accessing them from out of class. For example, `__x` and `def __normFace(self, img, face):` represent a hidden variable and a hidden method, respectively.
++ Variables, functions, and methods, which are only meant for local use within a library, must be made private and non-exportable. Add “_” (single underscore) in front of the name to hide them when accessing them from out of class. For example, `_x` and `def _normFace(self, img, face):` represent a hidden variable and a hidden method, respectively.
 + Hidden variables, functions, and methods, will not be included in the documentation.
 + Write docstrings in `numpy` [format](https://numpydoc.readthedocs.io/en/latest/format.html) to document the Python code. 
 + Docstrings must be written for 
@@ -127,7 +145,7 @@ Note: All <span style="color:green">Production Code</span> needs to undergo code
         --ext-viewcode
             Enable sphinx.ext.viewcode extension.
         --extensions='sphinx.ext.napoleon'    
-            Napoleon provides support for Google and NumPy styled docstrings.
+            Napoleon supports Google and NumPy styled docstrings.
         ```
         For example:
         ```bash
@@ -169,7 +187,33 @@ Note: All <span style="color:green">Production Code</span> needs to undergo code
         ...
         ...
         ```
-    + Populate your master file at `/doc/index.rst` and create other documentation source files, as needed.    
+    + Populate your `/doc/index.rst` file as needed. An example `index.rst` file for the Emotion Recognition template project is as follows.
+        ```rst
+        Welcome to Emotion-Recognition's documentation!
+        ===============================================
+
+        .. toctree::
+            :maxdepth: 2
+            :caption: Contents:
+
+        .. automodule:: lib.preprocess
+            :members:
+
+        .. automodule:: lib.util
+            :members:
+
+        Example
+        =======
+
+        .. automodule:: example.emoRecStream
+
+        Indices and tables
+        ==================
+
+        * :ref:`genindex`
+        * :ref:`modindex`
+        * :ref:`search`
+        ```   
     + Generate documents.
         ```bash 
         $ cd /path/to/project/root
@@ -251,12 +295,19 @@ Note: All <span style="color:green">Production Code</span> needs to undergo code
     --proxy <url> 
         when using behind a corporate proxy
     ```
-    Example command assuming the project is located at `home/admin/src/github.com/scalable-deployment/tfsemonet` and we are behind a corporate proxy of `http://10.0.0.0:8080/`. 
+    Example command assuming the project is located at `home/admin/src/github.com/scalable-deployment/tfsemonet`.
     ```bash
-    $ pipreqs --force --proxy http://10.0.0.0:8080/ /home/admin/src/github.com/scalable-deployment/tfsemonet
+    $ pipreqs --force /home/admin/src/github.com/scalable-deployment/tfsemonet
+    ```
++ To install dependencies, issue the following command.
+    ```bash
+    $ pip install -r /path/to/requirements.txt
     ```
 
-+ To install dependencies, issue the following command.
-    ```python
-    pip install -r /path/to/requirements.txt
+## Configuration
++ Setup proxy configurations for pip when using pip behind a corporate proxy, e.g., `http://10.0.0.0:8080/`. 
++ To achieve this, create a `pip.conf` file at `~/.pip/` such that `~/.pip/pip.conf` file contains the following.
+    ```
+    [global]
+    proxy = http://10.0.0.0:8080/     
     ```

@@ -16,7 +16,9 @@ title: "Git"
     ```
 
 ## Configuration
-+ Need to set proxy for Git if we use Git behind a corporate proxy, e.g., `http://10.0.0.0:8080/`. Hence, create a `.gitconfig` file at `~/` such that `~/.gitconfig` file contains the following.
++ Setup proxy configurations for Git when using Git behind a corporate proxy, e.g., `http://10.0.0.0:8080/`. 
++ Assume you would like access all repositories via a corporate proxy, except certain repositories located at http://abc.com which needs to be accessed directly without going through a proxy. 
++ To achieve this, create a `.gitconfig` file at `~/` such that `~/.gitconfig` file contains the following.
     ```
     [user]
         email = name@email.com
@@ -25,4 +27,6 @@ title: "Git"
         proxy = http://10.0.0.0:8080/
     [https]
         proxy = https://10.0.0.0:8080/
-    ```    
+    [http "http://abc.com/"]
+	    proxy = 	    
+    ```

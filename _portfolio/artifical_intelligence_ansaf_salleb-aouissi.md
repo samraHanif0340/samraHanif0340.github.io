@@ -111,7 +111,7 @@ In order to meet the execution time constraints, there are several key points to
 
 ## Week 4 Project: Adversarial Search and Games
 
-We are to solve the 2048 problem using the minimax algorithm with alpha-beta pruning. The algorithm is given in course lecture notes. You may try playing the 2048 game <a href="https://gabrielecirulli.github.io/2048/">here</a> and practice the alpha-beta pruning algorithm <a href="inst.eecs.berkeley.edu/~cs61b/fa14/ta-materials/apps/ab_tree_practice/">here</a>.
+We are to solve the 2048 problem using the minimax algorithm with alpha-beta pruning. The algorithm is given in course lecture notes. You may try playing the 2048 game <a href="https://gabrielecirulli.github.io/2048/">here</a> and practice the alpha-beta pruning algorithm <a href="http://inst.eecs.berkeley.edu/~cs61b/fa14/ta-materials/apps/ab_tree_practice/">here</a>.
 
 Although this programming assignment is claimed to be the toughest in this course, it appears the be pretty starightforward.  
 1. Implement the pseudocode from the course lecture notes
