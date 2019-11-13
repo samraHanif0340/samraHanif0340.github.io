@@ -61,9 +61,9 @@ emotion-recognition                             # Main project directory
 |   ├── emonetLabels.json                       # Labels
 |   ├── haarcascade_frontalface_default.xml     # .xml file for ML models
 |   └── preprocess.py                           # Pre-processing functions   
-├── tfgraph                                     # TensorFlow graph folder 
+├── graph                                       # TensorFlow graph folder 
 |   └── cnn.py                                  # Graph architecture
-├── tfserving                                   # TensorFlow Serving 
+├── serving                                     # TensorFlow Serving 
 |   ├── cnn
 |       ├── ...                                  
 |       ...
@@ -82,8 +82,8 @@ emotion-recognition                             # Main project directory
     + Package and module naming should be intuitive and non-repetitive. For example, reading  an import statement in Python, such as `import model.analysis.predictions`, should clearly indicate the meaning or functionality of the code being imported.
     + A `checkpoints` sub-folder is desirable to keep track of previously trained architecture and weights. 
 1. [<span style="color:green">Production Code</span>] `lib` folder is a top level folder containing well abstracted local (i.e., self-written) and third party libraries, which will be ported into production.
-1. [<span style="color:green">Production Code</span>] `tfgraph` folder is a top level folder containing well abstracted and commented machine learning TensorFlow graph written in Python. The graph (e.g., `cnn.py`) is converted into `SavedModel` format and saved with an identical name in the `tfserving` folder (e.g., `cnn`). Although the contents of this folder are not directly used in production, the Python TensorFlow graphs are needed to understand the corresponding `tfserving` which was actually deployed. 
-1. [<span style="color:green">Production Code</span>] `tfserving` folder. Please see `TensorFlow` wiki to learn more about the structure of `tfserving` folder. The `tfserving` model will be deployed using Docker containers in production.
+1. [<span style="color:green">Production Code</span>] `graph` folder is a top level folder containing well abstracted and commented machine learning TensorFlow graph written in Python. The graph (e.g., `cnn.py`) is converted into `SavedModel` format and saved with an identical name in the `serving` folder (e.g., `cnn`). Although the contents of this folder are not directly used in production, the Python TensorFlow graphs are needed to understand the corresponding `serving` which was actually deployed. 
+1. [<span style="color:green">Production Code</span>] `serving` folder. Please see `TensorFlow` wiki to learn more about the structure of `serving` folder. The `serving` model will be deployed using Docker containers in production.
 1. [<span style="color:green">Production Code</span>] `.env` file should contain the environment variables, e.g., `ROOT` variable, which will be ported into production.
 1. [<span style="color:blue">Non-Production Code</span>] `README.md` file shall contain a brief description of the following:
     + Explanation of what the project is about
@@ -246,7 +246,7 @@ Note: All <span style="color:green">Production Code</span> needs to undergo code
         |   ├── checkpoint                          # Checkpoint folder    
         |   |   └── emotion_recognition_weights.h5  # Machine learning saved weights
         |   └── emoRec.py                           # Python code 
-        ├── tfgraph                                 # TensorFlow graph folder 
+        ├── graph                                   # TensorFlow graph folder 
         |   └── cnn.py                              # Graph architecture
         └── .env                                    # Environment variables 
         ```
@@ -274,7 +274,7 @@ Note: All <span style="color:green">Production Code</span> needs to undergo code
         ```python
         # File: emotion-recognition/model/emoRec.py
         # Import local packages
-        from tfgraph import cnn
+        from graph import cnn
         from model.analysis import predictions
         ```
     1. To open files in Python, create absolute paths by adding the file path within the project directory and the `ROOT`. An example is as follows. 
@@ -303,6 +303,78 @@ Note: All <span style="color:green">Production Code</span> needs to undergo code
     ```bash
     $ pip install -r /path/to/requirements.txt
     ```
+
+## Profiling
+1. For profiling, install the following libraries.
+    ```bash
+    $ pip install cProfile 
+    $ pip install pstats
+    $ pip install line_profiler 
+    ```
+1. Include the following `profiler.py` file in your project.    
+    ```python
+    # Filename: profiler.py
+    import os
+    from dotenv import load_dotenv, find_dotenv
+    load_dotenv(find_dotenv())
+    ROOT = os.getenv("ROOT")
+
+    import cProfile
+    import pstats
+    import line_profiler
+    import atexit
+    profile_line = line_profiler.LineProfiler()
+    atexit.register(profile_line.dump_stats, ROOT+"results/profile_line.prof")
+    stream = open(ROOT+"results/profile_line.txt", 'w')
+    atexit.register(profile_line.print_stats, stream)
+
+    # Function profiling decorator
+    def profile_function(func):
+        def _profile_function(*args, **kwargs):
+            pr = cProfile.Profile()
+            pr.enable()
+            result = func(*args, **kwargs)
+            pr.disable()
+
+            # save stats into file
+            pr.dump_stats(ROOT+"results/profile_function.prof")
+            stream = open(ROOT+"results/profile_function.txt", 'w')
+            ps = pstats.Stats(ROOT+"results/profile_function.prof", stream=stream)
+            ps.sort_stats('tottime')
+            ps.print_stats()
+            
+            return result  
+        return _profile_function
+    ```
+1. For profiling at function-call level, we use `cProfile`. Add the decorator `@profile_function` above the function to be profiled. For line-by-line profiling, we use `line_profiler`. Add the decorator `@profile_line` above the function to be profiled.
+    ```python
+    # Filename: main.py
+    import profiler
+
+    @profiler.profile_function
+    def function_to_be_profiled_at_function_call_level():
+        ...
+
+    @profiler.profile_line
+    def function_to_be_profiled_at_line_by_line_level():
+        ...
+
+    if __name__ == '__main__':
+        function_to_be_profiled_at_function_call_level()
+        function_to_be_profiled_at_line_by_line_level()
+    ```
+1. Then, execute the python file normally. For example 
+    ```bash
+    $ python main.py
+    ```
+    The function-level profile results will be written to `./results/profile_function.txt` and `./results/profile_function.prof` files. The line-level profile results will be written to `./results/profile_line.txt` and `./results/profile_line.prof` files.
+1. To view the function-level profile output interactively in the browser, install `cprofilev` and read the `profile_function.prof` file using cprofilev.
+    ```bash
+    $ pip install cprofilev
+    $ cprofilev -f /path/to/profile_function.prof
+    ```
+    Navigate to http://localhost:4000 to view the profile output.
+1. Note: If you want to profile several functions, only instantiate once the `LineProfiler()` and import it in the other files. Otherwise, profiler output might have some issues and have weird reporting.
 
 ## Configuration
 + Setup proxy configurations for pip when using pip behind a corporate proxy, e.g., `http://10.0.0.0:8080/`. 
