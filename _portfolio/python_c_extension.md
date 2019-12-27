@@ -3,11 +3,6 @@ title: "Python C Extension"
 excerpt: "Python, C, OpenMP, Docker"
 header:
   teaser: /assets/images/python_c_extension_01.jpg
-# gallery_01:
-#   - url: /assets/images/webrtc_02.jpg
-#     image_path: /assets/images/webrtc_02.jpg
-#   - url: /assets/images/webrtc_03.jpg
-#     image_path: /assets/images/webrtc_03.jpg   
 date: "2019-12-16"    
 ---
 
@@ -88,18 +83,37 @@ python-c-extension                   # Repository root
 ## System Design
 Certain key aspects of the system is further explored in the following sections.
 
-### pycextension.py
-1. A Go server named `sdpServer` acts as the signalling server for WebRTC, as well as hosting both the `Publish` and`Join` webpages.  
-    ```go
-    mux.HandleFunc("/sdp", handlerSDP(s))
-    mux.HandleFunc("/join", handlerJoin)
-    mux.HandleFunc("/publish", handlerPublish)
-    mux.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static/"))))
+### Python code
+1. The main Python code lies in `/example/pycextension.py` file.
+1. A dummy Numpy matrix is generated and passed into a Python wrapper function, namely, `lib.feature.synthesize_matrix()`.
+1. The Python wrapper function calls an underlying C shared object to perform some random computation and returns a modified matrix.
+    + Note that the data type of the output matrix is `float` whereas the data type of the input matrix was `int`.
+1. In the `/lib/feature.py` file, 
+    + The shared library is opened using `CDLL` function.
+    + The argument and return types of the C function are specified.
+    + Some translations between Python and C types are as follows:
+      | Python                                              	| C/C++ type 	| Comments                                               	|
+      |-----------------------------------------------------	|------------	|--------------------------------------------------------	|
+      | ctypes.c_int                                        	| int        	|                                                        	|
+      | ctypes.c_double                                     	| double     	|                                                        	|
+      | numpy.ctypeslib.ndpointer(dtype=np.uint8, ndim=1)   	| uchar[]    	| Pass a 1 dimensional Numpy array of type numpy.unint8  	|
+      | numpy.ctypeslib.ndpointer(dtype=np.float32, ndim=2) 	| float[][]  	| Pass a 2 dimensional Numpy array of type numpy.float32 	| 
+    + Refer to the [ctype documentation](https://docs.python.org/3/library/ctypes.html) and [numpy documentation](https://docs.scipy.org/doc/numpy-1.15.0/reference/routines.ctypeslib.html#numpy.ctypeslib.ndpointer) for a complete translation of types between Python and C.
+
+### C library
+1. The C libraries reside in `/lib/cpp/lib/` folder.
+1. The code in `synthhesize_matrix()` function was parallelized using OpenMP. OpenMp `#pragma` command was utilised to set the number of threads, collapse nested `for` loops, and to implement a worksharing `for` loop.
+1. The C code is compiled with the help of CMake as defined in CMakeLists.txt file.
+1. In the `/lib/cpp/CMakeLists.txt` file, we set the output directory of the shared object `.so` to be `/lib/cpp/out` as follows. 
+    ```cmake
+    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/out/)
     ```
+    This simplifies the process of finding and referring to the shared object in our Python code.
 
-### Python depedencies - requirements.txt
-1. Please refer to the programming [guide](https://adaickalavan.github.io/docs/python/#dependencies) for explanation on how to manage, generate, and install, python dependencies. 
+### Python depedencies
+1. Python dependencies are managed in `/requirements.txt` file.
+1. Please refer to the programming [guide](https://adaickalavan.github.io/docs/python/#dependencies) for explanation on how to manage, generate, and install, python dependencies
 
-### Docker - Dockerfile 
-1. All necessary Python, pip, CMake, and OpenMP libraries are installed. 
+### Docker 
+1. All necessary Python, pip, CMake, and OpenMP libraries are installed by the Dockerfile.
 1. The Dockerfile also automatically rebuilds the C library shared object each time the Docker image is built via `docker-compose up` command.

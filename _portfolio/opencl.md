@@ -3,7 +3,7 @@ title: "High performance computing with OpenCL"
 excerpt: "OpenCL, C/C++"
 header:
   teaser: /assets/images/opencl_01.jpg
-date: "2019-12-03" 
+date: "2019-12-31" 
 ---
 
 {: .notice--success}
