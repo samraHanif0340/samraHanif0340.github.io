@@ -115,5 +115,5 @@ Certain key aspects of the system is further explored in the following sections.
 1. Please refer to the programming [guide](https://adaickalavan.github.io/docs/python/#dependencies) for explanation on how to manage, generate, and install, python dependencies
 
 ### Docker 
-1. All necessary Python, pip, CMake, and OpenMP libraries are installed by the Dockerfile.
+1. All necessary Python, pip, CMake, and OpenMP libraries are installed by the `/Dockerfile`.
 1. The Dockerfile also automatically rebuilds the C library shared object each time the Docker image is built via `docker-compose up` command.
