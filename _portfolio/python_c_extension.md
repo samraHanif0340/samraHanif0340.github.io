@@ -122,7 +122,7 @@ Certain key aspects of the system is further explored in the following sections.
         <tr>
             <td class="tg-z9fv">numpy.ctypeslib.ndpointer(dtype=np.uint8, ndim=1)</td>
             <td class="tg-z9fv">uchar[ ]</td>
-            <td class="tg-z9fv">Pass a 1 dimensional Numpy array of type numpy.unint8</td>
+            <td class="tg-z9fv">Pass a 1 dimensional Numpy array of type numpy.uint8</td>
         </tr>
         <tr>
             <td class="tg-lboi">numpy.ctypeslib.ndpointer(dtype=np.float32, ndim=2)</td>
