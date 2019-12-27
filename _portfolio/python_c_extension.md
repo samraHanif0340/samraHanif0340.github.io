@@ -95,8 +95,8 @@ Certain key aspects of the system is further explored in the following sections.
     .tg  {border-collapse:collapse;border-spacing:0;border-color:#aaa;}
     .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aaa;color:#333;background-color:#fff;}
     .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aaa;color:#fff;background-color:#f38630;}
-    .tg .tg-7d57{background-color:#FCFBE3;border-color:inherit;text-align:left;vertical-align:top}
-    .tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+    .tg .tg-lboi{border-color:inherit;text-align:left;vertical-align:middle}
+    .tg .tg-z9fv{background-color:#FCFBE3;border-color:inherit;text-align:left;vertical-align:middle}
     </style>
     <table class="tg" style="undefined;table-layout: fixed; width: 598px">
     <colgroup>
@@ -104,39 +104,39 @@ Certain key aspects of the system is further explored in the following sections.
     <col style="width: 61px">
     <col style="width: 196px">
     </colgroup>
-    <tr>
-        <th class="tg-0pky">Python</th>
-        <th class="tg-0pky">C/C++ type</th>
-        <th class="tg-0pky">Comments</th>
-    </tr>
-    <tr>
-        <td class="tg-7d57">ctypes.c_int</td>
-        <td class="tg-7d57">int</td>
-        <td class="tg-7d57"></td>
-    </tr>
-    <tr>
-        <td class="tg-0pky">ctypes.c_double</td>
-        <td class="tg-0pky">double</td>
-        <td class="tg-0pky"> </td>
-    </tr>
-    <tr>
-        <td class="tg-7d57">numpy.ctypeslib.ndpointer(dtype=np.uint8, ndim=1)</td>
-        <td class="tg-7d57">uchar[ ]</td>
-        <td class="tg-7d57">Pass a 1 dimensional Numpy array of type numpy.unint8</td>
-    </tr>
-    <tr>
-        <td class="tg-0pky">numpy.ctypeslib.ndpointer(dtype=np.float32, ndim=2)</td>
-        <td class="tg-0pky">float[ ][ ]</td>
-        <td class="tg-0pky">Pass a 2 dimensional Numpy array of type numpy.float32</td>
-    </tr>
+        <tr>
+            <th class="tg-lboi">Python</th>
+            <th class="tg-lboi">C/C++ type</th>
+            <th class="tg-lboi">Comments</th>
+        </tr>
+        <tr>
+            <td class="tg-z9fv">ctypes.c_int</td>
+            <td class="tg-z9fv">int</td>
+            <td class="tg-z9fv"></td>
+        </tr>
+        <tr>
+            <td class="tg-lboi">ctypes.c_double</td>
+            <td class="tg-lboi">double</td>
+            <td class="tg-lboi"> </td>
+        </tr>
+        <tr>
+            <td class="tg-z9fv">numpy.ctypeslib.ndpointer(dtype=np.uint8, ndim=1)</td>
+            <td class="tg-z9fv">uchar[ ]</td>
+            <td class="tg-z9fv">Pass a 1 dimensional Numpy array of type numpy.unint8</td>
+        </tr>
+        <tr>
+            <td class="tg-lboi">numpy.ctypeslib.ndpointer(dtype=np.float32, ndim=2)</td>
+            <td class="tg-lboi">float[ ][ ]</td>
+            <td class="tg-lboi">Pass a 2 dimensional Numpy array of type numpy.float32</td>
+        </tr>
     </table>
     + Refer to the [ctype documentation](https://docs.python.org/3/library/ctypes.html) and [numpy documentation](https://docs.scipy.org/doc/numpy-1.15.0/reference/routines.ctypeslib.html#numpy.ctypeslib.ndpointer) for a complete translation of types between Python and C.
 
 ### C library
 1. The C libraries reside in `/lib/cpp/lib/` folder.
-1. The code in `synthhesize_matrix()` function was parallelized using OpenMP. OpenMp `#pragma` command was utilised to set the number of threads, collapse nested `for` loops, and to implement a worksharing `for` loop.
+1. The code in `synthhesize_matrix()` function is parallelized using OpenMP. OpenMp `#pragma` commands are used to set the number of threads, collapse nested `for` loops, and to implement a worksharing `for` loop.
 1. The C code is compiled with the help of CMake as defined in CMakeLists.txt file.
-1. In the `/lib/cpp/CMakeLists.txt` file, we set the output directory of the shared object `.so` to be `/lib/cpp/out` as follows. 
+1. In the `/lib/cpp/CMakeLists.txt` file, we set the output directory of the shared object `.so` to be `/lib/cpp/out/` as follows. 
     ```cmake
     set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/out/)
     ```
