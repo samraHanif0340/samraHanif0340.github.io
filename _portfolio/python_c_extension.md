@@ -92,6 +92,7 @@ Certain key aspects of the system is further explored in the following sections.
     + The shared library is opened using `CDLL` function.
     + The argument and return types of the C function are specified.
     + Some translations between Python and C types are as follows:
+    
       | Python                                              	| C/C++ type 	| Comments                                               	|
       |-----------------------------------------------------	|------------	|--------------------------------------------------------	|
       | ctypes.c_int                                        	| int        	|                                                        	|
