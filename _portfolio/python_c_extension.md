@@ -92,13 +92,14 @@ Certain key aspects of the system is further explored in the following sections.
     + The shared library is opened using `CDLL` function.
     + The argument and return types of the C function are specified.
     + Some translations between Python and C types are as follows:
-    
+
       | Python                                              	| C/C++ type 	| Comments                                               	|
       |-----------------------------------------------------	|------------	|--------------------------------------------------------	|
       | ctypes.c_int                                        	| int        	|                                                        	|
       | ctypes.c_double                                     	| double     	|                                                        	|
       | numpy.ctypeslib.ndpointer(dtype=np.uint8, ndim=1)   	| uchar[]    	| Pass a 1 dimensional Numpy array of type numpy.unint8  	|
       | numpy.ctypeslib.ndpointer(dtype=np.float32, ndim=2) 	| float[][]  	| Pass a 2 dimensional Numpy array of type numpy.float32 	| 
+
     + Refer to the [ctype documentation](https://docs.python.org/3/library/ctypes.html) and [numpy documentation](https://docs.scipy.org/doc/numpy-1.15.0/reference/routines.ctypeslib.html#numpy.ctypeslib.ndpointer) for a complete translation of types between Python and C.
 
 ### C library
