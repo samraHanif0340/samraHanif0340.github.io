@@ -91,14 +91,54 @@ Certain key aspects of the system is further explored in the following sections.
 1. In the `/lib/feature.py` file, 
     + The shared library is opened using `CDLL` function.
     + The argument and return types of the C function are specified.
-    + Some translations between Python and C types are as follows:
+1. Some translations between Python and C types are as follows:
 
-      | Python                                              	| C/C++ type 	| Comments                                               	|
-      |-----------------------------------------------------	|------------	|--------------------------------------------------------	|
-      | ctypes.c_int                                        	| int        	|                                                        	|
-      | ctypes.c_double                                     	| double     	|                                                        	|
-      | numpy.ctypeslib.ndpointer(dtype=np.uint8, ndim=1)   	| uchar[]    	| Pass a 1 dimensional Numpy array of type numpy.unint8  	|
-      | numpy.ctypeslib.ndpointer(dtype=np.float32, ndim=2) 	| float[][]  	| Pass a 2 dimensional Numpy array of type numpy.float32 	| 
+    <!-- | Python                                              	| C/C++ type 	| Comments                                               	|
+    |-----------------------------------------------------	|------------	|--------------------------------------------------------	|
+    | ctypes.c_int                                        	| int        	|                                                        	|
+    | ctypes.c_double                                     	| double     	|                                                        	|
+    | numpy.ctypeslib.ndpointer(dtype=np.uint8, ndim=1)   	| uchar[]    	| Pass a 1 dimensional Numpy array of type numpy.unint8  	|
+    | numpy.ctypeslib.ndpointer(dtype=np.float32, ndim=2) 	| float[][]  	| Pass a 2 dimensional Numpy array of type numpy.float32 	|  -->
+    
+    <style type="text/css">
+    .tg  {border-collapse:collapse;border-spacing:0;border-color:#aaa;}
+    .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aaa;color:#333;background-color:#fff;}
+    .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aaa;color:#fff;background-color:#f38630;}
+    .tg .tg-7d57{background-color:#FCFBE3;border-color:inherit;text-align:left;vertical-align:top}
+    .tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+    </style>
+    <table class="tg" style="undefined;table-layout: fixed; width: 598px">
+    <colgroup>
+    <col style="width: 341px">
+    <col style="width: 61px">
+    <col style="width: 196px">
+    </colgroup>
+    <tr>
+        <th class="tg-0pky">Python</th>
+        <th class="tg-0pky">C/C++ type</th>
+        <th class="tg-0pky">Comments</th>
+    </tr>
+    <tr>
+        <td class="tg-7d57">ctypes.c_int</td>
+        <td class="tg-7d57">int</td>
+        <td class="tg-7d57"></td>
+    </tr>
+    <tr>
+        <td class="tg-0pky">ctypes.c_double</td>
+        <td class="tg-0pky">double</td>
+        <td class="tg-0pky"> </td>
+    </tr>
+    <tr>
+        <td class="tg-7d57">numpy.ctypeslib.ndpointer(dtype=np.uint8, ndim=1)</td>
+        <td class="tg-7d57">uchar[ ]</td>
+        <td class="tg-7d57">Pass a 1 dimensional Numpy array of type numpy.unint8</td>
+    </tr>
+    <tr>
+        <td class="tg-0pky">numpy.ctypeslib.ndpointer(dtype=np.float32, ndim=2)</td>
+        <td class="tg-0pky">float[ ][ ]</td>
+        <td class="tg-0pky">Pass a 2 dimensional Numpy array of type numpy.float32</td>
+    </tr>
+    </table>
 
     + Refer to the [ctype documentation](https://docs.python.org/3/library/ctypes.html) and [numpy documentation](https://docs.scipy.org/doc/numpy-1.15.0/reference/routines.ctypeslib.html#numpy.ctypeslib.ndpointer) for a complete translation of types between Python and C.
 
