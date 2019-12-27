@@ -37,7 +37,6 @@ python-c-extension                   # Repository root
 │   └── pycextension.py              # Main Python code
 ├── lib                       
 │   ├── cpp                          # C folder
-│   │   ├── bin                      # 
 │   │   ├── build                    # C build system
 │   │   ├── lib                     
 │   │   │   └── feature               
