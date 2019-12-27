@@ -42,9 +42,9 @@ python-c-extension                   # Repository root
 │   │   │   └── feature               
 │   │   |       ├── CMakeLists.txt 
 │   │   |       ├── feature.c        # C library
-│   │   |       └── feature.h#       # C header file
+│   │   |       └── feature.h        # C header file
 │   │   ├── out 
-│   │   |   └── libfeature.so        # C library Shared object
+│   │   |   └── libfeature.so        # C library shared object
 │   │   └── CMakeLists                
 │   └── feature.py                   # Python library
 ├── .dockerignore
@@ -53,7 +53,7 @@ python-c-extension                   # Repository root
 ├── docker-compose.yml               # Docker deployment
 ├── Dockerfile                       # To create Docker container
 ├── README.md                        
-└── requirements.txt                 # Python dependencies                
+└── requirements.txt                 # Python dependencies
 ```
 
 ## Instructions
@@ -66,7 +66,7 @@ python-c-extension                   # Repository root
     $ docker-compose up
     ```
 1. If you intend to run the project locally without Docker
-    + Change the `ROOT` variable in the `.env` file to refer to the repository's root.
+    + Change the `ROOT` variable in the `.env` file to point to the repository's root.
     + Build the C code using:
         ```bash
         $ cd /path/to/pythoncextension/lib/cpp/
@@ -76,7 +76,7 @@ python-c-extension                   # Repository root
         ```
     + Run the Python code:
         ```bash
-        $ python /path/to/pythoncextension/example/pycextension.py   
+        $ python /path/to/python-c-extension/example/pycextension.py   
         ```    
 
 ## System Design
