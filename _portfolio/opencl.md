@@ -17,13 +17,23 @@ The following tools will be used in this project:
 + C/C++
 + OpenCL
 
-## Learning Outcome
-
+## Code
 Find the source code in the [repository](https://github.com/Adaickalavan/opencl).
 
+## Learning Outcome
 At the end of this project, we should be able to:
 + Use OpenCL in C/C++ for high performance computing. 
 + Build C/C++ code with CMake.
+
+## Steps to get started with OpenCL
+1. Install OpenCL SDK 
+  + For Intel processors: [website](https://software.intel.com/en-us/opencl-sdk/choose-download).
+
+1. Install and run `clinfo` to show complete information of OpenCL platforms and devices.
+```bash
+$ sudo apt install clinfo
+$ clinfo
+```
 
 <!-- ## Project Structure
 
