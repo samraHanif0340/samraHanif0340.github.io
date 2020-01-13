@@ -34,7 +34,7 @@ At the end of this project, we should be able to:
 The project structure is as follows:
 
 ```text
-OpenMP-Tim-Mattson                   # Main folder
+OpenMP-Tim-Mattson                   # Repository root
 ├── apps                             # Executables for each exercises
 |   ├── CMakeLists.txt               # CMake build for executables
 |   ├── linked.c                     

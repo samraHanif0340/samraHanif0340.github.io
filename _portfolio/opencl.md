@@ -1,21 +1,20 @@
 ---
 title: "High performance computing with OpenCL"
-excerpt: "OpenCL, C/C++"
+excerpt: "OpenCL, C/C++, CMake"
 header:
   teaser: /assets/images/opencl_01.jpg
 date: "2019-12-31" 
 ---
 
-{: .notice--success}
-This page is under construction. Please check back later for updates.
-
 ## Introduction
 
-This project explores the use of OpenCL for high performance computing for heterogenous platforms (i.e., CPU/GPU). 
+This project explores the use of OpenCL in high performance computing for heterogenous platforms (i.e., CPU/GPU). We present updated C/C++ code adhering to OpenCL 2.0 standard for the exercises in the "OpenCL in Action" book by Matthew Scarpino. Read the [book](https://www.manning.com/books/opencl-in-action). It is a good comprehensive book, suitable for beginners, which teaches OpenCL beginning from the basics.
 
 The following tools will be used in this project:
 + C/C++
 + OpenCL
++ CMake
++ Intel CPU - we can test our OpenCL code on an Intel CPU without the need to have a GPU
 
 ## Code
 Find the source code in the [repository](https://github.com/Adaickalavan/opencl).
@@ -25,9 +24,50 @@ At the end of this project, we should be able to:
 + Use OpenCL in C/C++ for high performance computing. 
 + Build C/C++ code with CMake.
 
+## Project Structure
+
+The project structure is as follows:
+
+```text
+opencl                                 # Repository root
+├── apps                               # Source code
+|   ├── Ch1
+|   |   ├── matvec.c                   # C source file
+|   |   └── matvec.cl                  # Cl source file
+|   ├── Ch2
+|   |   ├── context_count.c            # C source file
+|   |   ├── device_ext_test.c
+|   |   ...
+|   ├── Ch8
+|   |   ├── buffer_test.cl             # Cl source file
+|   |   ├── buffer_test.cpp            # C++ source file
+|   |   ...
+|   └── CMakeLists.txt                 # CMake build file
+├── assets                             # Reference materials 
+|   ├── libpng-1.4.0-manual.pdf      
+|   ├── OpenCL device model.jpg      
+|   ├── OpenCL operators.jpg
+|   ├── OpenCL scalar data types.jpg
+|   └── OpenCL vector data types.jpg
+├── bin                                # Executables
+|   ├── ...                              
+|   ...
+├── libs                               # Local libraries
+│   └── util                     
+|       ├── CMakeLists.txt             # Library-level CMake build file
+|       ├── util.c                     
+|       ├── util.cpp                   
+|       ├── util.h                     
+|       └── util.hpp                   
+├── .dockerignore
+├── .gitignore
+├── CMakeLists.txt                     # Top-level CMake build file
+└── README.md                                 
+```
+
 ## Steps to get started with OpenCL
 1. Install OpenCL SDK 
-  + For Intel processors: [website](https://software.intel.com/en-us/opencl-sdk/choose-download).
+  + For Intel processors: [website](https://software.intel.com/en-us/opencl-sdk/choose-download)
 
 1. Install and run `clinfo` to show complete information of OpenCL platforms and devices.
 ```bash
@@ -35,112 +75,180 @@ $ sudo apt install clinfo
 $ clinfo
 ```
 
-<!-- ## Project Structure
+## Exercise list
+For easy reference, the solution code is organised by chapter and named according to the problem exercise. 
 
-The project structure is as follows:
-
-```text
-OpenMP-Tim-Mattson                   # Main folder
-├── apps                             # Executables for each exercises
-|   ├── CMakeLists.txt               # CMake build for executables
-|   ├── linked.c                     
-|   ├── mandel.c
-|   ├── pi_mc.c
-|   ├── prodCons.c           
-|   └── tutorial.c                   
-├── assets                           # Assets
-|   ├── Intro_To_OpenMP_Mattson.pdf  # Tutorial slides
-|   └── OpenMP3.1-CCard.pdf          # OpenMP reference card
-├── libs                             # Local libraries
-│   ├── computepi                     
-|   │   ├── CMakeLists.txt           # Library-level CMake build file
-|   │   ├── computepi.cpp            # Source file
-|   │   └── computepi.h              # Header file
-│   ├── helloworld                    
-|   │   ├── CMakeLists.txt           # Library-level CMake build file
-|   │   ├── helloworld.cpp           # Source file
-|   │   └── helloworld.h             # Header file
-│   └── random                       
-|       ├── CMakeLists.txt           # Library-level CMake build file
-|       ├── random.c                 # Source file
-|       └── random.h                 # Header file
-├── .dockerignore
-├── .gitignore
-├── CMakeLists.txt                   # Top-level CMake build file
-├── docker-compose.yml               # Docker deployment
-├── dockerfile                       # To create Docker container
-└── README.md                                 
+Build the C/C++ code using:
+```bash
+$ cd /path/to/repository/root/opencl
+$ cmake -E make_directory build
+$ cmake -E chdir ./build cmake -DCMAKE_BUILD_TYPE=Release ..
+$ cmake --build ./build
 ```
 
-## List of exercises
+Run the desired code as follows. Assuming the desired code is `callback_8_6`, then run:
+```bash
+$ cd /path/to/repository/root/opencl
+$ ./bin/callback_8_6
+```
 
-For easy reference, each solution code is named according to the slide on which they appear in the course [notes](https://www.openmp.org/wp-content/uploads/Intro_To_OpenMP_Mattson.pdf). Instructions to build, setup commands, and to run the solutions for each exercise is given in the following table.
+The complete code listing is given in the table below.
 
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;border-color:#aaa;}
 .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aaa;color:#333;background-color:#fff;}
 .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aaa;color:#fff;background-color:#f38630;}
-.tg .tg-5rba{background-color:#FCFBE3;border-color:#656565;text-align:left;vertical-align:top}
-.tg .tg-di1h{border-color:#656565;text-align:center;vertical-align:middle}
-.tg .tg-oxga{background-color:#FCFBE3;border-color:#656565;text-align:left;vertical-align:middle}
-.tg .tg-9ikn{border-color:#656565;text-align:left;vertical-align:middle}
-.tg .tg-2fy7{background-color:#ffffff;border-color:#656565;text-align:left;vertical-align:middle}
-.tg .tg-2bev{border-color:#656565;text-align:left;vertical-align:top}
+.tg .tg-1fpb{background-color:#fcfbe3;text-align:center;vertical-align:top}
+.tg .tg-baqh{text-align:center;vertical-align:top}
+.tg .tg-7d57{background-color:#FCFBE3;border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-g30d{background-color:#FCFBE3;border-color:inherit;text-align:center;vertical-align:top}
+.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
+.tg .tg-quxf{background-color:#ffffff;text-align:center;vertical-align:top}
+.tg .tg-yq6s{background-color:#FCFBE3;text-align:center;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-dg7a{background-color:#FCFBE3;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
 </style>
-<table class="tg">
+<table class="tg" style="undefined;table-layout: fixed; width: 455px">
 <colgroup>
-<col style="width: 30%">
-<col style="width: 70%">
+<col style="width: 152px">
+<col style="width: 152px">
+<col style="width: 151px">
 </colgroup>
   <tr>
-    <th class="tg-di1h">Exercise</th>
-    <th class="tg-di1h">Instructions to run</th>
+    <th class="tg-c3ow">Chapter</th>
+    <th class="tg-baqh">Exercise</th>
+    <th class="tg-c3ow">Name</th>
   </tr>
   <tr>
-    <td class="tg-oxga">Slide 38 - Parallel 'Hello World' program</td>
-    <td class="tg-2fy7" rowspan="6">1) <span style="font-weight:bold">File</span>: `/apps/tutorial.cpp`<br>2) <span style="font-weight:bold">Build</span>: `docker build -t openmp .` on `Dockerfile`<br>3) <span style="font-weight:bold">Set</span>: `command: /src/bin/tutorial` in `docker-compose.yaml` file <br>4) <span style="font-weight:bold">Run</span>: `docker-compose up` on `docker-compose.yaml` file</td>
+    <td class="tg-g30d">1</td>
+    <td class="tg-yq6s">1.1</td>
+    <td class="tg-7d57">matvec</td>
   </tr>
   <tr>
-    <td class="tg-9ikn">Slide 48 - Compute Pi in serial</td>
+    <td class="tg-c3ow" rowspan="3">2</td>
+    <td class="tg-baqh">2.1</td>
+    <td class="tg-0pky">platform_ext_test</td>
   </tr>
   <tr>
-    <td class="tg-5rba">Slide 52 - Compute Pi in parallel with false sharing</td>
+    <td class="tg-yq6s">2.2</td>
+    <td class="tg-dg7a">device_ext_test</td>
   </tr>
   <tr>
-    <td class="tg-2bev">Slide 57 - Compute Pi in parallel with padding</td>
+    <td class="tg-baqh">2.3</td>
+    <td class="tg-0lax">context_count</td>
   </tr>
   <tr>
-    <td class="tg-5rba">Slide 69 - Compute Pi in parallel with synchronization</td>
+    <td class="tg-g30d" rowspan="2">3</td>
+    <td class="tg-yq6s">3.2</td>
+    <td class="tg-7d57">buffer_test</td>
   </tr>
   <tr>
-    <td class="tg-2bev">Slide 88 - Compute Pi with WorkSharing</td>
+    <td class="tg-baqh">3.3</td>
+    <td class="tg-0lax">map_copy</td>
   </tr>
   <tr>
-    <td class="tg-5rba">Slide 119 - Mandel Brot</td>
-    <td class="tg-5rba">1) <span style="font-weight:bold">File</span>: `/apps/mandel.c`<br>2) <span style="font-weight:bold">Build</span>: `docker build -t openmp .` on `Dockerfile`<br>3) <span style="font-weight:bold">Set</span>: `command: /src/bin/mandel` in `docker-compose.yaml` file<br>4) <span style="font-weight:bold">Run</span>: `docker-compose up` on `docker-compose.yaml` file<br></td>
+    <td class="tg-quxf" rowspan="5">4</td>
+    <td class="tg-yq6s">4.1</td>
+    <td class="tg-dg7a">hello_kernel</td>
   </tr>
   <tr>
-    <td class="tg-2bev">Slide 124 - Linked list computed serially</td>
-    <td class="tg-9ikn" rowspan="3">1) <span style="font-weight:bold">File</span>: `/apps/linked.c`<br>2) <span style="font-weight:bold">Build</span>: `docker build -t openmp .` on `Dockerfile`<br>3) <span style="font-weight:bold">Set</span>: `command: /src/bin/linked` in `docker-compose.yaml` file<br>4) <span style="font-weight:bold">Run</span>: `docker-compose up` on `docker-compose.yaml` file<br></td>
+    <td class="tg-baqh">4.2</td>
+    <td class="tg-0lax">double_test</td>
   </tr>
   <tr>
-    <td class="tg-5rba">Slide 128 - Linked list in parallel without Tasks</td>
+    <td class="tg-yq6s">4.3</td>
+    <td class="tg-dg7a">float_config</td>
   </tr>
   <tr>
-    <td class="tg-2bev">Slide 143 - Linked list in parallel with Tasks</td>
+    <td class="tg-baqh">4.4</td>
+    <td class="tg-0lax">vector_widths</td>
   </tr>
   <tr>
-    <td class="tg-5rba">Slide 166 - Producer Consumer</td>
-    <td class="tg-5rba">1) <span style="font-weight:bold">File</span>: `/apps/prodCons.c`<br>2) <span style="font-weight:bold">Build</span>: `docker build -t openmp .` on `Dockerfile`<br>3) <span style="font-weight:bold">Set</span>: `command: /src/bin/prodCons` in `docker-compose.yaml` file<br>4) <span style="font-weight:bold">Run</span>: `docker-compose up` on `docker-compose.yaml` file<br></td>
+    <td class="tg-yq6s">4.5</td>
+    <td class="tg-dg7a">vector_bytes</td>
   </tr>
   <tr>
-    <td class="tg-2bev">Slide 177 - Parallel Monte Carlo computation of PI</td>
-    <td class="tg-9ikn" rowspan="3">1) <span style="font-weight:bold">File</span>: `/apps/pi_mc.c`<br>2) <span style="font-weight:bold">Build</span>: `docker build -t openmp .` on `Dockerfile`<br>3) <span style="font-weight:bold">Set</span>: `command: /src/bin/pi_mc` in `docker-compose.yaml` file<br>4) <span style="font-weight:bold">Run</span>: `docker-compose up` on `docker-compose.yaml` file<br></td>
+    <td class="tg-1fpb" rowspan="7">5</td>
+    <td class="tg-baqh">5.1</td>
+    <td class="tg-0lax">op_test</td>
   </tr>
   <tr>
-    <td class="tg-5rba">Slide 181 - Thread safe random number generator</td>
+    <td class="tg-yq6s">5.2</td>
+    <td class="tg-dg7a">id_check</td>
   </tr>
   <tr>
-    <td class="tg-2bev">Slide 185 - Leap frog method to avoid overlapped random number sequence</td>
+    <td class="tg-baqh">5.3</td>
+    <td class="tg-0lax">mod_round</td>
   </tr>
-</table> -->
+  <tr>
+    <td class="tg-yq6s">5.4</td>
+    <td class="tg-dg7a">polar_rect</td>
+  </tr>
+  <tr>
+    <td class="tg-baqh">5.5</td>
+    <td class="tg-0lax">mad_test</td>
+  </tr>
+  <tr>
+    <td class="tg-yq6s">5.6</td>
+    <td class="tg-dg7a">shuffle_test</td>
+  </tr>
+  <tr>
+    <td class="tg-baqh">5.7</td>
+    <td class="tg-0lax">select_test</td>
+  </tr>
+  <tr>
+    <td class="tg-quxf" rowspan="6">7</td>
+    <td class="tg-yq6s">7.2</td>
+    <td class="tg-dg7a">callback</td>
+  </tr>
+  <tr>
+    <td class="tg-baqh">7.3</td>
+    <td class="tg-0lax">user_event</td>
+  </tr>
+  <tr>
+    <td class="tg-yq6s">7.6</td>
+    <td class="tg-dg7a">profile_read</td>
+  </tr>
+  <tr>
+    <td class="tg-baqh">7.7</td>
+    <td class="tg-0lax">profile_items</td>
+  </tr>
+  <tr>
+    <td class="tg-yq6s">7.8</td>
+    <td class="tg-dg7a">atomic</td>
+  </tr>
+  <tr>
+    <td class="tg-baqh">7.9</td>
+    <td class="tg-0lax">mutex</td>
+  </tr>
+  <tr>
+    <td class="tg-yq6s" rowspan="7">8</td>
+    <td class="tg-yq6s">8.1</td>
+    <td class="tg-dg7a">full_context_8_1</td>
+  </tr>
+  <tr>
+    <td class="tg-baqh">8.2</td>
+    <td class="tg-0lax">create_kernels_8_2</td>
+  </tr>
+  <tr>
+    <td class="tg-yq6s">8.4</td>
+    <td class="tg-dg7a">buffer_test_8_4</td>
+  </tr>
+  <tr>
+    <td class="tg-baqh">8.5</td>
+    <td class="tg-0lax">map_copy_8_5</td>
+  </tr>
+  <tr>
+    <td class="tg-yq6s">8.6</td>
+    <td class="tg-dg7a">callback_8_6</td>
+  </tr>
+  <tr>
+    <td class="tg-baqh">8.7</td>
+    <td class="tg-0lax">user_event_8_7</td>
+  </tr>
+  <tr>
+    <td class="tg-yq6s">8.8</td>
+    <td class="tg-dg7a">profile_8_8</td>
+  </tr>
+</table>
