@@ -14,7 +14,7 @@ The following tools will be used in this project:
 + C/C++
 + OpenCL
 + CMake
-+ Intel CPU - we can test our OpenCL code on an Intel CPU without the need to have a GPU
++ Intel CPU - we can test our OpenCL code on a CPU without the need to have a GPU
 
 ## Code
 Find the source code in the [repository](https://github.com/Adaickalavan/opencl).
@@ -38,6 +38,9 @@ opencl                                 # Repository root
 |   |   ├── context_count.c            # C source file
 |   |   ├── device_ext_test.c
 |   |   ...
+|   .
+|   .
+|   .
 |   ├── Ch8
 |   |   ├── buffer_test.cl             # Cl source file
 |   |   ├── buffer_test.cpp            # C++ source file
@@ -76,7 +79,7 @@ $ clinfo
 ```
 
 ## Exercise list
-For easy reference, the solution code is organised by chapter and named according to the problem exercise. 
+For easy reference, the solution code is organised by chapter and named according to the exercise. 
 
 Build the C/C++ code using:
 ```bash
@@ -121,12 +124,12 @@ The complete code listing is given in the table below.
     <th class="tg-c3ow">Name</th>
   </tr>
   <tr>
-    <td class="tg-g30d">1</td>
+    <td class="tg-g30d">1<br>Introducing OpenCL</td>
     <td class="tg-yq6s">1.1</td>
     <td class="tg-7d57">matvec</td>
   </tr>
   <tr>
-    <td class="tg-c3ow" rowspan="3">2</td>
+    <td class="tg-c3ow" rowspan="3">2<br>Host programming: fundamental data structures</td>
     <td class="tg-baqh">2.1</td>
     <td class="tg-0pky">platform_ext_test</td>
   </tr>
@@ -139,7 +142,7 @@ The complete code listing is given in the table below.
     <td class="tg-0lax">context_count</td>
   </tr>
   <tr>
-    <td class="tg-g30d" rowspan="2">3</td>
+    <td class="tg-g30d" rowspan="2">3<br>Host programming: data transfer and partitioning<br></td>
     <td class="tg-yq6s">3.2</td>
     <td class="tg-7d57">buffer_test</td>
   </tr>
@@ -148,7 +151,7 @@ The complete code listing is given in the table below.
     <td class="tg-0lax">map_copy</td>
   </tr>
   <tr>
-    <td class="tg-quxf" rowspan="5">4</td>
+    <td class="tg-quxf" rowspan="5">4<br>Kernel programming: data types and device memory</td>
     <td class="tg-yq6s">4.1</td>
     <td class="tg-dg7a">hello_kernel</td>
   </tr>
@@ -169,7 +172,7 @@ The complete code listing is given in the table below.
     <td class="tg-dg7a">vector_bytes</td>
   </tr>
   <tr>
-    <td class="tg-1fpb" rowspan="7">5</td>
+    <td class="tg-1fpb" rowspan="7">5<br>Kernel programming: operators and functions</td>
     <td class="tg-baqh">5.1</td>
     <td class="tg-0lax">op_test</td>
   </tr>
@@ -198,7 +201,7 @@ The complete code listing is given in the table below.
     <td class="tg-0lax">select_test</td>
   </tr>
   <tr>
-    <td class="tg-quxf" rowspan="6">7</td>
+    <td class="tg-quxf" rowspan="6">7<br>Events, profiling, and synchronization</td>
     <td class="tg-yq6s">7.2</td>
     <td class="tg-dg7a">callback</td>
   </tr>
@@ -223,7 +226,7 @@ The complete code listing is given in the table below.
     <td class="tg-0lax">mutex</td>
   </tr>
   <tr>
-    <td class="tg-yq6s" rowspan="7">8</td>
+    <td class="tg-yq6s" rowspan="7">8<br>Development with C++</td>
     <td class="tg-yq6s">8.1</td>
     <td class="tg-dg7a">full_context_8_1</td>
   </tr>
