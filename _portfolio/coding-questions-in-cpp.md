@@ -8,7 +8,7 @@ date: "2020-01-15"
 
 {% include gallery %}
 
-In this post, we will answer several programming challenge questions in C++. These questions are often asked as part of interviews.
+In this post, we will answer several programming challenge questions in C++.
 
 ## Questions
 {: .notice--success}
