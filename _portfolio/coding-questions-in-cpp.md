@@ -18,10 +18,11 @@ More programming challenge questions in C++ will be added as time permits. Let m
 1. [Binary tree with insert, search, delete operations](#binaryTree)
 1. [Move memory without temporary variable](#memoryMove)
 1. [Match brackets in a string](#balancedBrackets)
-1. [Longest valid parentheses substring](#longestSubstring)
 1. [Sum of bits in 32-bit binary representation](#sumOfBits)
+1. [Linked list - insert, delete, reverse, sort](#linkedList)
+1. [Longest valid parentheses substring](#longestSubstring)
 
-## Repository
+## Code
 The [repository](https://github.com/Adaickalavan/coding-questions-in-cpp) contains the C++ solution codes.
 
 ## Solutions
@@ -55,6 +56,29 @@ The [repository](https://github.com/Adaickalavan/coding-questions-in-cpp) contai
     ```
 
     Link to solution [code](https://github.com/Adaickalavan/coding-questions-in-cpp/blob/master/app/balancedBrackets.cpp).
+
+1. <a name="sumOfBits"></a> Count the number of 1's in a binary representation of a 32bit integer. A look-up table or hash map which stores integers and their corresponding bit count is used to solve this problem. Several test cases are shown below.
+    ```text
+    Input: 1 // binary = 0000 0001
+    Input: 5 // binary = 0000 0101
+    Input: 15 // binary = 0000 1111
+    Input: 19 // binary = 0001 0011
+    Input: 22 // binary = 0001 0110
+    ```
+    Expected output:
+    ```text
+    Output: 1
+    Output: 2
+    Output: 4
+    Output: 3
+    Output: 3
+    ```
+
+    Link to solution [code](https://github.com/Adaickalavan/coding-questions-in-cpp/blob/master/app/sumOfBits.cpp).
+
+1. <a name="linkedList"></a> Create a single linked list with the following operations: insert at the end, delete a node, reverse, and sort.
+
+    Link to solution [code](https://github.com/Adaickalavan/coding-questions-in-cpp/blob/master/app/linkedList.cpp).
 
 1. <a name="longestSubstring"></a> Given a string containing just characters '(' and ')', return the start and end indexes of the longest valid parentheses substring. Several test cases are shown below.
     ```text
