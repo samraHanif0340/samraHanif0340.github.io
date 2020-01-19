@@ -11,6 +11,7 @@ date: "2020-01-15"
 In this post, we will answer several programming challenge questions in C++.
 
 ## Questions
+
 {: .notice--success}
 More programming challenge questions in C++ will be added as time permits. Let me know if there is any particular problem you would like to have solved here.
 
