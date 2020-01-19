@@ -76,7 +76,7 @@ The [repository](https://github.com/Adaickalavan/coding-questions-in-cpp) contai
 
     Link to solution [code](https://github.com/Adaickalavan/coding-questions-in-cpp/blob/master/app/sumOfBits.cpp).
 
-1. <a name="linkedList"></a> Create a single linked list with the following operations: insert at the end, delete a node, reverse, and sort.
+1. <a name="linkedList"></a> Create a singly linked list with the following operations: insert at the tail, given a pointer delete the node (except the last node), reverse, and sort.
 
     Link to solution [code](https://github.com/Adaickalavan/coding-questions-in-cpp/blob/master/app/linkedList.cpp).
 
