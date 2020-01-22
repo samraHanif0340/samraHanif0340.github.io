@@ -255,7 +255,7 @@ Parallel programming in C++ may be achieved using OpenMP, MPI, and multithreadin
             <td class="tg-g30d">implicit</td>
         </tr>
         <tr>
-            <td class="tg-0pky">#pragma omp sctions</td>
+            <td class="tg-0pky">#pragma omp sections</td>
             <td class="tg-c3ow">implicit</td>
         </tr>
         <tr>
