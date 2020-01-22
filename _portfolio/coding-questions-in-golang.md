@@ -17,6 +17,9 @@ We prioritise recursive, concurrent, and clean codes. The solution codes are pre
 
 ## Questions
 
+{: .notice--success}
+More programming challenge questions in Golang will be added as time permits. Let me know if there is any particular problem you would like to have solved here.
+
 1. [Find pair of numbers, with a given sum, from two arrays](#findPair)
 2. [Delete single node, given a single pointer, in a singly linked list](#deleteSinglyLinkedNode)
 3. [K-Means Clustering algorithm](#kmeans)
@@ -30,9 +33,6 @@ We prioritise recursive, concurrent, and clean codes. The solution codes are pre
 11. [Sorted word count](#sortedWordCount)
 12. [Fuzzy String Match](#fuzzyStringMatch)
 13. [Breadth First Search & Depth First Search](#bfs&dfs)
-
-{: .notice--success}
-More programming challenge questions in Golang will be added as time permits. Let me know if there is any particular problem you would like to have solved here.
 
 ## Repository
 The [repository](https://github.com/Adaickalavan/Coding-Questions-in-Golang) contains the Golang solution codes.
