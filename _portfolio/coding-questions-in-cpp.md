@@ -19,8 +19,11 @@ More programming challenge questions in C++ will be added as time permits. Let m
 1. [Move memory without temporary variable](#memoryMove)
 1. [Match brackets in a string](#balancedBrackets)
 1. [Sum of bits in 32-bit binary representation](#sumOfBits)
-1. [Linked list - insert, delete, reverse, sort](#linkedList)
+1. [Linked list - insert, delete, reverse](#linkedList)
+1. [Longest continuous sequence](#longestContinuousSequence)
+1. [Longest sequence](#longestSequence)
 1. [Longest valid parentheses substring](#longestSubstring)
+
 
 ## Code
 The [repository](https://github.com/Adaickalavan/coding-questions-in-cpp) contains the C++ solution codes.
@@ -76,9 +79,34 @@ The [repository](https://github.com/Adaickalavan/coding-questions-in-cpp) contai
 
     Link to solution [code](https://github.com/Adaickalavan/coding-questions-in-cpp/blob/master/app/sumOfBits.cpp).
 
-1. <a name="linkedList"></a> Create a singly linked list with the following operations: insert at the tail, given a pointer delete the node (except the last node), reverse, and sort.
+1. <a name="linkedList"></a> Create a singly linked list with the following operations: insert at the tail, given a pointer delete the node (except the last node), and reverse.
 
     Link to solution [code](https://github.com/Adaickalavan/coding-questions-in-cpp/blob/master/app/linkedList.cpp).
+
+1. <a name="longestContinuousSequence"></a> Given two strings, find the longest continuous sequence of characters common to the two strings. The problem is solved using dynamic programming pradigm. Testcase and expected output are shown below.
+    ```cpp
+    string str1 = "abcdefghijklmnopqrst";
+    string str2 = "abcd3ekl3abfgs";
+    ```
+    Expected output:
+    ```text
+    Max elements: 4
+    Max sequence: abcd
+    ``` 
+    
+    Link to solution [code](https://github.com/Adaickalavan/coding-questions-in-cpp/blob/master/app/longestContinuousSequence.cpp). 
+
+1. <a name="longestSequence"></a> Given two strings, find the longest continuous or non-continous sequence with same ordering of characters common to the two strings. The problem is solved using dynamic programming pradigm. Testcase and expected output are shown below.
+    ```cpp
+    string str1 = "abcdefghijklmnopqrst";
+    string str2 = "abcd3ekl3abfgs";
+    ```
+    Expected output:
+    ```text
+    Max elements: 8
+    ``` 
+    
+    Link to solution [code](https://github.com/Adaickalavan/coding-questions-in-cpp/blob/master/app/longestSequence.cpp). 
 
 1. <a name="longestSubstring"></a> Given a string containing just characters '(' and ')', return the start and end indexes of the longest valid parentheses substring. Several test cases are shown below.
     ```text
@@ -96,4 +124,4 @@ The [repository](https://github.com/Adaickalavan/coding-questions-in-cpp) contai
     Longest valid substring of ())((()) is (()) , from  4 to  7
     Longest valid substring of ())(() is () , from  0 to  1
     ```
-    Link to solution [code](https://github.com/Adaickalavan/coding-questions-in-cpp/blob/master/app/balancedBrackets.cpp).
+    Link to solution [code](https://github.com/Adaickalavan/coding-questions-in-cpp/blob/master/app/longestSubstring.cpp).
