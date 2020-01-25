@@ -83,7 +83,7 @@ The [repository](https://github.com/Adaickalavan/coding-questions-in-cpp) contai
 
     Link to solution [code](https://github.com/Adaickalavan/coding-questions-in-cpp/blob/master/app/linkedList.cpp).
 
-1. <a name="longestContinuousSequence"></a> Given two strings, find the longest continuous sequence of characters common to the two strings. The problem is solved using dynamic programming pradigm. Testcase and expected output are shown below.
+1. <a name="longestContinuousSequence"></a> Given two strings, find the longest continuous sequence of characters common to the two strings. The problem is solved using dynamic programming pradigm. A testcase is as follows.
     ```cpp
     string str1 = "abcdefghijklmnopqrst";
     string str2 = "abcd3ekl3abfgs";
@@ -96,7 +96,7 @@ The [repository](https://github.com/Adaickalavan/coding-questions-in-cpp) contai
     
     Link to solution [code](https://github.com/Adaickalavan/coding-questions-in-cpp/blob/master/app/longestContinuousSequence.cpp). 
 
-1. <a name="longestSequence"></a> Given two strings, find the longest continuous or non-continous sequence with same ordering of characters common to the two strings. The problem is solved using dynamic programming pradigm. Testcase and expected output are shown below.
+1. <a name="longestSequence"></a> Given two strings, find the longest continuous or non-continous sequence with same ordering of characters common to the two strings. The problem is solved using dynamic programming pradigm. A testcase is as follows.
     ```cpp
     string str1 = "abcdefghijklmnopqrst";
     string str2 = "abcd3ekl3abfgs";
