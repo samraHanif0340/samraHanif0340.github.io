@@ -22,7 +22,7 @@ More programming challenge questions in C++ will be added as time permits. Let m
 1. [Linked list - insert, delete, reverse](#linkedList)
 1. [Longest continuous sequence](#longestContinuousSequence)
 1. [Longest sequence](#longestSequence)
-1. [Longest valid parentheses substring](#longestSubstring)
+1. [Longest valid parentheses](#longestValidBrackets)
 
 
 ## Code
@@ -108,7 +108,7 @@ The [repository](https://github.com/Adaickalavan/coding-questions-in-cpp) contai
     
     Link to solution [code](https://github.com/Adaickalavan/coding-questions-in-cpp/blob/master/app/longestSequence.cpp). 
 
-1. <a name="longestSubstring"></a> Given a string containing just characters '(' and ')', return the start and end indexes of the longest valid parentheses substring. Several test cases are shown below.
+1. <a name="longestValidBrackets"></a> Given a string containing just characters '(' and ')', return the start and end indexes of the longest valid parentheses substring. Several test cases are shown below.
     ```text
     Input: "" // answer: startIndex = 0, endIndex = 0
     Input: "(()" // answer: startIndex = 1, endIndex = 2
@@ -118,10 +118,10 @@ The [repository](https://github.com/Adaickalavan/coding-questions-in-cpp) contai
     ```
     Expected output:
     ```text
-    Longest valid substring of  is   , from  0 to  0
-    Longest valid substring of (() is () , from  1 to  2
-    Longest valid substring of )()()) is ()() , from  1 to  4
-    Longest valid substring of ())((()) is (()) , from  4 to  7
-    Longest valid substring of ())(() is () , from  0 to  1
+    Longest valid parentheses of  is   , from  0 to  0
+    Longest valid parentheses of (() is () , from  1 to  2
+    Longest valid parentheses of )()()) is ()() , from  1 to  4
+    Longest valid parentheses of ())((()) is (()) , from  4 to  7
+    Longest valid parentheses of ())(() is () , from  0 to  1
     ```
-    Link to solution [code](https://github.com/Adaickalavan/coding-questions-in-cpp/blob/master/app/longestSubstring.cpp).
+    Link to solution [code](https://github.com/Adaickalavan/coding-questions-in-cpp/blob/master/app/longestValidBrackets.cpp).
