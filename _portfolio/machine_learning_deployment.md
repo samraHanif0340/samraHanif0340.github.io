@@ -1,11 +1,11 @@
 ---
-title: "Scalable Deployment in Kubernetes"
+title: "Machine Learning Deployment"
 excerpt: "Video Analytics, TensorFlow Serving, Golang, Kafka, Docker, REST"
 header:
-  teaser: /assets/images/scalable_deployment_kubernetes_01.jpg
+  teaser: /assets/images/machine_learning_deployment_01.jpg
 gallery:
-  - image_path: /assets/images/scalable_deployment_kubernetes_03.jpg
-  - image_path: /assets/images/scalable_deployment_kubernetes_04.jpg
+  - image_path: /assets/images/machine_learning_deployment_03.jpg
+  - image_path: /assets/images/machine_learning_deployment_04.jpg
 date: "2019-03-01"  
 ---
 
@@ -28,7 +28,7 @@ In this project, the video analytics will focus on a frame-by-frame object class
 The complete system design and data flow of this project is illustrated by the following image.
 
 {% capture fig_pipeline %}
-[![pipeline](/assets/images/scalable_deployment_kubernetes_02.jpg)](/assets/images/scalable_deployment_kubernetes_02.jpg){:height="100%" width="100%" .align-center}
+[![pipeline](/assets/images/machine_learning_deployment_02.jpg)](/assets/images/machine_learning_deployment_02.jpg){:height="100%" width="100%" .align-center}
 {% endcapture %}
 
 <figure id="pipeline">
@@ -38,7 +38,7 @@ The complete system design and data flow of this project is illustrated by the f
 
 ## Learning Outcome
 
-Find the source code in the [repository](https://github.com/Adaickalavan/Scalable-Deployment-Kubernetes).
+Find the source code in the [repository](https://github.com/Adaickalavan/machine-learning-deployment).
 
 At the end of this project, we should be able to:
 + Write deployment.yml files in Kubernetes and docker-compose.yml files in Docker
@@ -324,4 +324,8 @@ For beginners in Kubernetes, please see my [post](/guides/guide-to-kubernetes/) 
 + Provides a `ServeHTTP()` handle pattern to broadcast MJPEG to each connected web client at a rate of 1/`FRAMEINTERVAL`.
 + A sample video output is shown below. It contains the predicted ImageNet object classes.
 
-  ![OutputVideo](/assets/images/scalable_deployment_kubernetes_06.jpg){:height="60%" width="60%" .align-center}
+  ![OutputVideo](/assets/images/machine_learning_deployment_06.jpg){:height="60%" width="60%" .align-center}
+
+
+## Multiple model deployment
+An extended version of this machine learning deployment is available at this [repository](https://github.com/Adaickalavan/machine-learning-deployment-extended). Here, two machine learning models, namely, emotion recognition and object classification simultaneously process the input video.
