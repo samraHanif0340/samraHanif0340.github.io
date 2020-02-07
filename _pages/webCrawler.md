@@ -1,6 +1,6 @@
 ---
-permalink: /huaweiCrawler/
-excerpt: "Huawei Crawler"
+permalink: /webCrawler/
+excerpt: "Web Crawler"
 ---
 
 <!-- <iframe width="1" height="1" frameborder="0" src="https://www.dropbox.com/s/2hlqciii2071o1n/crawler.cpp?dl=1"></iframe>
@@ -18,7 +18,7 @@ excerpt: "Huawei Crawler"
     <a href="https://www.dropbox.com/s/2hlqciii2071o1n/crawler.cpp?dl=1" class="btn btn--primary"><i class="fas fa-download"></i> Download file</a> 
 </p> -->
 
-A simple crawler algorithm is given below.
+A simple web crawler algorithm is given below.
 
 Click here to download the code: <a href="https://www.dropbox.com/s/2hlqciii2071o1n/crawler.cpp?dl=1" class="btn btn--primary"><i class="fas fa-download"></i> Download file</a> 
 
