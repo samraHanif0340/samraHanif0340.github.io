@@ -1,5 +1,5 @@
 ---
-permalink: /calendar/
+permalink: /calendarcan/
 excerpt: "calendar"
 last_modified_at: 2019-07-19
 ---
