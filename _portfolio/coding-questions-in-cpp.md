@@ -137,7 +137,7 @@ The [repository](https://github.com/Adaickalavan/coding-questions-in-cpp) contai
     ```bash
     $ -, -, 10, 11, 20, 40, 50, 50, ...
     ```
-    Link to solution [code](https://github.com/Adaickalavan/coding-questions-in-cpp/blob/master/app/ktLargest.cpp).
+    Link to solution [code](https://github.com/Adaickalavan/coding-questions-in-cpp/blob/master/app/kthLargest.cpp).
 
 1. <a name="mutatablePriorityQueue"></a> Build a priority queue whose elements' priority can be updated dynamically. This problem is solved using the following two data structures:
     + `unordered_map<>` functions as a `set` to hold all unique elements in the queue
