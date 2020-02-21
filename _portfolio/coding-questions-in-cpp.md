@@ -144,9 +144,9 @@ The [repository](https://github.com/Adaickalavan/coding-questions-in-cpp) contai
     + `multimap<>` functions to hold all inserted elements sorted by priority
 
     Operation of the data structres is as follows:
-    + New elements, not present in `unordered_map<>`, are pushed into the `multimap<>` and `unordered_map<>`.
-    + New elements, present in `unordered_map<>`, are pushed into the `multimap<>` if it has a higher priority. Priority of corresponsing element in `unordered_map<>` is updated.
-    + To `pop()` the highest priority element from the queue: Firstly, elements are sequentially removed from the `multimap<>` until an element which is also present in `unordered_map<>`. This helps remove duplicate entries present in `multimap<>`. Then, remove the element from both `multimap<>` and `unordered_map<>`. 
+    + New element, which is not present in `unordered_map<>`, is pushed into the `multimap<>` and `unordered_map<>`.
+    + New element, which is present in `unordered_map<>`, is pushed into the `multimap<>` if it has a higher priority. Priority of the element in `unordered_map<>` is incremented to the higher value.
+    + To `pop()` the highest priority element from the queue: Firstly, elements are sequentially removed from the top of the `multimap<>` until an element which is also present in `unordered_map<>` is reached. This helps remove duplicate entries present in `multimap<>`. Once reached, remove the element from both `multimap<>` and `unordered_map<>`. 
 
     Example testcase:
     ```cpp
