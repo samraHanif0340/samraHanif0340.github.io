@@ -8,7 +8,7 @@ date: "2020-01-15"
 
 {% include gallery %}
 
-In this post, we will answer several programming challenge questions in C++.
+In this post, we will answer several programming challenge questions in C++. For easy testing of our single-file solutions, simply copy the entire source code and paste it into an online coding tool such as Coderpad at [https://coderpad.io/sandbox](https://coderpad.io/sandbox).
 
 ## Questions
 
@@ -23,7 +23,9 @@ More programming challenge questions in C++ will be added as time permits. Let m
 1. [Longest continuous sequence](#longestContinuousSequence)
 1. [Longest sequence](#longestSequence)
 1. [Longest valid parentheses](#longestValidBrackets)
-
+1. [Kth largest](#kthLargest)
+1. [Mutatable priority queue](#mutatablePriorityQueue)
+1. [Traverse grid](#traverseGrid)
 
 ## Code
 The [repository](https://github.com/Adaickalavan/coding-questions-in-cpp) contains the C++ solution codes.
@@ -125,3 +127,50 @@ The [repository](https://github.com/Adaickalavan/coding-questions-in-cpp) contai
     Longest valid parentheses of ())(() is () , from  0 to  1
     ```
     Link to solution [code](https://github.com/Adaickalavan/coding-questions-in-cpp/blob/master/app/longestValidBrackets.cpp).
+
+1. <a name="kthLargest"></a> Return the kth largest element, from an infinite stream of integers, at any point in time. The problem is solved using a priority queue. The priority queue is implemented by a minimum heap of size k. Read the top value of the heap to get the kth largest value at any point in time. Example input:
+    ```cpp
+    vector<int> stream = {10, 20, 11, 70, 50, 40, 100, 5, ...};
+    int k = 3;
+    ```
+    Expected STDOUT output:
+    ```bash
+    $ -, -, 10, 11, 20, 40, 50, 50, ...
+    ```
+    Link to solution [code](https://github.com/Adaickalavan/coding-questions-in-cpp/blob/master/app/ktLargest.cpp).
+
+1. <a name="mutatablePriorityQueue"></a> Build a priority queue whose elements' priority can be updated dynamically. This problem is solved using the following two data structures:
+    + `unordered_map<>` functions as a `set` to hold all unique elements in the queue
+    + `multimap<>` functions to hold all inserted elements sorted by priority
+
+    Operation of the data structres is as follows:
+    + New elements, not present in `unordered_map<>`, are pushed into the `multimap<>` and `unordered_map<>`.
+    + New elements, present in `unordered_map<>`, are pushed into the `multimap<>` if it has a higher priority. Priority of corresponsing element in `unordered_map<>` is updated.
+    + To `pop()` the highest priority element from the queue: Firstly, elements are sequentially removed from the `multimap<>` until an element which is also present in `unordered_map<>`. This helps remove duplicate entries present in `multimap<>`. Then, remove the element from both `multimap<>` and `unordered_map<>`. 
+
+    Example testcase:
+    ```cpp
+    MutatablePriorityQueue mpq;
+    mpq.push('a',3); // value: 'a', priority: 3
+    cout << mpq.top() << "\n";
+    mpq.push('b',4); // value: 'b', priority: 4
+    mpq.push('c',3); // value: 'c', priority: 3
+    cout << mpq.top() << "\n";
+    mpq.push('a',5); // value: 'a', priority: 5
+    cout << mpq.top() << "\n";
+    mpq.pop();
+    cout << mpq.top() << "\n";
+    mpq.pop();
+    cout << mpq.top() << "\n";
+    ```
+    Expected STDOUT output:
+    ```bash
+    a
+    b
+    a
+    b
+    c
+    ```
+    Link to solution [code](https://github.com/Adaickalavan/coding-questions-in-cpp/blob/master/app/mutatablePriorityQueue.cpp).
+
+1. <a name="traverseGrid"></a>
