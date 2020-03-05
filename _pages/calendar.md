@@ -1,7 +1,7 @@
 ---
-permalink: /calendarcan/
+permalink: /calendar/
 excerpt: "calendar"
-last_modified_at: 2019-07-19
+last_modified_at: 2020-01-20
 ---
 
 Feel free to schedule a chat or an interview with me at any time convenient to you by selecting one of my free time slots in the calendar below.     
