@@ -304,7 +304,6 @@ For beginners in Kubernetes, please see my [post](/guides/guide-to-kubernetes/) 
 
 <u>resnet</u>
 + Please refer to the official [guide](https://www.tensorflow.org/tfx/guide/serving) on how to build and use a TensorFlow Serving model.
-
 + Running the `saved_model_cli` command 
   ```bash
   $ saved_model_cli show --dir /path/to/repository/machine-learning-deployment/tfserving/resnet/1538687457 --all
