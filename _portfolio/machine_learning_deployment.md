@@ -311,7 +311,7 @@ For beginners in Kubernetes, please see my [post](/guides/guide-to-kubernetes/) 
   ```
   the TensorFlow saved model signature is obtained as follows.
 
-  ![tfsimagenet](/assets/images/machine_learning_deployment_07.jpg){:height="60%" width="60%" .align-center}
+  ![tfsimagenet](/assets/images/machine_learning_deployment_07.jpg){: .align-center}
 
 ### GoVideo
 
