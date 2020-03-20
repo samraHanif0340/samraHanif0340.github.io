@@ -305,6 +305,14 @@ For beginners in Kubernetes, please see my [post](/guides/guide-to-kubernetes/) 
 <u>resnet</u>
 + Please refer to the official [guide](https://www.tensorflow.org/tfx/guide/serving) on how to build and use a TensorFlow Serving model.
 
+  Running the `saved_model_cli` command 
+  ```bash
+  $ saved_model_cli show --dir /path/to/repository/machine-learning-deployment/tfserving/resnet/1538687457 --all
+  ```
+  the TensorFlow saved model signature is obtained as follows.
+
+  ![tfsimagenet](/assets/images/machine_learning_deployment_07.jpg){:height="60%" width="60%" .align-center}
+
 ### GoVideo
 
 <u>deployment.yml</u>
