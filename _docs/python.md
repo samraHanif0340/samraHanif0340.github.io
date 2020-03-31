@@ -34,7 +34,7 @@ title: "Python"
 The following serves as a representative project folder structure.
 
 ```text
-emotion-recognition                             # Main project directory 
+emotion-recognition                             # Repository name / Project root 
 ├── assets                                      # Assets
 |   ├── images
 |       ...
@@ -48,7 +48,7 @@ emotion-recognition                             # Main project directory
 |       ...
 ├── example                                     # Standalone example code 
 |   └── emoRecStream.py
-├── model                                       # Machine learning model folder 
+├── dev                                         # Machine learning model folder 
 |   ├── analysis                                # Package - Analysis    
 |   |   └── predictions.py                      # Module - Predictions 
 |   ├── checkpoints                             # Checkpoints    
@@ -76,7 +76,7 @@ emotion-recognition                             # Main project directory
 1. [<span style="color:blue">Non-Production Code</span>] `dataset` folder should contain minimal amount of sample test data used in the project for testing and demonstration purposes. Complete dataset is advised to be stored in an external Hadoop cluster.
 1. [<span style="color:green">Production Code</span>] `doc` folder contains the documents generated from Python code comments. For details of how the documents are generated, refer to the code [documentation](#documentation) steps.   
 1. [<span style="color:blue">Non-Production Code</span>] `example` folder contains a complete, runnable, well-abstracted Python code to illustrate the entire machine learning model. For example, `emoRecStream.py` is a complete standalone example to analyse video stream.
-1. [<span style="color:blue">Non-Production Code</span>] `model` folder contains all peripheral code used in developing and testing the machine learning tensorflow graph. 
+1. [<span style="color:blue">Non-Production Code</span>] `dev` folder contains all peripheral code used in developing and testing the machine learning tensorflow graph. 
     + Contains code files (i.e., `emoRec.py`) used during training, testing, and building phase of the machine learning model.
     + Local code should be abstracted into packages and modules. For example, `analysis` and `helper` are local packages, whereas `predictions.py` and `convert.py` are local modules.
     + Package and module naming should be intuitive and non-repetitive. For example, reading  an import statement in Python, such as `import model.analysis.predictions`, should clearly indicate the meaning or functionality of the code being imported.
@@ -123,7 +123,7 @@ Note: All <span style="color:green">Production Code</span> needs to undergo code
         ```
     + Setup Sphinx   
         ```bash
-        $ sphinx-quickstart [options] [path/to/project/root/doc]
+        $ sphinx-quickstart [options] path/to/project/root/doc
 
         [options]
         -q
@@ -377,8 +377,14 @@ Note: All <span style="color:green">Production Code</span> needs to undergo code
 1. Note: If you want to profile several functions, only instantiate once the `LineProfiler()` and import it in the other files. Otherwise, profiler output might have some issues and have weird reporting.
 
 ## Configuration
-+ Setup proxy configurations for pip when using pip behind a corporate proxy, e.g., `http://10.0.0.0:8080/`. 
-+ To achieve this, create a `pip.conf` file at `~/.pip/` such that `~/.pip/pip.conf` file contains the following.
++ Setup proxy configurations for conda/pip when using conda/pip behind a corporate proxy, e.g., `http://10.0.0.0:8080/`.
++ For conda, run the following commands in a terminal
+    ```bash
+    $ conda config --set proxy_servers.http http://10.0.0.0:8080/
+    $ conda config --set proxy_servers.https https://10.0.0.0:8080/
+    ```
+    A `.condarc` file will be created with the proxy server details and placed at `~/.condarc`.
++ For pip, create a `pip.conf` file at `~/.pip/` such that `~/.pip/pip.conf` file contains the following
     ```
     [global]
     proxy = http://10.0.0.0:8080/     
