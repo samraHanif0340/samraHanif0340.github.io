@@ -75,6 +75,34 @@ cppprocessing                  # Main project directory
     + Instructions to run a sample of the code
     + Desired input and output of the code
 
+## Boost library
+1. Install Boost library from repository
+    ```bash
+    $ cd /usr/include/
+    $ wget https://dl.bintray.com/boostorg/release/1.72.0/source/boost_1_72_0.tar.bz2
+    $ tar --bzip2 -xf ./boost_1_72_0.tar.bz2
+    $ rm -r ./boost_1_72_0.tar.bz2
+    ```
+
+1. When using Boost libraries whch are header-only, we only need to "include directory" in the CMake build file.
+    ```CMake
+    find_package(BOOST 1.72 REQUIRED)
+    add_executable(example 
+        ./example.cpp
+        ./example.hpp)
+    target_include_directories(example PRIVATE ${Boost_INCLUDE_DIR})
+    ``` 
+    When using Boost libraries which requires to be built, e.g., `chrono`, we need to additionally "link_libraries" in the CMake build file.
+    ```CMake
+    find_package(Boost 1.72 COMPONENTS chrono REQUIRED)
+    add_executable(example 
+        ./example.cpp
+        ./example.hpp)
+    target_include_directories(example PRIVATE ${Boost_INCLUDE_DIR})
+    target_link_libraries(example PRIVATE ${Boost_LIBRARIES})
+    ```
+    Header-only libraries and libraries which must be built are listed in the official [website](https://www.boost.org/doc/libs/1_72_0/more/getting_started/unix-variants.html#header-only-libraries)
+
 ## Serial program
 1. Mathematically $$\int_{0}^{1}\frac{4}{1+x^2}dx\approx\pi$$. This integral can be approximated as a sum of
 rectangles: 
