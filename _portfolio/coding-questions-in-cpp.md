@@ -172,4 +172,3 @@ The [repository](https://github.com/Adaickalavan/coding-questions-in-cpp) contai
     ```
     Link to solution [code](https://github.com/Adaickalavan/coding-questions-in-cpp/blob/master/app/mutatablePriorityQueue.cpp).
 
-1. <a name="traverseGrid"></a>
