@@ -25,7 +25,6 @@ More programming challenge questions in C++ will be added as time permits. Let m
 1. [Longest valid parentheses](#longestValidBrackets)
 1. [Kth largest](#kthLargest)
 1. [Mutatable priority queue](#mutatablePriorityQueue)
-1. [Traverse grid](#traverseGrid)
 
 ## Code
 The [repository](https://github.com/Adaickalavan/coding-questions-in-cpp) contains the C++ solution codes.
