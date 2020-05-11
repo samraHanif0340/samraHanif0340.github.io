@@ -111,7 +111,7 @@ author:
   name             : *name
   avatar           : "/assets/images/Adai-774x781.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : *description
-  location         : "Singapore"
+  location         : "Ontario, Canada"
   email            :
   links:
     - label: "Email"
