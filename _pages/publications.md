@@ -10,8 +10,9 @@ excerpt: "Patents and publications"
 -->
 
 ## <a name="patents"></a>Patents
-**A. Meiyappan**, J. Li, M. Ciacci, G. Al-Kadi, “Detector”, Europe, EP15185335.5 / US15/267099 / CN201610806691.3, 15 Sept. 2015.
-[![html](/assets/icons16/html-icon.png)](https://worldwide.espacenet.com/publicationDetails/biblio?FT=D&date=20170322&DB=EPODOC&locale=en_EP&CC=EP&NR=3145143A1&KC=A1&ND=5)
+**A. Meiyappan**, J. Li, M. Ciacci, G. Al-Kadi, “Detector”, Europe EP3145143B1 / USA US9992012B2 / China CN201610806691.3, 15 Sept. 2015.
+[![html](/assets/icons16/html-icon.png)](https://worldwide.espacenet.com/publicationDetails/originalDocument?CC=EP&NR=3145143B1&KC=B1&FT=D&ND=4&date=20190320&DB=&locale=en_EP)
+[![html](/assets/icons16/html-icon.png)](https://pdfpiw.uspto.gov/.piw?Docid=9992012)
 
 ## <a name="journals"></a>Journals
 **A. Meiyappan**, H. Kim, and P.-Y. Kam, “A low-complexity, low-cycle-slip-probability, format-independent carrier estimator with adaptive filter length,” J. Lightw. Technol., vol. 31, no. 23, pp. 3806–3812, Dec. 2013.
