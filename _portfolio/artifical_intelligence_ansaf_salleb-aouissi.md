@@ -33,9 +33,9 @@ This course on artificial intelligence mirrors much of the syllabus from the boo
 ### Syllabus
 Uninformed/heuristic/adversarial search, constraint satisfaction, perceptron, k-NN, neural networks, support vector machine, decision trees, Markov decision processes, reinforcement learning, logical/propositional agent, applications to natural language processing and vision   
 
-### Repository
+<!-- ### Repository
 The [repository](https://github.com/Adaickalavan/Artifical-Intelligence-Ansaf-Salleb-Aouissi-Columbia-University-EdX) consists of the following: 
-* Projects - Instructions and Python solution codes
+* Projects - Instructions and Python solution codes -->
 
 ### Verified Certificate
 [![certificate](/assets/images/Artificial_Intelligence_ColumbiaX.jpg){:height="80%" width="80%" .align-center}](https://courses.edx.org/certificates/dfecac6d791f4900b65f681c25597dce)

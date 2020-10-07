@@ -25,9 +25,9 @@ This is a very well taught, comprehensive course in machine learning by Prof. Jo
 ### Syllabus
 Bayesian/maximum likelihood/maximum a-posteriori estimation, linear/logistic regression, perceptron/least squares, bias-variance, sparsity, Laplace approximation, kernel methods, support vector machines, decision trees, random forests, boosting, clustering/k-NN, expectation-maximization, mixtures of Gaussian, matrix factorization, latent factor models, principal component analysis, hidden Markov models, discrete/continuous state space models 
 
-### Repository
+<!-- ### Repository
 The [repository](https://github.com/Adaickalavan/Machine-Learning-CSMM102x-John-Paisley-Columbia-University-EdX) consists of the following: 
-* Projects - Instructions, test data sets, desired outputs, and Python solution codes
+* Projects - Instructions, test data sets, desired outputs, and Python solution codes -->
 
 ### Verified Certificate
 [![certificate](/assets/images/Machine_Learning_ColumbiaX.jpg){:height="80%" width="80%" .align-center}](https://courses.edx.org/certificates/f0b21c7e213f46af83b1f5c50b7a8d7e)
