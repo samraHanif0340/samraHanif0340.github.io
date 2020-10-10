@@ -53,7 +53,7 @@ Points to note:
 * No need to remove the column of 1's 
 * Use 1-based indexes for the position of the data point $$\left(y,\mathbf{x}\right)$$ to be measured
 
-The test data set and desired output was generated using the following parameters:
+The [test data set](/assets/portfolio/machine_learning_john_paisley/w03.tar.gz) and [desired output](/assets/portfolio/machine_learning_john_paisley/w03.tar.gz) was generated using the following parameters:
 
 $$
 \begin{align}
@@ -74,7 +74,7 @@ To solve, implement the equations given in Lecture 7, Slide 27.
 
 ![L7S27](/assets/images/machine_learning_john_paisley_p02_01.jpg){:height="80%" width="80%" .align-center}
 
-The test data set and desired output was generated using $$K = 6$$ classes having index values $$0,1,2,...,5$$. A smaller number of classes was used to simplify simulation data. After verification, please reset number of classes $$K = 10$$ in your code before submission.
+The [test data set](/assets/portfolio/machine_learning_john_paisley/w06.tar.gz) and [desired output](/assets/portfolio/machine_learning_john_paisley/w06.tar.gz) was generated using $$K = 6$$ classes having index values $$0,1,2,...,5$$. A smaller number of classes was used to simplify simulation data. After verification, please reset number of classes $$K = 10$$ in your code before submission.
 
 ## Week 9 Project: Clustering
 
@@ -84,7 +84,7 @@ We are required to implement K-means clustering and EM Gaussian Mixture Models o
 
 ![L16S20](/assets/images/machine_learning_john_paisley_p03_02.jpg){:height="80%" width="80%" .align-center}
 
-The test data set and desired output was generated using $$K = 3$$ , to simplify simulation. After verification, please reset number of clusters to 5 in your code before submission.
+The [test data set](/assets/portfolio/machine_learning_john_paisley/w09.tar.gz) and [desired output](/assets/portfolio/machine_learning_john_paisley/w09.tar.gz) was generated using $$K = 3$$ , to simplify simulation. After verification, please reset number of clusters to 5 in your code before submission.
 
 For K-means clustering algorithm, in order to match your code output with the provided desired output file, please use the following initialization. Here, $$\text{mu}=\left[\mu_1; \mu_2; \mu_3\right]$$.
 
@@ -115,9 +115,9 @@ We are required to implement the probablistic matrix factorization (PMF) model. 
 
 ![L17S19](/assets/images/machine_learning_john_paisley_p04_01.jpg){:height="80%" width="80%" .align-center}
 
-The test data set provided has 1200 rows of ratings, with `Nu = 100` users and `Nv = 100` objects.
+The [test data set](/assets/portfolio/machine_learning_john_paisley/w12.tar.gz) provided has 1200 rows of ratings, with `Nu = 100` users and `Nv = 100` objects.
 
-For PMF algorithm, in order to match your code output with the provided desired output file, please use the following initialization. Here, $$\text{dim}=d$$, $$\text{mu}=\mu$$, $$\text{variance}=\sigma^2$$, $$\text{lambdaParam}=\lambda$$, $$\text{Umatrix}=\mathbf{U}$$, and $$\text{Vmatrix}=\mathbf{V}$$
+For PMF algorithm, in order to match your code output with the provided [desired output file](/assets/portfolio/machine_learning_john_paisley/w12.tar.gz), please use the following initialization. Here, $$\text{dim}=d$$, $$\text{mu}=\mu$$, $$\text{variance}=\sigma^2$$, $$\text{lambdaParam}=\lambda$$, $$\text{Umatrix}=\mathbf{U}$$, and $$\text{Vmatrix}=\mathbf{V}$$
 
 ```python
 dim = 5 #matrix dimension U = Nu x dim, V = Nv x dim
