@@ -7,9 +7,9 @@ categories:
 last_modified_at: 2020-11-13
 ---
 
-Here we take a look at the idiosyncrasies and inherent nature of [`asyncio`](https://docs.python.org/3/library/asyncio.html) library in Python. Asyncio is a library to write coroutines which run asynchronously on a single thread, using an underlying event loop. This is different from multi-threaded programing paradigm. `asyncio`-based concurrent coding is similar to web programming with JavaScript or GUI programming.
+We take a look at the idiosyncrasies and inherent nature of [`asyncio`](https://docs.python.org/3/library/asyncio.html) library in Python. `asyncio` is a library to write coroutines which run asynchronously on a single thread, using an underlying event loop. This is different from multi-threaded programming paradigm. `asyncio`-based concurrent coding is similar to web programming with JavaScript or GUI programming.
 
-We will consider three examples. The first example mimics a key portion of code from the open-sourced [SMARTS](https://github.com/huawei-noah/SMARTS) repository. The second and third examples are standalone examples.
+We will consider three examples. The first example mimics a key portion of code from the open-sourced [SMARTS](https://github.com/huawei-noah/SMARTS) repository. The second and third examples are standalone dummy examples.
 
 Run and consider the output of the first [example](https://gist.github.com/Adaickalavan/0bb9145d294f9b5e497778d2718dbe8f#file-asyncio_smarts-py) below. 
 
@@ -131,7 +131,7 @@ Program executed in 9.01 seconds.
 
 `loop.run_until_complete()` command ensures all scheduled tasks are completed prior to returning. The `send_obs(x,y)` function schedules a task `task = asyncio.create_task(self._act(x,y))`, but does not run it immediately. The task will only run when the main thread `await`s. Since there is no `await` in the program after the call to `send_obs(x,y)` function, the tasks are run to completion just prior to the function `step(x,y)` returning.
 
-The line `action = await self.agentManager.fetch_action()` in subsequent iterations does not actually need to wait as all the tasks are already completed when the previous iteration of the function `step(x,y)` returned. Hence, the use of `await` here is superficial. 
+The line `action = await self.agentManager.fetch_action()` in subsequent iterations does not wait as all the tasks are already completed when the previous iteration of the function `step(x,y)` returned. Hence, the use of `await` here is superficial. 
 
 Run and consider the output of the second [example](https://gist.github.com/Adaickalavan/0bb9145d294f9b5e497778d2718dbe8f#file-asyncio_create_task-py) below.
 
@@ -296,4 +296,4 @@ Here, we try to answer the key question of whether an `asyncio.subprocess` can c
 
 In the above example, when `wait == True`, the line `await self.subproc.wait()` ensures that the subprocess completes before the `connect()` function returns. The subprocess is dead when probed later in the `main()` function.
 
-On the other hand, when `wait == False`, the subprocess remains alive even after the `asyncio.run(ra.connect())` command returns. The subprocess is alive when probed later in the `main()` function via the object instance `ra` or via the `subproc` process handle. However, `asyncio` throws a warning that a pending handler has been detached from the child watcher. Child watchers monitor subprocesses on Unix.
+On the other hand, when `wait == False`, the subprocess remains alive even after the `asyncio.run(ra.connect())` command returns. The subprocess is alive when probed later in the `main()` function via the object instance (i.e., `ra.check("Second")`) or via the process handle (i.e., `subproc.returncode`). However, `asyncio` throws a warning that a pending handler has been detached from the child watcher. Child watchers monitor subprocesses on Unix.
