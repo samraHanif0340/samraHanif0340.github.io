@@ -258,32 +258,30 @@ def main(wait):
     print("End")
 
 if __name__ == "__main__":
-    print("-----------------------------------------------")
+    print("----------------------------------------------")
     print("Run asyncio.subprocess and await its exit")
-    print("-----------------------------------------------")
+    print("----------------------------------------------")
     main(True)
-    print("\n")
-    print("-----------------------------------------------")
-    print("Run asyncio.subprocess but don't await its exit")
-    print("-----------------------------------------------")
+    print("----------------------------------------------")
+    print("Run asyncio.subprocess but dont await its exit")
+    print("----------------------------------------------")
     main(False)
 ```
 The output is:
 
 ```bash
-----------------------------------------------
+-----------------------------------------------
 Run asyncio.subprocess and await its exit
-----------------------------------------------
+-----------------------------------------------
 Started subprocess
 Subproc output: Started long process
 Subproc output: Completed long process
 Second. Proc is dead. Value=0
 Third. Proc is dead. Value=0
 End
-
-----------------------------------------------
+-----------------------------------------------
 Run asyncio.subprocess but dont await its exit
-----------------------------------------------
+-----------------------------------------------
 Started subprocess
 Subproc output: Started long process
 First. Proc is alive. Value=None
