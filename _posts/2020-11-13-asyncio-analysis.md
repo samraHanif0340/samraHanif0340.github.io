@@ -91,17 +91,17 @@ def main():
     smart.start()
 
 if __name__ == "__main__":
-    print("-------------------------")
-    print("First analysis of asyncio")
-    print("-------------------------")
+    print("----------------------")
+    print("First asyncio analysis")
+    print("----------------------")
     main()    
 ```
 The output is:
 
 ```bash
--------------------------
-First analysis of asyncio
--------------------------
+----------------------
+First asyncio analysis
+----------------------
 Fetched first action = None
 Fetch operation took 0.00 seconds.
 Action( 1 multiply 3 ) started
@@ -294,7 +294,8 @@ Third. Proc is alive. Value=None
 End
 ```
 
-In this example, we try to answer the key question of whether an `asyncio.subprocess` can continue running even after a `asyncio.run()` call returns.
+Here, we try to answer the key question of whether an `asyncio.subprocess` can continue running even after a call to `asyncio.run()` returns.
 
+In the above example, when `wait == True`, the line `await self.subproc.wait()` ensures that the subprocess completes before the `connect()` function returns. The subprocess is dead when probed later in the `main()` function.
 
-In summary, the subprocess does not extend beyond a call to asyncio.run call?
+On the other hand, when `wait == False`, the subprocess remains alive even after the `asyncio.run(ra.connect())` command returns. The subprocess is alive when probed later in the `main()` function via the object instance `ra` or via the `subproc` process handle. However, `asyncio` throws a warning that a pending handler has been detached from the child watcher. Child watchers monitor subprocesses on Unix.
