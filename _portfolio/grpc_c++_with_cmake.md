@@ -13,6 +13,43 @@ This project aspires to present the use of GRPC in C++ and built using CMake.
 {: .notice--success}
 This page is under construction. Please check back later for updates.
 
+## Installlation
+
+### Steps to build GRPC locally
+Reference: https://github.com/grpc/grpc/blob/master/BUILDING.md#pre-requisites
+
+1. Set `~/.bash_aliases` file:
+    ```bash
+    export MY_INSTALL_DIR=$HOME/.local
+    export PATH=$PATH:$MY_INSTALL_DIR/bin
+    ```
+
+1. Install pre-requisites and CMake
+    ```bash
+    $ sudo apt-get install -y build-essential autoconf libtool pkg-config
+    $ sudo apt-get install -y cmake
+    ```
+
+1. Clone gRPC repository
+    ```bash
+    $ git clone -b v1.28.1 https://github.com/grpc/grpc
+    $ cd grpc
+    $ git submodule update --init
+    ```
+
+1. Builds and install gRPC
+    ```bash
+    $ cd grpc
+    $ mkdir -p cmake/build
+    $ cd cmake/build
+    $ cmake -DgRPC_INSTALL=ON \
+        -DgRPC_BUILD_TESTS=OFF \
+        -DCMAKE_INSTALL_PREFIX=$MY_INSTALL_DIR \
+        ../..
+    $ make
+    // -- $ make install
+    ```
+
 <!-- in high performance computing for heterogenous platforms (i.e., CPU/GPU). We present updated C/C++ code adhering to OpenCL 2.0 standard for the exercises in the "OpenCL in Action" book by Matthew Scarpino. Read the [book](https://www.manning.com/books/opencl-in-action). It is a good comprehensive book, suitable for beginners, which teaches OpenCL beginning from the basics.
 
 The following tools will be used in this project:
