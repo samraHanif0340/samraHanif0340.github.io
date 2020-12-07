@@ -3,7 +3,7 @@ title: "GRPC C++ with CMake"
 excerpt: "GRPC, C++, CMake"
 # header:
 #   teaser: /assets/images/opencl_01.jpg
-date: "2020-10-05" 
+date: "2020-12-05" 
 ---
 
 ## Introduction
@@ -13,10 +13,10 @@ This project aspires to present the use of GRPC in C++ and built using CMake.
 {: .notice--success}
 This page is under construction. Please check back later for updates.
 
-## Installlation
+## Installation
 
 ### Steps to build GRPC locally
-Reference: https://github.com/grpc/grpc/blob/master/BUILDING.md#pre-requisites
+1. See here for [reference](https://github.com/grpc/grpc/blob/master/BUILDING.md#pre-requisites).
 
 1. Set `~/.bash_aliases` file:
     ```bash
