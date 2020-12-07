@@ -15,7 +15,7 @@ This page is under construction. Please check back later for updates.
 
 ## Installation
 
-### Steps to build GRPC locally
+### Steps to build and install GRPC locally
 1. See here for [reference](https://github.com/grpc/grpc/blob/master/BUILDING.md#pre-requisites).
 
 1. Set `~/.bash_aliases` file:
@@ -47,7 +47,7 @@ This page is under construction. Please check back later for updates.
         -DCMAKE_INSTALL_PREFIX=$MY_INSTALL_DIR \
         ../..
     $ make
-    // -- $ make install
+    $ make install
     ```
 
 <!-- in high performance computing for heterogenous platforms (i.e., CPU/GPU). We present updated C/C++ code adhering to OpenCL 2.0 standard for the exercises in the "OpenCL in Action" book by Matthew Scarpino. Read the [book](https://www.manning.com/books/opencl-in-action). It is a good comprehensive book, suitable for beginners, which teaches OpenCL beginning from the basics.
