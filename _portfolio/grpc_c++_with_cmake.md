@@ -1,24 +1,70 @@
 ---
-title: "GRPC C++ with CMake"
-excerpt: "GRPC, C++, CMake"
+title: "GRPC C++ with CMake and Docker"
+excerpt: "GRPC, C++, CMake, Docker"
 # header:
 #   teaser: /assets/images/opencl_01.jpg
-date: "2020-12-05" 
+date: "2020-12-08" 
 ---
-
-## Introduction
-
-This project aspires to present the use of GRPC in C++ and built using CMake. 
 
 {: .notice--success}
 This page is under construction. Please check back later for updates.
 
-## Installation
+## Introduction
+This project aspires to greatly simplify and automate the use of GRPC in C++. The project is built using CMake. A Docker image consisting of GRPC dependencies is also provided optionally built using CMake and Docker. Currently, 
 
-### Steps to build and install GRPC locally
-1. See here for [reference](https://github.com/grpc/grpc/blob/master/BUILDING.md#pre-requisites).
+The following tools will be used in this project:
++ GRPC
++ C++
++ CMake
++ Docker
 
-1. Set `~/.bash_aliases` file:
+## Learning Outcome
+At the end of this project, we should be able to:
++ Easily write GRPC code in C++ without worrying about the GRPC setup for C++
++ Build GRPC in C++ code with CMake and Docker.
+
+## Code
+Find the source code in the [repository](https://github.com/Adaickalavan/grpc-cpp-cmake).
+
+## Instructions to build and run
+1. If we use this project as a template, namely, the `grpc.cmake`, `CMakeLists.txt`, and `Dockerfile` files, we   a typical the code
+1. Download the repository
+    ```bash
+    $ git clone https://github.com/Adaickalavan/grpc-cpp-cmake.git 
+    ```
+1. Build source codes using CMake in Linux
+    ```bash
+    $ cd /path/to/repository/root/grpc-cpp-cmake/
+    $ mkdir build
+    $ cd build
+    $ cmake ..
+    $ cmake --build .
+    ``` 
+1. Run the C++ client
+    ```bash
+    $ cd /path/to/repository/root/grpc-cpp-cmake/
+    $ cd build
+    $ ./app/greeter_client
+    ```
+
+## Instructions to build and run the code inside Docker
+1. Build image: 
+    ```bash
+    $ cd /path/to/repository/root/grpc-cpp-cmake
+    $ docker build -t cppclient --network=host .
+    ```
+1. Run the container: 
+    ```bash
+    $ cd /path/to/repository/root/grpc-cpp-cmake
+    $ docker-compose up
+    ```    
+
+### Build and install GRPC locally
+
+{: .notice--warning}
+We should be able to build and run all our C++ code locally by following the instructions given above. Hence, this steps are not needed. However, if you desire to build and install GRPC locally, the instructions are given below. For further reference see here for [reference](https://github.com/grpc/grpc/blob/master/BUILDING.md#pre-requisites).
+
+1. Set `~/.bash_aliases` or `~/.bashrc` file:
     ```bash
     export MY_INSTALL_DIR=$HOME/.local
     export PATH=$PATH:$MY_INSTALL_DIR/bin
@@ -52,19 +98,11 @@ This page is under construction. Please check back later for updates.
 
 <!-- in high performance computing for heterogenous platforms (i.e., CPU/GPU). We present updated C/C++ code adhering to OpenCL 2.0 standard for the exercises in the "OpenCL in Action" book by Matthew Scarpino. Read the [book](https://www.manning.com/books/opencl-in-action). It is a good comprehensive book, suitable for beginners, which teaches OpenCL beginning from the basics.
 
-The following tools will be used in this project:
-+ C/C++
-+ OpenCL
-+ CMake
-+ Intel CPU - we can test our OpenCL code on a CPU without the need to have a GPU -->
+ -->
 
-<!-- ## Code
-Find the source code in the [repository](https://github.com/Adaickalavan/opencl).
+<!-- 
 
-## Learning Outcome
-At the end of this project, we should be able to:
-+ Use OpenCL in C/C++ for high performance computing. 
-+ Build C/C++ code with CMake.
+
 
 ## Project Structure
 
