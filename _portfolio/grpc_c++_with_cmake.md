@@ -34,7 +34,7 @@ Find the source code in the [repository](https://github.com/Adaickalavan/grpc-cp
     + generates the C++ sources from the `.proto` files, and
     + performs all necessary file linkage.
 
-## Local: Instructions to run code template <a name="local"></a>
+## Local: Run code template <a name="local"></a>
 1. Download the repository
     ```bash
     $ git clone https://github.com/Adaickalavan/grpc-cpp-cmake.git 
@@ -60,7 +60,7 @@ Find the source code in the [repository](https://github.com/Adaickalavan/grpc-cp
     $ ./app/greeter_client
     ```
 
-## Docker: Instructions to run code template
+## Docker: Run code template
 1. Build image: 
     ```bash
     $ cd /path/to/repository/root/grpc-cpp-cmake
@@ -72,10 +72,10 @@ Find the source code in the [repository](https://github.com/Adaickalavan/grpc-cp
     $ docker-compose up
     ```    
 
-### Build and install GRPC locally
+## Local: Build and install GRPC
 
 {: .notice--warning}
-For most of us, we should build and run all our GRPC C++ code locally by following the instructions given [above](#local). Ideally this step should not be performed, as it has been simplified by the above [steps](#local). These steps below are only provided for those who are interested in installing GRPC system-wide manually in their computer. See here for further [reference](https://github.com/grpc/grpc/blob/master/BUILDING.md).
+For most of us, we should build and run all our GRPC C++ code locally by following the instructions given [above](#local). Ideally this step should not be performed, as it has been simplified by the [above](#local) steps. The steps below are only provided for those who are interested in manually installing GRPC system-wide in their computer. See here for further [reference](https://github.com/grpc/grpc/blob/master/BUILDING.md).
 
 1. Set `~/.bash_aliases` or `~/.bashrc` file:
     ```bash
