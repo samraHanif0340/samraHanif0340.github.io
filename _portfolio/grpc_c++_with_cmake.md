@@ -74,8 +74,8 @@ Find the source code in the [repository](https://github.com/Adaickalavan/grpc-cp
 
 ### Build and install GRPC locally
 
-    {: .notice--warning}
-    For most of us, we should build and run all our GRPC C++ code locally by following the instructions given [above](#local). Ideally this step should not be performed, as it has been simplified by the above [steps](#local). These steps below are only provided for those who are interested in installing GRPC system-wide manually in their computer. See here for further [reference](https://github.com/grpc/grpc/blob/master/BUILDING.md#pre-requisites).
+{: .notice--warning}
+For most of us, we should build and run all our GRPC C++ code locally by following the instructions given [above](#local). Ideally this step should not be performed, as it has been simplified by the above [steps](#local). These steps below are only provided for those who are interested in installing GRPC system-wide manually in their computer. See here for further [reference](https://github.com/grpc/grpc/blob/master/BUILDING.md#pre-requisites).
 
 1. Set `~/.bash_aliases` or `~/.bashrc` file:
     ```bash
