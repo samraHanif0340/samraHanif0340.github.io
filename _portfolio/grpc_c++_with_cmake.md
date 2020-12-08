@@ -1,8 +1,8 @@
 ---
 title: "GRPC C++ with CMake and Docker"
 excerpt: "GRPC, C++, CMake, Docker"
-# header:
-#   teaser: /assets/images/opencl_01.jpg
+header:
+  teaser: /assets/images/grpc_01.jpg
 date: "2020-12-08" 
 ---
 
