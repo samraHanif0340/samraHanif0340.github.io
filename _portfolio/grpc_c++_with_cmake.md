@@ -10,7 +10,7 @@ date: "2020-12-08"
 This page is under construction. Please check back later for updates.
 
 ## Introduction
-This project aspires to greatly simplify and automate the use of GRPC in C++. The project is built using CMake. A Docker image consisting of GRPC dependencies is also provided optionally built using CMake and Docker. Currently, 
+This article provides a code template to greatly simplify and automate the use of GRPC in a C++ project. The template is built using CMake. A Docker image consisting of all GRPC files and dependencies is also provided for a C++ project.
 
 The following tools will be used in this project:
 + GRPC
@@ -20,14 +20,21 @@ The following tools will be used in this project:
 
 ## Learning Outcome
 At the end of this project, we should be able to:
-+ Easily write GRPC code in C++ without worrying about the GRPC setup for C++
++ Easily write and run GRPC code in C++ without worrying about the GRPC setup for C++.
 + Build GRPC in C++ code with CMake and Docker.
 
 ## Code
 Find the source code in the [repository](https://github.com/Adaickalavan/grpc-cpp-cmake).
 
-## Instructions to build and run
-1. If we use this project as a template, namely, the `grpc.cmake`, `CMakeLists.txt`, and `Dockerfile` files, we   a typical the code
+
+## Key code template components
+1. Key files in this template are `grpc.cmake`, `CMakeLists.txt`, and `Dockerfile`. 
+1. The `grpc.cmake` file automatically 
+    + installs GRPC via CMake's `FetchContent` module at configure time,
+    + generates the C++ sources from the `.proto` files, and
+    + performs all necessary file linkage.
+
+## Local: Instructions to run code template <a name="local"></a>
 1. Download the repository
     ```bash
     $ git clone https://github.com/Adaickalavan/grpc-cpp-cmake.git 
@@ -40,18 +47,24 @@ Find the source code in the [repository](https://github.com/Adaickalavan/grpc-cp
     $ cmake ..
     $ cmake --build .
     ``` 
-1. Run the C++ client
+1. Run the C++ server
+    ```bash
+    $ cd /path/to/repository/root/grpc-cpp-cmake/
+    $ cd build
+    $ ./app/greeter_server
+    ```
+1. Run the C++ client in a different terminal
     ```bash
     $ cd /path/to/repository/root/grpc-cpp-cmake/
     $ cd build
     $ ./app/greeter_client
     ```
 
-## Instructions to build and run the code inside Docker
+## Docker: Instructions to run code template
 1. Build image: 
     ```bash
     $ cd /path/to/repository/root/grpc-cpp-cmake
-    $ docker build -t cppclient --network=host .
+    $ docker build -t grpccpp --network=host .
     ```
 1. Run the container: 
     ```bash
@@ -61,8 +74,8 @@ Find the source code in the [repository](https://github.com/Adaickalavan/grpc-cp
 
 ### Build and install GRPC locally
 
-{: .notice--warning}
-We should be able to build and run all our C++ code locally by following the instructions given above. Hence, this steps are not needed. However, if you desire to build and install GRPC locally, the instructions are given below. For further reference see here for [reference](https://github.com/grpc/grpc/blob/master/BUILDING.md#pre-requisites).
+    {: .notice--warning}
+    For most of us, we should build and run all our GRPC C++ code locally by following the instructions given [above](#local). Ideally this step should not be performed, as it has been simplified by the above [steps](#local). These steps below are only provided for those who are interested in installing GRPC system-wide manually in their computer. See here for further [reference](https://github.com/grpc/grpc/blob/master/BUILDING.md#pre-requisites).
 
 1. Set `~/.bash_aliases` or `~/.bashrc` file:
     ```bash
@@ -96,14 +109,7 @@ We should be able to build and run all our C++ code locally by following the ins
     $ make install
     ```
 
-<!-- in high performance computing for heterogenous platforms (i.e., CPU/GPU). We present updated C/C++ code adhering to OpenCL 2.0 standard for the exercises in the "OpenCL in Action" book by Matthew Scarpino. Read the [book](https://www.manning.com/books/opencl-in-action). It is a good comprehensive book, suitable for beginners, which teaches OpenCL beginning from the basics.
-
- -->
-
 <!-- 
-
-
-
 ## Project Structure
 
 The project structure is as follows:
@@ -147,32 +153,4 @@ opencl                                 # Repository root
 ├── CMakeLists.txt                     # Top-level CMake build file
 └── README.md                                 
 ```
-
-## Steps to get started with OpenCL
-1. Install OpenCL SDK 
-  + For Intel processors: [website](https://software.intel.com/en-us/opencl-sdk/choose-download)
-
-1. Install and run `clinfo` to show complete information of OpenCL platforms and devices.
-```bash
-$ sudo apt install clinfo
-$ clinfo
-```
-
-## Exercise list
-For easy reference, the solution code is organised by chapter and named according to the exercise. 
-
-Build the C/C++ code using:
-```bash
-$ cd /path/to/repository/root/opencl
-$ cmake -E make_directory build
-$ cmake -E chdir ./build cmake -DCMAKE_BUILD_TYPE=Release ..
-$ cmake --build ./build
-```
-
-Run the desired code as follows. Assuming the desired code is `callback_8_6`, then run:
-```bash
-$ cd /path/to/repository/root/opencl
-$ ./bin/callback_8_6
-```
-
-The complete code listing is given in the table below. -->
+-->
