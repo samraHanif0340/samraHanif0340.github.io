@@ -6,9 +6,6 @@ header:
 date: "2020-12-08" 
 ---
 
-{: .notice--success}
-This page is under construction. Please check back later for updates.
-
 ## Introduction
 This article provides a code template to greatly simplify and automate the use of GRPC in a C++ project. The template is built using CMake. A Docker image consisting of all GRPC files and dependencies is also provided for a C++ project.
 
@@ -26,15 +23,15 @@ At the end of this project, we should be able to:
 ## Code
 Find the source code in the [repository](https://github.com/Adaickalavan/grpc-cpp-cmake).
 
-
-## Key code template components
+## Key components of code template
 1. Key files in this template are `grpc.cmake`, `CMakeLists.txt`, and `Dockerfile`. 
 1. The `grpc.cmake` file automatically 
     + installs GRPC via CMake's `FetchContent` module at configure time,
     + generates the C++ sources from the `.proto` files, and
     + performs all necessary file linkage.
 
-## Local: Run code template <a name="local"></a>
+## Instructions
+### Local: Run code template <a name="local"></a>
 1. Download the repository
     ```bash
     $ git clone https://github.com/Adaickalavan/grpc-cpp-cmake.git 
@@ -60,7 +57,7 @@ Find the source code in the [repository](https://github.com/Adaickalavan/grpc-cp
     $ ./app/greeter_client
     ```
 
-## Docker: Run code template
+### Docker: Run code template
 1. Build image: 
     ```bash
     $ cd /path/to/repository/root/grpc-cpp-cmake
@@ -72,7 +69,7 @@ Find the source code in the [repository](https://github.com/Adaickalavan/grpc-cp
     $ docker-compose up
     ```    
 
-## Local: Build and install GRPC
+### Local: Build and install GRPC
 
 {: .notice--warning}
 For most of us, we should build and run all our GRPC C++ code locally by following the instructions given [above](#local). Ideally this step should not be performed, as it has been simplified by the [above](#local) steps. The steps below are only provided for those who are interested in manually installing GRPC system-wide in their computer. See here for further [reference](https://github.com/grpc/grpc/blob/master/BUILDING.md).
