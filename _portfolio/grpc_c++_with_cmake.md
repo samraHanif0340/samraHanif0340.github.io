@@ -31,7 +31,8 @@ Find the source code in the [repository](https://github.com/Adaickalavan/grpc-cp
     + performs all necessary file linkage.
 
 ## Instructions
-+ Set appropriately or disable the proxy settings in the `Dockerfile` and `CMakeLists.txt` file, before running the code.       
++ Set appropriately or disable the proxy settings in the `CMakeLists.txt` and `Dockerfile` files, before running the code. 
++ Before using the `Dockerfile`, disable the section on "git fix and git proxy". This is only meant for my network.       
 
 ### Local: Run code template <a name="local"></a>
 1. Download the repository
