@@ -41,7 +41,7 @@ Find the source code in the [repository](https://github.com/Adaickalavan/grpc-cp
     ```
 1. Build source codes using CMake in Linux
     ```bash
-    $ cd /path/to/repository/root/grpc-cpp-cmake/
+    $ cd /path/to/repository/grpc-cpp-cmake/
     $ mkdir build
     $ cd build
     $ cmake ..
@@ -49,13 +49,13 @@ Find the source code in the [repository](https://github.com/Adaickalavan/grpc-cp
     ``` 
 1. Run the C++ server
     ```bash
-    $ cd /path/to/repository/root/grpc-cpp-cmake/
+    $ cd /path/to/repository/grpc-cpp-cmake/
     $ cd build
     $ ./app/greeter_server
     ```
 1. Run the C++ client in a different terminal
     ```bash
-    $ cd /path/to/repository/root/grpc-cpp-cmake/
+    $ cd /path/to/repository/grpc-cpp-cmake/
     $ cd build
     $ ./app/greeter_client
     ```
@@ -63,17 +63,17 @@ Find the source code in the [repository](https://github.com/Adaickalavan/grpc-cp
 ### Docker: Run code template
 1. Build image: 
     ```bash
-    $ cd /path/to/repository/root/grpc-cpp-cmake
+    $ cd /path/to/repository/grpc-cpp-cmake
     $ docker build -t grpccpp --network=host .
     ```
 1. Run the container, which runs the C++ GRPC server.
     ```bash
-    $ cd /path/to/repository/root/grpc-cpp-cmake
+    $ cd /path/to/repository/grpc-cpp-cmake
     $ docker run --rm --network=host grpccpp
     ```  
 1. Run the C++ GRPC client in a different local host terminal
     ```bash
-    $ cd /path/to/repository/root/grpc-cpp-cmake/
+    $ cd /path/to/repository/grpc-cpp-cmake/
     $ cd build
     $ ./app/greeter_client
     ```  
@@ -98,13 +98,13 @@ For most of us, we should build and run all our GRPC C++ code locally by followi
 1. Clone gRPC repository
     ```bash
     $ git clone -b v1.28.1 https://github.com/grpc/grpc
-    $ cd grpc
+    $ cd /path/to/repository/grpc
     $ git submodule update --init
     ```
 
 1. Builds and install gRPC
     ```bash
-    $ cd grpc
+    $ cd /path/to/repository/grpc
     $ mkdir -p cmake/build
     $ cd cmake/build
     $ cmake -DgRPC_INSTALL=ON \
