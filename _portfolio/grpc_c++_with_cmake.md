@@ -31,6 +31,8 @@ Find the source code in the [repository](https://github.com/Adaickalavan/grpc-cp
     + performs all necessary file linkage.
 
 ## Instructions
++ Set appropriately or disable the proxy settings in the `Dockerfile` and `CMakeLists.txt` file, before running the code.       
+
 ### Local: Run code template <a name="local"></a>
 1. Download the repository
     ```bash
@@ -63,11 +65,17 @@ Find the source code in the [repository](https://github.com/Adaickalavan/grpc-cp
     $ cd /path/to/repository/root/grpc-cpp-cmake
     $ docker build -t grpccpp --network=host .
     ```
-1. Run the container: 
+1. Run the container, which runs the C++ GRPC server.
     ```bash
     $ cd /path/to/repository/root/grpc-cpp-cmake
     $ docker-compose up
-    ```    
+    ```  
+1. Run the C++ GRPC client in a different local host terminal
+    ```bash
+    $ cd /path/to/repository/root/grpc-cpp-cmake/
+    $ cd build
+    $ ./app/greeter_client
+    ```  
 
 ### Local: Build and install GRPC
 
