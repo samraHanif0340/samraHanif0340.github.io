@@ -32,7 +32,7 @@ Find the source code in the [repository](https://github.com/Adaickalavan/grpc-cp
 
 ## Instructions
 + Set appropriately or disable the proxy settings in the `CMakeLists.txt` and `Dockerfile` files, before running the code. 
-+ Before using the `Dockerfile`, disable the section on "git fix and git proxy". This is only meant for my network.       
++ Before using the `Dockerfile`, disable the sections on "Fix Git" and "Fix Git proxy". These sections were only meant to fix issues present in my personal internet access network.       
 
 ### Local: Run code template <a name="local"></a>
 1. Download the repository
@@ -69,7 +69,7 @@ Find the source code in the [repository](https://github.com/Adaickalavan/grpc-cp
 1. Run the container, which runs the C++ GRPC server.
     ```bash
     $ cd /path/to/repository/root/grpc-cpp-cmake
-    $ docker-compose up
+    $ docker run --rm --network=host grpccpp
     ```  
 1. Run the C++ GRPC client in a different local host terminal
     ```bash
