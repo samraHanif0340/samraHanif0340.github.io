@@ -1,5 +1,5 @@
 ---
-title: "High performance computing with OpenCL"
+title: "High Performance Computing with OpenCL"
 excerpt: "OpenCL, C/C++, CMake"
 header:
   teaser: /assets/images/opencl_01.jpg

@@ -1,5 +1,5 @@
 ---
-title: "Functional programming in scala specialization"
+title: "Functional Programming in Scala Specialization"
 excerpt: "Course review and resources"
 header:
   teaser: /assets/images/scala_c3_w1_a01_01.jpg 
