@@ -30,7 +30,6 @@ title: "Python"
     | Local Variables	         | lower_with_under   |                                |	
 
 ## Machine learning folder structure
-
 The following serves as a representative project folder structure.
 
 ```text
@@ -376,7 +375,7 @@ Note: All <span style="color:green">Production Code</span> needs to undergo code
     Navigate to http://localhost:4000 to view the profile output.
 1. Note: If you want to profile several functions, only instantiate once the `LineProfiler()` and import it in the other files. Otherwise, profiler output might have some issues and have weird reporting.
 
-## Configuration
+## Proxy
 + Setup proxy configurations for conda/pip when using conda/pip behind a corporate proxy, e.g., `http://10.0.0.0:8080/`.
 + For conda, run the following commands in a terminal
     ```bash
@@ -389,3 +388,12 @@ Note: All <span style="color:green">Production Code</span> needs to undergo code
     [global]
     proxy = http://10.0.0.0:8080/     
     ```
+
+## Unit test
+1. For info see : https://realpython.com/python-testing/
+1. Run unit tests in python 
+    ```bash
+    $ cd /path/to/source/code/root
+    $ python -m unittest discover -s <test folder>
+    ```
+    `unittest` will scan the `<test folder>` for all `test*.py` files and execute them.    
