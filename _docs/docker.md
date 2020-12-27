@@ -112,29 +112,61 @@ title: "Docker"
     ...
     ```            
 
-## Transfer image to remote server
-1. Instructions to transfer docker image to a remote server without using internet based repository is provided below.
+## Build
++ Required tools
+    ```bash
+    $ sudo apt-get install sshpass
+    ```
++ An example shell script named `remote.sh` is provided to build, save, transfer, load, and run interactively, a docker image in a remote server.
+    ```sh
+    #!/bin/bash
 
-1. Save the Docker image as a tar file
-    ```bash
-    $ docker save -o <path for generated tar file> <image name>
-    $ docker save -o "C:/myFile.tar" myDockerImage
+    # Example command to execute this script:
+    # source remote.sh <user name> <password> <server address> <destination directory> <container name>
+
+    # Arguments
+    USER=$1       #Username, e.g., admin
+    PASS=$2       #Password, e.g., abcd1234
+    ADD=$3        #Server address, e.g., 10.193.200.15
+    DST=$4        #Destination directory, e.g., /src/$USER
+    CONTAINER=$4  #Container name, e.g., mycontainer
+
+    # Build Docker image locally
+    docker build \
+        -t ${CONTAINER} \
+        --network=host \
+        .
+    # Save image locally
+    docker save -o ./${CONTAINER}.tar ${CONTAINER}
+    # Push image to remote server
+    sshpass -p ${PASS} scp ${PWD}/${CONTAINER}.tar ${USER}@${ADD}:${DST}
+    # Load docker in remote server
+    sshpass -p ${PASS} ssh ${USER}@${ADD} "docker load -i ${DST}/${CONTAINER}.tar"
+    # Run interactive docker container in detached mode in remote server 
+    sshpass -p ${PASS} ssh ${USER}@${ADD} "docker run --rm \
+        -it \
+        -d \
+        --network=host \
+        --privileged \
+        --env="XAUTHORITY=/tmp/.docker.xauth" \
+        --env="QT_X11_NO_MITSHM=1" \
+        --volume=/tmp/.X11-unix:/tmp/.X11-unix:rw \
+        --device=/dev/dri \
+        --memory=100g \
+        --user=$(id -u):$(id -g) \
+        --name=${CONTAINER} \
+        ${CONTAINER}
+    "
     ```
-1. Copy your image to a new system with regular file transfer tools such as `cp`. 
-1. In your remote server, load the image into Docker
-    ```bash
-    $ docker load -i <path to image tar file>
-    ```
-    You may need to sudo all commands.
 
 ## Interactive usage
-1. Start bash inside a docker container
+1. Start a bash interactively inside a docker container
     ```bash
-    ~/GoWorkspace/src/github.com/adaickalavan/Scalable-Deployment-Kubernetes/tfserving/resnet/1538687457$ docker exec -it goconsumer bash   
-    ``` 
-    Alternative command
+    $ docker exec -ti <container name> bash
+    ```
+1. Exit the interactive docker container
     ```bash
-    docker run -it cvideoingest /bin/bash
+    ctrl-p ctrl-q
     ```
 
 ## Display
