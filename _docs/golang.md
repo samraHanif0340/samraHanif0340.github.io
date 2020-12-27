@@ -43,3 +43,17 @@ title: "Golang"
     $ godoc -http=:6060
     ```
 1. By default, godoc looks at the packages it finds via `$GOROOT` and `$GOPATH` (if set). This behavior can be altered by providing an alternative `$GOROOT` with the `-goroot` flag. 
+
+## Profiling
+1. To profile a Go code using a web interface, run:
+    ```go
+    $ go tool pprof -http=localhost:8080 /tmp/cpu.pprof
+    $ go tool pprof -http=localhost:8080 /tmp/mem.pprof
+    ```
+    Here, `/tmp/cpu.pprof` and `/tmp/mem.pprof` are the cpu and memory profiler output files.
+
+1. To see time spent on each line, run:
+    ```go
+    $ go tool pprof /tmp/cpu.pprof
+    $ list <packageName>
+    ```

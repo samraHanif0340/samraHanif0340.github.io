@@ -10,9 +10,20 @@ title: "Git"
     + [Mastering Issues](https://guides.github.com/features/issues/).
 
 ## Commands
-+ To see git hitsory, run:
+1. To see git hitsory, run:
     ```bash
     $ git log --graph --oneline --decorate
+    ```
+
+1. Set up user name/email address
+    ```
+    $ git config --global user.name <username>
+    $ git config --global user.email <mailaddress>
+    ```
+
+1. To save Git password
+    ```bash
+    $ git config --global credential.helper store
     ```
 
 ## Configuration

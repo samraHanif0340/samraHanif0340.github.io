@@ -109,3 +109,9 @@ title: "Docker"
     ENV https_proxy "https://10.0.0.0:8080/"
     ...
     ```            
+
+## Display
+1. Enable display access from docker to linux desktop
+    ```bash
+    $ xhost +
+    ```

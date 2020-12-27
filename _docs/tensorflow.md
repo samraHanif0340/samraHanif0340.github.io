@@ -69,7 +69,10 @@ Every machine learning project must produce a saved model as its final deliverab
     # Save TensorFlow model
     tf.saved_model.simple_save(keras.backend.get_session(), export_path, inputs={'input_image': model.inputs}, outputs={'output_prob': model.outputs})
     ```
-
++ Show tensorflow saved model parameters. An example is as follows:
+    ```bash
+    $ saved_model_cli show --dir /<path to tfserving saved model>/tfserving/resnet/1538687457 --all
+    ```
 + An overview of the TensorFlow SavedModel building and deploying process is illustrated here.
 
     [![tensorFlowSavedModel](/assets/images/wiki/wiki_tensorflow_02.jpg)](/assets/images/wiki/wiki_tensorflow_02.jpg)
