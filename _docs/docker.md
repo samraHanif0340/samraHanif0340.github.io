@@ -2,7 +2,10 @@
 title: "Docker"
 ---
 
-## Docker File
+## Installation
+1. Install Docker Engine and Docker Compose from the official [site](https://docs.docker.com/install/linux/docker-ce/ubuntu/). 
+
+## Dockerfile
 + Containerization is packaging an application, its dependencies, and its configuration into a single deployable unit, called an image.
 + Failed Docker containers can be restarted automatically.
 + Can be run on Linux, Mac, Windows
@@ -83,8 +86,7 @@ title: "Docker"
         # network to the current docker-compose file
     ```
 
-## Configuration
-1. Install Docker Engine and Docker Compose from the official [site](https://docs.docker.com/install/linux/docker-ce/ubuntu/). 
+## Proxy
 1. Need to set proxy for Docker if we use Docker behind a corporate proxy, e.g., `http://10.0.0.0:8080/`. Hence, create a `http-proxy.conf` file at `/etc/systemd/system/docker.service.d/` such that `/etc/systemd/system/docker.service.d/http-proxy.conf` file contains the following.
     ```
     [Service]
@@ -109,6 +111,31 @@ title: "Docker"
     ENV https_proxy "https://10.0.0.0:8080/"
     ...
     ```            
+
+## Transfer image to remote server
+1. Instructions to transfer docker image to a remote server without using internet based repository is provided below.
+
+1. Save the Docker image as a tar file
+    ```bash
+    $ docker save -o <path for generated tar file> <image name>
+    $ docker save -o "C:/myFile.tar" myDockerImage
+    ```
+1. Copy your image to a new system with regular file transfer tools such as `cp`. 
+1. In your remote server, load the image into Docker
+    ```bash
+    $ docker load -i <path to image tar file>
+    ```
+    You may need to sudo all commands.
+
+## Interactive usage
+1. Start bash inside a docker container
+    ```bash
+    ~/GoWorkspace/src/github.com/adaickalavan/Scalable-Deployment-Kubernetes/tfserving/resnet/1538687457$ docker exec -it goconsumer bash   
+    ``` 
+    Alternative command
+    ```bash
+    docker run -it cvideoingest /bin/bash
+    ```
 
 ## Display
 1. Enable display access from docker to linux desktop

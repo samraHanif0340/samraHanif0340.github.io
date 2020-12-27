@@ -20,15 +20,19 @@ docs:
       - title: "Guide"
         url: /docs/guide/
       - title: "C++"
-        url: /docs/cpp/        
+        url: /docs/cpp/  
+      - title: "Core Dump"
+        url: /docs/coreDump/
       - title: "Docker"
         url: /docs/docker/
       - title: "Git"
         url: /docs/git/
       - title: "Golang"
-        url: /docs/golang/        
+        url: /docs/golang/
+      - title: "Hardware"
+        url: /docs/hardware/
       - title: "IDE"
-        url: /docs/ide/          
+        url: /docs/ide/
       - title: "Kafka"
         url: /docs/kafka/
       - title: "Kubernetes"
@@ -41,3 +45,5 @@ docs:
         url: /docs/python/
       - title: "TensorFlow"
         url: /docs/tensorflow/
+      - title: "Website"
+        url: /docs/website/
