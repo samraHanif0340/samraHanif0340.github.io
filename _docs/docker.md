@@ -164,7 +164,7 @@ title: "Docker"
     ```bash
     $ docker exec -ti <container name> bash
     ```
-1. Exit the interactive docker container
+1. Exit without stopping the container. Interactive mode turns into daemon mode.
     ```bash
     ctrl-p ctrl-q
     ```
