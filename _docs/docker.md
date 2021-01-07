@@ -89,7 +89,11 @@ title: "Docker"
 ## Proxy
 1. Need to set proxy for Docker if we use Docker behind a corporate proxy.
 
-1. Create a `http-proxy.conf` file containing the following.
+1. Create a `http-proxy.conf` file.
+    ```bash
+    $ touch http-proxy.conf
+    ```
+1. Populate the `http-proxy.conf` file with proxy info.    
     ```
     [Service]
     Environment="HTTP_PROXY=http://10.0.0.0:8080/"
@@ -106,8 +110,12 @@ title: "Docker"
 
 1. Restart the Docker daemon to start using the new proxy setting.
     ```bash
-    $ systemctl daemon-reload
-    $ service docker restart
+    # Reload systemctl so new settings are read
+    $ sudo systemctl daemon-reload
+    # Verify docker environment is properly set
+    $ sudo systemctl show docker --property Environment
+    # Restart docker service 
+    $ sudo systemctl restart docker
     ```
 
 1. To use `RUN apt-get` command inside `dockerfile` behind a proxy, set proxy for Linux `apt` using the environment `ENV` variable in the `dockerfile` as follows.
