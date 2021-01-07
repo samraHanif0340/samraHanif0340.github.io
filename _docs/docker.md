@@ -87,7 +87,9 @@ title: "Docker"
     ```
 
 ## Proxy
-1. Need to set proxy for Docker if we use Docker behind a corporate proxy, e.g., `http://10.0.0.0:8080/`. Hence, create a `http-proxy.conf` file at `/etc/systemd/system/docker.service.d/` such that `/etc/systemd/system/docker.service.d/http-proxy.conf` file contains the following.
+1. Need to set proxy for Docker if we use Docker behind a corporate proxy.
+
+1. Create a `http-proxy.conf` file containing the following.
     ```
     [Service]
     Environment="HTTP_PROXY=http://10.0.0.0:8080/"
@@ -95,6 +97,12 @@ title: "Docker"
     Environment="NO_PROXY=http://172.16.0.0/"
     ```  
     Note that we can set no proxy for internal IP addresses such as `http://172.16.0.0/`.
+
+1. Create `/etc/systemd/system/docker.service.d/` directory and move the file `http-proxy.conf` into it.
+    ```bash
+    $ mkdir /etc/systemd/system/docker.service.d
+    $ mv -f http-proxy.conf /etc/systemd/system/docker.service.d/
+    ```
 
 1. Restart the Docker daemon to start using the new proxy setting.
     ```bash
