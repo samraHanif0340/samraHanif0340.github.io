@@ -41,6 +41,8 @@ docs:
         url: /docs/linux/
       - title: "Microservices"
         url: /docs/microservices/
+      - title: "Nvidia"
+        url: /docs/nvidia/  
       - title: "Python"
         url: /docs/python/
       - title: "TensorFlow"

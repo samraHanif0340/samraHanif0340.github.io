@@ -2,7 +2,9 @@
 title: "Nvidia"
 ---
 
-## Instruction to install and run Tensorflow with Nvidia GPU inside Docker container
+## Tensorflow-GPU in Docker with Nvidia
+
+1. Instruction to install and run Tensorflow with Nvidia GPU inside Docker container.
 
 1. My setting
     ```bash
