@@ -66,8 +66,8 @@ title: "Nvidia"
     ```
 
 1. Check for compatible Tensorflow, NVIDIA driver, and Cuda versions
-    + Tensorflow support: https://www.tensorflow.org/install/source#gpu
-    + NVidia suport: https://docs.nvidia.com/deploy/cuda-compatibility/index.html#binary-compatibility__table-toolkit-driver
+    + Tensorflow: https://www.tensorflow.org/install/source#gpu
+    + NVidia: https://docs.nvidia.com/deploy/cuda-compatibility/index.html#binary-compatibility__table-toolkit-driver
 
 1. Run the NVIDIA system management interface inside of a CUDA Docker container:
     ```bash
