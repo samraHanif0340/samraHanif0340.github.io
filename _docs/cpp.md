@@ -85,7 +85,7 @@ cppprocessing                  # Main project directory
     ```
 
 1. When using Boost libraries whch are header-only, we only need to "include directory" in the CMake build file.
-    ```CMake
+    ```make
     find_package(BOOST 1.72 REQUIRED)
     add_executable(example 
         ./example.cpp
@@ -93,7 +93,7 @@ cppprocessing                  # Main project directory
     target_include_directories(example PRIVATE ${Boost_INCLUDE_DIR})
     ``` 
     When using Boost libraries which requires to be built, e.g., `chrono`, we need to additionally "link_libraries" in the CMake build file.
-    ```CMake
+    ```make
     find_package(Boost 1.72 COMPONENTS chrono REQUIRED)
     add_executable(example 
         ./example.cpp
@@ -131,7 +131,7 @@ Several different tools for C++ code profiling are listed below.
         - Program generates gmon.out file
         - Run gprof program
     + Add profiling flags to `CMakeLists.txt` file
-        ```CMake
+        ```make
         SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pg")
         SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -pg")
         SET(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -pg")
