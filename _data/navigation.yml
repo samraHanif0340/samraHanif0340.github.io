@@ -31,8 +31,6 @@ docs:
         url: /docs/golang/
       - title: "Hardware"
         url: /docs/hardware/
-      - title: "IDE"
-        url: /docs/ide/
       - title: "Kafka"
         url: /docs/kafka/
       - title: "Kubernetes"
@@ -47,5 +45,7 @@ docs:
         url: /docs/python/
       - title: "TensorFlow"
         url: /docs/tensorflow/
+      - title: "VSCode"
+        url: /docs/vscode/  
       - title: "Website"
         url: /docs/website/
