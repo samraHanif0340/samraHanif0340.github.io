@@ -85,3 +85,41 @@ title: "Linux"
     $ sudo apt-get install sshpass
     $ sshpass -p <password> scp ./file.tar <username>@10.193.100.100:<dest folder> 
     ```
+
+## Installing packages
+1. If you encounter broken packages error, such as,
+    ```bash
+    $ sudo apt install libgpgme11-dev
+    Some packages could not be installed. This may mean that you have requested an impossible situation or if you are using the unstable distribution that some required packages have not yet been created or been moved out of Incoming.
+
+    The following information may help resolve the situation:
+
+    The following packages have unmet dependencies:
+    libgpgme11-dev : Depends: libgpgme11 (= 1.6.0-1) but 1.8.0-3ubuntu2~ubuntu16.04~ppa1 is to be installed
+    E: Unable to correct problems, you have held broken packages.
+    ```
+    Consider installing using the following command for more information on the package dependency problem.
+    ```bash
+    $ sudo apt install libgpgme11-dev -o Debug::pkgProblemResolver=true -o Debug::Acquire::http=true
+    Starting pkgProblemResolver with broken count: 1
+    Starting 2 pkgProblemResolver with broken count: 1
+    Investigating (0) libgpgme11-dev [ amd64 ] < none -> 1.6.0-1 > ( libdevel )
+    Broken libgpgme11-dev:amd64 Depends on libassuan-dev [ amd64 ] < none -> 2.4.2-2 > ( libdevel )
+    Considering libassuan-dev:amd64 1 as a solution to libgpgme11-dev:amd64 9999
+    Re-Instated libassuan-dev:amd64
+    Broken libgpgme11-dev:amd64 Depends on libgpg-error-dev [ amd64 ] < none -> 1.21-2ubuntu1 > ( libdevel )
+    Considering libgpg-error-dev:amd64 1 as a solution to libgpgme11-dev:amd64 9999
+    Re-Instated libgpg-error-dev:amd64
+    Broken libgpgme11-dev:amd64 Depends on libgpgme11 [ amd64 ] < 1.8.0-3ubuntu2~ubuntu16.04~ppa1 > ( libs ) (= 1.6.0-1)
+    Considering libgpgme11:amd64 4 as a solution to libgpgme11-dev:amd64 9999
+    Done
+    Some packages could not be installed. This may mean that you have
+    requested an impossible situation or if you are using the unstable
+    distribution that some required packages have not yet been created
+    or been moved out of Incoming.
+    The following information may help resolve the situation:
+
+    The following packages have unmet dependencies:
+    libgpgme11-dev : Depends: libgpgme11 (= 1.6.0-1) but 1.8.0-3ubuntu2~ubuntu16.04~ppa1 is to be installed
+    E: Unable to correct problems, you have held broken packages.
+    ```
