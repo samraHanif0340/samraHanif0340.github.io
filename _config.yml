@@ -16,11 +16,11 @@ minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt"
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Computer Vision, Frontend & A bit of everything else"
+title                    : "Computer Vision, Web Dev & A bit of everything else"
 title_separator          : "|"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : &name "Marib Sultan"
-description              : &description "Ailurophile,Pluviophile,wants to witness humanity discover life beyond earth.
+description              : &description "Computer vision and web engineer. Ailurophile, Pluviophile, wants to witness humanity discover life beyond earth.
 
 
 وَعَلَيْكُمُ ٱلسَّلَامُ"
