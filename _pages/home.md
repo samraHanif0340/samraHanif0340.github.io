@@ -6,10 +6,15 @@ header:
   overlay_image: /assets/images/appollo-13.png       
 ---
 
-Welcome to my personal site. 
 
-Here, I delve into the world of statistical signal processing, distributed high-performance computing, modeling & simulation, and machine learning. Actually, I tend to cover pretty much anything involving mathematics and programming, which are necessary to excel in successfully automating intelligence to solve problems - a.k.a. teaching a machine!
+Bachelors in Computer Science from [FAST](https://www.nu.edu.pk/) - 2017.
+<br>
+Masters of Business Administration from [IoBM](https://www.iobm.edu.pk/) - 2021.
 
-+ The <a href="/portfolio/">portfolio</a> tab contains several of my works on statistical signal processing, distributed high performance, computing, machine learning, and my doctoral endeavour.
-+ The <a href="/year-archive/">posts</a> tab contain standalone posts on specific topics.
-+ The <a href="/docs/guide/">guide</a> tab contains setup configurations and recommended coding standards, for various languages and tools.
+From 2017 to 2021 I worked as a Software and then Senior Software Engineer at [Systems Limited](https://www.systemsltd.com/) where key area of responsibilities included developing hybrid mobile apps and web apps with Javascript. Since 2021 I have been working with [Folio3](https://folio3.com/) primarily on computer vision projects revolving around object detection, image and video processing. 
+
+
+Technologies that I have worked with include : Python, OpenCV, Gstreamer, TensorRT, ONNX, PyTorch, Tensorflow, Javascript, Angular, React, Webpack, NodeJs, Ionic.
+
++ The <a href="/portfolio/">portfolio</a> tab contains fun projects that I have worked on in part time.
++ The <a href="/year-archive/">posts</a> tab contains my blog posts or tech talks.
