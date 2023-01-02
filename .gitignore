@@ -13,3 +13,6 @@ example/_site
 Gemfile.lock
 node_modules
 npm-debug.log*
+
+BACK_UP_portfolio/
+BACK_UP_posts/
