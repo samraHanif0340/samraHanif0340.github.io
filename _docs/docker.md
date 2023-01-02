@@ -19,7 +19,7 @@ title: "Docker"
     ENV GO111MODULE=on
 
     # Author label
-    LABEL Author Adaickalavan Meiyappan
+    LABEL Author Marib Sultan
 
     # Install build tools
     RUN apt-get update && apt-get -y install g++ cmake git pkg-config

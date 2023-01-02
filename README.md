@@ -1,6 +1,6 @@
-## Adaickalavan's website
+## Marib Sultan's website
 
-See [adaickalavan.github.io](https://adaickalavan.github.io/).
+See [maribsultan.github.io](https://maribsultan.github.io/).
 
 My contributions in this site are licensed under [MIT License](LICENSE). 
 

@@ -16,14 +16,17 @@ minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt"
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Signal Processing, Modeling, & Simulation"
+title                    : "Computer Vision, Frontend & A bit of everything else"
 title_separator          : "|"
 subtitle                 : # site tagline that appears below site title in masthead
-name                     : &name "Adaickalavan"
-description              : &description "If nothing goes right, go left!"
-url                      : "https://adaickalavan.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+name                     : &name "Marib Sultan"
+description              : &description "Ailurophile,Pluviophile,wants to witness humanity discover life beyond earth.
+
+
+وَعَلَيْكُمُ ٱلسَّلَامُ"
+url                      : "https://maribsultan.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
-repository               : "Adaickalavan/adaickalavan.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
+repository               : "marib-suItan/maribsultan.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
 masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
@@ -109,26 +112,26 @@ analytics:
 # Site Author
 author:
   name             : *name
-  avatar           : "/assets/images/Adai-774x781.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : "/assets/images/my_picture.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : *description
-  location         : "Ontario, Canada"
+  location         : "Karachi, Pakistan"
   email            :
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      url: mailto:adaickalavan@gmail.com
+      url: mailto:i.maribsultan@gmail.com
     - label: "Schedule a Chat"
       icon: "fa fa-fw fa-calendar"
       url: "/calendar/"
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
-      url: "https://www.linkedin.com/in/adaickalavan"
+      url: "https://www.linkedin.com/in/marib-sultan-740266aa/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/Adaickalavan"   
+      url: "https://github.com/marib-suItan"   
     - label: "Website"
       icon: "fas fa-fw fa-link"
-      url: "https://adaickalavan.github.io/"
+      url: "https://maribsultan.github.io/"
 
 # Site Footer
 footer:
@@ -138,10 +141,10 @@ footer:
       url: "/calendar/"
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
-      url: "https://www.linkedin.com/in/adaickalavan"
+      url: "https://www.linkedin.com/in/marib-sultan-740266aa/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/Adaickalavan"
+      url: "https://github.com/marib-suItan"
 
 
 # Reading Files

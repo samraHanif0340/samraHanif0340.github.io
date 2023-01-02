@@ -150,7 +150,7 @@ Note: All <span style="color:green">Production Code</span> needs to undergo code
         ```bash
         $ cd /path/to/project/root
         $ sphinx-quickstart \
-            -q -p Emotion-Recognition -a Adaickalavan \
+            -q -p Emotion-Recognition -a MaribSultan \
             -v v0.0.1 \
             --ext-autodoc \
             --ext-todo \

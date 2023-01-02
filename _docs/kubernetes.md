@@ -32,7 +32,7 @@ title: "Kubernetes"
     metadata: # Descriptive information of object
     name: tfsimagenet
     annotations: # Won’t be indexed or queried on
-        contact: Adaickalavan <adaickalavan@email.com> 
+        contact: Marib Sultan <i.maribsultan@email.com> 
 
     spec: # Desired state of object
     replicas: 2 # How many copies of each pod do we want?
