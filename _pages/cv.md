@@ -1,12 +1,12 @@
 ---
-permalink: /cv/
-excerpt: "CV"
+permalink: /resume/
+excerpt: "Résumé"
 ---
 
-An always-up-to-date version of my CV is embedded below. 
+An always-up-to-date version of my Résumé is embedded below. 
 
 I am always open to new opportunities. Feel free to contact me if you have an interesting niche role.   
 
-[<i class="fas fa-download"></i> Download my CV](https://www.dropbox.com/s/2n17zew4fjqrqbp/Adaickalavan%20Meiyappan.pdf?dl=1){: .btn .btn--success}  <a href="/calendar/" class="btn btn--info">Schedule a chat with me</a>
+[<i class="fas fa-download"></i> Download my CV](https://drive.google.com/file/d/1O7ZPrVQydyfGx7uKf6in9kx63FlIdb3Y/view?usp=share_link){: .btn .btn--success}  <a href="/calendar/" class="btn btn--info">Schedule a chat with me</a>
 
-{% include embedpdf.html code="2n17zew4fjqrqbp/Adaickalavan%20Meiyappan.pdf" width=100 height=2700 %}
+<embed height="555px" width="320px" src="{{ BASE_PATH }}/assets/docs/Marib_Sultan_Resume.pdf" type="application/pdf" />
