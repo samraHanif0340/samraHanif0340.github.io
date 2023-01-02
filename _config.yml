@@ -133,19 +133,6 @@ author:
       icon: "fas fa-fw fa-link"
       url: "https://maribsultan.github.io/"
 
-# Site Footer
-footer:
-  links:
-    - label: "Schedule a Chat"
-      icon: "fa fa-fw fa-calendar"
-      url: "/calendar/"
-    - label: "LinkedIn"
-      icon: "fab fa-fw fa-linkedin"
-      url: "https://www.linkedin.com/in/marib-sultan-740266aa/"
-    - label: "GitHub"
-      icon: "fab fa-fw fa-github"
-      url: "https://github.com/marib-suItan"
-
 
 # Reading Files
 include:
