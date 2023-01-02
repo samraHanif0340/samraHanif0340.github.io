@@ -8,10 +8,7 @@ main:
     url: /portfolio/
   - title: "Posts"
     url: /year-archive/
-  - title: "Guide"
-    url: /docs/guide/  
-  - title: "Publications"
-    url: /publications/
+
 
 # documentation links
 docs:
