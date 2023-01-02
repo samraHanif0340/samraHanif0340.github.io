@@ -1,9 +1,9 @@
 ---
 layout: single
 permalink: /
-title: "Teaching a machine"
+title: " "
 header:
-  overlay_image: /assets/images/machine_small.jpg       
+  overlay_image: /assets/images/appollo-13.png       
 ---
 
 Welcome to my personal site. 
