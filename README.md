@@ -1,3 +1,3 @@
-## Marib Sultan's website
+## Samra Hanif's website
 
-See [marib-suItan.github.io](https://marib-suitan.github.io/).
+See [samra-hanif.github.io](https://samra-hanif.github.io/).
