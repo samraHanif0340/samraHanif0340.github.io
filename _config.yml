@@ -16,17 +16,17 @@ minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt"
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Computer Vision, Web Dev & A bit of everything else"
+title                    : "Full Stack Developer"
 title_separator          : ""
 subtitle                 : # site tagline that appears below site title in masthead
-name                     : &name "Marib Sultan"
-description              : &description "Computer vision and web engineer. Immensly interesed in Cosmos. Ailurophile, Pluviophile, wants to witness humanity discover life beyond earth.
+name                     : &name "Samra Hanif"
+description              : &description "Full Stack Developer.
 
 
 وَعَلَيْكُمُ ٱلسَّلَامُ"
-url                      : "https://maribsultan.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+url                      : "https://samrahanif.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
-repository               : "marib-suItan/maribsultan.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
+repository               : "samraHanif0340/samra-hanif.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
 masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
@@ -112,26 +112,26 @@ analytics:
 # Site Author
 author:
   name             : *name
-  avatar           : "/assets/images/my_picture.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : "/assets/images/my_photo.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : *description
   location         : "Karachi, Pakistan"
   email            :
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      url: mailto:i.maribsultan@gmail.com
+      url: mailto:i.samrahanif@gmail.com
     - label: "Schedule a Chat"
       icon: "fa fa-fw fa-calendar"
       url: "/calendar/"
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
-      url: "https://www.linkedin.com/in/marib-sultan-740266aa/"
+      url: "https://www.linkedin.com/in/samra-hanif/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/marib-suItan"   
+      url: "https://github.com/samraHanif0340"
     - label: "Website"
       icon: "fas fa-fw fa-link"
-      url: "https://marib-suitan.github.io/"
+      url: "https://samra-hanif.github.io"
 
 
 # Reading Files
@@ -195,7 +195,7 @@ kramdown:
 collections:
   docs:
     output: true
-    permalink: /:collection/:path/   
+    permalink: /:collection/:path/
   portfolio:
     output: true
     permalink: /:collection/:path/
@@ -220,7 +220,7 @@ defaults:
       author_profile: true
       share: true
       comments: true
-      related: true      
+      related: true
   # _docs
   - scope:
       path: ""
