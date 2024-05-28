@@ -6,6 +6,8 @@ main:
     url: /portfolio/
   - title: "Posts"
     url: /year-archive/
+  - title: "Contributions"
+    url: /contributions/
 
 
 # documentation links
@@ -15,7 +17,7 @@ docs:
       - title: "Guide"
         url: /docs/guide/
       - title: "C++"
-        url: /docs/cpp/  
+        url: /docs/cpp/
       - title: "Core Dump"
         url: /docs/coreDump/
       - title: "Docker"
@@ -35,12 +37,12 @@ docs:
       - title: "Microservices"
         url: /docs/microservices/
       - title: "Nvidia"
-        url: /docs/nvidia/  
+        url: /docs/nvidia/
       - title: "Python"
         url: /docs/python/
       - title: "TensorFlow"
         url: /docs/tensorflow/
       - title: "VSCode"
-        url: /docs/vscode/  
+        url: /docs/vscode/
       - title: "Website"
         url: /docs/website/
