@@ -114,7 +114,7 @@ author:
   name             : *name
   avatar           : "/assets/images/my_photo.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : *description
-  location         : "Karachi, Pakistan"
+  location         : "Toronto, Canada"
   email            :
   links:
     - label: "Email"
@@ -128,7 +128,7 @@ author:
       url: "https://github.com/samraHanif0340"
     - label: "Website"
       icon: "fas fa-fw fa-link"
-      url: "https://samra-hanif.github.io"
+      url: "https://samrahanif0340.github.io/"
 
 
 # Reading Files

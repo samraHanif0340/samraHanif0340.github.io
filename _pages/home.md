@@ -18,4 +18,5 @@ Since 2022 I have been working with [Careem](https://careem.com/) primarily on a
 Technologies that I have worked with include : Javascript, Angular, React, React Native, NodeJs, Ionic, and Python.
 
 + The <a href="/portfolio/">portfolio</a> tab contains fun projects that I have worked on in part time.
-+ The <a href="/year-archive/">posts</a> tab contains my blog posts.
++ The <a href="/year-archive/">posts</a> tab contains my blogs on medium.
++ The <a href="/contributions/">contributions</a> tab contains my merged and open discussions on Apache superset.
